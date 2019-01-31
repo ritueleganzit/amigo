@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <ImageView
+        android:src="@drawable/login_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@+id/content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/volunteerify_logo"
+            android:layout_width="130dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/un_input"
+            android:textColor="#c6c6c6"
+            android:theme="@style/TextLabel"
+            android:textColorHint="#c6c6c6"
+            android:backgroundTint="#c6c6c6"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/ed_username"
+                android:layout_width="match_parent"
+                android:textColor="#c6c6c6"
+                android:textColorHint="#c6c6c6"
+                android:backgroundTint="#c6c6c6"
+                android:inputType="text"
+                android:singleLine="true"
+                android:imeOptions="actionNext"
+                android:hint="USERNAME OR MOBILE NUMBER"
+                android:layout_height="wrap_content" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <RelativeLayout
+            android:id="@+id/inputs"
+            android:layout_below="@+id/un_input"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/pw_input"
+                android:layout_centerVertical="true"
+                android:textColor="#c6c6c6"
+                android:theme="@style/TextLabel"
+                android:textColorHint="#c6c6c6"
+                android:backgroundTint="#c6c6c6"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="#fff"
+                app:passwordToggleDrawable="@drawable/show_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/ed_password"
+                    android:layout_width="match_parent"
+                    android:textColor="#c6c6c6"
+                    android:textColorHint="#c6c6c6"
+                    android:backgroundTint="#c6c6c6"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:imeOptions="actionNext"
+                    android:hint="PASSWORD"
+                    android:layout_height="wrap_content" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </RelativeLayout>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/forgot_password"
+            android:layout_below="@+id/inputs"
+            android:textColor="#ffffff"
+            android:gravity="right"
+            android:text="Forgot Password?"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/signin"
+            android:layout_below="@+id/forgot_password"
+            android:background="@drawable/bt_background"
+            android:text="Sign in"
+            android:layout_marginTop="30dp"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/signup"
+            android:layout_below="@+id/signin"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:layout_height="wrap_content">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="Don't have an account yet? "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:text="SIGN UP"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

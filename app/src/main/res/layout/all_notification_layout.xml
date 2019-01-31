@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cprofilePic"
+        android:layout_width="wrap_content"
+        android:background="#7b7b7b"
+        android:layout_margin="12dp"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="6dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/userPhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:background="#7b7b7b"
+            android:scaleType="fitCenter" />
+
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cprofilePic"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:paddingLeft="2dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/txt_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:maxWidth="200dp"
+            android:ellipsize="end"
+            android:text="Username"
+            android:textColor="#000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_marginLeft="5dp"
+            android:text="has requested to follow you."
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+    </LinearLayout>
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:id="@+id/txt_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="20 seconds ago"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+        </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#dadada"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentBottom="true"
+        android:layout_height="1dp"/>
+</RelativeLayout>

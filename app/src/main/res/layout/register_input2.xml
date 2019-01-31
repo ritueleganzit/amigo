@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_input2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible"
+    android:focusableInTouchMode="true"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:gravity="center"
+    android:layout_margin="20dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/un_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/ed_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NAME"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/pw_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/un_input"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/ed_mobile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="MOBILE NUMBER"
+            android:imeOptions="actionDone"
+            android:inputType="phone"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+</RelativeLayout>

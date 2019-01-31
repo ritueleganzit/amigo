@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="1dp"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/lin_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/profilePic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_centerVertical="true"
+                android:src="@drawable/user"
+                android:scaleType="fitCenter" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/profilePic"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp" >
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/name"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="Username"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:paddingRight="5dp" >
+                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                        android:id="@+id/timestamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Apr 30 at 10:10 PM"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/dot"/>
+
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/earth_gray"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/menu"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:padding="4dp"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/menu" />
+
+        </RelativeLayout>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/txtStatusMsg"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000"
+            android:gravity="left"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="7dp"/>
+
+        <ImageView
+            android:id="@+id/feedImage1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:scaleType="fitXY"
+            android:visibility="visible" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/flexbox_layout"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/like_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/comment_layout"
+                android:layout_gravity="center"
+                android:paddingRight="5dp" >
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/heart"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="You and 250 others"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comment_layout"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_gravity="center"
+                android:paddingRight="5dp" >
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/comment"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:text="45 Comments"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

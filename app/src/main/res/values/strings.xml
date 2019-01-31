@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VolunteerifyNGO</string>
+    <string name="date_header_yesterday">Yesterday</string>
+    <string name="date_header_today">Today</string>
+</resources>

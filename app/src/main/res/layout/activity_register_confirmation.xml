@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <ImageView
+        android:src="@drawable/login_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@+id/content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/volunteerify_logo"
+            android:layout_width="130dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/userdata"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:text="CONGRATULATION!"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_marginBottom="20dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="You're registered successfully, you can now login and see volunteer opportunities."/>
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/login"
+            android:layout_below="@+id/userdata"
+            android:background="@drawable/bt_background"
+            android:layout_marginBottom="100dp"
+            android:text="login"
+            android:layout_marginTop="30dp"
+            android:textColor="#ffffff"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

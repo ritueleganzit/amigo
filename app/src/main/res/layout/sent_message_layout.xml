@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="5dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:text="Today"/>
+
+    </RelativeLayout>
+
+    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        android:layout_below="@+id/date"
+        android:id="@+id/messageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/message_bg"
+        android:gravity="left"
+        android:padding="8dp"
+        android:text="hello"
+        android:textColor="#fff"/>
+
+    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        android:id="@+id/sent_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/messageText"
+        android:textSize="10sp"
+        android:layout_marginTop="4dp"
+        android:text="01:07 PM"
+        android:textColor="#ffffff"/>
+
+</RelativeLayout>

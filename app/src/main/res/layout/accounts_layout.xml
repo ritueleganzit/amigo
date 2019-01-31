@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/main"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/userdata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/profile_photo"
+                    android:src="@mipmap/user_profile_green"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp" />
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_marginLeft="15dp"
+                android:layout_gravity="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Username"/>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:src="@drawable/menu_white"
+            android:layout_width="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_height="20dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#fff"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

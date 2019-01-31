@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:padding="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/dateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_centerInParent="true"
+            android:textColor="#fff"
+            android:text="Today"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/date"
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/message_bg"
+        android:orientation="vertical">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/sender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/message_bg"
+            android:gravity="left"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxWidth="200dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="5dp"
+            android:text="Username"
+            android:textColor="@color/appGreen"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/messageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/message_bg"
+            android:gravity="left"
+            android:padding="8dp"
+            android:text="hello"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+
+    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        android:id="@+id/received_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/message"
+        android:textSize="10sp"
+        android:layout_marginTop="4dp"
+        android:text="01:07 PM"
+        android:textColor="#ffffff"/>
+
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+    <ImageView
+        android:src="@drawable/login_bg"
+        android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_above="@+id/content"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:src="@drawable/volunteerify_logo"
+            android:layout_width="130dp"
+            android:layout_marginTop="40dp"
+            android:layout_height="130dp"
+            android:layout_centerHorizontal="true"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:focusableInTouchMode="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/tap_to_signin"
+            android:textColor="#c6c6c6"
+            android:layout_alignParentTop="true"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:text="TAP TO SIGN IN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/inputs"
+            android:layout_below="@+id/tap_to_signin"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="140dp">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_accounts"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/inputs"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:src="@mipmap/plus_square_green"
+                android:layout_width="40dp"
+                android:layout_gravity="center"
+                android:layout_height="40dp" />
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:id="@+id/another_account"
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Sign in with another account"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/signup"
+            android:layout_below="@+id/inputs"
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:layout_height="wrap_content">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:textColor="#ffffff"
+                android:gravity="center"
+                android:text="Don't have an account yet? "
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:textColor="@color/colorPrimary"
+                android:gravity="center"
+                android:text="SIGN UP"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>
