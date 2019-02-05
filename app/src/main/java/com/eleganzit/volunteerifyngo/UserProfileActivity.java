@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.eleganzit.volunteerifyngo.adapter.UserProfileViewPagerAdapter;
 import com.eleganzit.volunteerifyngo.fragments.AboutFragment;
 import com.eleganzit.volunteerifyngo.fragments.HomeFragment;
+import com.eleganzit.volunteerifyngo.fragments.PhotosFragment;
 
 import java.text.DecimalFormat;
 
@@ -33,6 +34,7 @@ public class UserProfileActivity extends AppCompatActivity {
     ViewPager profile_view_pager;
     EditText ed_search;
     TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity,donate;
+    public static RelativeLayout donate_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_photos=findViewById(R.id.tab_photos);
         tab_events=findViewById(R.id.tab_events);
         tab_opportunity=findViewById(R.id.tab_opportunity);
+        donate_layout=findViewById(R.id.donate_layout);
 
         ed_search.setLongClickable(false);
 
@@ -156,7 +159,20 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-
+        tab_photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_photos.setTextColor(Color.parseColor("#000000"));
+                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+                PhotosFragment photosFragment= new PhotosFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, photosFragment,"PhotosFragment")
+                        .commit();
+            }
+        });
 
     }
 

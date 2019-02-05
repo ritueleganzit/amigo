@@ -331,12 +331,13 @@
                     android:background="#dfdfdf"/>
 
                 <RelativeLayout
-                    android:id="@+id/third"
+                    android:id="@+id/donate_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#ffffff"
                     android:layout_below="@+id/fv"
                     android:layout_marginTop="1dp"
+                    android:visibility="gone"
                     android:padding="10dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -475,7 +476,7 @@
                     android:id="@+id/sv"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_below="@+id/third"
+                    android:layout_below="@+id/donate_layout"
                     android:background="#dfdfdf"/>
 
 
@@ -490,7 +491,7 @@
                 android:weightSum="5"
                 android:background="#ffffff">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
                     android:id="@+id/tab_home"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -500,7 +501,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Home"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
                     android:id="@+id/tab_about"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -510,7 +511,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="About"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
                     android:id="@+id/tab_photos"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -520,7 +521,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Photos"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
                     android:id="@+id/tab_events"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -530,7 +531,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Events"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
                     android:id="@+id/tab_opportunity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"

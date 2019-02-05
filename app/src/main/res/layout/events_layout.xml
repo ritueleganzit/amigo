@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/msg_main"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:layout_marginTop="1dp"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:id="@+id/profilePic"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:scaleType="fitCenter" >
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#ffffff"
+            android:text="MAY"
+            android:gravity="center"
+            android:background="@drawable/top_rounded_green_bg"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bottom_rounded_blue_bg">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textColor="#ffffff"
+                android:text="20"
+                android:layout_centerInParent="true"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profilePic"
+        android:layout_toLeftOf="@+id/end"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:paddingLeft="10dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            android:textColor="#000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@mipmap/clock_small"
+                />
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:id="@+id/events"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:paddingLeft="5dp"
+                android:ellipsize="end"
+                android:text="5 PM GMT +05:30"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@mipmap/location_small"
+            />
+
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/timestamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:paddingLeft="5dp"
+            android:ellipsize="end"
+            android:text="Ahmedabad, 100ft Ring Road, Cricket Ground"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

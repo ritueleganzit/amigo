@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.eleganzit.volunteerifyngo.NewsFeedActivity;
 import com.eleganzit.volunteerifyngo.R;
+import com.eleganzit.volunteerifyngo.UserProfileActivity;
 import com.eleganzit.volunteerifyngo.adapter.NewsFeedAdapter;
 import com.eleganzit.volunteerifyngo.adapter.UserNewsFeedAdapter;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
@@ -38,6 +39,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v=inflater.inflate(R.layout.fragment_home, container, false);
+
+        UserProfileActivity.donate_layout.setVisibility(View.VISIBLE);
+
         home_posts=v.findViewById(R.id.home_posts);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);

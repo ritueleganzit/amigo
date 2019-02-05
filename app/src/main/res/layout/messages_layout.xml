@@ -44,6 +44,8 @@
             android:id="@+id/events"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="28 Sponsored Events"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
@@ -51,6 +53,8 @@
             android:id="@+id/timestamp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textColor="#000"
             android:text="There are 28 people in this group"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />

@@ -251,30 +251,7 @@ public class ChatActivity extends AppCompatActivity {
         return date;
     }
 
-    /*private HashMap<String, List<ChatsData>> groupDataIntoHashMap(List<ChatsData> listOfChatJsonArray) {
 
-        HashMap<String, List<ChatsData>> groupedHashMap = new HashMap<>();
-
-        for (ChatsData chatsData : listOfChatJsonArray) {
-
-            String hashMapKey = chatsData.getDate();
-
-            if (groupedHashMap.containsKey(hashMapKey)) {
-                // The key is already in the HashMap; add the pojo object
-                // against the existing key.
-                groupedHashMap.get(hashMapKey).add(chatsData);
-            } else {
-                // The key is not there in the HashMap; create a new key-value pair
-                List<ChatsData> list = new ArrayList<>();
-                list.add(chatsData);
-                groupedHashMap.put(hashMapKey, list);
-            }
-        }
-
-
-        return groupedHashMap;
-    }
-*/
     @Override
     public void onBackPressed() {
         super.onBackPressed();

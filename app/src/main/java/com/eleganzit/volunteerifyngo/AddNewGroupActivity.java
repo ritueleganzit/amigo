@@ -1,5 +1,7 @@
 package com.eleganzit.volunteerifyngo;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
 
     RecyclerView rc_gusers,rc_added_users;
     ArrayList<GUsersdata> ar_users=new ArrayList<>();
+    FloatingActionButton next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
             }
         });
 
+        next=findViewById(R.id.next);
         rc_gusers=findViewById(R.id.rc_gusers);
         rc_added_users=findViewById(R.id.rc_added_gusers);
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -49,6 +53,20 @@ public class AddNewGroupActivity extends AppCompatActivity {
         rc_gusers.setAdapter(new NewGroupUsersAdapter(ar_users,this));
         rc_added_users.setAdapter(new GroupAddedUsersAdapter(ar_users,this));
 
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddNewGroupActivity.this,NewGroupActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
     }
 }
