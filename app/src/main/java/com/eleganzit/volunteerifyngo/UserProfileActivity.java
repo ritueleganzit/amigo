@@ -22,7 +22,9 @@ import android.widget.TextView;
 
 import com.eleganzit.volunteerifyngo.adapter.UserProfileViewPagerAdapter;
 import com.eleganzit.volunteerifyngo.fragments.AboutFragment;
+import com.eleganzit.volunteerifyngo.fragments.EventsFragment;
 import com.eleganzit.volunteerifyngo.fragments.HomeFragment;
+import com.eleganzit.volunteerifyngo.fragments.OpportunityFragment;
 import com.eleganzit.volunteerifyngo.fragments.PhotosFragment;
 
 import java.text.DecimalFormat;
@@ -85,13 +87,14 @@ public class UserProfileActivity extends AppCompatActivity {
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog=new Dialog(UserProfileActivity.this);
+                final Dialog dialog=new Dialog(UserProfileActivity.this);
                 dialog.setContentView(R.layout.donation_layout);
 
                 RelativeLayout d_main=dialog.findViewById(R.id.d_main);
                 d_main.getLayoutParams().width=getScreenWidthInPXs(UserProfileActivity.this,UserProfileActivity.this)*10/15;
                 SeekBar donation_seekbar=dialog.findViewById(R.id.donation_seekbar);
                 final TextView txtamount=dialog.findViewById(R.id.txtamount);
+                final TextView donate=dialog.findViewById(R.id.donate);
                 donation_seekbar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
                 donation_seekbar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
@@ -115,6 +118,13 @@ public class UserProfileActivity extends AppCompatActivity {
 
                         txtamount.setText(yourFormattedString);
                         //Toast.makeText(getActivity(), String.valueOf(progress),Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                donate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
                     }
                 });
 
@@ -170,6 +180,36 @@ public class UserProfileActivity extends AppCompatActivity {
                 PhotosFragment photosFragment= new PhotosFragment();
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame, photosFragment,"PhotosFragment")
+                        .commit();
+            }
+        });
+
+        tab_events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_events.setTextColor(Color.parseColor("#000000"));
+                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+                EventsFragment eventsFragment= new EventsFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, eventsFragment,"EventsFragment")
+                        .commit();
+            }
+        });
+
+        tab_opportunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
+                tab_opportunity.setTextColor(Color.parseColor("#000000"));
+                OpportunityFragment opportunityFragment= new OpportunityFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, opportunityFragment,"OpportunityFragment")
                         .commit();
             }
         });

@@ -19,7 +19,7 @@ import com.google.android.flexbox.JustifyContent;
 
 import java.util.ArrayList;
 
-public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapter.MyViewHolder>
+public class OpportunityAdapter extends RecyclerView.Adapter<OpportunityAdapter.MyViewHolder>
 {
 
     ArrayList<NewsFeedData> posts;
@@ -27,7 +27,7 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
     Context context;
     Activity activity;
 
-    public UserNewsFeedAdapter(ArrayList<NewsFeedData> posts, Context context) {
+    public OpportunityAdapter(ArrayList<NewsFeedData> posts, Context context) {
         this.posts = posts;
         this.context = context;
         activity = (Activity) context;
@@ -37,7 +37,7 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View v=LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.user_news_feed_layout,viewGroup,false);
+        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.opportunity_feed_layout,viewGroup,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
 
         return myViewHolder;
@@ -47,6 +47,15 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
         NewsFeedData newsFeedData=posts.get(i);
+        holder.menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(context);
+                View sheetView = activity.getLayoutInflater().inflate(R.layout.post_options_layout, null);
+                mBottomSheetDialog.setContentView(sheetView);
+                mBottomSheetDialog.show();
+            }
+        });
 
 //        for(int j=0;i<newsFeedData.getArrayList().size();j++)
 //        {
@@ -63,11 +72,12 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView menu,f,s,t;
         RecyclerView flexboxLayout;
         LinearLayout lin_main;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            menu=itemView.findViewById(R.id.menu);
             flexboxLayout = itemView.findViewById(R.id.flexbox_layout);
             lin_main = itemView.findViewById(R.id.lin_main);
             FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);

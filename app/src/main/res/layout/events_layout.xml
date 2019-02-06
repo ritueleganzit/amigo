@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    android:id="@+id/msg_main"
+    android:id="@+id/event_main"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp"
-    android:layout_marginTop="1dp"
+    android:padding="12dp"
+    android:layout_marginBottom="0.7dp"
     android:background="#ffffff"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -56,7 +56,7 @@
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:paddingLeft="10dp">
+        android:paddingLeft="12dp">
 
         <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
             android:id="@+id/name"
@@ -86,9 +86,9 @@
                 android:id="@+id/events"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:singleLine="true"
-                android:paddingLeft="5dp"
                 android:ellipsize="end"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
                 android:text="5 PM GMT +05:30"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 

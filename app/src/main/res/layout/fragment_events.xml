@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="1dp"
     android:background="#d7d7d7"
     tools:context=".fragments.EventsFragment">
 
@@ -12,13 +13,13 @@
         android:id="@+id/upcoming_rel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:padding="10dp">
+        android:background="#ffffff">
 
         <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
             android:id="@+id/txt_upcoming"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:textColor="#000000"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Upcoming Events"/>
@@ -29,8 +30,8 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:layout_centerInParent="true"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="30dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="No Upcoming Events"/>
 
@@ -50,16 +51,16 @@
         android:id="@+id/past_rel"
         android:layout_below="@+id/upcoming_rel"
         android:background="#ffffff"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="0.5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="wrap_content">
 
         <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
             android:id="@+id/txt_past"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
+            android:padding="10dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Past Events"/>
 
@@ -69,8 +70,8 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:layout_centerInParent="true"
-            android:paddingTop="30dp"
-            android:paddingBottom="20dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="30dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="No Past Events"/>
 

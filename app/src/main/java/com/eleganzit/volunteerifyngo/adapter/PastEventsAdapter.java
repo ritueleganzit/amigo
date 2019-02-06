@@ -17,14 +17,15 @@ import com.eleganzit.volunteerifyngo.model.EventsData;
 
 import java.util.ArrayList;
 
-public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAdapter.MyViewHolder>
+
+public class PastEventsAdapter extends RecyclerView.Adapter<PastEventsAdapter.MyViewHolder>
 {
 
     ArrayList<EventsData> events;
     Context context;
     Activity activity;
 
-    public UpcomingEventsAdapter(ArrayList<EventsData> events, Context context) {
+    public PastEventsAdapter(ArrayList<EventsData> events, Context context) {
         this.events = events;
         this.context = context;
         activity = (Activity) context;
@@ -64,6 +65,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             event_main=itemView.findViewById(R.id.event_main);
+
 
         }
     }
