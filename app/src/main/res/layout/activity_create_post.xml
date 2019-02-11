@@ -157,13 +157,22 @@
             android:padding="10dp"
             android:background="#ffffff">
 
-            <EditText
+            <ImageView
+                android:id="@+id/post_photo"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover"/>
+
+            <MultiAutoCompleteTextView
                 android:id="@+id/ed_status"
+                android:layout_below="@+id/post_photo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_alignParentStart="true"
+                android:background="#ffffff"
                 android:hint="Write something here..."
-                android:background="#ffffff"/>
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
         </RelativeLayout>
 
@@ -233,5 +242,6 @@
 
 
     </RelativeLayout>
-
+    <!--<include layout="@layout/tags_bottom_sheet" />
+-->
 </RelativeLayout>

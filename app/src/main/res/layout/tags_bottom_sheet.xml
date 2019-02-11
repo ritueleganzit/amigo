@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#d7d7d7"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+       <RelativeLayout
+           android:id="@+id/rel_tagged"
+           android:background="#ffffff"
+           android:paddingLeft="10dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/rc_tagged"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
+               android:layout_toLeftOf="@+id/remove_all"
+               android:layout_alignParentTop="true"/>
+
+            <ImageView
+                android:id="@+id/remove_all"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/icon_remove_all"
+                />
+
+       </RelativeLayout>
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/rc_untagged"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_below="@+id/rel_tagged"
+           android:layout_marginTop="1dp"/>
+
+   </RelativeLayout>
+
+</LinearLayout>
