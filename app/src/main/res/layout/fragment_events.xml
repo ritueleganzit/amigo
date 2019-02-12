@@ -35,14 +35,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="No Upcoming Events"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_upcoming_events"
             android:layout_below="@+id/txt_upcoming"
             android:layout_width="match_parent"
             android:background="#d7d7d7"
             android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </RelativeLayout>
@@ -75,14 +75,14 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="No Past Events"/>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_past_events"
             android:layout_below="@+id/txt_past"
             android:layout_width="match_parent"
             android:background="#d7d7d7"
             android:layout_height="wrap_content">
 
-        </android.support.v7.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </RelativeLayout>

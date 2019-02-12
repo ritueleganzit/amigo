@@ -3,7 +3,7 @@ package com.eleganzit.volunteerifyngo;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold;
 import com.hzn.lib.EasyTransition;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginSelectedActivity extends AppCompatActivity {
 

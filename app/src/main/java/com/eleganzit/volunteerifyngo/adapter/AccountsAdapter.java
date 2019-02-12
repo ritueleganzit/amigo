@@ -3,8 +3,7 @@ package com.eleganzit.volunteerifyngo.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +19,9 @@ import com.hzn.lib.EasyTransition;
 import com.hzn.lib.EasyTransitionOptions;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class AccountsAdapter extends RecyclerView.Adapter<AccountsAdapter.MyViewHolder>
 {

@@ -6,9 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -20,14 +18,17 @@ import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
-import com.eleganzit.volunteerifyngo.adapter.UserProfileViewPagerAdapter;
 import com.eleganzit.volunteerifyngo.fragments.AboutFragment;
 import com.eleganzit.volunteerifyngo.fragments.EventsFragment;
 import com.eleganzit.volunteerifyngo.fragments.HomeFragment;
 import com.eleganzit.volunteerifyngo.fragments.OpportunityFragment;
 import com.eleganzit.volunteerifyngo.fragments.PhotosFragment;
+import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 public class UserProfileActivity extends AppCompatActivity {
 

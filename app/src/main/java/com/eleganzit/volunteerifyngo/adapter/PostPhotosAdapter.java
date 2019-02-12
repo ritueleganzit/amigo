@@ -3,9 +3,8 @@ package com.eleganzit.volunteerifyngo.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -23,6 +22,7 @@ import com.eleganzit.volunteerifyngo.R;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
 import com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold;
 import com.google.android.flexbox.FlexDirection;
+
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 

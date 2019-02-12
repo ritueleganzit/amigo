@@ -2,10 +2,7 @@ package com.eleganzit.volunteerifyngo;
 
 import android.content.Intent;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,14 +11,30 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.eleganzit.volunteerifyngo.adapter.MentionsAdapter;
+import com.eleganzit.volunteerifyngo.model.PagesData;
 import com.eleganzit.volunteerifyngo.model.Tweet;
+import com.eleganzit.volunteerifyngo.model.UsersData;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.hendraanggrian.appcompat.socialview.Mention;
+import com.hendraanggrian.appcompat.widget.MentionArrayAdapter;
+import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,14 +42,25 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import static java.security.AccessController.getContext;
+
 public class CreatePostActivity extends AppCompatActivity {
 
-    MultiAutoCompleteTextView ed_status;
+    SocialAutoCompleteTextView ed_status;
     LinearLayout add_photo,add_tag;
     private static final int SELECT_PICTURE = 100;
 
     BottomSheetBehavior sheetBehavior;
     LinearLayout layoutBottomSheet;
+    ArrayList<UsersData> addeduserslist=new ArrayList<>();
+    RecyclerView rc_untagged,rc_tagged;
+    ImageView remove_all;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +78,100 @@ public class CreatePostActivity extends AppCompatActivity {
         ed_status=findViewById(R.id.ed_status);
         add_photo=findViewById(R.id.add_photo);
         add_tag=findViewById(R.id.add_tag);
+        rc_untagged=findViewById(R.id.rc_untagged);
+        rc_tagged=findViewById(R.id.rc_tagged);
+        remove_all=findViewById(R.id.remove_all);
+        layoutBottomSheet=findViewById(R.id.bottom_sheet);
+        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+
+        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        rc_untagged.setLayoutManager(layoutManager);
+
+        FlexboxLayoutManager layoutManager2 = new FlexboxLayoutManager(this);
+        layoutManager2.setFlexDirection(FlexDirection.ROW);
+        layoutManager2.setJustifyContent(JustifyContent.FLEX_START);
+        rc_tagged.setLayoutManager(layoutManager2);
+
+        ArrayList<UsersData> arrayList=new ArrayList<>();
+        UsersData usersData=new UsersData("","","");
+
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+        arrayList.add(usersData);
+
+        rc_untagged.setAdapter(new UsersTagAdapter(arrayList,this));
+
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING:
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
 
         add_tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
               /*  BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(CreatePostActivity.this);
                 View sheetView = getLayoutInflater().inflate(R.layout.tags_bottom_sheet, null);
                 mBottomSheetDialog.setContentView(sheetView);
                 mBottomSheetDialog.show();*/
             }
         });
+
+        PagesData pagesData=new PagesData("","","The Zahir","","");
+        PagesData pagesData1=new PagesData("","","Ahmed","","");
+        PagesData pagesData2=new PagesData("","","Mala","","");
+        ArrayList<PagesData> arrayList2=new ArrayList<>();
+        arrayList2.add(pagesData);
+        arrayList2.add(pagesData);
+        arrayList2.add(pagesData);
+        arrayList2.add(pagesData);
+        arrayList2.add(pagesData);
+        arrayList2.add(pagesData);
+        ArrayAdapter<PagesData> mentionAdapter = new MentionsAdapter(this,arrayList2);
+
+        mentionAdapter.add(pagesData);
+        mentionAdapter.add(pagesData1);
+        mentionAdapter.add(pagesData2);
+        mentionAdapter.add(pagesData);
+        mentionAdapter.add(pagesData);
+        ed_status.setMentionAdapter(mentionAdapter);
         /*ed_status.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
             @Override
             public CharSequence terminateToken(CharSequence text) {
@@ -179,6 +287,7 @@ public class CreatePostActivity extends AppCompatActivity {
         });
     }
 
+
     public boolean isMention(String text) {
 
         boolean foundMatch = false;
@@ -208,7 +317,166 @@ public class CreatePostActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+            super.onBackPressed();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        } else {
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        }
+
     }
+
+
+    public class UsersTagAdapter extends RecyclerView.Adapter<UsersTagAdapter.MyViewHolder>
+    {
+        ArrayList<UsersData> arrayList;
+        Context context;
+        boolean isSelectedAll;
+
+        public UsersTagAdapter(ArrayList<UsersData> arrayList, Context context)
+        {
+            this.arrayList = arrayList;
+            this.context = context;
+        }
+
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v= LayoutInflater.from(context).inflate(R.layout.tag_users_layout,parent,false);
+
+            MyViewHolder myViewHolder=new MyViewHolder(v);
+
+            return myViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
+            final UsersData usersData=arrayList.get(position);
+
+            holder.select_radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if(isChecked)
+                    {
+                        addeduserslist.add(usersData);
+                        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(
+                                CoordinatorLayout.LayoutParams.WRAP_CONTENT,
+                                CoordinatorLayout.LayoutParams.WRAP_CONTENT
+                        );
+                        params.setMargins(0, 100, 0, 0);
+                        layoutBottomSheet.setLayoutParams(params);
+                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,context));
+
+                        if(addeduserslist.size()>0)
+                        {
+                            remove_all.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            remove_all.setVisibility(View.GONE);
+                        }
+                        //Toast.makeText(context, "added "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        addeduserslist.remove(usersData);
+                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,context));
+                        if(addeduserslist.size()>0)
+                        {
+                            remove_all.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            remove_all.setVisibility(View.GONE);
+                        }
+                        //Toast.makeText(context, "removed "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+
+        public void selectAll(boolean status){
+            Log.e("onClickSelectAll","yes");
+            isSelectedAll=status;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            return arrayList.size();
+        }
+
+        public  class MyViewHolder extends RecyclerView.ViewHolder {
+
+            LinearLayout radio;
+
+            TextView p_name;
+            CheckBox select_radioButton;
+
+            public MyViewHolder(View itemView) {
+                super(itemView);
+                radio=itemView.findViewById(R.id.radio);
+                select_radioButton=itemView.findViewById(R.id.select_radioButton);
+
+            }
+        }
+    }
+
+    public class UsersTaggedAdapter extends RecyclerView.Adapter<UsersTaggedAdapter.MyViewHolder>
+    {
+        ArrayList<UsersData> arrayList;
+        Context context;
+        boolean isSelectedAll;
+
+        public UsersTaggedAdapter(ArrayList<UsersData> arrayList, Context context)
+        {
+            this.arrayList = arrayList;
+            this.context = context;
+        }
+
+        @Override
+        public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v= LayoutInflater.from(context).inflate(R.layout.tagged_users_layout,parent,false);
+
+            MyViewHolder myViewHolder=new MyViewHolder(v);
+
+            return myViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(final MyViewHolder holder, final int position) {
+
+            final UsersData usersData=arrayList.get(position);
+
+        }
+
+        public void selectAll(boolean status){
+            Log.e("onClickSelectAll","yes");
+            isSelectedAll=status;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getItemCount() {
+            return arrayList.size();
+        }
+
+        public  class MyViewHolder extends RecyclerView.ViewHolder {
+
+
+
+            TextView username;
+
+            public MyViewHolder(View itemView) {
+                super(itemView);
+                username=itemView.findViewById(R.id.tagged_username);
+
+
+            }
+        }
+    }
+
 }

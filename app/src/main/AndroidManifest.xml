@@ -16,7 +16,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".CreatePostActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -70,8 +70,10 @@
         <activity
             android:name=".UserProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EventProfileActivity" />
-        <activity android:name=".CreatePostActivity"></activity>
+        <activity android:name=".EventProfileActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

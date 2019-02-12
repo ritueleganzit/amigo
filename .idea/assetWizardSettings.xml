@@ -16,11 +16,28 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
+                                  <option name="children">
+                                    <map>
+                                      <entry key="image">
+                                        <value>
+                                          <PersistentState>
+                                            <option name="values">
+                                              <map>
+                                                <entry key="paddingPercent" value="25" />
+                                              </map>
+                                            </option>
+                                          </PersistentState>
+                                        </value>
+                                      </entry>
+                                    </map>
+                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\clock.png" />
-                                      <entry key="outputName" value="icon_clock" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\checked_bg.png" />
+                                      <entry key="outputName" value="checked_bg" />
+                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="themeColor" value="0f2536" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -47,7 +64,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="45" />
+                                                <entry key="paddingPercent" value="50" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -59,7 +76,7 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\remove_all.png" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\uncheck_bg.png" />
                                       <entry key="outputName" value="icon_remove_all" />
                                     </map>
                                   </option>
@@ -82,7 +99,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

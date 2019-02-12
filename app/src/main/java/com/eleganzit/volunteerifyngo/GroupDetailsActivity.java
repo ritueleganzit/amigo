@@ -1,9 +1,8 @@
 package com.eleganzit.volunteerifyngo;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,6 +12,10 @@ import com.eleganzit.volunteerifyngo.adapter.NewGroupUsersAdapter;
 import com.eleganzit.volunteerifyngo.model.GUsersdata;
 
 import java.util.ArrayList;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class GroupDetailsActivity extends AppCompatActivity {
 

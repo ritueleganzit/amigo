@@ -2,9 +2,7 @@ package com.eleganzit.volunteerifyngo.fragments;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +15,10 @@ import com.eleganzit.volunteerifyngo.adapter.UserNewsFeedAdapter;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
 
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * A simple {@link Fragment} subclass.

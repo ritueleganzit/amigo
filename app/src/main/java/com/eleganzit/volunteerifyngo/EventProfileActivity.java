@@ -1,13 +1,16 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.graphics.Color;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class EventProfileActivity extends AppCompatActivity {
 

@@ -1,11 +1,9 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.app.Dialog;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -36,6 +34,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import io.github.douglasjunior.androidSimpleTooltip.SimpleTooltip;
 
 public class ChatActivity extends AppCompatActivity {

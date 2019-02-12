@@ -2,10 +2,13 @@ package com.eleganzit.volunteerifyngo.utils;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
 
-public class TextViewRobotoBold extends android.support.v7.widget.AppCompatTextView {
+import android.util.AttributeSet;
+import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+
+public class TextViewRobotoBold extends TextView {
 
     public TextViewRobotoBold(Context context) {
         super(context);
