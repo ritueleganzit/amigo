@@ -24,7 +24,6 @@ public class MentionsAdapter extends SocialArrayAdapter<PagesData>
     ArrayList<PagesData> pages;
     Context context;
     Activity activity;
-    boolean liked=false;
 
     public MentionsAdapter(@NonNull Context context,ArrayList<PagesData> pages) {
         super(context, R.layout.search_pages_layout, R.id.name);
@@ -43,12 +42,10 @@ public class MentionsAdapter extends SocialArrayAdapter<PagesData>
         PagesData pagesData=pages.get(position);
         LayoutInflater layoutInflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView=layoutInflater.inflate(R.layout.search_pages_layout,null);
-/*
 
         TextView title=convertView.findViewById(R.id.name);
 
         title.setText(pagesData.getTitle());
-*/
 
         return convertView;
     }

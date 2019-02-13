@@ -1,6 +1,7 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.provider.MediaStore;
 
 import android.content.Context;
@@ -21,10 +22,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MultiAutoCompleteTextView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.eleganzit.volunteerifyngo.adapter.MentionsAdapter;
+import com.eleganzit.volunteerifyngo.adapter.MentionsRecyclerAdapter;
 import com.eleganzit.volunteerifyngo.model.PagesData;
 import com.eleganzit.volunteerifyngo.model.Tweet;
 import com.eleganzit.volunteerifyngo.model.UsersData;
@@ -38,29 +43,38 @@ import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static java.security.AccessController.getContext;
 
-public class CreatePostActivity extends AppCompatActivity {
+public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener{
 
     SocialAutoCompleteTextView ed_status;
     LinearLayout add_photo,add_tag;
     private static final int SELECT_PICTURE = 100;
 
-    BottomSheetBehavior sheetBehavior;
+    //BottomSheetBehavior sheetBehavior;
     LinearLayout layoutBottomSheet;
     ArrayList<UsersData> addeduserslist=new ArrayList<>();
     RecyclerView rc_untagged,rc_tagged;
     ImageView remove_all;
+    RelativeLayout rel_tagged;
+    CardView card_mentions;
+    private RecyclerView recyclerView;
+    private List<PagesData> contactList;
+    private MentionsRecyclerAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +95,9 @@ public class CreatePostActivity extends AppCompatActivity {
         rc_untagged=findViewById(R.id.rc_untagged);
         rc_tagged=findViewById(R.id.rc_tagged);
         remove_all=findViewById(R.id.remove_all);
+        rel_tagged=findViewById(R.id.rel_tagged);
         layoutBottomSheet=findViewById(R.id.bottom_sheet);
-        sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+        //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_untagged.setLayoutManager(layoutManager);
@@ -91,6 +106,14 @@ public class CreatePostActivity extends AppCompatActivity {
         layoutManager2.setFlexDirection(FlexDirection.ROW);
         layoutManager2.setJustifyContent(JustifyContent.FLEX_START);
         rc_tagged.setLayoutManager(layoutManager2);
+
+        card_mentions = findViewById(R.id.card_mentions);
+        recyclerView = findViewById(R.id.rc_mentions);
+        contactList = new ArrayList<>();
+
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         ArrayList<UsersData> arrayList=new ArrayList<>();
         UsersData usersData=new UsersData("","","");
@@ -115,7 +138,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
         rc_untagged.setAdapter(new UsersTagAdapter(arrayList,this));
 
-        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+       /* sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
                 switch (newState) {
@@ -141,12 +164,18 @@ public class CreatePostActivity extends AppCompatActivity {
 
             }
         });
-
+*/
         add_tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+
+                layoutBottomSheet.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(300)
+                        .repeat(0)
+                        .playOn(layoutBottomSheet);
               /*  BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(CreatePostActivity.this);
                 View sheetView = getLayoutInflater().inflate(R.layout.tags_bottom_sheet, null);
                 mBottomSheetDialog.setContentView(sheetView);
@@ -157,21 +186,43 @@ public class CreatePostActivity extends AppCompatActivity {
         PagesData pagesData=new PagesData("","","The Zahir","","");
         PagesData pagesData1=new PagesData("","","Ahmed","","");
         PagesData pagesData2=new PagesData("","","Mala","","");
+        PagesData pagesData3=new PagesData("","","Javed","","");
+        PagesData pagesData4=new PagesData("","","Ahmed Mala","","");
+        PagesData pagesData5=new PagesData("","","Uvais","","");
+        PagesData pagesData6=new PagesData("","","Xxxxxx","","");
+
+        List<PagesData> items=new ArrayList<>();
+        items.add(pagesData);
+        items.add(pagesData1);
+        items.add(pagesData2);
+        items.add(pagesData3);
+        items.add(pagesData4);
+        items.add(pagesData5);
+        items.add(pagesData6);
+
+        contactList.clear();
+        contactList.addAll(items);
+        mAdapter = new MentionsRecyclerAdapter(this, contactList, this);
+        recyclerView.setAdapter(mAdapter);
+
         ArrayList<PagesData> arrayList2=new ArrayList<>();
         arrayList2.add(pagesData);
-        arrayList2.add(pagesData);
-        arrayList2.add(pagesData);
-        arrayList2.add(pagesData);
-        arrayList2.add(pagesData);
-        arrayList2.add(pagesData);
+        arrayList2.add(pagesData1);
+        arrayList2.add(pagesData2);
+        arrayList2.add(pagesData3);
+        arrayList2.add(pagesData4);
+        arrayList2.add(pagesData5);
+        arrayList2.add(pagesData6);
         ArrayAdapter<PagesData> mentionAdapter = new MentionsAdapter(this,arrayList2);
 
         mentionAdapter.add(pagesData);
         mentionAdapter.add(pagesData1);
         mentionAdapter.add(pagesData2);
-        mentionAdapter.add(pagesData);
-        mentionAdapter.add(pagesData);
-        ed_status.setMentionAdapter(mentionAdapter);
+        mentionAdapter.add(pagesData3);
+        mentionAdapter.add(pagesData4);
+        mentionAdapter.add(pagesData5);
+        mentionAdapter.add(pagesData6);
+        //ed_status.setMentionAdapter(mentionAdapter);
         /*ed_status.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
             @Override
             public CharSequence terminateToken(CharSequence text) {
@@ -240,27 +291,79 @@ public class CreatePostActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.length() > 0) {
 
-
-                    Log.d("dataaaaaaaaaaaaaaa","charSequence  : "+charSequence+",    i : "+i+",   i1 : "+i1+",   i2 : "+i2);
-                    //Toast.makeText(CreatePostActivity.this, "charSequence  : "+charSequence+",    i : "+i+",   i1 : "+i1+",   i2 : "+i2, Toast.LENGTH_SHORT).show();
-                    // Todo: query mentions
-                   /* Matcher mentionMatcher = Pattern.compile("@([A-Za-z0-9_-]+)").matcher(charSequence.toString());
-                    // while matching
-                    while (mentionMatcher.find()) {
-                        String yourSearchText = charSequence.toString().substring(mentionMatcher.start() + 1, mentionMatcher.end());
-                        // do query with yourSearchText below
-
-                        Toast.makeText(CreatePostActivity.this, yourSearchText+"", Toast.LENGTH_SHORT).show();
-                    }*/
-
-                    if(isMention(charSequence.toString()))
+                    if (!(charSequence.toString().isEmpty()) && i < charSequence.toString().length())
                     {
-                        Toast.makeText(CreatePostActivity.this, "is mention ", Toast.LENGTH_SHORT).show();
-                    }
 
-                    /*boolean foundMatch = false;
+                        Log.d("charSequence.charAt(i)",i+"   "+charSequence.charAt(i)+"   "+charSequence.toString().length());
+                        if(charSequence.length()>0 && charSequence.length()==1)
+                        {
+                            switch (charSequence.charAt(i))
+                            {
+                                case '@' :
+
+                                    if(contactList.size()>0)
+                                    {
+                                        android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                        card_mentions.setVisibility(View.VISIBLE);
+                                        mAdapter.getFilter().filter(charSequence);
+                                        mAdapter.notifyDataSetChanged();
+                                    }
+                                    else
+                                    {
+                                        card_mentions.setVisibility(View.GONE);
+                                    }
+
+                                    break;
+
+
+                                default:
+                            }
+                        }
+                        else
+                        {
+                            String charAtLast=String.valueOf(charSequence.charAt((charSequence.length()-1)));
+                            String charAtSecLast=String.valueOf(charSequence.charAt((charSequence.length()-2)));
+                            Log.d("chaarrrrrat",charAtSecLast+"    "+charAtLast);
+                            if(charAtLast.equalsIgnoreCase("@") && charAtSecLast.equalsIgnoreCase(" "))
+                            {
+                                if(contactList.size()>0)
+                                {
+                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   if if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    card_mentions.setVisibility(View.VISIBLE);
+                                    Log.d("nnnnnnnnnnnnn",charSequence+"");
+                                    mAdapter.getFilter().filter(charSequence);
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                                else
+                                {
+                                    card_mentions.setVisibility(View.GONE);
+                                }
+                            }
+                            else if(charAtLast.equalsIgnoreCase(" "))
+                            {
+                                card_mentions.setVisibility(View.GONE);
+                            }
+                            else
+                            {
+                                if(contactList.size()>0)
+                                {
+                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    card_mentions.setVisibility(View.VISIBLE);
+                                    mAdapter.getFilter().filter(charSequence);
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                                else
+                                {
+                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else else switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    card_mentions.setVisibility(View.VISIBLE);
+                                    mAdapter.getFilter().filter(charSequence);
+                                    mAdapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+
+                            /*boolean foundMatch = false;
                     Pattern regex = Pattern.compile("\\b(?:@)\\b");
                     Matcher regexMatcher = regex.matcher("zahir ");
                     foundMatch = regexMatcher.find();
@@ -269,7 +372,13 @@ public class CreatePostActivity extends AppCompatActivity {
                         Toast.makeText(CreatePostActivity.this, "open ", Toast.LENGTH_SHORT).show();
                     }
 */
-                }
+
+
+                    }
+                    else
+                    {
+                        card_mentions.setVisibility(View.GONE);
+                    }
 
             }
 
@@ -285,6 +394,7 @@ public class CreatePostActivity extends AppCompatActivity {
                 openImageChooser();
             }
         });
+
     }
 
 
@@ -318,13 +428,27 @@ public class CreatePostActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+        if(layoutBottomSheet.getVisibility()==View.VISIBLE)
+        {
+            YoYo.with(Techniques.SlideOutDown)
+                    .duration(400)
+                    .repeat(0)
+                    .playOn(layoutBottomSheet);
+            layoutBottomSheet.setVisibility(View.GONE);
+        }
+        else
+        {
             super.onBackPressed();
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-        } else {
-            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-
         }
+
+    }
+
+    @Override
+    public void onContactSelected(PagesData pagesData) {
+
+        ed_status.append(pagesData.getTitle()+" ");
+        card_mentions.setVisibility(View.GONE);
 
     }
 
@@ -395,6 +519,18 @@ public class CreatePostActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            remove_all.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectAll(false);
+                    addeduserslist.clear();
+                    remove_all.setVisibility(View.GONE);
+                    rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,CreatePostActivity.this));
+                }
+            });
+            if (!isSelectedAll) holder.select_radioButton.setChecked(false);
+            else holder.select_radioButton.setChecked(true);
 
         }
 

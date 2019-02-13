@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     android:layout_below="@+id/toolbar"
     android:background="#d7d7d7"
@@ -93,11 +94,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/header"
-        android:layout_above="@+id/footer"
         android:layout_marginTop="1dp"
         android:focusableInTouchMode="true"
         android:layout_marginBottom="1dp"
-        android:padding="10dp"
         android:background="#ffffff">
 
         <ImageView
@@ -105,6 +104,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxHeight="180dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:scaleType="centerCrop" />
 
         <MultiAutoCompleteTextView
@@ -112,6 +115,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_margin="10dp"
             android:visibility="gone"
             android:background="#ffffff"
             android:hint="Write something here..."
@@ -123,6 +127,8 @@
             android:layout_height="wrap_content"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:hint="What's on your mind?"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:background="#ffffff"
@@ -130,71 +136,94 @@
             app:social="mention"
             app:hyperlinkColor="@color/colorPrimary"/>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:layout_alignParentBottom="true">
-
-        <LinearLayout
-            android:id="@+id/fragment_history_menu_bottom"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_mentions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+            app:cardMaxElevation="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="4dp"
+            android:visibility="gone"
+            android:layout_below="@+id/ed_status">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_mentions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_alignParentBottom="true">
 
             <LinearLayout
-                android:id="@+id/add_photo"
+                android:id="@+id/fragment_history_menu_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal"
-                android:foreground="?android:attr/selectableItemBackground">
-                <ImageView
-                    android:layout_width="wrap_content"
+                android:orientation="vertical"
+                app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+                <LinearLayout
+                    android:id="@+id/add_photo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_photos"
-                    />
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                    android:layout_width="wrap_content"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:foreground="?android:attr/selectableItemBackground">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_photos"
+                        />
+                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="center"
+                        android:text="Photo"/>
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:background="#e2e2e2"
+                    android:layout_height="1dp"/>
+                <LinearLayout
+                    android:id="@+id/add_tag"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:layout_gravity="center"
-                    android:text="Photo"/>
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/icon_tag"
+                        />
+                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:layout_gravity="center"
+                        android:text="Tag"/>
+                </LinearLayout>
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:background="#e2e2e2"
-                android:layout_height="1dp"/>
-            <LinearLayout
-                android:id="@+id/add_tag"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal"
-                android:foreground="?android:attr/selectableItemBackground"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/icon_tag"
-                    />
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:layout_gravity="center"
-                    android:text="Tag"/>
-            </LinearLayout>
-        </LinearLayout>
+        </RelativeLayout>
+
+
     </RelativeLayout>
+
 
 
 </RelativeLayout>

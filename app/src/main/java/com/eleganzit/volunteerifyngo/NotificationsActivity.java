@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -24,11 +25,13 @@ public class NotificationsActivity extends AppCompatActivity {
     RecyclerView rc_all;
     ArrayList<NotificationData> ar_notifications=new ArrayList<>();
     ImageView chat;
+    EditText ed_search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
 
+        ed_search=findViewById(R.id.ed_search);
         rel_all=findViewById(R.id.rel_all);
         rel_alert=findViewById(R.id.rel_alert);
         rel_offers=findViewById(R.id.rel_offers);
@@ -41,6 +44,14 @@ public class NotificationsActivity extends AppCompatActivity {
         rel_all.setBackgroundColor(Color.parseColor("#236C3F"));
         rel_alert.setBackgroundColor(Color.parseColor("#37b34a"));
         rel_offers.setBackgroundColor(Color.parseColor("#37b34a"));
+
+        ed_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(NotificationsActivity.this,SearchActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
 
         rel_all.setOnClickListener(new View.OnClickListener() {
             @Override

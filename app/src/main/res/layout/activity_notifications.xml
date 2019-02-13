@@ -198,14 +198,14 @@
                     </RelativeLayout>
 
                 </LinearLayout>
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_all"
                     android:layout_below="@+id/header"
                     android:background="#d7d7d7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                </android.support.v7.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
 
 
             </RelativeLayout>
