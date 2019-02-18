@@ -114,6 +114,7 @@
         android:layout_gravity="center"
         android:indeterminate="false"
         android:paddingLeft="16dp"
+        android:progressDrawable="@drawable/donate_seekbar_drawable"
         android:layout_marginTop="15dp"
         android:layout_below="@+id/rsecond"
         android:paddingRight="16dp"

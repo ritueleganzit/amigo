@@ -1,6 +1,7 @@
 package com.eleganzit.volunteerifyngo.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +37,12 @@ public class OpportunityFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_opportunity, container, false);
         UserProfileActivity.donate_layout.setVisibility(View.GONE);
+
+        UserProfileActivity.tab_home.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_about.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_opportunity.setTextColor(Color.parseColor("#000000"));
 
         rc_opprtunity=v.findViewById(R.id.rc_opprtunity);
 

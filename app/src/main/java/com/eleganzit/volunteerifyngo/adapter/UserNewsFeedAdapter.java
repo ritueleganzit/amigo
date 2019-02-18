@@ -3,6 +3,8 @@ package com.eleganzit.volunteerifyngo.adapter;
 import android.app.Activity;
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.eleganzit.volunteerifyngo.R;
+import com.eleganzit.volunteerifyngo.fragments.ViewPostFragment;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -53,6 +56,18 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
 //        }
         holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context));
 
+        holder.post_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                ViewPostFragment viewPostFragment= new ViewPostFragment();
+
+                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack("NewsFeedActivity");
+                fragmentTransaction.replace(R.id.frame, viewPostFragment, "TAG");
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     @Override
@@ -63,12 +78,13 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         RecyclerView flexboxLayout;
-        LinearLayout lin_main;
+        LinearLayout lin_main,post_main;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             flexboxLayout = itemView.findViewById(R.id.flexbox_layout);
             lin_main = itemView.findViewById(R.id.lin_main);
+            post_main = itemView.findViewById(R.id.post_main);
             FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(context);
             layoutManager.setFlexDirection(FlexDirection.ROW);
             layoutManager.setJustifyContent(JustifyContent.FLEX_START);

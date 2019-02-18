@@ -447,7 +447,22 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     public void onContactSelected(PagesData pagesData) {
 
+        String path=ed_status.getText().toString().substring(ed_status.getText().toString().lastIndexOf("@")+1);
+
+        Log.d("ccccccccccccc","path    "+path+"    "+path.length());
+
+        /*int charIndex = ed_status.getText().toString().length() - path.length();
+        String text = ed_status.getText().toString();
+        text = text.substring(charIndex, ed_status.getText().toString().length() - 1) + text.substring(charIndex+1);*/
+        //ed_status.setText(text);
+
+        //Log.d("ccccccccccccc","dataaa    "+text);
+        int length = ed_status.getText().length();
+        if (length > 1) {
+            ed_status.getText().delete(length - path.length(), length);
+        }
         ed_status.append(pagesData.getTitle()+" ");
+        Log.d("ccccccccccccc","after    "+ed_status.getText().toString().substring(0, ed_status.getText().toString().indexOf("@")));
         card_mentions.setVisibility(View.GONE);
 
     }
@@ -479,18 +494,29 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             final UsersData usersData=arrayList.get(position);
 
+            holder.select_radioButton.setClickable(false);
+
+            holder.main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(holder.select_radioButton.isChecked())
+                    {
+                        holder.select_radioButton.setChecked(false);
+                    }
+                    else
+                    {
+                        holder.select_radioButton.setChecked(true);
+                    }
+                }
+            });
+
             holder.select_radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked)
                     {
                         addeduserslist.add(usersData);
-                        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(
-                                CoordinatorLayout.LayoutParams.WRAP_CONTENT,
-                                CoordinatorLayout.LayoutParams.WRAP_CONTENT
-                        );
-                        params.setMargins(0, 100, 0, 0);
-                        layoutBottomSheet.setLayoutParams(params);
+
                         rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,context));
 
                         if(addeduserslist.size()>0)
@@ -547,14 +573,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
         public  class MyViewHolder extends RecyclerView.ViewHolder {
 
-            LinearLayout radio;
+            LinearLayout main;
 
             TextView p_name;
             CheckBox select_radioButton;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                radio=itemView.findViewById(R.id.radio);
+                main=itemView.findViewById(R.id.main);
                 select_radioButton=itemView.findViewById(R.id.select_radioButton);
 
             }

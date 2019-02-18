@@ -50,10 +50,7 @@ public class EventProfileActivity extends AppCompatActivity {
         event_options.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(EventProfileActivity.this);
-                View sheetView = getLayoutInflater().inflate(R.layout.event_options_layout, null);
-                mBottomSheetDialog.setContentView(sheetView);
-                mBottomSheetDialog.show();
+
             }
         });
 

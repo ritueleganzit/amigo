@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsFeedActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:contentInsetRight="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetEnd="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetStart="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/camera_white"/>
+
+            <EditText
+                android:id="@+id/ed_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:drawableLeft="@drawable/search_gray"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:padding="4dp"
+                android:layout_toLeftOf="@+id/notification"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/camera"
+                android:background="@drawable/search_bg"/>
+
+            <RelativeLayout
+                android:id="@+id/notification"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/chat"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/notification_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/notification_white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:maxWidth="25dp"
+                    android:layout_margin="8dp"
+                    android:textSize="10sp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:background="@drawable/notification_count"
+                    android:textColor="#fff"/>
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/chat_white"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/news_feed_scroll"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottombar"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:fillViewport="true"
+        android:fitsSystemWindows="true"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#d7d7d7"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <RelativeLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:background="#ffffff"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/cheader"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="#ffffff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/userphoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/cover"
+                        android:scaleType="centerCrop"
+                        android:layout_centerVertical="true" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="2dp"
+                        android:background="@drawable/left_rounded_green_bg"
+                        android:paddingTop="2dp"
+                        android:gravity="center"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true">
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@mipmap/camera_white"/>
+
+                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#ffffff"
+                            android:textStyle="bold"
+                            android:text="EDIT"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/second"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#d7d7d7"
+                    android:layout_below="@+id/cheader"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:id="@+id/rfirst"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:padding="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/user_add"
+                            android:layout_width="71dp"
+                            android:layout_height="71dp"
+                            android:background="@drawable/profile_ring">
+
+                            <ImageView
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_margin="2dp"
+                                android:src="@drawable/user" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:paddingBottom="2dp"
+                                android:src="@mipmap/camera_white"
+                                android:background="@drawable/green_circle_bg"
+                                android:layout_alignParentRight="true"
+                                android:layout_alignParentBottom="true"
+                                />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical"
+                            android:layout_toRightOf="@+id/user_add"
+                            android:layout_marginLeft="15dp">
+
+                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textColor="#000"
+                                android:text="Username"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_below="@+id/rfirst"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="1dp"
+                        android:paddingTop="5dp"
+                        android:background="#ffffff"
+                        android:paddingRight="30dp"
+                        android:paddingLeft="30dp"
+                        android:paddingBottom="5dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_alignParentLeft="true"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@mipmap/edit_profile_icon"/>
+
+                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textSize="12sp"
+                                android:text="Edit Profile"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@mipmap/points_icon"/>
+
+                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:textSize="12sp"
+                                android:text="Points"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:layout_alignParentRight="true"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@mipmap/more_icon"/>
+
+                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:ellipsize="end"
+                                android:text="More"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+                <View
+                    android:id="@+id/fv"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/second"
+                    android:background="#dfdfdf"/>
+
+                <LinearLayout
+                    android:layout_below="@+id/fv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#d7d7d7"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/add_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="#ffffff"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        android:foreground="?android:attr/selectableItemBackground">
+                        <ImageView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:layout_marginLeft="5dp"
+                            android:src="@mipmap/work_icon" />
+                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_gravity="center"
+                            android:text="Works at"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/add_tag"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:background="#ffffff"
+                        android:layout_marginBottom="1dp"
+                        android:focusable="true"
+                        android:orientation="horizontal"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        >
+                        <ImageView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:src="@mipmap/studied_icon"
+                            android:layout_marginLeft="5dp"
+                            />
+                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_gravity="center"
+                            android:text="Studied at"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="#ffffff"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        >
+                        <ImageView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:src="@mipmap/lives_icon"
+                            android:layout_marginLeft="5dp"
+                            />
+                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_gravity="center"
+                            android:text="Lives in"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="#ffffff"
+                        android:layout_marginBottom="1dp"
+                        android:orientation="horizontal"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        >
+                        <ImageView
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:src="@mipmap/from_icon"
+                            android:layout_marginLeft="5dp"
+                            />
+                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:layout_gravity="center"
+                            android:text="From"/>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_tabs"
+                android:layout_below="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:orientation="horizontal"
+                android:weightSum="4"
+                android:background="#ffffff">
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/tab_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#8c8c8c"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Photos"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/tab_about"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#8c8c8c"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Following"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/tab_photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#8c8c8c"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Events"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/tab_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#8c8c8c"
+                    android:layout_weight="1"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Milestones"/>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_below="@+id/profile_tabs"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

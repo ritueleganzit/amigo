@@ -70,10 +70,14 @@
         <activity
             android:name=".UserProfileActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EventProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".CreatePostActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".EventProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreatePostActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>

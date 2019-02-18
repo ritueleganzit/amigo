@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
@@ -23,6 +24,7 @@ import com.eleganzit.volunteerifyngo.fragments.EventsFragment;
 import com.eleganzit.volunteerifyngo.fragments.HomeFragment;
 import com.eleganzit.volunteerifyngo.fragments.OpportunityFragment;
 import com.eleganzit.volunteerifyngo.fragments.PhotosFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
@@ -36,7 +38,9 @@ public class UserProfileActivity extends AppCompatActivity {
     TabLayout profile_tabs;
     ViewPager profile_view_pager;
     EditText ed_search;
-    TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity,donate;
+    public static TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity,donate;
+    LinearLayout follow_options;
+
     public static RelativeLayout donate_layout;
 
     @Override
@@ -54,6 +58,7 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_events=findViewById(R.id.tab_events);
         tab_opportunity=findViewById(R.id.tab_opportunity);
         donate_layout=findViewById(R.id.donate_layout);
+        follow_options=findViewById(R.id.follow_options);
 
         ed_search.setLongClickable(false);
 
@@ -96,7 +101,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 SeekBar donation_seekbar=dialog.findViewById(R.id.donation_seekbar);
                 final TextView txtamount=dialog.findViewById(R.id.txtamount);
                 final TextView donate=dialog.findViewById(R.id.donate);
-                donation_seekbar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+                //donation_seekbar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
 
                 donation_seekbar.getThumb().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
                 donation_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -134,23 +139,28 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-        tab_home.setTextColor(Color.parseColor("#000000"));
+        follow_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(UserProfileActivity.this);
+                View sheetView = getLayoutInflater().inflate(R.layout.event_options_layout, null);
+                mBottomSheetDialog.setContentView(sheetView);
+                mBottomSheetDialog.show();
+            }
+        });
+
         HomeFragment homeFrag= new HomeFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, homeFrag,"HomeFragment")
+                .replace(R.id.frame, homeFrag,"TAG")
                 .commit();
 
         tab_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tab_home.setTextColor(Color.parseColor("#000000"));
-                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+
                 HomeFragment homeFrag= new HomeFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, homeFrag,"HomeFragment")
+                        .replace(R.id.frame, homeFrag,"TAG")
                         .commit();
             }
         });
@@ -158,14 +168,11 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_about.setTextColor(Color.parseColor("#000000"));
-                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+
                 AboutFragment aboutFragment= new AboutFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, aboutFragment,"AboutFragment")
+                        .replace(R.id.frame, aboutFragment,"TAG")
+                        .addToBackStack("HomeFragment")
                         .commit();
             }
         });
@@ -173,14 +180,11 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_photos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_photos.setTextColor(Color.parseColor("#000000"));
-                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+
                 PhotosFragment photosFragment= new PhotosFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, photosFragment,"PhotosFragment")
+                        .replace(R.id.frame, photosFragment,"TAG")
+                        .addToBackStack("HomeFragment")
                         .commit();
             }
         });
@@ -188,14 +192,11 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_events.setTextColor(Color.parseColor("#000000"));
-                tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
+
                 EventsFragment eventsFragment= new EventsFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, eventsFragment,"EventsFragment")
+                        .replace(R.id.frame, eventsFragment,"TAG")
+                        .addToBackStack("HomeFragment")
                         .commit();
             }
         });
@@ -203,14 +204,11 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_opportunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tab_home.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_about.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-                tab_opportunity.setTextColor(Color.parseColor("#000000"));
+
                 OpportunityFragment opportunityFragment= new OpportunityFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, opportunityFragment,"OpportunityFragment")
+                        .replace(R.id.frame, opportunityFragment,"TAG")
+                        .addToBackStack("HomeFragment")
                         .commit();
             }
         });

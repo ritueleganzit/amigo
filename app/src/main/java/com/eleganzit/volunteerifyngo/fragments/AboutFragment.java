@@ -1,6 +1,7 @@
 package com.eleganzit.volunteerifyngo.fragments;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,12 @@ public class AboutFragment extends Fragment implements OnMapReadyCallback {
         View v=inflater.inflate(R.layout.fragment_about, container, false);
 
         UserProfileActivity.donate_layout.setVisibility(View.GONE);
+
+        UserProfileActivity.tab_home.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_about.setTextColor(Color.parseColor("#000000"));
+        UserProfileActivity.tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
+        UserProfileActivity.tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
 
         about_map=v.findViewById(R.id.about_map);
 

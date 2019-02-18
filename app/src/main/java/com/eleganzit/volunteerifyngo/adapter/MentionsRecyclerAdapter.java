@@ -44,7 +44,6 @@ public class MentionsRecyclerAdapter extends RecyclerView.Adapter<MentionsRecycl
         }
     }
 
-
     public MentionsRecyclerAdapter(Context context, List<PagesData> contactList, ContactsAdapterListener listener) {
         this.context = context;
         this.listener = listener;
@@ -54,8 +53,7 @@ public class MentionsRecyclerAdapter extends RecyclerView.Adapter<MentionsRecycl
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.search_pages_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.mention_pages_layout, parent, false);
 
         return new MyViewHolder(itemView);
     }

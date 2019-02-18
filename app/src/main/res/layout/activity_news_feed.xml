@@ -23,6 +23,7 @@
         android:background="@color/colorPrimaryDark">
 
         <RelativeLayout
+            android:id="@+id/news_feed_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical">
@@ -90,106 +91,49 @@
 
         </RelativeLayout>
 
-    </androidx.appcompat.widget.Toolbar>
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/news_feed_scroll"
-        android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/bottombar"
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
-
         <RelativeLayout
+            android:id="@+id/view_post_toolbar"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:background="#d7d7d7"
             android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants">
+            android:gravity="center_vertical">
 
-            <RelativeLayout
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:background="#ffffff"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/angle_arrow_back"/>
 
-                <RelativeLayout
-                    android:id="@+id/header_user_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_height="wrap_content">
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="View Post"
+                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/back"
+                android:layout_toLeftOf="@+id/chat_icon"/>
 
-                    <ImageView
-                        android:layout_width="38dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="38dp"
-                        android:src="@drawable/user"/>
-
-
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/ed_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="10sp"
-                    android:cursorVisible="false"
-                    android:inputType="textMultiLine"
-                    android:maxLines="2"
-                    android:focusable="false"
-                    android:layout_marginLeft="8dp"
-                    android:lines="3"
-                    android:hint="Write something here..."
-                    android:gravity="top|left"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="2dp"
-                    android:layout_toRightOf="@+id/header_user_photo"
-                    android:layout_toLeftOf="@+id/header_upload_photo"
-                    android:background="@drawable/status_bg"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/header_upload_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="5dp"
-                    android:layout_alignParentRight="true"
-                    android:orientation="vertical"
-                    android:layout_centerVertical="true">
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/photos"/>
-
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:text="Photo"
-                        />
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_posts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/header">
-
-            </androidx.recyclerview.widget.RecyclerView>
+            <ImageView
+                android:id="@+id/chat_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/chat_white"/>
 
         </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/bottombar"

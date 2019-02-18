@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="25" />
+                                                <entry key="paddingPercent" value="20" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,10 +34,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\checked_bg.png" />
-                                      <entry key="outputName" value="checked_bg" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\green_unchecked.png" />
+                                      <entry key="outputName" value="green_unchecked_bg" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="0f2536" />
+                                      <entry key="themeColor" value="37b34a" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -76,8 +76,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\uncheck_bg.png" />
-                                      <entry key="outputName" value="icon_remove_all" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\save.png" />
+                                      <entry key="outputName" value="save_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -99,7 +99,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="ACTIONBAR" />
+                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
                           </map>
                         </option>
                       </PersistentState>
