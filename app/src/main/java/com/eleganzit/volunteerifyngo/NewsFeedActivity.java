@@ -85,8 +85,6 @@ public class NewsFeedActivity extends AppCompatActivity {
             }
         });
 
-
-
         HomeFeedFragment homeFeedFragment= new HomeFeedFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame, homeFeedFragment,"TAG")

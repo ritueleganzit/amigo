@@ -61,7 +61,7 @@ public class EventsFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager1=new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         rc_past_events.setLayoutManager(layoutManager1);
 
-        EventsData eventsData=new EventsData("","","","");
+        EventsData eventsData=new EventsData("","","","","");
 
 //        upcomingList.add(eventsData);
 //        upcomingList.add(eventsData);

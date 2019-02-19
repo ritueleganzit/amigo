@@ -16,27 +16,11 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="image">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="paddingPercent" value="20" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\green_unchecked.png" />
-                                      <entry key="outputName" value="green_unchecked_bg" />
-                                      <entry key="theme" value="CUSTOM" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\calendar_gray.png" />
+                                      <entry key="outputName" value="calendar_dark" />
                                       <entry key="themeColor" value="37b34a" />
                                     </map>
                                   </option>
@@ -64,7 +48,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="50" />
+                                                <entry key="paddingPercent" value="40" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -76,8 +60,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\save.png" />
-                                      <entry key="outputName" value="save_icon" />
+                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\calender_white.png" />
+                                      <entry key="outputName" value="calendar_white_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -99,7 +83,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

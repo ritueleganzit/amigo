@@ -2,9 +2,9 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="14dp"
     android:background="#ffffff"
     android:layout_gravity="center"
-    android:paddingTop="14dp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/darkGray"
-            android:text="Developer at"
+            android:text="Studied at"
 
             />
 
@@ -49,12 +49,12 @@
             android:layout_marginLeft="3dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/darkGray"
-            android:text="Company" />
+            android:text="University" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/edit_work"
+        android:id="@+id/edit_education"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginRight="5dp"

@@ -27,7 +27,7 @@ public class SearchActivity extends AppCompatActivity {
     ArrayList<PagesData> ar_pagesData =new ArrayList<>();
     ArrayList<PlacesData> ar_placesData =new ArrayList<>();
     ArrayList<PhotosData> ar_photosData =new ArrayList<>();
-    ImageView chat;
+    ImageView chat,notification_bell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class SearchActivity extends AppCompatActivity {
         rc_places=findViewById(R.id.rc_places);
         rc_photos=findViewById(R.id.rc_photos);
         chat=findViewById(R.id.chat);
+        notification_bell=findViewById(R.id.notification_bell);
 
         RecyclerView.LayoutManager layoutManager1=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         RecyclerView.LayoutManager layoutManager2=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -74,6 +75,16 @@ public class SearchActivity extends AppCompatActivity {
         rc_pages.setAdapter(new SearchPagesAdapter(ar_pagesData,SearchActivity.this));
         rc_places.setAdapter(new SearchPlacesAdapter(ar_placesData,SearchActivity.this));
         rc_photos.setAdapter(new SearchPhotosAdapter(ar_photosData,SearchActivity.this));
+
+        notification_bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(SearchActivity.this,NotificationsActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
+            }
+        });
 
         chat.setOnClickListener(new View.OnClickListener() {
             @Override

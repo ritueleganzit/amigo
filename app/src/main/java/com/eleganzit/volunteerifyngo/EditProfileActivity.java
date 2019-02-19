@@ -1,7 +1,11 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
+import com.eleganzit.volunteerifyngo.adapter.EducationsAdapter;
+import com.eleganzit.volunteerifyngo.adapter.WorksAdapter;
 import com.eleganzit.volunteerifyngo.model.EducationsData;
 import com.eleganzit.volunteerifyngo.model.WorksData;
 
@@ -20,6 +24,14 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         rc_works=findViewById(R.id.rc_works);
         rc_educations=findViewById(R.id.rc_educations);
 
@@ -32,7 +44,22 @@ public class EditProfileActivity extends AppCompatActivity {
         ArrayList<WorksData> arrayList=new ArrayList<>();
         ArrayList<EducationsData> arrayList1=new ArrayList<>();
 
+        WorksData worksData=new WorksData("","");
+        arrayList.add(worksData);
+        arrayList.add(worksData);
 
+        rc_works.setAdapter(new WorksAdapter(arrayList,this));
 
+        EducationsData educationsData=new EducationsData("","");
+        arrayList1.add(educationsData);
+        arrayList1.add(educationsData);
+
+        rc_educations.setAdapter(new EducationsAdapter(arrayList1,this));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
     }
 }

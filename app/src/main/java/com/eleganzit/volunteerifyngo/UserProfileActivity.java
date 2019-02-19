@@ -34,10 +34,10 @@ import androidx.viewpager.widget.ViewPager;
 
 public class UserProfileActivity extends AppCompatActivity {
 
+    EditText ed_search;
     ImageView notification_bell,chat;
     TabLayout profile_tabs;
     ViewPager profile_view_pager;
-    EditText ed_search;
     public static TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity,donate;
     LinearLayout follow_options;
 

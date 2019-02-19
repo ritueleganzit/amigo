@@ -105,14 +105,6 @@
             android:paddingLeft="5dp"
             android:paddingRight="7dp"/>
 
-        <ImageView
-            android:id="@+id/feedImage1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:scaleType="fitXY"
-            android:visibility="visible" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/flexbox_layout"
             android:layout_width="wrap_content"

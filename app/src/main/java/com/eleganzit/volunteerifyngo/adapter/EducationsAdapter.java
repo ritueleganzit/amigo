@@ -8,9 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.eleganzit.volunteerifyngo.EditEducationActivity;
 import com.eleganzit.volunteerifyngo.EditWorkActivity;
 import com.eleganzit.volunteerifyngo.R;
-import com.eleganzit.volunteerifyngo.model.PagesData;
+import com.eleganzit.volunteerifyngo.model.EducationsData;
 import com.eleganzit.volunteerifyngo.model.WorksData;
 
 import java.util.ArrayList;
@@ -18,16 +19,16 @@ import java.util.ArrayList;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder>
+public class EducationsAdapter extends RecyclerView.Adapter<EducationsAdapter.MyViewHolder>
 {
 
-    ArrayList<WorksData> works;
+    ArrayList<EducationsData> educations;
     Context context;
     Activity activity;
     boolean liked=false;
 
-    public WorksAdapter(ArrayList<WorksData> works, Context context) {
-            this.works = works;
+    public EducationsAdapter(ArrayList<EducationsData> educations, Context context) {
+        this.educations = educations;
         this.context = context;
         activity = (Activity) context;
     }
@@ -36,7 +37,7 @@ public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.works_row_layout,viewGroup,false);
+        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.educations_row_layout,viewGroup,false);
         MyViewHolder myViewHolder=new MyViewHolder(v);
 
         return myViewHolder;
@@ -45,10 +46,10 @@ public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
-        holder.edit_work.setOnClickListener(new View.OnClickListener() {
+        holder.edit_education.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, EditWorkActivity.class));
+                context.startActivity(new Intent(context, EditEducationActivity.class));
                 activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
@@ -57,15 +58,15 @@ public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return works.size();
+        return educations.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView edit_work;
+        ImageView edit_education;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            edit_work=itemView.findViewById(R.id.edit_work);
+            edit_education=itemView.findViewById(R.id.edit_education);
 
         }
     }

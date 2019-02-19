@@ -76,8 +76,20 @@
         <activity
             android:name=".CreatePostActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".MyProfileActivity" />
-        <activity android:name=".EditProfileActivity"></activity>
+        <activity
+            android:name=".MyProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditEducationActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EventsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
