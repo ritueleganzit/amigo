@@ -1,11 +1,13 @@
 package com.eleganzit.volunteerifyngo;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eleganzit.volunteerifyngo.adapter.EventsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.OngoingEventsAdapter;
@@ -27,11 +29,20 @@ public class EventsActivity extends AppCompatActivity {
     RelativeLayout search_events_layout;
     LinearLayout filter_layout;
     BottomSheetDialog mBottomSheetDialog;
+    boolean isShowing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events);
+
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         rc_events=findViewById(R.id.rc_events);
         filter=findViewById(R.id.filter);
@@ -44,6 +55,7 @@ public class EventsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mBottomSheetDialog = new BottomSheetDialog(EventsActivity.this);
+
                 View sheetView = getLayoutInflater().inflate(R.layout.filter_events_layout, null);
 
                 TextView search;
@@ -79,10 +91,22 @@ public class EventsActivity extends AppCompatActivity {
                 EventsData pastEventsData=new EventsData("","","","","");
 
                 ongoingList.add(onGoingEventsData);
+                ongoingList.add(onGoingEventsData);
+                ongoingList.add(onGoingEventsData);
+                ongoingList.add(onGoingEventsData);
 
                 upcomingList.add(upComingEventsData);
                 upcomingList.add(upComingEventsData);
                 upcomingList.add(upComingEventsData);
+                upcomingList.add(upComingEventsData);
+                upcomingList.add(upComingEventsData);
+                upcomingList.add(upComingEventsData);
+
+                pastList.add(pastEventsData);
+                pastList.add(pastEventsData);
+                pastList.add(pastEventsData);
+                pastList.add(pastEventsData);
+                pastList.add(pastEventsData);
 
                 rc_ongoing_events.setAdapter(new OngoingEventsAdapter(ongoingList,EventsActivity.this));
                 rc_upcoming_events.setAdapter(new UpcomingEventsAdapter(upcomingList,EventsActivity.this));
@@ -112,6 +136,39 @@ public class EventsActivity extends AppCompatActivity {
 
                 mBottomSheetDialog.setContentView(sheetView);
                 mBottomSheetDialog.show();
+                isShowing=true;
+                mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            //isShowing=false;
+                            if(search_events_layout.getVisibility()==View.VISIBLE)
+                            {
+                                mBottomSheetDialog.show();
+
+                                search_events_layout.setVisibility(View.GONE);
+                                filter_layout.setVisibility(View.VISIBLE);
+                            }
+                            isShowing=false;
+                        }
+                });
+
+
+                mBottomSheetDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            //isShowing=false;
+                            if(search_events_layout.getVisibility()==View.VISIBLE)
+                            {
+                                mBottomSheetDialog.show();
+
+                                search_events_layout.setVisibility(View.GONE);
+                                filter_layout.setVisibility(View.VISIBLE);
+
+                            }
+                            isShowing=false;
+                        }
+                });
+
             }
         });
 
@@ -132,17 +189,19 @@ public class EventsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(mBottomSheetDialog.isShowing())
+        if(isShowing)
         {
             if(search_events_layout.getVisibility()==View.VISIBLE)
             {
                 search_events_layout.setVisibility(View.GONE);
                 filter_layout.setVisibility(View.VISIBLE);
+                isShowing=false;
             }
         }
         else
         {
             super.onBackPressed();
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         }
     }
 }

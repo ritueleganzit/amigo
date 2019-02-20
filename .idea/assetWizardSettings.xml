@@ -19,8 +19,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\calendar_gray.png" />
-                                      <entry key="outputName" value="calendar_dark" />
+                                      <entry key="imageAsset" value="C:\Users\EleganzIT\Downloads\locked.png" />
+                                      <entry key="outputName" value="lock_dark" />
                                       <entry key="themeColor" value="37b34a" />
                                     </map>
                                   </option>

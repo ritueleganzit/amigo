@@ -2,6 +2,7 @@ package com.eleganzit.volunteerifyngo;
 
 import android.app.Dialog;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -47,11 +48,10 @@ public class ChatActivity extends AppCompatActivity {
     ArrayList<ListItem> listItems=new ArrayList<>();
     ImageView caution,options;
     EditText type_message;
-    RelativeLayout relsend;
+    RelativeLayout relsend,header;
     //ChatsAdapter chatsAdapter;
     MessagesList messagesList;
     protected MessagesListAdapter<ChatsData> messagesAdapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        header=findViewById(R.id.header);
         caution=findViewById(R.id.caution);
         options=findViewById(R.id.options);
         //rc_chats=findViewById(R.id.rc_chats);
@@ -99,7 +100,13 @@ public class ChatActivity extends AppCompatActivity {
 
         messagesAdapter = new MessagesListAdapter<>("0", holdersConfig, null);
 
-
+        header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChatActivity.this,GroupDetailsActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
 
         messagesAdapter.setLoadMoreListener(new MessagesListAdapter.OnLoadMoreListener() {
             @Override

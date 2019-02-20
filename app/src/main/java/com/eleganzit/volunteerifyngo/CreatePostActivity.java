@@ -1,6 +1,7 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.provider.MediaStore;
 
@@ -26,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eleganzit.volunteerifyngo.adapter.MentionsAdapter;
@@ -65,16 +67,33 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     LinearLayout add_photo,add_tag;
     private static final int SELECT_PICTURE = 100;
 
+    String imageFilePath;
     //BottomSheetBehavior sheetBehavior;
-    LinearLayout layoutBottomSheet;
+    LinearLayout layoutBottomSheet,privacy;
     ArrayList<UsersData> addeduserslist=new ArrayList<>();
     RecyclerView rc_untagged,rc_tagged;
-    ImageView remove_all;
+    ImageView remove_all,post_photo;
     RelativeLayout rel_tagged;
     CardView card_mentions;
     private RecyclerView recyclerView;
     private List<PagesData> contactList;
     private MentionsRecyclerAdapter mAdapter;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+    TextView txt_privacy;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        preferences=getSharedPreferences("post_data",MODE_PRIVATE);
+        editor=preferences.edit();
+
+        Log.d("preferences",preferences.getString("post_privacy","Public")+"");
+
+        txt_privacy.setText(preferences.getString("post_privacy","Public")+"");
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +108,26 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
+        imageFilePath=getIntent().getStringExtra("imageFilePath");
+        post_photo=findViewById(R.id.post_photo);
+        txt_privacy=findViewById(R.id.txt_privacy);
+
+        if(imageFilePath!=null)
+        {
+            if(imageFilePath.equalsIgnoreCase(""))
+            {
+                post_photo.setVisibility(View.GONE);
+            }
+            else
+            {
+                post_photo.setVisibility(View.VISIBLE);
+                Glide
+                        .with(this)
+                        .load(imageFilePath)
+                        .into(post_photo);
+            }
+        }
+
         ed_status=findViewById(R.id.ed_status);
         add_photo=findViewById(R.id.add_photo);
         add_tag=findViewById(R.id.add_tag);
@@ -96,8 +135,17 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         rc_tagged=findViewById(R.id.rc_tagged);
         remove_all=findViewById(R.id.remove_all);
         rel_tagged=findViewById(R.id.rel_tagged);
+        privacy=findViewById(R.id.privacy);
         layoutBottomSheet=findViewById(R.id.bottom_sheet);
         //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+
+        privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreatePostActivity.this,SelectPrivacyActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_untagged.setLayoutManager(layoutManager);
@@ -138,33 +186,6 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
         rc_untagged.setAdapter(new UsersTagAdapter(arrayList,this));
 
-       /* sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
-            @Override
-            public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                switch (newState) {
-                    case BottomSheetBehavior.STATE_HIDDEN:
-                        break;
-                    case BottomSheetBehavior.STATE_EXPANDED: {
-
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_COLLAPSED: {
-
-                    }
-                    break;
-                    case BottomSheetBehavior.STATE_DRAGGING:
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:
-                        break;
-                }
-            }
-
-            @Override
-            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
-
-            }
-        });
-*/
         add_tag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

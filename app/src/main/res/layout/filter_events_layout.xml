@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btmsheet"
     android:orientation="vertical"
+    android:layout_marginTop="?attr/actionBarSize"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:behavior_hideable="true"
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     android:padding="10dp">
 
@@ -121,132 +125,142 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/search_events_layout"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="1dp"
-        android:visibility="gone"
-        android:background="#d7d7d7">
+        android:fitsSystemWindows="true">
 
         <RelativeLayout
-            android:id="@+id/ongoing_rel"
+            android:id="@+id/search_events_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#ffffff">
+            android:descendantFocusability="blocksDescendants"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:visibility="gone"
+            android:background="#d7d7d7">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/txt_ongoing"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#000000"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="Ongoing Events"/>
-
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/no_ongoing_events"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_centerInParent="true"
-                android:paddingTop="50dp"
-                android:paddingBottom="30dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="No Ongoing Events"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_ongoing_events"
-                android:layout_below="@+id/txt_ongoing"
+            <RelativeLayout
+                android:id="@+id/ongoing_rel"
                 android:layout_width="match_parent"
-                android:background="#d7d7d7"
+                android:layout_height="wrap_content"
+                android:background="#ffffff">
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/txt_ongoing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Ongoing Events"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/no_ongoing_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="50dp"
+                    android:paddingBottom="30dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="No Ongoing Events"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_ongoing_events"
+                    android:layout_below="@+id/txt_ongoing"
+                    android:layout_width="match_parent"
+                    android:background="#d7d7d7"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/upcoming_rel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0.5dp"
+                android:layout_below="@+id/ongoing_rel"
+                android:background="#ffffff">
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/txt_upcoming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:textColor="#000000"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Upcoming Events"/>
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/no_upcoming_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="50dp"
+                    android:paddingBottom="30dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="No Upcoming Events"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_upcoming_events"
+                    android:layout_below="@+id/txt_upcoming"
+                    android:layout_width="match_parent"
+                    android:background="#d7d7d7"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/past_rel"
+                android:layout_below="@+id/upcoming_rel"
+                android:background="#ffffff"
+                android:layout_marginTop="0.5dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/txt_past"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:padding="10dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="Past Events"/>
 
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:id="@+id/no_past_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="50dp"
+                    android:paddingBottom="30dp"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="No Past Events"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rc_past_events"
+                    android:layout_below="@+id/txt_past"
+                    android:layout_width="match_parent"
+                    android:background="#d7d7d7"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-        <RelativeLayout
-            android:id="@+id/upcoming_rel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0.5dp"
-            android:layout_below="@+id/ongoing_rel"
-            android:background="#ffffff">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/txt_upcoming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textColor="#000000"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="Upcoming Events"/>
-
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/no_upcoming_events"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_centerInParent="true"
-                android:paddingTop="50dp"
-                android:paddingBottom="30dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="No Upcoming Events"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_upcoming_events"
-                android:layout_below="@+id/txt_upcoming"
-                android:layout_width="match_parent"
-                android:background="#d7d7d7"
-                android:layout_height="wrap_content">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/past_rel"
-            android:layout_below="@+id/upcoming_rel"
-            android:background="#ffffff"
-            android:layout_marginTop="0.5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/txt_past"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000000"
-                android:padding="10dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="Past Events"/>
-
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/no_past_events"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_centerInParent="true"
-                android:paddingTop="50dp"
-                android:paddingBottom="30dp"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                android:text="No Past Events"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rc_past_events"
-                android:layout_below="@+id/txt_past"
-                android:layout_width="match_parent"
-                android:background="#d7d7d7"
-                android:layout_height="wrap_content">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

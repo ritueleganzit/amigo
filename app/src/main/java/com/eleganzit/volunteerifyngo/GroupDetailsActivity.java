@@ -48,4 +48,10 @@ public class GroupDetailsActivity extends AppCompatActivity {
         rc_gusers.setAdapter(new GroupUsersAdapter(ar_users,this));
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+    }
 }

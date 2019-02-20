@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.eleganzit.volunteerifyngo.EventsActivity;
 import com.eleganzit.volunteerifyngo.MyProfileActivity;
 import com.eleganzit.volunteerifyngo.NewsFeedActivity;
 import com.eleganzit.volunteerifyngo.R;
@@ -25,6 +27,7 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
     RelativeLayout header;
+    LinearLayout lin_events;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,7 @@ public class MenuFragment extends Fragment {
         NewsFeedActivity.btm_menu.setImageResource(R.drawable.menu_green);
 
         header=v.findViewById(R.id.header);
+        lin_events=v.findViewById(R.id.lin_events);
 
         header.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +54,13 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        lin_events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), EventsActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
         return v;
     }
 
