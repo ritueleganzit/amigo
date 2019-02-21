@@ -206,13 +206,14 @@
                     android:id="@+id/card_mentions"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardMaxElevation="4dp"
+                    app:cardMaxElevation="5dp"
+                    android:background="@android:drawable/dialog_holo_light_frame"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:layout_marginRight="15dp"
                     android:layout_marginLeft="15dp"
-                    app:cardElevation="2dp"
-                    app:cardCornerRadius="4dp"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="1dp"
                     android:visibility="gone"
                     android:layout_below="@+id/ed_status">
 

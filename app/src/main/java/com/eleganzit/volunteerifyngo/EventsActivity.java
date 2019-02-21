@@ -1,6 +1,7 @@
 package com.eleganzit.volunteerifyngo;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class EventsActivity extends AppCompatActivity {
 
     RecyclerView rc_events;
-    ImageView filter;
+    ImageView filter,calendar;
     RelativeLayout search_events_layout;
     LinearLayout filter_layout;
     BottomSheetDialog mBottomSheetDialog;
@@ -46,6 +47,7 @@ public class EventsActivity extends AppCompatActivity {
 
         rc_events=findViewById(R.id.rc_events);
         filter=findViewById(R.id.filter);
+        calendar=findViewById(R.id.calendar);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_events.setLayoutManager(layoutManager);
@@ -169,6 +171,14 @@ public class EventsActivity extends AppCompatActivity {
                         }
                 });
 
+            }
+        });
+
+        calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EventsActivity.this, CalendarActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
 

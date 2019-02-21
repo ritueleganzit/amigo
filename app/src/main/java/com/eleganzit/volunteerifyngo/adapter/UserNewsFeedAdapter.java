@@ -60,12 +60,7 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
             @Override
             public void onClick(View view) {
 
-                ViewPostFragment viewPostFragment= new ViewPostFragment();
 
-                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.addToBackStack("NewsFeedActivity");
-                fragmentTransaction.replace(R.id.frame, viewPostFragment, "TAG");
-                fragmentTransaction.commit();
             }
         });
     }

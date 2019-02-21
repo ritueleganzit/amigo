@@ -72,7 +72,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     LinearLayout layoutBottomSheet,privacy;
     ArrayList<UsersData> addeduserslist=new ArrayList<>();
     RecyclerView rc_untagged,rc_tagged;
-    ImageView remove_all,post_photo;
+    ImageView remove_all,post_photo,send_post;
     RelativeLayout rel_tagged;
     CardView card_mentions;
     private RecyclerView recyclerView;
@@ -109,6 +109,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         });
 
         imageFilePath=getIntent().getStringExtra("imageFilePath");
+        send_post=findViewById(R.id.send_post);
         post_photo=findViewById(R.id.post_photo);
         txt_privacy=findViewById(R.id.txt_privacy);
 
@@ -127,6 +128,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         .into(post_photo);
             }
         }
+
+        send_post.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
 
         ed_status=findViewById(R.id.ed_status);
         add_photo=findViewById(R.id.add_photo);
@@ -243,67 +252,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         mentionAdapter.add(pagesData4);
         mentionAdapter.add(pagesData5);
         mentionAdapter.add(pagesData6);
-        //ed_status.setMentionAdapter(mentionAdapter);
-        /*ed_status.setTokenizer(new MultiAutoCompleteTextView.Tokenizer() {
-            @Override
-            public CharSequence terminateToken(CharSequence text) {
-                int i = text.length();
 
-                while (i > 0 && text.charAt(i - 1) == ' ') {
-                    i--;
-                }
-
-                if (i > 0 && text.charAt(i - 1) == ' ') {
-                    return text;
-                } else {
-                    if (text instanceof Spanned) {
-                        SpannableString sp = new SpannableString(text + " ");
-                        TextUtils.copySpansFrom((Spanned) text, 0, text.length(), Object.class, sp, 0);
-                        return sp;
-                    } else {
-                        return text + " ";
-                    }
-                }
-            }
-
-            @Override
-            public int findTokenStart(CharSequence text, int cursor) {
-                int i = cursor;
-
-                while (i > 0 && text.charAt(i - 1) != '@') {
-                    i--;
-                }
-
-                //Check if token really started with @, else we don't have a valid token
-                if (i < 1 || text.charAt(i - 1) != '@') {
-                    Toast.makeText(CreatePostActivity.this, "do not open suggestion", Toast.LENGTH_SHORT).show();
-                    return cursor;
-                }
-                else
-                {
-                    Toast.makeText(CreatePostActivity.this, "open suggestion", Toast.LENGTH_SHORT).show();
-                }
-
-                return i;
-            }
-
-            @Override
-            public int findTokenEnd(CharSequence text, int cursor) {
-                int i = cursor;
-                int len = text.length();
-
-                while (i < len) {
-                    if (text.charAt(i) == ' ') {
-                        return i;
-                    } else {
-                        i++;
-                    }
-                }
-
-                return len;
-            }
-        });
-*/
         ed_status.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -313,25 +262,37 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                    if (!(charSequence.toString().isEmpty()) && i < charSequence.toString().length())
+                Log.d("whereeeeeeeeee","   onTextChanged   "+i+"      "+charSequence.toString().length());
+
+                if (!(charSequence.toString().isEmpty()) && i <= charSequence.toString().length())
                     {
 
-                        Log.d("charSequence.charAt(i)",i+"   "+charSequence.charAt(i)+"   "+charSequence.toString().length());
+                        Log.d("whereeeeeeeeee","   first if");
+
                         if(charSequence.length()>0 && charSequence.length()==1)
                         {
-                            switch (charSequence.charAt(i))
+                            Log.d("charSequence.charAt(i)",i+"   "+charSequence.charAt(0)+"   "+charSequence.toString().length());
+
+                            Log.d("whereeeeeeeeee","   second if");
+
+                            switch (charSequence.charAt(0))
                             {
                                 case '@' :
+                                    Log.d("whereeeeeeeeee","   switch case '@'");
 
                                     if(contactList.size()>0)
                                     {
-                                        android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                        Log.d("whereeeeeeeeee","      switch case '@' in if");
+
+                                        //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
                                         card_mentions.setVisibility(View.VISIBLE);
                                         mAdapter.getFilter().filter(charSequence);
                                         mAdapter.notifyDataSetChanged();
                                     }
                                     else
                                     {
+                                        Log.d("whereeeeeeeeee","      switch case '@' in else");
+
                                         card_mentions.setVisibility(View.GONE);
                                     }
 
@@ -339,18 +300,23 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
 
                                 default:
+                                    Log.d("whereeeeeeeeee","      switch case default ");
+
                             }
                         }
                         else
                         {
+                            Log.d("whereeeeeeeeee","   else of second if");
                             String charAtLast=String.valueOf(charSequence.charAt((charSequence.length()-1)));
                             String charAtSecLast=String.valueOf(charSequence.charAt((charSequence.length()-2)));
                             Log.d("chaarrrrrat",charAtSecLast+"    "+charAtLast);
                             if(charAtLast.equalsIgnoreCase("@") && charAtSecLast.equalsIgnoreCase(" "))
                             {
+                                Log.d("whereeeeeeeeee","   last char is @ and sec last is blank");
                                 if(contactList.size()>0)
                                 {
-                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   if if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    Log.d("whereeeeeeeeee","     contactList.size()>0");
+                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   if if switch open suggestion", Toast.LENGTH_SHORT).show();
                                     card_mentions.setVisibility(View.VISIBLE);
                                     Log.d("nnnnnnnnnnnnn",charSequence+"");
                                     mAdapter.getFilter().filter(charSequence);
@@ -358,25 +324,30 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                                 }
                                 else
                                 {
+                                    Log.d("whereeeeeeeeee","     not contactList.size()>0");
                                     card_mentions.setVisibility(View.GONE);
                                 }
                             }
                             else if(charAtLast.equalsIgnoreCase(" "))
                             {
+                                Log.d("whereeeeeeeeee","    last char is blank");
                                 card_mentions.setVisibility(View.GONE);
                             }
                             else
                             {
+                                Log.d("whereeeeeeeeee","    last else   list size   "+contactList.size());
                                 if(contactList.size()>0)
                                 {
-                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    Log.d("whereeeeeeeeee","    if in last else");
+                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else if switch open suggestion", Toast.LENGTH_SHORT).show();
                                     card_mentions.setVisibility(View.VISIBLE);
                                     mAdapter.getFilter().filter(charSequence);
                                     mAdapter.notifyDataSetChanged();
                                 }
                                 else
                                 {
-                                    android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else else switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    Log.d("whereeeeeeeeee","     else in last else");
+                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else else switch open suggestion", Toast.LENGTH_SHORT).show();
                                     card_mentions.setVisibility(View.VISIBLE);
                                     mAdapter.getFilter().filter(charSequence);
                                     mAdapter.notifyDataSetChanged();

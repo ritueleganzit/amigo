@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +15,7 @@ public class SelectPrivacyActivity extends AppCompatActivity {
     RadioButton radioBtn_public,radioBtn_friends,radioBtn_only_me;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
+    RelativeLayout rel_public,rel_friends,rel_only_me;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class SelectPrivacyActivity extends AppCompatActivity {
         preferences=getSharedPreferences("post_data",MODE_PRIVATE);
         editor=preferences.edit();
 
+        rel_public=findViewById(R.id.rel_public);
+        rel_friends=findViewById(R.id.rel_friends);
+        rel_only_me=findViewById(R.id.rel_only_me);
         radioBtn_public=findViewById(R.id.radioBtn_public);
         radioBtn_friends=findViewById(R.id.radioBtn_friends);
         radioBtn_only_me=findViewById(R.id.radioBtn_only_me);
@@ -53,6 +58,8 @@ public class SelectPrivacyActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b)
                 {
+                    radioBtn_friends.setEnabled(false);
+                    radioBtn_only_me.setEnabled(false);
                     editor.putString("post_privacy","Public");
                     editor.commit();
                     radioBtn_public.setChecked(true);
@@ -68,6 +75,8 @@ public class SelectPrivacyActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
+                    radioBtn_public.setEnabled(false);
+                    radioBtn_only_me.setEnabled(false);
                     editor.putString("post_privacy", "Friends");
                     editor.commit();
                     radioBtn_public.setChecked(false);
@@ -83,6 +92,8 @@ public class SelectPrivacyActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b) {
+                    radioBtn_public.setEnabled(false);
+                    radioBtn_friends.setEnabled(false);
                     editor.putString("post_privacy", "Only me");
                     editor.commit();
                     radioBtn_public.setChecked(false);
@@ -94,24 +105,24 @@ public class SelectPrivacyActivity extends AppCompatActivity {
             }
         });
 
-        radioBtn_public.setOnClickListener(new View.OnClickListener() {
+        rel_public.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                radioBtn_public.setChecked(true);
             }
         });
 
-        radioBtn_friends.setOnClickListener(new View.OnClickListener() {
+        rel_friends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                radioBtn_friends.setChecked(true);
             }
         });
 
-        radioBtn_only_me.setOnClickListener(new View.OnClickListener() {
+        rel_only_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                radioBtn_only_me.setChecked(true);
             }
         });
     }

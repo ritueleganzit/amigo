@@ -35,7 +35,6 @@
                 android:src="@mipmap/angle_arrow_back"/>
 
             <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:id="@+id/ed_search"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,10 +70,6 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="#000000"
             android:text="Your post will show up in News Feed, on your and in search results."/>
-
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
             <RelativeLayout
                 android:id="@+id/rel_public"
@@ -153,6 +148,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rel_friends"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -228,6 +224,7 @@
             </RelativeLayout>
 
             <RelativeLayout
+                android:id="@+id/rel_only_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
@@ -301,9 +298,6 @@
                     android:background="#d7d7d7"/>
 
             </RelativeLayout>
-
-
-        </RadioGroup>
 
     </LinearLayout>
 

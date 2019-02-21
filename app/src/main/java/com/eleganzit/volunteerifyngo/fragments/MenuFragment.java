@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.eleganzit.volunteerifyngo.CalendarActivity;
 import com.eleganzit.volunteerifyngo.EventsActivity;
 import com.eleganzit.volunteerifyngo.MyProfileActivity;
 import com.eleganzit.volunteerifyngo.NewsFeedActivity;
@@ -27,7 +28,7 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
     RelativeLayout header;
-    LinearLayout lin_events;
+    LinearLayout lin_events,lin_calendar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,6 +46,7 @@ public class MenuFragment extends Fragment {
 
         header=v.findViewById(R.id.header);
         lin_events=v.findViewById(R.id.lin_events);
+        lin_calendar=v.findViewById(R.id.lin_calendar);
 
         header.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +60,14 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), EventsActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        lin_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CalendarActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
