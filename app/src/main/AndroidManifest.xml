@@ -24,7 +24,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <meta-data
@@ -110,8 +110,28 @@
         <activity
             android:name=".SelectPrivacyActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CalendarActivity"
+        <activity
+            android:name=".CalendarActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ViewEventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DonationsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OpportunityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InviteFrindsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".FollowingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ReferEntityActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SendFeedbackActivity"></activity>
     </application>
 
 </manifest>

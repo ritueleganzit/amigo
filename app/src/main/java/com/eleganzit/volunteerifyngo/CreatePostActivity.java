@@ -71,7 +71,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     //BottomSheetBehavior sheetBehavior;
     LinearLayout layoutBottomSheet,privacy;
     ArrayList<UsersData> addeduserslist=new ArrayList<>();
-    RecyclerView rc_untagged,rc_tagged;
+    RecyclerView rc_untagged,rc_tagged,rc_locations;
     ImageView remove_all,post_photo,send_post;
     RelativeLayout rel_tagged;
     CardView card_mentions;

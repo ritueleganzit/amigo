@@ -95,7 +95,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/add_tag"
+        android:id="@+id/lin_donations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -122,6 +122,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lin_opportunity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -148,6 +149,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lin_invite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -172,7 +174,9 @@
             android:layout_gravity="center"
             android:text="Invite Friends"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_following"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -197,6 +201,7 @@
             android:layout_gravity="center"
             android:text="Following"/>
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/lin_calendar"
         android:layout_width="match_parent"
@@ -223,7 +228,9 @@
             android:layout_gravity="center"
             android:text="Calender"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_refer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -248,7 +255,9 @@
             android:layout_gravity="center"
             android:text="Refer an Entity"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -273,7 +282,9 @@
             android:layout_gravity="center"
             android:text="Send Feedback"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_rateus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -298,7 +309,9 @@
             android:layout_gravity="center"
             android:text="Rate us on Play Store"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_campaigns"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -323,7 +336,9 @@
             android:layout_gravity="center"
             android:text="Campaigns"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_help"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -348,7 +363,9 @@
             android:layout_gravity="center"
             android:text="Help &amp; Support"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -373,7 +390,9 @@
             android:layout_gravity="center"
             android:text="Settings"/>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/lin_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"

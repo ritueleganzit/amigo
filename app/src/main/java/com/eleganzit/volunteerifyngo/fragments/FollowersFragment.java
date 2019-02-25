@@ -35,7 +35,6 @@ public class FollowersFragment extends Fragment {
 
     RelativeLayout rel_people,rel_ngos,rel_companies,rel_school;
     RecyclerView rc_followers;
-    ArrayList<FollowersData> ar_followers=new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,6 +107,8 @@ public class FollowersFragment extends Fragment {
         });
 
         FollowersData followersData =new FollowersData("","","","false");
+
+        ArrayList<FollowersData> ar_followers=new ArrayList<>();
 
         if(ar_followers.size()>0)
         {

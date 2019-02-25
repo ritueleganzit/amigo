@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import com.eleganzit.volunteerifyngo.ChatActivity;
 import com.eleganzit.volunteerifyngo.EventProfileActivity;
 import com.eleganzit.volunteerifyngo.R;
+import com.eleganzit.volunteerifyngo.ViewEventActivity;
 import com.eleganzit.volunteerifyngo.model.EventsData;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         holder.event_main.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, EventProfileActivity.class));
+                context.startActivity(new Intent(context, ViewEventActivity.class));
                 activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });

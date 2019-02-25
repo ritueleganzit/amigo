@@ -15,10 +15,12 @@ import com.eleganzit.volunteerifyngo.adapter.OngoingEventsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.PastEventsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.UpcomingEventsAdapter;
 import com.eleganzit.volunteerifyngo.model.EventsData;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,7 +53,6 @@ public class EventsActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_events.setLayoutManager(layoutManager);
-
 
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,14 +144,14 @@ public class EventsActivity extends AppCompatActivity {
                         @Override
                         public void onDismiss(DialogInterface dialogInterface) {
                             //isShowing=false;
-                            if(search_events_layout.getVisibility()==View.VISIBLE)
+                            /*if(search_events_layout.getVisibility()==View.VISIBLE)
                             {
                                 mBottomSheetDialog.show();
 
                                 search_events_layout.setVisibility(View.GONE);
                                 filter_layout.setVisibility(View.VISIBLE);
                             }
-                            isShowing=false;
+                            isShowing=false;*/
                         }
                 });
 
@@ -159,7 +160,7 @@ public class EventsActivity extends AppCompatActivity {
                         @Override
                         public void onCancel(DialogInterface dialogInterface) {
                             //isShowing=false;
-                            if(search_events_layout.getVisibility()==View.VISIBLE)
+                            /*if(search_events_layout.getVisibility()==View.VISIBLE)
                             {
                                 mBottomSheetDialog.show();
 
@@ -167,13 +168,27 @@ public class EventsActivity extends AppCompatActivity {
                                 filter_layout.setVisibility(View.VISIBLE);
 
                             }
-                            isShowing=false;
+                            isShowing=false;*/
                         }
                 });
 
             }
         });
 
+        /*final BottomSheetBehavior behavior = BottomSheetBehavior.from(bottomSheet);
+        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                if (newState == BottomSheetBehavior.STATE_DRAGGING) {
+                    behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+            }
+        });
+*/
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
