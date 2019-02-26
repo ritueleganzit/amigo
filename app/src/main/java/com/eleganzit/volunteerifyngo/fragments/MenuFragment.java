@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.eleganzit.volunteerifyngo.CalendarActivity;
+import com.eleganzit.volunteerifyngo.CampaignsActivity;
 import com.eleganzit.volunteerifyngo.DonationsActivity;
 import com.eleganzit.volunteerifyngo.EventsActivity;
 import com.eleganzit.volunteerifyngo.FollowingActivity;
@@ -20,6 +21,7 @@ import com.eleganzit.volunteerifyngo.NewsFeedActivity;
 import com.eleganzit.volunteerifyngo.OpportunityActivity;
 import com.eleganzit.volunteerifyngo.R;
 import com.eleganzit.volunteerifyngo.ReferEntityActivity;
+import com.eleganzit.volunteerifyngo.SendFeedbackActivity;
 
 import androidx.fragment.app.Fragment;
 
@@ -124,6 +126,22 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), ReferEntityActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        lin_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SendFeedbackActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        lin_campaigns.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), CampaignsActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });

@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="10" />
+                                                <entry key="paddingPercent" value="15" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -34,10 +34,10 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="C:\Users\EleganzIT\Downloads\circle_unchecked_bg.png" />
-                                      <entry key="outputName" value="uncheck_bg" />
+                                      <entry key="imageAsset" value="C:\Users\EleganzIT\Downloads\icon\angle-arrow-down-gray-circle.png" />
+                                      <entry key="outputName" value="drop_down_circle" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="ffffff" />
+                                      <entry key="themeColor" value="0e0e0e" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -64,7 +64,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="paddingPercent" value="30" />
+                                                <entry key="paddingPercent" value="20" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -76,8 +76,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="E:\Zahir new data\SSD Recovered data\lost\icon\curriculum.png" />
-                                      <entry key="outputName" value="apply_icon" />
+                                      <entry key="imageAsset" value="C:\Users\EleganzIT\Downloads\icon\donation-money.png" />
+                                      <entry key="outputName" value="donate_icon" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -99,7 +99,7 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputIconType" value="LAUNCHER_LEGACY" />
+                            <entry key="outputIconType" value="ACTIONBAR" />
                           </map>
                         </option>
                       </PersistentState>

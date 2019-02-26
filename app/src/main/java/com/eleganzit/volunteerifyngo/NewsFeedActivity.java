@@ -46,7 +46,7 @@ import androidx.fragment.app.FragmentTransaction;
 public class NewsFeedActivity extends AppCompatActivity {
 
     public static ImageView btm_feed,btm_event,btm_user,btm_menu;
-    public static RelativeLayout rbtm_event;
+    public static RelativeLayout rel_feed,rel_event,rel_user,rel_menu,rbtm_event;
     public static RelativeLayout news_feed_toolbar,view_post_toolbar;
     public static EditText ed_search;
     public static ImageView notification_bell,chat,camera;
@@ -73,6 +73,10 @@ public class NewsFeedActivity extends AppCompatActivity {
         view_post_toolbar=findViewById(R.id.view_post_toolbar);
         ed_search=findViewById(R.id.ed_search);
         btm_feed=findViewById(R.id.btm_feed);
+        rel_feed=findViewById(R.id.rel_feed);
+        rel_event=findViewById(R.id.rel_event);
+        rel_user=findViewById(R.id.rel_user);
+        rel_menu=findViewById(R.id.rel_menu);
         rbtm_event=findViewById(R.id.rbtm_event);
         btm_event=findViewById(R.id.btm_event);
         btm_user=findViewById(R.id.btm_user);
@@ -143,7 +147,7 @@ public class NewsFeedActivity extends AppCompatActivity {
                 .replace(R.id.frame, homeFeedFragment,"TAG")
                 .commit();
 
-        btm_feed.setOnClickListener(new View.OnClickListener() {
+        rel_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HomeFeedFragment homeFeedFragment= new HomeFeedFragment();
@@ -156,7 +160,7 @@ public class NewsFeedActivity extends AppCompatActivity {
             }
         });
 
-        btm_event.setOnClickListener(new View.OnClickListener() {
+        rel_event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btm_feed.setImageResource(R.drawable.feed_gray);
@@ -168,7 +172,7 @@ public class NewsFeedActivity extends AppCompatActivity {
             }
         });
 
-        btm_user.setOnClickListener(new View.OnClickListener() {
+        rel_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -181,7 +185,7 @@ public class NewsFeedActivity extends AppCompatActivity {
             }
         });
 
-        btm_menu.setOnClickListener(new View.OnClickListener() {
+        rel_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MenuFragment menuFragment= new MenuFragment();

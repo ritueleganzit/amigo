@@ -46,7 +46,7 @@ public class EventsFragment extends Fragment {
         UserProfileActivity.tab_home.setTextColor(Color.parseColor("#8c8c8c"));
         UserProfileActivity.tab_about.setTextColor(Color.parseColor("#8c8c8c"));
         UserProfileActivity.tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
-        UserProfileActivity.tab_events.setTextColor(Color.parseColor("#000000"));
+        UserProfileActivity.tab_events.setTextColor(Color.parseColor("#0f2536"));
         UserProfileActivity.tab_opportunity.setTextColor(Color.parseColor("#8c8c8c"));
 
         rc_upcoming_events=v.findViewById(R.id.rc_upcoming_events);

@@ -53,6 +53,7 @@
 
     <RelativeLayout
         android:id="@+id/header"
+        android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff">
@@ -92,24 +93,78 @@
         android:background="@color/colorBackground"/>
 
     <EditText
-        android:id="@+id/ed_work"
+        android:id="@+id/ed_suggestion"
         android:background="#ffffff"
-        android:hint="Where did you work?"
+        android:hint="Select Your Suggestion"
         android:layout_below="@+id/fv"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="17dp"/>
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:drawableRight="@drawable/drop_down_small"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"/>
 
     <EditText
-        android:id="@+id/ed_position"
+        android:id="@+id/ed_feedback"
         android:background="#ffffff"
         android:layout_marginTop="1dp"
-        android:hint="Position"
-        android:layout_below="@+id/ed_work"
+        android:hint="Enter Your Feedback"
+        android:inputType="textMultiLine"
+        android:lines="8"
+        android:gravity="top"
+        android:layout_below="@+id/ed_suggestion"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="17dp"/>
+        android:padding="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/upload_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ed_feedback"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="12dp"
+        android:background="@drawable/rounded_blue_bg"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/upload_icon"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Upload a Picture(optional)"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/send_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upload_picture"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:padding="7dp"
+        android:background="@drawable/rounded_green_bg"
+        android:layout_gravity="center">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="SEND FEEDBACK "/>
+
+    </LinearLayout>
 
 </RelativeLayout>

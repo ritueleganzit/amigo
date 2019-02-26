@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsFeedActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/news_feed_scroll"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="#d7d7d7"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:weightSum="2"
+                android:background="@color/lightGray"
+                android:orientation="horizontal">
+
+                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#CFD0D4"
+                    android:paddingTop="5dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="5dp"
+                    android:paddingRight="12dp"
+                    android:paddingLeft="12dp"
+                    android:layout_alignParentLeft="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray"
+                    android:text="24 Requests"
+                    />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/lightGray"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#CFD0D4"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:paddingRight="12dp"
+                        android:paddingLeft="12dp"
+                        android:layout_alignParentLeft="true"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/darkGray"
+                        android:text="24 Offers"
+                        />
+
+                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                        android:id="@+id/txt_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_weight="1"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:drawableRight="@drawable/drop_down_small"
+                        android:text="Sort"
+                        android:layout_marginRight="4dp"
+                        android:layout_gravity="center_vertical"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_posts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/header">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

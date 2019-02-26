@@ -131,7 +131,9 @@
         <activity
             android:name=".ReferEntityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SendFeedbackActivity"></activity>
+        <activity android:name=".SendFeedbackActivity" />
+        <activity android:name=".CampaignsActivity" />
+        <activity android:name=".ViewCampaignActivity"></activity>
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class OpportunityFragment extends Fragment {
         UserProfileActivity.tab_about.setTextColor(Color.parseColor("#8c8c8c"));
         UserProfileActivity.tab_photos.setTextColor(Color.parseColor("#8c8c8c"));
         UserProfileActivity.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-        UserProfileActivity.tab_opportunity.setTextColor(Color.parseColor("#000000"));
+        UserProfileActivity.tab_opportunity.setTextColor(Color.parseColor("#0f2536"));
 
         rc_opprtunity=v.findViewById(R.id.rc_opprtunity);
 

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#d7d7d7"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/emergency_tab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:id="@+id/about_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:layout_toLeftOf="@+id/drop_down"
+                android:ellipsize="end"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Emergency Helpline Details"/>
+
+            <ImageView
+                android:id="@+id/drop_down"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/drop_down_circle"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/drop_down_layout"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:visibility="gone"
+            android:layout_below="@+id/about_phone"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/emergency_tab"
+        android:orientation="horizontal"
+        android:background="#ffffff">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="About"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/about_map"
+        android:layout_below="@+id/about"
+        android:layout_width="match_parent"
+        android:layout_marginTop="1dp"
+        android:layout_height="180dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:background="#ffffff"
+            android:layout_below="@+id/about_map"
+            android:orientation="vertical">
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:id="@+id/about_mission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center"
+                android:textColor="#000000"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="When it happened"/>
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textSize="12sp"
+                android:text="10 December 2018"/>
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"/>
+
+        </LinearLayout>
+
+</RelativeLayout>
