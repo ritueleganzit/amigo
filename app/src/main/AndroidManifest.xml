@@ -133,7 +133,14 @@
             android:screenOrientation="portrait" />
         <activity android:name=".SendFeedbackActivity" />
         <activity android:name=".CampaignsActivity" />
-        <activity android:name=".ViewCampaignActivity"></activity>
+        <activity android:name=".ViewCampaignActivity" />
+        <activity android:name=".HelpSupportActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity android:name=".CurrencyActivity" />
+        <activity android:name=".PersonalInformationActivity" />
+        <activity android:name=".PaymentsActivity" />
+        <activity android:name=".KYCActivity" />
+        <activity android:name=".BlockedConnectionsActivity"></activity>
     </application>
 
 </manifest>

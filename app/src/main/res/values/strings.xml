@@ -8,5 +8,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="feedback_text">We Welcome Your \nFeedback/Suggestions</string>
     <string name="enroll_txt">Enroll/Search \n in Index</string>
+    <string name="app_error">The App is giving me an error \nConnectivity / Something is not right here. Help!</string>
 
 </resources>

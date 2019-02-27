@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.eleganzit.volunteerifyngo.fragments.HomeFragment;
 import com.eleganzit.volunteerifyngo.fragments.InformationFragment;
+import com.eleganzit.volunteerifyngo.fragments.OfferRequestHelpFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +47,17 @@ public class ViewCampaignActivity extends AppCompatActivity {
                         .commit();
             }
         });
+
+        tab_offer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                OfferRequestHelpFragment offerRequestHelpFragment= new OfferRequestHelpFragment();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frame, offerRequestHelpFragment,"TAG")
+                        .commit();
+            }
+        });
+
 
     }
 }

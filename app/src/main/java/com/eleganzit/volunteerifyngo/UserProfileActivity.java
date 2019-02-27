@@ -96,8 +96,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 final Dialog dialog=new Dialog(UserProfileActivity.this);
                 dialog.setContentView(R.layout.donation_layout);
 
-                RelativeLayout d_main=dialog.findViewById(R.id.d_main);
-                d_main.getLayoutParams().width=getScreenWidthInPXs(UserProfileActivity.this,UserProfileActivity.this)*10/15;
                 SeekBar donation_seekbar=dialog.findViewById(R.id.donation_seekbar);
                 final TextView txtamount=dialog.findViewById(R.id.txtamount);
                 final TextView donate=dialog.findViewById(R.id.donate);
@@ -133,6 +131,12 @@ public class UserProfileActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
+
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(dialog.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                dialog.getWindow().setAttributes(lp);
 
                 dialog.show();
 

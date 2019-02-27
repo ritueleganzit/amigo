@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/d_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_white_bg"
+    android:layout_marginTop="1dp"
+    android:padding="10dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:textColor="#000000"
+        android:text="Delete Account"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@mipmap/red_alert_icon"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Delete your Volunteerify account will also delete all your data from our servers. This action is NOT reversible."/>
+
+    </LinearLayout>
+
+    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gray"
+        android:layout_marginTop="15dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+        android:text="Please Enter your password"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:cursorVisible="false"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:inputType="textPassword"
+        android:paddingBottom="2dp"
+        android:paddingRight="10dp"
+        android:background="@drawable/gray_rounded_border"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/delete"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtamount"
+            android:paddingLeft="15dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:paddingRight="15dp"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+            android:textSize="10sp"
+            android:text="DELETE ACCOUNT"
+            android:background="@drawable/donate_button_bg"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/like_gray" />
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            android:id="@+id/cancel"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtamount"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:paddingRight="15dp"
+            android:layout_marginLeft="5dp"
+            android:textSize="10sp"
+            android:text="CANCEL"
+            android:background="@drawable/cancel_button_bg"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/like_gray" />
+
+
+    </LinearLayout>
+
+</LinearLayout>

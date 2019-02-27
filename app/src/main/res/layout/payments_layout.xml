@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_marginBottom="1dp"
+    android:background="#ffffff"
+    android:padding="10dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Packages"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Lorem Ipsum"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Renewals"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Lorem Ipsum"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Events"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Lorem Ipsum"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Ads"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Lorem Ipsum"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="Date"/>
+
+        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="right"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="12/10/2018"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

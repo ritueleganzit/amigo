@@ -15,6 +15,7 @@ import com.eleganzit.volunteerifyngo.CampaignsActivity;
 import com.eleganzit.volunteerifyngo.DonationsActivity;
 import com.eleganzit.volunteerifyngo.EventsActivity;
 import com.eleganzit.volunteerifyngo.FollowingActivity;
+import com.eleganzit.volunteerifyngo.HelpSupportActivity;
 import com.eleganzit.volunteerifyngo.InviteFrindsActivity;
 import com.eleganzit.volunteerifyngo.MyProfileActivity;
 import com.eleganzit.volunteerifyngo.NewsFeedActivity;
@@ -22,6 +23,7 @@ import com.eleganzit.volunteerifyngo.OpportunityActivity;
 import com.eleganzit.volunteerifyngo.R;
 import com.eleganzit.volunteerifyngo.ReferEntityActivity;
 import com.eleganzit.volunteerifyngo.SendFeedbackActivity;
+import com.eleganzit.volunteerifyngo.SettingsActivity;
 
 import androidx.fragment.app.Fragment;
 
@@ -142,6 +144,22 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CampaignsActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        lin_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), HelpSupportActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        lin_settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });

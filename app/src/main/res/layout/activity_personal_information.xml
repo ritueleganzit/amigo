@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:contentInsetRight="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetEnd="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetStart="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/angle_arrow_back"/>
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:id="@+id/ed_search"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Personal Information"
+                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/back" />
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#CFD0D4"
+        android:layout_below="@+id/toolbar"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:descendantFocusability="blocksDescendants">
+
+        <RelativeLayout
+            android:id="@+id/rel_inr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:background="#ffffff"
+                android:hint="Change Email"
+                android:layout_below="@+id/fv"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:background="#ffffff"
+                android:hint="Change Mobile Number"
+                android:layout_below="@+id/fv"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:background="#ffffff"
+                android:hint="Change Password"
+                android:layout_below="@+id/fv"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:layout_marginTop="1dp"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:background="#ffffff"
+                android:hint="Confirm Password"
+                android:layout_below="@+id/fv"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/rounded_green_bg"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/save_icon"/>
+
+            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                android:text="Save"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
