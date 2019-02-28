@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.eleganzit.volunteerifyngo.R;
 import com.eleganzit.volunteerifyngo.model.GUsersdata;
@@ -42,6 +43,12 @@ public class NewGroupUsersAdapter extends RecyclerView.Adapter<NewGroupUsersAdap
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
+        holder.add_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -52,10 +59,10 @@ public class NewGroupUsersAdapter extends RecyclerView.Adapter<NewGroupUsersAdap
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-
+    RelativeLayout add_user;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            add_user=itemView.findViewById(R.id.add_user);
 
         }
     }

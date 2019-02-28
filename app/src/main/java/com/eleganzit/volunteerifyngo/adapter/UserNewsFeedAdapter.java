@@ -54,7 +54,7 @@ public class UserNewsFeedAdapter extends RecyclerView.Adapter<UserNewsFeedAdapte
 //        {
 //            photos.add(newsFeedData.getArrayList().get(j));
 //        }
-        holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context));
+        holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context,"userfeed"));
 
         holder.post_main.setOnClickListener(new View.OnClickListener() {
             @Override

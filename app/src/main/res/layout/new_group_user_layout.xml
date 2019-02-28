@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/add_user"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
@@ -27,13 +29,14 @@
 
         <ImageView
             android:id="@+id/mark"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:visibility="gone"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="3dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/remove" />
+            android:src="@drawable/add_green" />
     </RelativeLayout>
 
     <LinearLayout

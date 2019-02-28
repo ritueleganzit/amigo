@@ -6,7 +6,7 @@ android {
         applicationId "com.eleganzit.volunteerifyngo"
         minSdkVersion 19
         targetSdkVersion 28
-        project.ext.set("archivesBaseName", "Volunteerify-21-02-2019" + defaultConfig.versionName)
+        project.ext.set("archivesBaseName", "Volunteerify-28-02-2019" + defaultConfig.versionName)
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -48,6 +48,7 @@ dependencies {
     implementation 'com.daimajia.easing:library:2.0@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
+    implementation 'com.chauthai.overscroll:overscroll-bouncy:0.1.1'
 
 }
 apply plugin: 'com.google.gms.google-services'

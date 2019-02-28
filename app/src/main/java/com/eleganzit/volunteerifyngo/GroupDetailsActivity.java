@@ -40,7 +40,7 @@ public class GroupDetailsActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_gusers.setLayoutManager(layoutManager);
 
-        GUsersdata gUsersdata=new GUsersdata("","","","");
+        GUsersdata gUsersdata=new GUsersdata("","","","","","false");
 
         ar_users.add(gUsersdata);
         ar_users.add(gUsersdata);

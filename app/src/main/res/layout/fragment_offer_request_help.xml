@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:background="@color/colorBackground"
             android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
             android:descendantFocusability="blocksDescendants">
 
             <LinearLayout
@@ -38,7 +39,7 @@
                     android:paddingRight="12dp"
                     android:paddingLeft="12dp"
                     android:layout_alignParentLeft="true"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="@color/darkGray"
                     android:text="24 Requests"
                     />
@@ -62,7 +63,7 @@
                         android:paddingRight="12dp"
                         android:paddingLeft="12dp"
                         android:layout_alignParentLeft="true"
-                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/darkGray"
                         android:text="24 Offers"
                         />
@@ -74,6 +75,7 @@
                         android:gravity="center"
                         android:drawablePadding="5dp"
                         android:textColor="#000"
+                        android:padding="4dp"
                         android:layout_weight="1"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
@@ -83,7 +85,6 @@
                         android:layout_gravity="center_vertical"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-
                 </RelativeLayout>
 
             </LinearLayout>
@@ -92,19 +93,21 @@
                 android:id="@+id/rc_help_posts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/header"
-                android:layout_above="@+id/see_map">
+                android:layout_below="@+id/header">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:id="@+id/see_map"
+                android:layout_below="@+id/rc_help_posts"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="horizontal"
                 android:gravity="center"
-                android:layout_margin="12dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:padding="7dp"
                 android:background="@drawable/rounded_green_bg"
                 android:layout_gravity="center">
@@ -114,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="SEND FEEDBACK "/>
+                    android:text="See Map"/>
 
             </LinearLayout>
 

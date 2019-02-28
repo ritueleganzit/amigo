@@ -20,7 +20,6 @@ public class SearchPagesAdapter extends RecyclerView.Adapter<SearchPagesAdapter.
     ArrayList<PagesData> pages;
     Context context;
     Activity activity;
-    boolean liked=false;
 
     public SearchPagesAdapter(ArrayList<PagesData> pages, Context context) {
         this.pages = pages;
@@ -41,17 +40,19 @@ public class SearchPagesAdapter extends RecyclerView.Adapter<SearchPagesAdapter.
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
+        final boolean[] liked = {false};
+
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(liked)
+                if(liked[0])
                 {
-                    liked=false;
+                    liked[0] =false;
                     holder.like.setImageResource(R.mipmap.like_gray);
                 }
                 else
                 {
-                    liked=true;
+                    liked[0] =true;
                     holder.like.setImageResource(R.mipmap.like_green);
                 }
 

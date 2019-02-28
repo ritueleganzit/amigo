@@ -91,7 +91,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".CreatePostActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".MyProfileActivity"
             android:screenOrientation="portrait" />
@@ -131,16 +132,26 @@
         <activity
             android:name=".ReferEntityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SendFeedbackActivity" />
-        <activity android:name=".CampaignsActivity" />
-        <activity android:name=".ViewCampaignActivity" />
-        <activity android:name=".HelpSupportActivity" />
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".CurrencyActivity" />
-        <activity android:name=".PersonalInformationActivity" />
-        <activity android:name=".PaymentsActivity" />
-        <activity android:name=".KYCActivity" />
-        <activity android:name=".BlockedConnectionsActivity"></activity>
+        <activity android:name=".SendFeedbackActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CampaignsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ViewCampaignActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".HelpSupportActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CurrencyActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PersonalInformationActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PaymentsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".KYCActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".BlockedConnectionsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

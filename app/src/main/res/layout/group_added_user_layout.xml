@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/mark"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="14dp"
+            android:layout_height="14dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="3dp"
@@ -33,6 +33,7 @@
     </RelativeLayout>
 
     <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rel"

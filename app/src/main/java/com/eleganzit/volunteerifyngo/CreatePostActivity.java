@@ -1,77 +1,80 @@
 package com.eleganzit.volunteerifyngo;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.net.Uri;
 import android.provider.MediaStore;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextUtils;
+
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eleganzit.volunteerifyngo.adapter.MentionsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.MentionsRecyclerAdapter;
+import com.eleganzit.volunteerifyngo.adapter.ViewPhotosAdapter;
 import com.eleganzit.volunteerifyngo.model.PagesData;
-import com.eleganzit.volunteerifyngo.model.Tweet;
+import com.eleganzit.volunteerifyngo.model.PhotosData;
 import com.eleganzit.volunteerifyngo.model.UsersData;
+import com.eleganzit.volunteerifyngo.utils.KeyBoardEvent;
+import com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.hendraanggrian.appcompat.socialview.Mention;
-import com.hendraanggrian.appcompat.widget.MentionArrayAdapter;
+
 import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import static java.security.AccessController.getContext;
 
 public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener{
 
     SocialAutoCompleteTextView ed_status;
-    LinearLayout add_photo,add_tag;
+    LinearLayout add_photo,add_tag,add_location;
     private static final int SELECT_PICTURE = 100;
-
+    CoordinatorLayout parent;
     String imageFilePath;
-    //BottomSheetBehavior sheetBehavior;
+    LinearLayout persistantBottomSheet;
+    LinearLayout view_photos_layout,locations_layout;
+    RecyclerView rc_view_photos,rc_locations;
+    BottomSheetBehavior sheetBehavior;
     LinearLayout layoutBottomSheet,privacy;
     ArrayList<UsersData> addeduserslist=new ArrayList<>();
-    RecyclerView rc_untagged,rc_tagged,rc_locations;
+    RecyclerView rc_untagged,rc_tagged;
     ImageView remove_all,post_photo,send_post;
     RelativeLayout rel_tagged;
     CardView card_mentions;
@@ -81,6 +84,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
     TextView txt_privacy;
+    LinearLayout add;
+    RecyclerView rc_photos;
+    ArrayList<PhotosData> ar_photos=new ArrayList<>();
 
     @Override
     protected void onResume() {
@@ -95,6 +101,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,20 +119,108 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         send_post=findViewById(R.id.send_post);
         post_photo=findViewById(R.id.post_photo);
         txt_privacy=findViewById(R.id.txt_privacy);
+        add=findViewById(R.id.add);
+        rc_photos=findViewById(R.id.rc_photos);
+        parent=findViewById(R.id.parent);
+        ed_status=findViewById(R.id.ed_status);
+        add_photo=findViewById(R.id.add_photo);
+        add_tag=findViewById(R.id.add_tag);
+        add_location=findViewById(R.id.add_location);
+        rc_untagged=findViewById(R.id.rc_untagged);
+        rc_tagged=findViewById(R.id.rc_tagged);
+        remove_all=findViewById(R.id.remove_all);
+        rel_tagged=findViewById(R.id.rel_tagged);
+        privacy=findViewById(R.id.privacy);
+        layoutBottomSheet=findViewById(R.id.bottom_sheet);
+        view_photos_layout=findViewById(R.id.view_photos_layout);
+        locations_layout=findViewById(R.id.locations_layout);
+        rc_view_photos=findViewById(R.id.rc_view_photos);
+        rc_locations=findViewById(R.id.rc_locations);
+        //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+        persistantBottomSheet=findViewById(R.id.persistantBottomSheet);
+
+        rc_photos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        sheetBehavior = BottomSheetBehavior.from(persistantBottomSheet);
+
+        FlexboxLayoutManager layoutManager1 = new FlexboxLayoutManager(this);
+        layoutManager1.setFlexDirection(FlexDirection.ROW);
+        layoutManager1.setJustifyContent(JustifyContent.FLEX_START);
+        rc_photos.setLayoutManager(layoutManager1);
+
+        RecyclerView.LayoutManager layoutManager3=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        rc_view_photos.setLayoutManager(layoutManager3);
+
+        RecyclerView.LayoutManager layoutManager4=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        rc_locations.setLayoutManager(layoutManager4);
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+
+                    setupUI(parent);
+
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    add.setVisibility(View.GONE);
+                } else {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    add.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        sheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN: {
+                        add.setVisibility(View.VISIBLE);
+                    }
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        add.setVisibility(View.GONE);
+
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        add.setVisibility(View.VISIBLE);
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_DRAGGING:{
+                        add.setVisibility(View.GONE);
+                    }
+                        break;
+                    case BottomSheetBehavior.STATE_SETTLING:{
+                        add.setVisibility(View.GONE);
+                    }
+                        break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
 
         if(imageFilePath!=null)
         {
             if(imageFilePath.equalsIgnoreCase(""))
             {
-                post_photo.setVisibility(View.GONE);
+                //post_photo.setVisibility(View.GONE);
             }
             else
             {
-                post_photo.setVisibility(View.VISIBLE);
-                Glide
-                        .with(this)
-                        .load(imageFilePath)
-                        .into(post_photo);
+                PhotosData photosData=new PhotosData("",imageFilePath);
+                ar_photos.add(photosData);
+                rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
+                rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
             }
         }
 
@@ -137,16 +232,25 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        ed_status=findViewById(R.id.ed_status);
-        add_photo=findViewById(R.id.add_photo);
-        add_tag=findViewById(R.id.add_tag);
-        rc_untagged=findViewById(R.id.rc_untagged);
-        rc_tagged=findViewById(R.id.rc_tagged);
-        remove_all=findViewById(R.id.remove_all);
-        rel_tagged=findViewById(R.id.rel_tagged);
-        privacy=findViewById(R.id.privacy);
-        layoutBottomSheet=findViewById(R.id.bottom_sheet);
-        //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
+        ed_status.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b)
+                {
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    add.setVisibility(View.VISIBLE);
+                }
+
+            }
+        });
+
+        ed_status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                add.setVisibility(View.VISIBLE);
+            }
+        });
 
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,6 +304,8 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             public void onClick(View view) {
 
                 //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                add.setVisibility(View.VISIBLE);
 
                 layoutBottomSheet.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInUp)
@@ -212,6 +318,27 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 mBottomSheetDialog.show();*/
             }
         });
+
+        add_location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                add.setVisibility(View.VISIBLE);
+
+                layoutBottomSheet.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(300)
+                        .repeat(0)
+                        .playOn(locations_layout);
+              /*  BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(CreatePostActivity.this);
+                View sheetView = getLayoutInflater().inflate(R.layout.tags_bottom_sheet, null);
+                mBottomSheetDialog.setContentView(sheetView);
+                mBottomSheetDialog.show();*/
+            }
+        });
+
 
         PagesData pagesData=new PagesData("","","The Zahir","","");
         PagesData pagesData1=new PagesData("","","Ahmed","","");
@@ -390,31 +517,255 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     }
 
 
-    public boolean isMention(String text) {
+    public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHolder>
+    {
+        ArrayList<PhotosData> photos;
+        Context context;
+        Activity activity;
 
-        boolean foundMatch = false;
-        Pattern regex = Pattern.compile("\\b(?:@)\\b");
-        Matcher regexMatcher = regex.matcher(text);
-        foundMatch = regexMatcher.matches();
-        return foundMatch;
-    }
+        public PhotosAdapter(ArrayList<PhotosData> photos, Context context) {
+            this.photos = photos;
+            this.context = context;
+            activity = (Activity) context;
+        }
 
-    private boolean parseText(String text) {
-        String[] words = text.split("[ \\.]");
-        for (int i = 0; i < words.length; i++) {
-            if (words[i].length() > 0
-                    && words[i].charAt(0) == '@') {
-                System.out.println(words[i]);
-                return true;
+        @NonNull
+        @Override
+        public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+
+            View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.feed_photo_layout,viewGroup,false);
+            MyViewHolder myViewHolder=new MyViewHolder(v);
+
+            return myViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
+
+            if(photos.size()>=5)
+            {
+                if(i<2)
+                {
+                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                }
+                else
+                {
+                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
+                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
+                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                }
+                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+                );
+                Resources r = context.getResources();
+                int px = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        1,
+                        r.getDisplayMetrics()
+                );
+                params.setMargins(px, 0, px, px);
+                holder.rel_main.setLayoutParams(params);
+
+            }
+            if(photos.size()==1)
+            {
+
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity);
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity);
+
+                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(0, 0, 0, 0);
+                holder.rel_main.setLayoutParams(params);
+            }
+            if(photos.size()==2)
+            {
+
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+
+                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+                );
+                Resources r = context.getResources();
+                int px = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        12/10,
+                        r.getDisplayMetrics()
+                );
+                params.setMargins(0, 0, px, 0);
+                holder.rel_main.setLayoutParams(params);
+            }
+            if(photos.size()==3)
+            {
+
+                if(i<1)
+                {
+                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                }
+                else
+                {
+                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
+                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                }
+                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+                );
+                Resources r = context.getResources();
+                int px = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        1,
+                        r.getDisplayMetrics()
+                );
+                params.setMargins(px, 0, px, px);
+                holder.rel_main.setLayoutParams(params);
+            }
+            if(photos.size()==4)
+            {
+
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+                );
+                Resources r = context.getResources();
+                int px = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        12/10,
+                        r.getDisplayMetrics()
+                );
+                params.setMargins(px, 0, px, px);
+                holder.rel_main.setLayoutParams(params);
+            }
+            if(photos.size()>5)
+            {
+                if(i==4)
+                {
+                    holder.pframe.setVisibility(View.VISIBLE);
+                    holder.plus_count.setText("+"+(photos.size()-5));
+                    holder.pframe.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
+                    holder.pframe.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                }
+            }
+            Glide
+                    .with(context)
+                    .load(photos.get(i).getPhoto())
+                    .apply(new RequestOptions().centerCrop()).into(holder.feed_photo);
+
+            holder.feed_photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(ar_photos.size()>1)
+                    {
+                        view_photos_layout.setVisibility(View.VISIBLE);
+                        YoYo.with(Techniques.SlideInUp)
+                                .duration(300)
+                                .repeat(0)
+                                .playOn(view_photos_layout);
+                    }
+                }
+            });
+
+        }
+
+        @Override
+        public int getItemCount() {
+            if(photos.size()>5)
+            {
+                return 5;
+            }
+            else
+            {
+                return photos.size();
             }
         }
-        return false;
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+
+            ImageView feed_photo;
+            TextViewRobotoBold plus_count;
+            RelativeLayout rel_main,pframe;
+            public MyViewHolder(@NonNull View itemView) {
+                super(itemView);
+                feed_photo=itemView.findViewById(R.id.feed_photo);
+                rel_main=itemView.findViewById(R.id.rel_main);
+                pframe=itemView.findViewById(R.id.pframe);
+                plus_count=itemView.findViewById(R.id.plus_count);
+
+            }
+        }
+
+        public int getScreenWidthInPXs(Context context, Activity activity){
+
+            DisplayMetrics dm = new DisplayMetrics();
+
+            WindowManager windowManager = (WindowManager) context.getSystemService(WINDOW_SERVICE);
+            windowManager.getDefaultDisplay().getMetrics(dm);
+            int widthInDP = Math.round(dm.widthPixels / dm.density);
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            int width = displayMetrics.widthPixels;
+            return width;
+        }
+
     }
 
     void openImageChooser() {
         Intent galleryIntent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), SELECT_PICTURE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK) {
+
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImage = data.getData();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                assert cursor != null;
+                cursor.moveToFirst();
+                int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String mediapath = cursor.getString(clumnIndex);
+
+                PhotosData photosData=new PhotosData("",mediapath);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                add.setVisibility(View.VISIBLE);
+                ar_photos.add(photosData);
+                rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
+                rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
+
+            }
+        }
+        if (resultCode==RESULT_CANCELED)
+        {
+
+        }
+
     }
 
     @Override
@@ -427,6 +778,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     .repeat(0)
                     .playOn(layoutBottomSheet);
             layoutBottomSheet.setVisibility(View.GONE);
+        }
+        else if(view_photos_layout.getVisibility()==View.VISIBLE)
+        {
+            YoYo.with(Techniques.SlideOutDown)
+                    .duration(400)
+                    .repeat(0)
+                    .playOn(view_photos_layout);
+            view_photos_layout.setVisibility(View.GONE);
         }
         else
         {
@@ -459,6 +818,26 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
     }
 
+    public void setupUI(View view) {
+
+        // Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    KeyBoardEvent.hideKeyboard(CreatePostActivity.this);
+                    return false;
+                }
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+                View innerView = ((ViewGroup) view).getChildAt(i);
+                setupUI(innerView);
+            }
+        }
+    }
 
     public class UsersTagAdapter extends RecyclerView.Adapter<UsersTagAdapter.MyViewHolder>
     {

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.eleganzit.volunteerifyngo.R;
 import com.eleganzit.volunteerifyngo.ViewCampaignActivity;
+import com.eleganzit.volunteerifyngo.adapter.HelpAdapter;
 import com.eleganzit.volunteerifyngo.adapter.NewsFeedAdapter;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
 
@@ -79,7 +80,7 @@ public class OfferRequestHelpFragment extends Fragment {
         dataArrayList.add(newsFeedData);
         dataArrayList.add(newsFeedData);
 
-        rc_help_posts.setAdapter(new NewsFeedAdapter(dataArrayList,getActivity()));
+        rc_help_posts.setAdapter(new HelpAdapter(dataArrayList,getActivity()));
 
 
     }

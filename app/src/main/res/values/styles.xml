@@ -9,7 +9,7 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
 
         <item name="android:ambientShadowAlpha" tools:targetApi="lollipop">0.05</item>
-        <item name="android:spotShadowAlpha" tools:targetApi="lollipop">0.5</item>
+        <item name="android:spotShadowAlpha" tools:targetApi="lollipop">0.3</item>
     </style>
 
     <style name="Widget.CalendarView.Custom" parent="android:Widget.CalendarView">

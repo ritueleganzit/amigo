@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.volunteerifyngo.R;
+import com.eleganzit.volunteerifyngo.fragments.ViewPostFragment;
 import com.eleganzit.volunteerifyngo.model.NewsFeedData;
 import com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold;
 import com.google.android.flexbox.FlexDirection;
@@ -36,10 +39,12 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
     ArrayList<String> photos;
     Context context;
     Activity activity;
+    String from;
 
-    public PostPhotosAdapter(ArrayList<String> photos, Context context) {
+    public PostPhotosAdapter(ArrayList<String> photos, Context context,String from) {
         this.photos = photos;
         this.context = context;
+        this.from = from;
         activity = (Activity) context;
     }
 
@@ -186,6 +191,22 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                 .with(context)
                 .load(photos.get(i))
                 .apply(new RequestOptions().centerCrop()).into(holder.feed_photo);
+
+        holder.feed_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(from.equalsIgnoreCase("newsfeed"))
+                {
+                    ViewPostFragment viewPostFragment= new ViewPostFragment();
+
+                    FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.addToBackStack("NewsFeedActivity");
+                    fragmentTransaction.replace(R.id.frame, viewPostFragment, "TAG");
+                    fragmentTransaction.commit();
+                }
+
+            }
+        });
 
     }
 

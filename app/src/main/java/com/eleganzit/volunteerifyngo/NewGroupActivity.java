@@ -42,7 +42,7 @@ public class NewGroupActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false);
         rc_gusers.setLayoutManager(layoutManager);
 
-        GUsersdata gUsersdata=new GUsersdata("","","","");
+        GUsersdata gUsersdata=new GUsersdata("","","","","","false");
 
         ar_users.add(gUsersdata);
         ar_users.add(gUsersdata);
