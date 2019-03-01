@@ -41,10 +41,10 @@ public class MyPhotosFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_my_photos, container, false);
 
-        MyProfileActivity.tab_photos.setTextColor(Color.parseColor("#0f2536"));
-        MyProfileActivity.tab_following.setTextColor(Color.parseColor("#8c8c8c"));
-        MyProfileActivity.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-        MyProfileActivity.tab_milestone.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileFragment.tab_photos.setTextColor(Color.parseColor("#0f2536"));
+        MyProfileFragment.tab_following.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileFragment.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileFragment.tab_milestone.setTextColor(Color.parseColor("#8c8c8c"));
 
         rc_photos=v.findViewById(R.id.rc_photos);
 

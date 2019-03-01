@@ -49,7 +49,7 @@
 
                 <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
                     android:text="Username"
-                    android:id="@+id/p_name"
+                    android:id="@+id/username"
                     android:textColor="#000000"
                     android:gravity="start"
                     android:maxLines="1"

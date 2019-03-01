@@ -86,7 +86,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
         MyPhotosFragment myPhotosFragment= new MyPhotosFragment();
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame, myPhotosFragment,"TAG")
+                .replace(R.id.profile_activity_frame, myPhotosFragment,"TAG")
                 .commit();
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -119,7 +119,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
                 MyPhotosFragment myPhotosFragment= new MyPhotosFragment();
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.frame, myPhotosFragment,"TAG")
+                        .replace(R.id.profile_activity_frame, myPhotosFragment,"TAG")
                         .commit();
             }
         });

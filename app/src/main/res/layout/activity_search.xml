@@ -40,7 +40,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Search"
                 android:cursorVisible="false"
-                android:focusable="false"
                 android:drawableLeft="@drawable/search_gray"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:padding="4dp"

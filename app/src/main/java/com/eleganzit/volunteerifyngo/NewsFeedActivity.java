@@ -27,6 +27,8 @@ import android.widget.Toast;
 import com.eleganzit.volunteerifyngo.fragments.FollowersFragment;
 import com.eleganzit.volunteerifyngo.fragments.HomeFeedFragment;
 import com.eleganzit.volunteerifyngo.fragments.MenuFragment;
+import com.eleganzit.volunteerifyngo.fragments.MyPhotosFragment;
+import com.eleganzit.volunteerifyngo.fragments.MyProfileFragment;
 import com.eleganzit.volunteerifyngo.fragments.ViewPostFragment;
 
 import java.io.ByteArrayOutputStream;
@@ -176,11 +178,11 @@ public class NewsFeedActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                FollowersFragment followersFragment= new FollowersFragment();
+                MyProfileFragment myProfileFragment= new MyProfileFragment();
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack("NewsFeedActivity");
-                fragmentTransaction.replace(R.id.frame, followersFragment, "TAG");
+                fragmentTransaction.replace(R.id.frame, myProfileFragment, "TAG");
                 fragmentTransaction.commit();
             }
         });

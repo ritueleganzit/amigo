@@ -13,6 +13,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -35,11 +36,14 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.eleganzit.volunteerifyngo.adapter.LocationsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.MentionsAdapter;
 import com.eleganzit.volunteerifyngo.adapter.MentionsRecyclerAdapter;
+import com.eleganzit.volunteerifyngo.adapter.SearchPlacesAdapter;
 import com.eleganzit.volunteerifyngo.adapter.ViewPhotosAdapter;
 import com.eleganzit.volunteerifyngo.model.PagesData;
 import com.eleganzit.volunteerifyngo.model.PhotosData;
+import com.eleganzit.volunteerifyngo.model.PlacesData;
 import com.eleganzit.volunteerifyngo.model.UsersData;
 import com.eleganzit.volunteerifyngo.utils.KeyBoardEvent;
 import com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold;
@@ -83,7 +87,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     private MentionsRecyclerAdapter mAdapter;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    TextView txt_privacy;
+    TextView txt_privacy,txt_with,with;
     LinearLayout add;
     RecyclerView rc_photos;
     ArrayList<PhotosData> ar_photos=new ArrayList<>();
@@ -119,6 +123,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         send_post=findViewById(R.id.send_post);
         post_photo=findViewById(R.id.post_photo);
         txt_privacy=findViewById(R.id.txt_privacy);
+        txt_with=findViewById(R.id.txt_with);
+
+        with=findViewById(R.id.with);
         add=findViewById(R.id.add);
         rc_photos=findViewById(R.id.rc_photos);
         parent=findViewById(R.id.parent);
@@ -158,6 +165,26 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
         RecyclerView.LayoutManager layoutManager4=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_locations.setLayoutManager(layoutManager4);
+
+        ArrayList<PlacesData> ar_locations =new ArrayList<>();
+
+        PlacesData placesData=new PlacesData("","","","","");
+
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+        ar_locations.add(placesData);
+
+        rc_locations.setAdapter(new LocationsAdapter(ar_locations,this));
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -277,25 +304,27 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         ArrayList<UsersData> arrayList=new ArrayList<>();
-        UsersData usersData=new UsersData("","","");
+        UsersData usersData1=new UsersData("1","Zahir","");
+        UsersData usersData2=new UsersData("2","Ritu","");
+        UsersData usersData3=new UsersData("3","Ahmed","");
+        UsersData usersData4=new UsersData("4","Mala","");
+        UsersData usersData5=new UsersData("5","Uvais","");
+        UsersData usersData6=new UsersData("6","Nambath","");
+        UsersData usersData7=new UsersData("7","Tom","");
+        UsersData usersData8=new UsersData("8","Jerry","");
+        UsersData usersData9=new UsersData("9","Jack","");
+        UsersData usersData10=new UsersData("10","Peter","");
 
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
-        arrayList.add(usersData);
+        arrayList.add(usersData1);
+        arrayList.add(usersData2);
+        arrayList.add(usersData3);
+        arrayList.add(usersData4);
+        arrayList.add(usersData5);
+        arrayList.add(usersData6);
+        arrayList.add(usersData7);
+        arrayList.add(usersData8);
+        arrayList.add(usersData9);
+        arrayList.add(usersData10);
 
         rc_untagged.setAdapter(new UsersTagAdapter(arrayList,this));
 
@@ -327,7 +356,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                 add.setVisibility(View.VISIBLE);
 
-                layoutBottomSheet.setVisibility(View.VISIBLE);
+                locations_layout.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInUp)
                         .duration(300)
                         .repeat(0)
@@ -787,6 +816,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     .playOn(view_photos_layout);
             view_photos_layout.setVisibility(View.GONE);
         }
+        else if(locations_layout.getVisibility()==View.VISIBLE)
+        {
+            YoYo.with(Techniques.SlideOutDown)
+                    .duration(400)
+                    .repeat(0)
+                    .playOn(locations_layout);
+            locations_layout.setVisibility(View.GONE);
+        }
         else
         {
             super.onBackPressed();
@@ -867,6 +904,8 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             holder.select_radioButton.setClickable(false);
 
+            holder.username.setText(usersData.getName());
+
             holder.main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -893,10 +932,27 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         if(addeduserslist.size()>0)
                         {
                             remove_all.setVisibility(View.VISIBLE);
+                            txt_with.setVisibility(View.VISIBLE);
+                            if(addeduserslist.size()==1)
+                            {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            }
+                            else if(addeduserslist.size()==2)
+                            {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> " +" and " + "<b>" +addeduserslist.get(1).getName()+ "</b> " ;
+                                with.setText(Html.fromHtml(withWhom));
+                            }
+                            else
+                            {
+                                String withWhom = "<b>" +addeduserslist.get(0).getName()+ "</b> " + " and " + "<b>" +(addeduserslist.size()-1)+" others"+"</b>" ;
+                                with.setText(Html.fromHtml(withWhom));
+                            }
                         }
                         else
                         {
                             remove_all.setVisibility(View.GONE);
+                            txt_with.setVisibility(View.GONE);
                         }
                         //Toast.makeText(context, "added "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
                     }
@@ -907,10 +963,27 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         if(addeduserslist.size()>0)
                         {
                             remove_all.setVisibility(View.VISIBLE);
+                            txt_with.setVisibility(View.VISIBLE);
+                            if(addeduserslist.size()==1)
+                            {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            }
+                            else if(addeduserslist.size()==2)
+                            {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> " +" and " + "<b>" +addeduserslist.get(1).getName()+ "</b> " ;
+                                with.setText(Html.fromHtml(withWhom));
+                            }
+                            else
+                            {
+                                String withWhom = "<b>" +addeduserslist.get(0).getName()+ "</b> " + " and " + "<b>" +(addeduserslist.size()-1)+" others"+"</b>" ;
+                                with.setText(Html.fromHtml(withWhom));
+                            }
                         }
                         else
                         {
                             remove_all.setVisibility(View.GONE);
+                            txt_with.setVisibility(View.GONE);
                         }
                         //Toast.makeText(context, "removed "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
                     }
@@ -923,6 +996,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     selectAll(false);
                     addeduserslist.clear();
                     remove_all.setVisibility(View.GONE);
+                    with.setVisibility(View.GONE);
                     rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,CreatePostActivity.this));
                 }
             });
@@ -946,12 +1020,13 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             LinearLayout main;
 
-            TextView p_name;
+            TextView username;
             CheckBox select_radioButton;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
                 main=itemView.findViewById(R.id.main);
+                username=itemView.findViewById(R.id.username);
                 select_radioButton=itemView.findViewById(R.id.select_radioButton);
 
             }
@@ -983,6 +1058,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
             final UsersData usersData=arrayList.get(position);
+            holder.username.setText(usersData.getName());
 
         }
 
