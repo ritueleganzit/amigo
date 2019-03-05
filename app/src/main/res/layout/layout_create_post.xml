@@ -11,13 +11,13 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="48dp"
         android:background="#ffffff"
         android:fitsSystemWindows="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="48dp"
             android:background="#d7d7d7">
 
             <RelativeLayout
@@ -218,7 +218,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:background="#d7d7d7"
-        android:layout_marginBottom="48dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -278,7 +277,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:background="#ffffff"
-        android:layout_marginBottom="48dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -296,7 +294,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
         android:background="#ffffff"
-        android:layout_marginBottom="48dp"
         android:orientation="vertical"
         android:visibility="gone">
 

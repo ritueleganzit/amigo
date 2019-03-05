@@ -64,6 +64,7 @@
         </RelativeLayout>
 
         <LinearLayout
+            android:id="@+id/signin_another"
             android:layout_below="@+id/inputs"
             android:layout_width="match_parent"
             android:gravity="center_vertical"

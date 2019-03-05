@@ -1,12 +1,14 @@
 package com.eleganzit.volunteerifyngo.fragments;
 
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +49,8 @@ public class HomeFeedFragment extends Fragment {
     NestedScrollView news_feed_scroll;
     ArrayList<NewsFeedData> dataArrayList=new ArrayList<>();
     ArrayList<String> imgArrayList=new ArrayList<>();
+    ArrayList<PhotosData> ar_photos=new ArrayList<>();
+
     LinearLayout header_upload_photo;
     private static final int SELECT_PICTURE = 100;
 
@@ -137,7 +141,7 @@ public class HomeFeedFragment extends Fragment {
 
     void openImageChooser() {
         Intent galleryIntent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
+        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), SELECT_PICTURE);
     }
 
@@ -155,9 +159,41 @@ public class HomeFeedFragment extends Fragment {
                 cursor.moveToFirst();
                 int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String mediapath = cursor.getString(clumnIndex);
+                Bundle extra = new Bundle();
+                if (data.getClipData() != null) {
+                    ClipData mClipData = data.getClipData();
+                    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                    if(ar_photos.size()>0)
+                    {
+                        ar_photos.clear();
+                    }
+                    for (int i = 0; i < mClipData.getItemCount(); i++) {
 
-                startActivity(new Intent(getActivity(),CreatePostActivity.class).putExtra("imageFilePath",mediapath+""));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                        ClipData.Item item = mClipData.getItemAt(i);
+                        Uri uri = item.getUri();
+                        mArrayUri.add(uri);
+                        // Get the cursor
+                        Cursor cursor2 = getActivity().getContentResolver().query(uri, filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor2.moveToFirst();
+
+                        int columnIndex = cursor2.getColumnIndex(filePathColumn[0]);
+                        mediapath  = cursor2.getString(columnIndex);
+                        PhotosData photosData=new PhotosData("",mediapath);
+
+                        ar_photos.add(photosData);
+
+                        cursor2.close();
+
+                    }
+
+                    extra.putSerializable("objects", ar_photos);
+
+                    startActivity(new Intent(getActivity(),CreatePostActivity.class).putExtra("imagesFilePath",extra));
+                    getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
+                    Log.d("LOG_TAG", "Selected Images" + mArrayUri.size());
+                }
 
             }
         }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -102,9 +103,10 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
 
                 ViewPostFragment viewPostFragment= new ViewPostFragment();
 
-                FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.addToBackStack("NewsFeedActivity");
+                FragmentManager fragmentManager=((FragmentActivity) context).getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frame, viewPostFragment, "TAG");
+                fragmentTransaction.addToBackStack("HomeFeedFragment");
                 fragmentTransaction.commit();
             }
         });

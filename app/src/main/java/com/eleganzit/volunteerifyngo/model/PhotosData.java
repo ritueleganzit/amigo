@@ -1,6 +1,8 @@
 package com.eleganzit.volunteerifyngo.model;
 
-public class PhotosData
+import java.io.Serializable;
+
+public class PhotosData implements Serializable
 {
     String photo_id,photo;
 

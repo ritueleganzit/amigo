@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
     ArrayList<GUsersdata> ar_addedusers=new ArrayList<>();
     FloatingActionButton next;
     RelativeLayout title_layout;
+    Animation pop_in,pop_out;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,9 @@ public class AddNewGroupActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        pop_in = AnimationUtils.loadAnimation(this, R.anim.pop_in);
+        pop_out = AnimationUtils.loadAnimation(this, R.anim.pop_out);
 
         next=findViewById(R.id.next);
         rc_gusers=findViewById(R.id.rc_gusers);
@@ -252,8 +258,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
             holder.rel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ar_addedusers.remove(gUsersdata);
-                    notifyItemRemoved(i);
+                    removeAt(i,gUsersdata);
                     rc_gusers.setAdapter(new NewGroupUsersAdapter(ar_users,AddNewGroupActivity.this));
 
                     if(ar_addedusers.size()>0)
@@ -287,6 +292,16 @@ public class AddNewGroupActivity extends AppCompatActivity {
                 name=itemView.findViewById(R.id.name);
 
             }
+        }
+
+        public void removeAt(int position,GUsersdata gUsersdata) {
+            //ar_addedusers.remove(position);
+            ar_addedusers.remove(gUsersdata);
+            rc_added_users.removeViewAt(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, users.size());
+            notifyItemChanged(position);
+
         }
     }
 

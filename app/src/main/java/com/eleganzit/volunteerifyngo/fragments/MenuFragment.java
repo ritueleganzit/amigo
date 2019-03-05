@@ -17,6 +17,8 @@ import com.eleganzit.volunteerifyngo.EventsActivity;
 import com.eleganzit.volunteerifyngo.FollowingActivity;
 import com.eleganzit.volunteerifyngo.HelpSupportActivity;
 import com.eleganzit.volunteerifyngo.InviteFrindsActivity;
+import com.eleganzit.volunteerifyngo.LoginActivity;
+import com.eleganzit.volunteerifyngo.LoginSessionActivity;
 import com.eleganzit.volunteerifyngo.MyProfileActivity;
 import com.eleganzit.volunteerifyngo.NewsFeedActivity;
 import com.eleganzit.volunteerifyngo.OpportunityActivity;
@@ -163,6 +165,15 @@ public class MenuFragment extends Fragment {
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
+
+        lin_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), LoginSessionActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
 
         return v;
     }

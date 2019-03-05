@@ -67,7 +67,6 @@ public class MyProfileFragment extends Fragment {
         NewsFeedActivity.btm_user.setImageResource(R.drawable.user_green);
         NewsFeedActivity.btm_menu.setImageResource(R.drawable.menu_gray);
 
-
         edit_profile=v.findViewById(R.id.edit_profile);
 
         tab_photos=v.findViewById(R.id.tab_photos);

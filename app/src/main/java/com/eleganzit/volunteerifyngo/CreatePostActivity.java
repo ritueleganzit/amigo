@@ -2,6 +2,7 @@ package com.eleganzit.volunteerifyngo;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -91,6 +92,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     LinearLayout add;
     RecyclerView rc_photos;
     ArrayList<PhotosData> ar_photos=new ArrayList<>();
+    String mediapath;
 
     @Override
     protected void onResume() {
@@ -120,6 +122,17 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         });
 
         imageFilePath=getIntent().getStringExtra("imageFilePath");
+
+        Bundle extra = getIntent().getBundleExtra("imagesFilePath");
+        if(ar_photos.size()>0)
+        {
+            ar_photos.clear();
+        }
+        if(extra!=null)
+        {
+            ar_photos = (ArrayList<PhotosData>) extra.getSerializable("objects");
+        }
+
         send_post=findViewById(R.id.send_post);
         post_photo=findViewById(R.id.post_photo);
         txt_privacy=findViewById(R.id.txt_privacy);
@@ -236,16 +249,23 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        if(imageFilePath!=null)
+        if(ar_photos!=null)
         {
-            if(imageFilePath.equalsIgnoreCase(""))
+            if(ar_photos.size()==0)
             {
                 //post_photo.setVisibility(View.GONE);
+                if(imageFilePath!=null)
+                {
+                    PhotosData photosData=new PhotosData("",imageFilePath+"");
+                    ar_photos.add(photosData);
+                    rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
+                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
+                }
+
             }
             else
             {
-                PhotosData photosData=new PhotosData("",imageFilePath);
-                ar_photos.add(photosData);
+
                 rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
                 rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
             }
@@ -334,6 +354,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
                 //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                persistantBottomSheet.setVisibility(View.GONE);
                 add.setVisibility(View.VISIBLE);
 
                 layoutBottomSheet.setVisibility(View.VISIBLE);
@@ -354,6 +375,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
                 //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                persistantBottomSheet.setVisibility(View.GONE);
                 add.setVisibility(View.VISIBLE);
 
                 locations_layout.setVisibility(View.VISIBLE);
@@ -708,6 +730,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     if(ar_photos.size()>1)
                     {
                         view_photos_layout.setVisibility(View.VISIBLE);
+                        persistantBottomSheet.setVisibility(View.GONE);
                         YoYo.with(Techniques.SlideInUp)
                                 .duration(300)
                                 .repeat(0)
@@ -763,7 +786,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
     void openImageChooser() {
         Intent galleryIntent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
+        galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), SELECT_PICTURE);
     }
 
@@ -773,21 +796,57 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         if (resultCode==RESULT_OK) {
 
             if (requestCode == SELECT_PICTURE) {
-                Uri selectedImage = data.getData();
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                assert cursor != null;
-                cursor.moveToFirst();
-                int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String mediapath = cursor.getString(clumnIndex);
+                Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+/*
+                if(data.getData()!=null) {
+                    Uri selectedImage = data.getData();
 
-                PhotosData photosData=new PhotosData("",mediapath);
-                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                add.setVisibility(View.VISIBLE);
-                ar_photos.add(photosData);
-                rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
-                rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
+                    Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                    assert cursor != null;
+                    cursor.moveToFirst();
+                    int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    mediapath = cursor.getString(clumnIndex);
 
+                    PhotosData photosData = new PhotosData("", mediapath);
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    add.setVisibility(View.VISIBLE);
+                    ar_photos.add(photosData);
+                    rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+                    Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+
+                }
+                else {*/
+                    if (data.getClipData() != null) {
+                        ClipData mClipData = data.getClipData();
+                        ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+
+                            ClipData.Item item = mClipData.getItemAt(i);
+                            Uri uri = item.getUri();
+                            mArrayUri.add(uri);
+                            // Get the cursor
+                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+                            // Move to first row
+                            cursor.moveToFirst();
+
+                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                            mediapath  = cursor.getString(columnIndex);
+                            PhotosData photosData=new PhotosData("",mediapath);
+                            ar_photos.add(photosData);
+                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                            add.setVisibility(View.VISIBLE);
+                            rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                            rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+                            cursor.close();
+
+                        }
+                        Log.d("LOG_TAG", "Selected Images" + mArrayUri.size());
+                    }
+                    Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+
+               /* }*/
             }
         }
         if (resultCode==RESULT_CANCELED)
@@ -800,13 +859,18 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     public void onBackPressed() {
 
-        if(layoutBottomSheet.getVisibility()==View.VISIBLE)
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED){
+            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            add.setVisibility(View.VISIBLE);
+        }
+        else if(layoutBottomSheet.getVisibility()==View.VISIBLE)
         {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(layoutBottomSheet);
             layoutBottomSheet.setVisibility(View.GONE);
+            persistantBottomSheet.setVisibility(View.VISIBLE);
         }
         else if(view_photos_layout.getVisibility()==View.VISIBLE)
         {
@@ -815,6 +879,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     .repeat(0)
                     .playOn(view_photos_layout);
             view_photos_layout.setVisibility(View.GONE);
+            persistantBottomSheet.setVisibility(View.VISIBLE);
         }
         else if(locations_layout.getVisibility()==View.VISIBLE)
         {
@@ -823,6 +888,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     .repeat(0)
                     .playOn(locations_layout);
             locations_layout.setVisibility(View.GONE);
+            persistantBottomSheet.setVisibility(View.VISIBLE);
         }
         else
         {

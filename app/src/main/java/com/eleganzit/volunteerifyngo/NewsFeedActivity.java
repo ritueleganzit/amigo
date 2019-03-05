@@ -42,6 +42,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
@@ -142,6 +143,7 @@ public class NewsFeedActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
             }
+
         });
 
         HomeFeedFragment homeFeedFragment= new HomeFeedFragment();
@@ -152,10 +154,11 @@ public class NewsFeedActivity extends AppCompatActivity {
         rel_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                 HomeFeedFragment homeFeedFragment= new HomeFeedFragment();
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.addToBackStack("NewsFeedActivity");
                 fragmentTransaction.replace(R.id.frame, homeFeedFragment, "TAG");
                 fragmentTransaction.commit();
 
@@ -177,7 +180,7 @@ public class NewsFeedActivity extends AppCompatActivity {
         rel_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 MyProfileFragment myProfileFragment= new MyProfileFragment();
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -190,6 +193,7 @@ public class NewsFeedActivity extends AppCompatActivity {
         rel_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 MenuFragment menuFragment= new MenuFragment();
 
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

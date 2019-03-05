@@ -20,7 +20,7 @@ public class LoginSessionActivity extends AppCompatActivity {
 
     RecyclerView rc_accounts;
     ArrayList<Accounts> arrayList=new ArrayList<>();
-    LinearLayout signup;
+    LinearLayout signup,signin_another;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class LoginSessionActivity extends AppCompatActivity {
 
         rc_accounts=findViewById(R.id.rc_accounts);
         signup=findViewById(R.id.signup);
-
+        signin_another=findViewById(R.id.signin_another);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_accounts.setLayoutManager(layoutManager);
@@ -44,6 +44,14 @@ public class LoginSessionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginSessionActivity.this,RegistrationActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
+        signin_another.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginSessionActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
