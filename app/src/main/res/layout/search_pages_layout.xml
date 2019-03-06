@@ -37,7 +37,7 @@
         android:layout_centerVertical="true"
         android:paddingLeft="10dp" >
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
             android:layout_marginTop="4dp"
             android:layout_gravity="center"
             android:paddingRight="5dp" >
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:id="@+id/page_likes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                 android:layout_gravity="center"
                 android:src="@drawable/dot"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:id="@+id/page_place"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

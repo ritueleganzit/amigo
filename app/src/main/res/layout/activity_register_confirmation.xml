@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/volunteerify_logo"
+            android:src="@drawable/amigo_logo1"
             android:layout_width="130dp"
             android:layout_marginTop="40dp"
             android:layout_height="130dp"
@@ -44,7 +44,7 @@
             android:layout_marginBottom="20dp"
             android:layout_height="wrap_content">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:text="CONGRATULATION!"
                 android:textColor="#ffffff"
                 android:gravity="center"
@@ -53,14 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:text="You're registered successfully, you can now login and see volunteer opportunities."/>
+                android:text="Your details have been received by us. We will get in touch with you in 16 working hours."/>
 
 
         </LinearLayout>

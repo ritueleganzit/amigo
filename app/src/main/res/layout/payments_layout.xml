@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -21,7 +21,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Packages"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -45,7 +45,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Renewals"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -69,7 +69,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Events"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -93,7 +93,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Ads"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -117,7 +117,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="Date"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

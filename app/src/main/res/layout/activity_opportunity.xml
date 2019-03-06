@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/angle_arrow_back"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:id="@+id/ed_search"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
                             android:orientation="vertical"
                             android:scaleType="fitCenter">
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/top_rounded_green_bg"
@@ -136,7 +136,7 @@
                                 android:layout_height="match_parent"
                                 android:background="@drawable/bottom_rounded_blue_bg">
 
-                                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                                <com.eleganzit.amigo.utils.TextViewRobotoBold
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
@@ -157,7 +157,7 @@
                             android:gravity="top"
                             android:orientation="vertical">
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
@@ -166,7 +166,7 @@
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
                                 android:textColor="#000" />
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
@@ -205,7 +205,7 @@
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/apply_icon" />
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:id="@+id/txt_interested"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -230,7 +230,7 @@
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/icon_share"/>
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:id="@+id/txt_share"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -272,7 +272,7 @@
                         android:gravity="top"
                         android:orientation="vertical">
 
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                        <com.eleganzit.amigo.utils.TextViewRobotoBold
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:singleLine="true"
@@ -281,7 +281,7 @@
                             android:text="Description"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                        <com.eleganzit.amigo.utils.TextViewRobotoRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:maxLines="3"
@@ -308,14 +308,14 @@
                             android:layout_alignParentLeft="true"
                             android:orientation="vertical">
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="234"
                                 android:textColor="#000000"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:singleLine="true"
@@ -332,14 +332,14 @@
                             android:layout_centerHorizontal="true"
                             android:orientation="vertical">
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$6,000"
                                 android:textColor="#000000"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:singleLine="true"
@@ -356,14 +356,14 @@
                             android:layout_alignParentRight="true"
                             android:orientation="vertical">
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="$20,000"
                                 android:textColor="#000000"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-                            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:singleLine="true"
@@ -375,7 +375,7 @@
 
                     </RelativeLayout>
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    <com.eleganzit.amigo.utils.TextViewRobotoBold
                         android:id="@+id/donate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -423,7 +423,7 @@
                         android:src="@mipmap/clock_small"
                         />
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:id="@+id/events"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -449,7 +449,7 @@
                         android:src="@mipmap/location_small"
                         />
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:id="@+id/timestamp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -475,7 +475,7 @@
                         android:src="@mipmap/users_small"
                         />
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -500,7 +500,7 @@
                         android:src="@mipmap/users_time_small"
                         />
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
@@ -523,7 +523,7 @@
                 android:layout_marginTop="1dp"
                 android:orientation="vertical">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/about_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -532,7 +532,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="#000000" />
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="left|center"

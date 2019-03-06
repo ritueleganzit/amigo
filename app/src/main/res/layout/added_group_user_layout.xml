@@ -22,7 +22,7 @@
             android:src="@drawable/user" />
     </RelativeLayout>
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rel"

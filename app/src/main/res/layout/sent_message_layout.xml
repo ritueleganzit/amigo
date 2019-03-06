@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
 
     </RelativeLayout>
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:layout_below="@+id/date"
         android:id="@+id/messageText"
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
         android:text="hello"
         android:textColor="#fff"/>
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/sent_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

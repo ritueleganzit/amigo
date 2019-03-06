@@ -35,7 +35,7 @@
         android:layout_toRightOf="@+id/rprofilePic"
         android:orientation="vertical">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             android:orientation="horizontal"
             android:paddingRight="5dp">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:id="@+id/page_likes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/device"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

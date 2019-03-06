@@ -29,7 +29,7 @@
                 android:background="@color/lightGray"
                 android:orientation="horizontal">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#CFD0D4"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1">
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                    <com.eleganzit.amigo.utils.TextViewRobotoBold
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="#CFD0D4"
@@ -68,7 +68,7 @@
                         android:text="24 Offers"
                         />
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:id="@+id/txt_year"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,7 +112,7 @@
                 android:background="@drawable/rounded_green_bg"
                 android:layout_gravity="center">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#ffffff"

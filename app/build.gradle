@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.eleganzit.volunteerifyngo"
+        applicationId "com.eleganzit.amigo"
         minSdkVersion 19
         targetSdkVersion 28
         project.ext.set("archivesBaseName", "Volunteerify-04-03-2019" + defaultConfig.versionName)

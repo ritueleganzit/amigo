@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp">
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/dateText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

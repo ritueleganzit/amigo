@@ -82,7 +82,7 @@
                         android:layout_height="28dp"
                         android:src="@drawable/photos"/>
 
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="10sp"

@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/opt_share_post"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -49,7 +49,7 @@
             android:layout_height="match_parent"
             app:srcCompat="@drawable/opt_report"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -75,7 +75,7 @@
             android:layout_height="match_parent"
             android:src="@drawable/opt_block_user"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"

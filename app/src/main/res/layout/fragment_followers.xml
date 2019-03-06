@@ -20,127 +20,31 @@
             android:orientation="vertical"
             android:descendantFocusability="blocksDescendants">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="#CFD0D4"
+                android:orientation="horizontal">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray"
+                    android:paddingLeft="15dp"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="15dp"
+                    android:text="Followers"
+                    />
+
+            </LinearLayout>
+
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_corners_bg">
-
-                <LinearLayout
-                    android:id="@+id/header"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:background="@color/appGreen"
-                    android:weightSum="4"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <RelativeLayout
-                        android:id="@+id/rel_people"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/people"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/people_icon"/>
-
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                            android:layout_below="@+id/people"
-                            android:layout_width="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_height="wrap_content"
-                            android:text="People"
-                            android:textColor="#ffffff"/>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rel_ngos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.2"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/ngos"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/ngos_icon"/>
-
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                            android:layout_below="@+id/ngos"
-                            android:layout_width="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_height="wrap_content"
-                            android:text="NGO's"
-                            android:textColor="#ffffff"/>
-
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:id="@+id/rel_companies"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.6"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/companies"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/companies_icon"/>
-
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                            android:layout_below="@+id/companies"
-                            android:layout_width="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_height="wrap_content"
-                            android:text="Companies"
-                            android:textColor="#ffffff"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/rel_school"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.1"
-                        android:gravity="center_vertical"
-                        android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:id="@+id/school"
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:layout_centerHorizontal="true"
-                            android:src="@mipmap/school_icon"/>
-
-                        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
-                            android:layout_below="@+id/school"
-                            android:layout_width="wrap_content"
-                            android:layout_centerHorizontal="true"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_height="wrap_content"
-                            android:text="School"
-                            android:textColor="#ffffff"/>
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                android:layout_height="match_parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rc_followers"

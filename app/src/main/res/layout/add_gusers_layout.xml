@@ -36,7 +36,7 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:id="@+id/txt_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textColor="#000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -59,7 +59,7 @@
 
         </RelativeLayout>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/txt_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

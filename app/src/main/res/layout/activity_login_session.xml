@@ -19,7 +19,7 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/volunteerify_logo"
+            android:src="@drawable/amigo_logo1"
             android:layout_width="130dp"
             android:layout_marginTop="40dp"
             android:layout_height="130dp"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/tap_to_signin"
             android:textColor="#c6c6c6"
             android:layout_alignParentTop="true"
@@ -77,7 +77,7 @@
                 android:layout_gravity="center"
                 android:layout_height="40dp" />
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:id="@+id/another_account"
                 android:textColor="#ffffff"
                 android:gravity="center"
@@ -99,15 +99,15 @@
             android:layout_marginTop="100dp"
             android:layout_height="wrap_content">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:textColor="#ffffff"
                 android:gravity="center"
                 android:text="Don't have an account yet? "
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
-                android:textColor="@color/colorPrimary"
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:textColor="@color/colorLightBlue"
                 android:gravity="center"
                 android:text="SIGN UP"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"

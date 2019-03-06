@@ -34,7 +34,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/angle_arrow_back"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:id="@+id/ed_search"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"

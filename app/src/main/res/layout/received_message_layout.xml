@@ -13,7 +13,7 @@
         android:visibility="gone"
         android:padding="5dp">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:background="@drawable/message_bg"
         android:orientation="vertical">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/sender_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
             android:text="Username"
             android:textColor="@color/appGreen"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/messageText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
     </LinearLayout>
 
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/received_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

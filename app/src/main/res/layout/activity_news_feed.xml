@@ -45,41 +45,10 @@
                 android:drawableLeft="@drawable/search_gray"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:padding="4dp"
-                android:layout_toLeftOf="@+id/notification"
+                android:layout_toLeftOf="@+id/chat"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/camera"
                 android:background="@drawable/search_bg"/>
-
-            <RelativeLayout
-                android:id="@+id/notification"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toLeftOf="@+id/chat"
-                android:layout_centerVertical="true">
-
-                <ImageView
-                    android:id="@+id/notification_bell"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/notification_white"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:maxWidth="25dp"
-                    android:layout_margin="8dp"
-                    android:textSize="10sp"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:background="@drawable/notification_count"
-                    android:textColor="#fff"/>
-
-            </RelativeLayout>
-
 
             <ImageView
                 android:id="@+id/chat"
@@ -105,7 +74,7 @@
                 android:layout_centerVertical="true"
                 android:src="@mipmap/angle_arrow_back"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -165,25 +134,41 @@
 
             </RelativeLayout>
 
+
             <RelativeLayout
-                android:id="@+id/rel_event"
+                android:id="@+id/rel_followers"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/btm_followers"
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:src="@mipmap/followers_gray"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rel_notification"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" >
 
                 <RelativeLayout
-                    android:id="@+id/rbtm_event"
+                    android:id="@+id/rbtm_notification"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerInParent="true">
 
                     <ImageView
-                        android:id="@+id/btm_event"
+                        android:id="@+id/btm_notification"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_centerInParent="true"
-                        android:src="@drawable/event_gray"/>
+                        android:src="@mipmap/notification_gray"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -204,20 +189,6 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:id="@+id/rel_user"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent" >
-
-                <ImageView
-                    android:id="@+id/btm_user"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/user_gray"/>
-
-            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rel_menu"

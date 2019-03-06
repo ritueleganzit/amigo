@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.eleganzit.volunteerifyngo">
+    package="com.eleganzit.amigo">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -92,7 +92,7 @@
         <activity
             android:name=".CreatePostActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MyProfileActivity"
             android:screenOrientation="portrait" />
@@ -132,26 +132,37 @@
         <activity
             android:name=".ReferEntityActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SendFeedbackActivity"
+        <activity
+            android:name=".SendFeedbackActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CampaignsActivity"
+        <activity
+            android:name=".CampaignsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ViewCampaignActivity"
+        <activity
+            android:name=".ViewCampaignActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".HelpSupportActivity"
+        <activity
+            android:name=".HelpSupportActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".SettingsActivity"
+        <activity
+            android:name=".SettingsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CurrencyActivity"
+        <activity
+            android:name=".CurrencyActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PersonalInformationActivity"
+        <activity
+            android:name=".PersonalInformationActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PaymentsActivity"
+        <activity
+            android:name=".PaymentsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".KYCActivity"
+        <activity
+            android:name=".KYCActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".BlockedConnectionsActivity"
+        <activity
+            android:name=".BlockedConnectionsActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".WhoYouAreActivity"></activity>
     </application>
 
 </manifest>

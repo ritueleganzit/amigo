@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
@@ -63,7 +63,7 @@
         android:orientation="horizontal"
         android:background="#ffffff">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="12dp"
@@ -98,7 +98,7 @@
             android:layout_below="@+id/about_map"
             android:orientation="vertical">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:id="@+id/about_mission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,14 +107,14 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:text="When it happened"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left|center"
                 android:textSize="12sp"
                 android:text="10 December 2018"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="left|center"

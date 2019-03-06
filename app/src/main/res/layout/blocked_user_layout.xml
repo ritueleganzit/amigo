@@ -38,7 +38,7 @@
         android:orientation="vertical"
         android:layout_centerVertical="true">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/txt_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -67,7 +67,7 @@
             android:layout_marginLeft="5dp"
             android:background="@drawable/rounded_blue_bg">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"

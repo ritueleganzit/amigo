@@ -12,7 +12,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
             android:layout_alignParentLeft="true"
             android:orientation="vertical">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="234"
@@ -51,7 +51,7 @@
                 android:textColor="#000000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -70,7 +70,7 @@
             android:layout_centerInParent="true"
             android:orientation="vertical">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$6,000"
@@ -78,7 +78,7 @@
                 android:textColor="#000000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -97,7 +97,7 @@
             android:layout_alignParentRight="true"
             android:orientation="vertical">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="$20,000"
@@ -105,7 +105,7 @@
                 android:textColor="#000000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -138,7 +138,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/donation_seekbar">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -148,7 +148,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:text="$0.00"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/txtamount"
             android:layout_width="wrap_content"
             android:gravity="center"
@@ -158,7 +158,7 @@
             android:textColor="#DD2434"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -170,7 +170,7 @@
 
     </RelativeLayout>
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+    <com.eleganzit.amigo.utils.TextViewRobotoBold
         android:id="@+id/donate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

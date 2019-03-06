@@ -17,10 +17,11 @@
         android:layout_marginBottom="10dp">
 
         <EditText
-            android:id="@+id/ed_pincode"
+            android:id="@+id/ed_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PINCODE"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:hint="LOCATION WHERE ENTITY IS REGISTERED"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:singleLine="true" />
@@ -37,10 +38,11 @@
         android:layout_marginTop="30dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_idproof"
+            android:id="@+id/ed_nameofstate"
             android:layout_width="match_parent"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_height="wrap_content"
-            android:hint="GOVT. ISSUED IDENTITY PROOF"
+            android:hint="NAME OF STATE/UNION TERRITORY"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:singleLine="true" />

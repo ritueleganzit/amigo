@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#181818"
@@ -34,7 +34,7 @@
             android:layout_marginRight="30dp"
             android:gravity="center">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -57,7 +57,7 @@
             android:layout_marginRight="30dp"
             android:gravity="center">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -80,7 +80,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                 android:id="@+id/txt_date"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
 
         </RelativeLayout>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/txt_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/txt_ongoing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -154,7 +154,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Ongoing Events"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/no_ongoing_events"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -185,7 +185,7 @@
                 android:layout_below="@+id/ongoing_rel"
                 android:background="#ffffff">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/txt_upcoming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +194,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Upcoming Events"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/no_upcoming_events"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -225,7 +225,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/txt_past"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -234,7 +234,7 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:text="Past Events"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/no_past_events"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

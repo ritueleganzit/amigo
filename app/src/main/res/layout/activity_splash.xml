@@ -19,16 +19,16 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/volunteerify_logo"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:src="@drawable/amigo_logo1"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:layout_centerInParent="true"/>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:id="@+id/title"
             android:layout_below="@+id/logo"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-            android:text="V O L U N T E E R I F Y"
+            android:text="A M I G O"
             android:textColor="#ffffff"
             android:layout_marginTop="40dp"
             android:layout_centerHorizontal="true"

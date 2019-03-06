@@ -7,7 +7,7 @@
     android:layout_marginTop="5dp"
     android:layout_height="wrap_content">
 
-    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
         android:id="@+id/tagged_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

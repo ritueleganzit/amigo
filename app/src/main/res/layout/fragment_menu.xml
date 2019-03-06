@@ -44,7 +44,7 @@
             android:layout_centerVertical="true"
             android:paddingLeft="10dp">
 
-            <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
                 android:id="@+id/event_name"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:textColor="#000"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
 
-           <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+           <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:id="@+id/entity_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_events_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -111,7 +111,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_donation_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -138,7 +138,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_opportunity_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -165,7 +165,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_invite_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -192,7 +192,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_following_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -219,7 +219,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_calender_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -246,7 +246,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_refer_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -273,7 +273,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_feedback_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -300,7 +300,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_rateus_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -327,7 +327,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_campaigns_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -354,7 +354,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_help_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -381,7 +381,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_settings_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"
@@ -408,7 +408,7 @@
             android:layout_marginLeft="15dp"
             android:src="@mipmap/menu_logout_icon"
             />
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#000000"

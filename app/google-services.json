@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "627629797113",
-    "firebase_url": "https://volunteerifyngo-b0e81.firebaseio.com",
-    "project_id": "volunteerifyngo-b0e81",
-    "storage_bucket": "volunteerifyngo-b0e81.appspot.com"
+    "project_number": "975880166085",
+    "firebase_url": "https://amigo-1c364.firebaseio.com",
+    "project_id": "amigo-1c364",
+    "storage_bucket": "amigo-1c364.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:627629797113:android:34d1d6dd1f13bb9e",
+        "mobilesdk_app_id": "1:975880166085:android:d549e082b44a4ca9",
         "android_client_info": {
-          "package_name": "com.eleganzit.volunteerifyngo"
+          "package_name": "com.eleganzit.amigo"
         }
       },
       "oauth_client": [
         {
-          "client_id": "627629797113-inkvln3ehg4i4f6qun1ga0ktvd0ngjrq.apps.googleusercontent.com",
+          "client_id": "975880166085-76a0u2r2crctfnhkumntlbphr41tlnos.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.eleganzit.volunteerifyngo",
+            "package_name": "com.eleganzit.amigo",
             "certificate_hash": "f84caf755af70056e55d33d573b7df08ba0c6c7d"
           }
         },
         {
-          "client_id": "627629797113-2vlo0s4r9834mrkmv7nmv3pdtk4rt60u.apps.googleusercontent.com",
+          "client_id": "975880166085-0e0s1vt0ggn2s25q111lm3oasvri599d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDJLG7fXMS2dvd-M5HL9wYPF7z3uV4nSXM"
+          "current_key": "AIzaSyCHkW5-qxqN69nlF6VYHMSSwBEHM3Kfchg"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "627629797113-2vlo0s4r9834mrkmv7nmv3pdtk4rt60u.apps.googleusercontent.com",
+              "client_id": "975880166085-0e0s1vt0ggn2s25q111lm3oasvri599d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

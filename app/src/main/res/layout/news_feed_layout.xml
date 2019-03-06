@@ -42,7 +42,7 @@
                 android:layout_centerVertical="true"
                 android:paddingLeft="10dp" >
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoBold
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center"
                     android:paddingRight="5dp" >
-                    <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
                         android:id="@+id/timestamp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -93,7 +93,7 @@
 
         </RelativeLayout>
 
-        <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:id="@+id/txtStatusMsg"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/heart"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -166,7 +166,7 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/share_post"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -193,7 +193,7 @@
                     android:layout_marginRight="5dp"
                     android:src="@drawable/comment"/>
 
-                <com.eleganzit.volunteerifyngo.utils.TextViewRobotoRegular
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
