@@ -39,7 +39,7 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
     RelativeLayout header;
-    LinearLayout lin_events,lin_donations,lin_opportunity,lin_invite,lin_following,lin_calendar,lin_refer,lin_feedback,lin_rateus,lin_campaigns,lin_help,lin_settings,lin_logout;
+    LinearLayout lin_events,lin_opportunity,lin_following,lin_donation,lin_calendar,lin_help,lin_settings,lin_logout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,15 +57,10 @@ public class MenuFragment extends Fragment {
 
         header=v.findViewById(R.id.header);
         lin_events=v.findViewById(R.id.lin_events);
-        lin_donations=v.findViewById(R.id.lin_donations);
         lin_opportunity=v.findViewById(R.id.lin_opportunity);
-        lin_invite=v.findViewById(R.id.lin_invite);
         lin_following=v.findViewById(R.id.lin_following);
+        lin_donation=v.findViewById(R.id.lin_donation);
         lin_calendar=v.findViewById(R.id.lin_calendar);
-        lin_refer=v.findViewById(R.id.lin_refer);
-        lin_feedback=v.findViewById(R.id.lin_feedback);
-        lin_rateus=v.findViewById(R.id.lin_rateus);
-        lin_campaigns=v.findViewById(R.id.lin_campaigns);
         lin_help=v.findViewById(R.id.lin_help);
         lin_settings=v.findViewById(R.id.lin_settings);
         lin_logout=v.findViewById(R.id.lin_logout);
@@ -81,16 +76,7 @@ public class MenuFragment extends Fragment {
         lin_events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), EventsActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
 
-        lin_donations.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), DonationsActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
 
@@ -98,14 +84,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), OpportunityActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
-
-        lin_invite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), InviteFrindsActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
@@ -118,34 +96,18 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        lin_donation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), DonationsActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            }
+        });
+
         lin_calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CalendarActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
-        
-        lin_refer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), ReferEntityActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
-
-        lin_feedback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SendFeedbackActivity.class));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
-
-        lin_campaigns.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), CampaignsActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
@@ -173,7 +135,6 @@ public class MenuFragment extends Fragment {
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
-
 
         return v;
     }

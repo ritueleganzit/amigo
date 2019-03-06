@@ -30,7 +30,7 @@ public class DonationsActivity extends AppCompatActivity {
             }
         });
 
-        rc_donations=findViewById(R.id.rc_donations);
+        /*rc_donations=findViewById(R.id.rc_donations);
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_donations.setLayoutManager(layoutManager);
@@ -42,7 +42,7 @@ public class DonationsActivity extends AppCompatActivity {
         arrayList.add(donationsData);
 
         rc_donations.setAdapter(new DonationsAdapter(arrayList,this));
-
+*/
     }
 
     @Override

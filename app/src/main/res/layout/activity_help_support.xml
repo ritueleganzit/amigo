@@ -55,11 +55,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
+        android:background="#ffffff"
         android:layout_below="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:text="@string/lorem"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+
+        </LinearLayout>
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
             android:background="#CFD0D4"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
@@ -529,7 +547,7 @@
 
         </LinearLayout>
 
-
+-->
     </ScrollView>
 
 </RelativeLayout>

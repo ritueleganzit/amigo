@@ -22,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class MessageActivity extends AppCompatActivity {
 
     RecyclerView rc_chats;
-    ArrayList<MessagesData> ar_chats=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +40,7 @@ public class MessageActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         rc_chats.setLayoutManager(layoutManager);
+        ArrayList<MessagesData> ar_chats=new ArrayList<>();
 
         MessagesData messagesData =new MessagesData("","","","","","");
         ar_chats.add(messagesData);

@@ -44,41 +44,10 @@
                 android:drawableLeft="@drawable/search_gray"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:padding="4dp"
-                android:layout_toLeftOf="@+id/notification"
+                android:layout_toLeftOf="@+id/chat"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/camera"
                 android:background="@drawable/search_bg"/>
-
-            <RelativeLayout
-                android:id="@+id/notification"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_toLeftOf="@+id/chat"
-                android:layout_centerVertical="true">
-
-                <ImageView
-                    android:id="@+id/notification_bell"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/notification_white"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:maxWidth="25dp"
-                    android:layout_margin="8dp"
-                    android:textSize="10sp"
-                    android:layout_alignParentRight="true"
-                    android:gravity="center"
-                    android:background="@drawable/notification_count"
-                    android:textColor="#fff"/>
-
-            </RelativeLayout>
-
 
             <ImageView
                 android:id="@+id/chat"

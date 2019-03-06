@@ -29,6 +29,7 @@ import com.eleganzit.amigo.fragments.HomeFeedFragment;
 import com.eleganzit.amigo.fragments.MenuFragment;
 import com.eleganzit.amigo.fragments.MyPhotosFragment;
 import com.eleganzit.amigo.fragments.MyProfileFragment;
+import com.eleganzit.amigo.fragments.NotificationsFragment;
 import com.eleganzit.amigo.fragments.ViewPostFragment;
 
 import java.io.ByteArrayOutputStream;
@@ -169,12 +170,13 @@ public class NewsFeedActivity extends AppCompatActivity {
         rel_notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btm_feed.setImageResource(R.drawable.feed_gray);
-                btm_followers.setImageResource(R.mipmap.followers_gray);
-                btm_notification.setImageResource(R.mipmap.notification_green);
-                btm_menu.setImageResource(R.drawable.menu_gray);
+                getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-
+                NotificationsFragment notificationsFragment= new NotificationsFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack("NewsFeedActivity");
+                fragmentTransaction.replace(R.id.frame, notificationsFragment, "TAG");
+                fragmentTransaction.commit();
             }
         });
 
@@ -206,7 +208,7 @@ public class NewsFeedActivity extends AppCompatActivity {
 
             }
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,"com.eleganzit.volunteerifyngo.provider", photoFile);
+                Uri photoURI = FileProvider.getUriForFile(this,"com.eleganzit.amigo.provider", photoFile);
                 pictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         photoURI);
                 startActivityForResult(pictureIntent,

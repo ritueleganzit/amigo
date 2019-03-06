@@ -162,7 +162,14 @@
         <activity
             android:name=".BlockedConnectionsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".WhoYouAreActivity"></activity>
+        <activity android:name=".WhoYouAreActivity" />
+        <activity android:name=".CreateEventActivity" />
+        <activity android:name=".InterestedVolunteersActivity" />
+        <activity android:name=".AttendingVolunteersActivity" />
+        <activity android:name=".EventActivity" />
+        <activity android:name=".CreateOpportunityActivity" />
+        <activity android:name=".AppliedCandidatesActivity" />
+        <activity android:name=".RejectedCandidatesActivity"></activity>
     </application>
 
 </manifest>

@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
-                android:text="Edit Profile"
+                android:text="Calendar"
                 android:padding="4dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/back" />
