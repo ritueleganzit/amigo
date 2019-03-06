@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_marginBottom="1dp"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cprofilePic"
+        android:layout_width="wrap_content"
+        android:background="#7b7b7b"
+        android:layout_margin="10dp"
+        android:layout_centerVertical="true"
+        app:cardCornerRadius="6dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/pagePhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:background="#7b7b7b"
+            android:scaleType="fitCenter" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/cprofilePic"
+        android:layout_toLeftOf="@+id/follow_buttons"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:layout_centerVertical="true">
+
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+            android:id="@+id/txt_username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:text="Username"
+            android:textColor="#000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:paddingRight="5dp" >
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:id="@+id/txt_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="50 followers"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/follow_buttons"
+        android:layout_width="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rel_accept_bg"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_green_bg"
+            android:gravity="center">
+
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:id="@+id/txt_accept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#ffffff"
+                android:text="Accept"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/rel_reject_bg"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/rounded_blue_bg">
+
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:id="@+id/txt_reject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:textColor="#ffffff"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="Reject"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
