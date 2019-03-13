@@ -25,7 +25,7 @@ public class MyProfileActivity extends AppCompatActivity {
 
     LinearLayout edit_profile;
     EditText ed_search;
-    ImageView notification_bell,chat;
+    ImageView chat;
     public static TextView tab_photos,tab_following,tab_events,tab_milestone;
     ArrayList<NewsFeedData> dataArrayList=new ArrayList<>();
     ArrayList<String> imgArrayList=new ArrayList<>();
@@ -38,7 +38,6 @@ public class MyProfileActivity extends AppCompatActivity {
 
         edit_profile=findViewById(R.id.edit_profile);
         ed_search=findViewById(R.id.ed_search);
-        notification_bell=findViewById(R.id.notification_bell);
         chat=findViewById(R.id.chat);
         tab_photos=findViewById(R.id.tab_photos);
         tab_following=findViewById(R.id.tab_following);
@@ -61,16 +60,6 @@ public class MyProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MyProfileActivity.this,SearchActivity.class));
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            }
-        });
-
-        notification_bell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(MyProfileActivity.this,NotificationsActivity.class));
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-
             }
         });
 

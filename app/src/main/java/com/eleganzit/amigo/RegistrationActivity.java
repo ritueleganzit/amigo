@@ -16,8 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class RegistrationActivity extends AppCompatActivity {
 
     ImageView register_bg;
-    RelativeLayout register_input1,register_input2,register_input3,register_input4,register_input5;
-    FloatingActionButton next1,next2,next3,next4,next5;
+    RelativeLayout register_input1,register_input2,register_input3,register_input4,register_input5,register_input6;
+    FloatingActionButton next1,next2,next3,next4,next5,next6;
     LinearLayout back_text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +30,13 @@ public class RegistrationActivity extends AppCompatActivity {
         register_input3=findViewById(R.id.register_input3);
         register_input4=findViewById(R.id.register_input4);
         register_input5=findViewById(R.id.register_input5);
+        register_input6=findViewById(R.id.register_input6);
         next1=findViewById(R.id.next1);
         next2=findViewById(R.id.next2);
         next3=findViewById(R.id.next3);
         next4=findViewById(R.id.next4);
         next5=findViewById(R.id.next5);
+        next6=findViewById(R.id.next6);
         back_text=findViewById(R.id.back_text);
 
         next1.setOnClickListener(new View.OnClickListener() {
@@ -47,11 +49,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 register_input3.setVisibility(View.GONE);
                 register_input4.setVisibility(View.GONE);
                 register_input5.setVisibility(View.GONE);
+                register_input6.setVisibility(View.GONE);
                 next1.setVisibility(View.GONE);
                 next2.setVisibility(View.VISIBLE);
                 next3.setVisibility(View.GONE);
                 next4.setVisibility(View.GONE);
                 next5.setVisibility(View.GONE);
+                next6.setVisibility(View.GONE);
             }
         });
 
@@ -65,11 +69,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 register_input2.setVisibility(View.GONE);
                 register_input4.setVisibility(View.GONE);
                 register_input5.setVisibility(View.GONE);
+                register_input6.setVisibility(View.GONE);
                 next1.setVisibility(View.GONE);
                 next2.setVisibility(View.GONE);
                 next3.setVisibility(View.VISIBLE);
                 next4.setVisibility(View.GONE);
                 next5.setVisibility(View.GONE);
+                next6.setVisibility(View.GONE);
             }
         });
 
@@ -83,11 +89,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 register_input2.setVisibility(View.GONE);
                 register_input3.setVisibility(View.GONE);
                 register_input5.setVisibility(View.GONE);
+                register_input6.setVisibility(View.GONE);
                 next1.setVisibility(View.GONE);
                 next2.setVisibility(View.GONE);
                 next3.setVisibility(View.GONE);
                 next4.setVisibility(View.VISIBLE);
                 next5.setVisibility(View.GONE);
+                next6.setVisibility(View.GONE);
             }
         });
 
@@ -101,15 +109,37 @@ public class RegistrationActivity extends AppCompatActivity {
                 register_input2.setVisibility(View.GONE);
                 register_input3.setVisibility(View.GONE);
                 register_input4.setVisibility(View.GONE);
+                register_input6.setVisibility(View.GONE);
                 next1.setVisibility(View.GONE);
                 next2.setVisibility(View.GONE);
                 next3.setVisibility(View.GONE);
                 next4.setVisibility(View.GONE);
                 next5.setVisibility(View.VISIBLE);
+                next6.setVisibility(View.GONE);
             }
         });
 
         next5.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("RestrictedApi")
+            @Override
+            public void onClick(View v) {
+                register_bg.setImageResource(R.drawable.register_6);
+                register_input6.setVisibility(View.VISIBLE);
+                register_input1.setVisibility(View.GONE);
+                register_input2.setVisibility(View.GONE);
+                register_input3.setVisibility(View.GONE);
+                register_input4.setVisibility(View.GONE);
+                register_input5.setVisibility(View.GONE);
+                next1.setVisibility(View.GONE);
+                next2.setVisibility(View.GONE);
+                next3.setVisibility(View.GONE);
+                next4.setVisibility(View.GONE);
+                next5.setVisibility(View.GONE);
+                next6.setVisibility(View.VISIBLE);
+            }
+        });
+
+        next6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -136,11 +166,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     register_input3.setVisibility(View.GONE);
                     register_input4.setVisibility(View.GONE);
                     register_input5.setVisibility(View.GONE);
+                    register_input6.setVisibility(View.GONE);
                     next1.setVisibility(View.VISIBLE);
                     next2.setVisibility(View.GONE);
                     next3.setVisibility(View.GONE);
                     next4.setVisibility(View.GONE);
                     next5.setVisibility(View.GONE);
+                    next6.setVisibility(View.GONE);
                 }
                 else if(register_input3.getVisibility()==View.VISIBLE)
                 {
@@ -150,11 +182,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     register_input3.setVisibility(View.GONE);
                     register_input4.setVisibility(View.GONE);
                     register_input5.setVisibility(View.GONE);
+                    register_input6.setVisibility(View.GONE);
                     next1.setVisibility(View.GONE);
                     next2.setVisibility(View.VISIBLE);
                     next3.setVisibility(View.GONE);
                     next4.setVisibility(View.GONE);
                     next5.setVisibility(View.GONE);
+                    next6.setVisibility(View.GONE);
                 }
                 else if(register_input4.getVisibility()==View.VISIBLE)
                 {
@@ -164,11 +198,13 @@ public class RegistrationActivity extends AppCompatActivity {
                     register_input3.setVisibility(View.VISIBLE);
                     register_input4.setVisibility(View.GONE);
                     register_input5.setVisibility(View.GONE);
+                    register_input6.setVisibility(View.GONE);
                     next1.setVisibility(View.GONE);
                     next2.setVisibility(View.GONE);
                     next3.setVisibility(View.VISIBLE);
                     next4.setVisibility(View.GONE);
                     next5.setVisibility(View.GONE);
+                    next6.setVisibility(View.GONE);
                 }
                 else if(register_input5.getVisibility()==View.VISIBLE)
                 {
@@ -178,11 +214,29 @@ public class RegistrationActivity extends AppCompatActivity {
                     register_input3.setVisibility(View.GONE);
                     register_input4.setVisibility(View.VISIBLE);
                     register_input5.setVisibility(View.GONE);
+                    register_input6.setVisibility(View.GONE);
                     next1.setVisibility(View.GONE);
                     next2.setVisibility(View.GONE);
                     next3.setVisibility(View.GONE);
                     next4.setVisibility(View.VISIBLE);
                     next5.setVisibility(View.GONE);
+                    next6.setVisibility(View.GONE);
+                }
+                else if(register_input6.getVisibility()==View.VISIBLE)
+                {
+                    register_bg.setImageResource(R.drawable.register_5);
+                    register_input1.setVisibility(View.GONE);
+                    register_input2.setVisibility(View.GONE);
+                    register_input3.setVisibility(View.GONE);
+                    register_input4.setVisibility(View.GONE);
+                    register_input5.setVisibility(View.VISIBLE);
+                    register_input6.setVisibility(View.GONE);
+                    next1.setVisibility(View.GONE);
+                    next2.setVisibility(View.GONE);
+                    next3.setVisibility(View.GONE);
+                    next4.setVisibility(View.GONE);
+                    next5.setVisibility(View.VISIBLE);
+                    next6.setVisibility(View.GONE);
                 }
             }
         });
@@ -206,11 +260,13 @@ public class RegistrationActivity extends AppCompatActivity {
             register_input3.setVisibility(View.GONE);
             register_input4.setVisibility(View.GONE);
             register_input5.setVisibility(View.GONE);
+            register_input6.setVisibility(View.GONE);
             next1.setVisibility(View.VISIBLE);
             next2.setVisibility(View.GONE);
             next3.setVisibility(View.GONE);
             next4.setVisibility(View.GONE);
             next5.setVisibility(View.GONE);
+            next6.setVisibility(View.GONE);
         }
         else if(register_input3.getVisibility()==View.VISIBLE)
         {
@@ -220,11 +276,13 @@ public class RegistrationActivity extends AppCompatActivity {
             register_input3.setVisibility(View.GONE);
             register_input4.setVisibility(View.GONE);
             register_input5.setVisibility(View.GONE);
+            register_input6.setVisibility(View.GONE);
             next1.setVisibility(View.GONE);
             next2.setVisibility(View.VISIBLE);
             next3.setVisibility(View.GONE);
             next4.setVisibility(View.GONE);
             next5.setVisibility(View.GONE);
+            next6.setVisibility(View.GONE);
         }
         else if(register_input4.getVisibility()==View.VISIBLE)
         {
@@ -234,11 +292,13 @@ public class RegistrationActivity extends AppCompatActivity {
             register_input3.setVisibility(View.VISIBLE);
             register_input4.setVisibility(View.GONE);
             register_input5.setVisibility(View.GONE);
+            register_input6.setVisibility(View.GONE);
             next1.setVisibility(View.GONE);
             next2.setVisibility(View.GONE);
             next3.setVisibility(View.VISIBLE);
             next4.setVisibility(View.GONE);
             next5.setVisibility(View.GONE);
+            next6.setVisibility(View.GONE);
         }
         else if(register_input5.getVisibility()==View.VISIBLE)
         {
@@ -248,11 +308,29 @@ public class RegistrationActivity extends AppCompatActivity {
             register_input3.setVisibility(View.GONE);
             register_input4.setVisibility(View.VISIBLE);
             register_input5.setVisibility(View.GONE);
+            register_input6.setVisibility(View.GONE);
             next1.setVisibility(View.GONE);
             next2.setVisibility(View.GONE);
             next3.setVisibility(View.GONE);
             next4.setVisibility(View.VISIBLE);
             next5.setVisibility(View.GONE);
+            next6.setVisibility(View.GONE);
+        }
+        else if(register_input6.getVisibility()==View.VISIBLE)
+        {
+            register_bg.setImageResource(R.drawable.register_5);
+            register_input1.setVisibility(View.GONE);
+            register_input2.setVisibility(View.GONE);
+            register_input3.setVisibility(View.GONE);
+            register_input4.setVisibility(View.GONE);
+            register_input5.setVisibility(View.VISIBLE);
+            register_input6.setVisibility(View.GONE);
+            next1.setVisibility(View.GONE);
+            next2.setVisibility(View.GONE);
+            next3.setVisibility(View.GONE);
+            next4.setVisibility(View.GONE);
+            next5.setVisibility(View.VISIBLE);
+            next6.setVisibility(View.GONE);
         }
 
     }

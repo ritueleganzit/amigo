@@ -22,6 +22,7 @@ import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.SearchActivity;
 import com.eleganzit.amigo.adapter.UserNewsFeedAdapter;
 import com.eleganzit.amigo.model.NewsFeedData;
+import com.eleganzit.amigo.utils.TextViewRobotoBold;
 
 import java.util.ArrayList;
 
