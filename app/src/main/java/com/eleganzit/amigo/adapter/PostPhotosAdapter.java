@@ -65,19 +65,19 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
         {
             if(i<2)
             {
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
             }
             else
             {
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)/3;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/3;
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)/3;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/3;
             }
-            FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
             );
@@ -89,32 +89,32 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
             );
             params.setMargins(px, 0, px, px);
             holder.rel_main.setLayoutParams(params);
-
+*/
         }
         if(photos.size()==1)
         {
 
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity);
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity);
+            holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+            holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity);
+            holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
+            holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity);
 
-            FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
             );
             params.setMargins(0, 0, 0, 0);
-            holder.rel_main.setLayoutParams(params);
+            holder.rel_main.setLayoutParams(params);*/
         }
         if(photos.size()==2)
         {
 
-            holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-            holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-            holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-            holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+            holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+            holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
+            holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+            holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
 
-            FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+           /* FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
             );
@@ -125,7 +125,7 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                     r.getDisplayMetrics()
             );
             params.setMargins(0, 0, px, 0);
-            holder.rel_main.setLayoutParams(params);
+            holder.rel_main.setLayoutParams(params);*/
         }
         if(photos.size()==3)
         {
@@ -133,18 +133,18 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
             if(i<1)
             {
                 holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
                 holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
             }
             else
             {
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
+                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
             }
-            FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
             );
@@ -155,16 +155,16 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                     r.getDisplayMetrics()
             );
             params.setMargins(px, 0, px, px);
-            holder.rel_main.setLayoutParams(params);
+            holder.rel_main.setLayoutParams(params);*/
         }
         if(photos.size()==4)
         {
 
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-            FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+            holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+            holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
+            holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)/2;
+            holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)/2;
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                     FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
             );
@@ -175,7 +175,7 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                     r.getDisplayMetrics()
             );
             params.setMargins(px, 0, px, px);
-            holder.rel_main.setLayoutParams(params);
+            holder.rel_main.setLayoutParams(params);*/
         }
         if(photos.size()>5)
         {
@@ -183,8 +183,8 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
             {
                 holder.pframe.setVisibility(View.VISIBLE);
                 holder.plus_count.setText("+"+(photos.size()-5));
-                holder.pframe.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                holder.pframe.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                holder.pframe.getLayoutParams().width=getScreenWidthInPXs(context,activity)/3;
+                holder.pframe.getLayoutParams().height=getScreenWidthInPXs(context,activity)/3;
             }
         }
         Glide

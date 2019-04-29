@@ -66,21 +66,21 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener{
+public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener {
 
     SocialAutoCompleteTextView ed_status;
-    LinearLayout add_photo,add_tag,add_location;
+    LinearLayout add_photo, add_tag, add_location;
     private static final int SELECT_PICTURE = 100;
     CoordinatorLayout parent;
     String imageFilePath;
     LinearLayout persistantBottomSheet;
-    LinearLayout view_photos_layout,locations_layout;
-    RecyclerView rc_view_photos,rc_locations;
+    LinearLayout view_photos_layout, locations_layout;
+    RecyclerView rc_view_photos, rc_locations;
     BottomSheetBehavior sheetBehavior;
-    LinearLayout layoutBottomSheet,privacy;
-    ArrayList<UsersData> addeduserslist=new ArrayList<>();
-    RecyclerView rc_untagged,rc_tagged;
-    ImageView remove_all,post_photo,send_post;
+    LinearLayout layoutBottomSheet, privacy;
+    ArrayList<UsersData> addeduserslist = new ArrayList<>();
+    RecyclerView rc_untagged, rc_tagged;
+    ImageView remove_all, post_photo, send_post;
     RelativeLayout rel_tagged;
     CardView card_mentions;
     private RecyclerView recyclerView;
@@ -88,22 +88,22 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     private MentionsRecyclerAdapter mAdapter;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    TextView txt_privacy,txt_with,with;
+    TextView txt_privacy, txt_with, with;
     LinearLayout add;
     RecyclerView rc_photos;
-    ArrayList<PhotosData> ar_photos=new ArrayList<>();
+    ArrayList<PhotosData> ar_photos = new ArrayList<>();
     String mediapath;
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        preferences=getSharedPreferences("post_data",MODE_PRIVATE);
-        editor=preferences.edit();
+        preferences = getSharedPreferences("post_data", MODE_PRIVATE);
+        editor = preferences.edit();
 
-        Log.d("preferences",preferences.getString("post_privacy","Public")+"");
+        Log.d("preferences", preferences.getString("post_privacy", "Public") + "");
 
-        txt_privacy.setText(preferences.getString("post_privacy","Public")+"");
+        txt_privacy.setText(preferences.getString("post_privacy", "Public") + "");
 
     }
 
@@ -113,7 +113,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
-        ImageView back=findViewById(R.id.back);
+        ImageView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,43 +121,41 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        imageFilePath=getIntent().getStringExtra("imageFilePath");
+        imageFilePath = getIntent().getStringExtra("imageFilePath");
 
         Bundle extra = getIntent().getBundleExtra("imagesFilePath");
-        if(ar_photos.size()>0)
-        {
+        if (ar_photos.size() > 0) {
             ar_photos.clear();
         }
-        if(extra!=null)
-        {
+        if (extra != null) {
             ar_photos = (ArrayList<PhotosData>) extra.getSerializable("objects");
         }
 
-        send_post=findViewById(R.id.send_post);
-        post_photo=findViewById(R.id.post_photo);
-        txt_privacy=findViewById(R.id.txt_privacy);
-        txt_with=findViewById(R.id.txt_with);
+        send_post = findViewById(R.id.send_post);
+        post_photo = findViewById(R.id.post_photo);
+        txt_privacy = findViewById(R.id.txt_privacy);
+        txt_with = findViewById(R.id.txt_with);
 
-        with=findViewById(R.id.with);
-        add=findViewById(R.id.add);
-        rc_photos=findViewById(R.id.rc_photos);
-        parent=findViewById(R.id.parent);
-        ed_status=findViewById(R.id.ed_status);
-        add_photo=findViewById(R.id.add_photo);
-        add_tag=findViewById(R.id.add_tag);
-        add_location=findViewById(R.id.add_location);
-        rc_untagged=findViewById(R.id.rc_untagged);
-        rc_tagged=findViewById(R.id.rc_tagged);
-        remove_all=findViewById(R.id.remove_all);
-        rel_tagged=findViewById(R.id.rel_tagged);
-        privacy=findViewById(R.id.privacy);
-        layoutBottomSheet=findViewById(R.id.bottom_sheet);
-        view_photos_layout=findViewById(R.id.view_photos_layout);
-        locations_layout=findViewById(R.id.locations_layout);
-        rc_view_photos=findViewById(R.id.rc_view_photos);
-        rc_locations=findViewById(R.id.rc_locations);
+        with = findViewById(R.id.with);
+        add = findViewById(R.id.add);
+        rc_photos = findViewById(R.id.rc_photos);
+        parent = findViewById(R.id.parent);
+        ed_status = findViewById(R.id.ed_status);
+        add_photo = findViewById(R.id.add_photo);
+        add_tag = findViewById(R.id.add_tag);
+        add_location = findViewById(R.id.add_location);
+        rc_untagged = findViewById(R.id.rc_untagged);
+        rc_tagged = findViewById(R.id.rc_tagged);
+        remove_all = findViewById(R.id.remove_all);
+        rel_tagged = findViewById(R.id.rel_tagged);
+        privacy = findViewById(R.id.privacy);
+        layoutBottomSheet = findViewById(R.id.bottom_sheet);
+        view_photos_layout = findViewById(R.id.view_photos_layout);
+        locations_layout = findViewById(R.id.locations_layout);
+        rc_view_photos = findViewById(R.id.rc_view_photos);
+        rc_locations = findViewById(R.id.rc_locations);
         //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
-        persistantBottomSheet=findViewById(R.id.persistantBottomSheet);
+        persistantBottomSheet = findViewById(R.id.persistantBottomSheet);
 
         rc_photos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,15 +171,15 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         layoutManager1.setJustifyContent(JustifyContent.FLEX_START);
         rc_photos.setLayoutManager(layoutManager1);
 
-        RecyclerView.LayoutManager layoutManager3=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager3 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rc_view_photos.setLayoutManager(layoutManager3);
 
-        RecyclerView.LayoutManager layoutManager4=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager4 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rc_locations.setLayoutManager(layoutManager4);
 
-        ArrayList<PlacesData> ar_locations =new ArrayList<>();
+        ArrayList<PlacesData> ar_locations = new ArrayList<>();
 
-        PlacesData placesData=new PlacesData("","","","","");
+        PlacesData placesData = new PlacesData("", "", "", "", "");
 
         ar_locations.add(placesData);
         ar_locations.add(placesData);
@@ -197,7 +195,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         ar_locations.add(placesData);
         ar_locations.add(placesData);
 
-        rc_locations.setAdapter(new LocationsAdapter(ar_locations,this));
+        rc_locations.setAdapter(new LocationsAdapter(ar_locations, this));
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,7 +220,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     case BottomSheetBehavior.STATE_HIDDEN: {
                         add.setVisibility(View.VISIBLE);
                     }
-                        break;
+                    break;
                     case BottomSheetBehavior.STATE_EXPANDED: {
                         add.setVisibility(View.GONE);
 
@@ -232,14 +230,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         add.setVisibility(View.VISIBLE);
                     }
                     break;
-                    case BottomSheetBehavior.STATE_DRAGGING:{
+                    case BottomSheetBehavior.STATE_DRAGGING: {
                         add.setVisibility(View.GONE);
                     }
-                        break;
-                    case BottomSheetBehavior.STATE_SETTLING:{
+                    break;
+                    case BottomSheetBehavior.STATE_SETTLING: {
                         add.setVisibility(View.GONE);
                     }
-                        break;
+                    break;
                 }
             }
 
@@ -249,25 +247,20 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        if(ar_photos!=null)
-        {
-            if(ar_photos.size()==0)
-            {
+        if (ar_photos != null) {
+            if (ar_photos.size() == 0) {
                 //post_photo.setVisibility(View.GONE);
-                if(imageFilePath!=null)
-                {
-                    PhotosData photosData=new PhotosData("",imageFilePath+"");
+                if (imageFilePath != null) {
+                    PhotosData photosData = new PhotosData("", imageFilePath + "");
                     ar_photos.add(photosData);
-                    rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
-                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
+                    rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
                 }
 
-            }
-            else
-            {
+            } else {
 
-                rc_photos.setAdapter(new PhotosAdapter(ar_photos,CreatePostActivity.this));
-                rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos,CreatePostActivity.this));
+                rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
             }
         }
 
@@ -275,15 +268,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             @Override
             public void onClick(View view) {
                 finish();
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
         ed_status.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
-                if(b)
-                {
+                if (b) {
                     sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                     add.setVisibility(View.VISIBLE);
                 }
@@ -302,12 +294,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreatePostActivity.this,SelectPrivacyActivity.class));
-                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                startActivity(new Intent(CreatePostActivity.this, SelectPrivacyActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
-        RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rc_untagged.setLayoutManager(layoutManager);
 
         FlexboxLayoutManager layoutManager2 = new FlexboxLayoutManager(this);
@@ -323,17 +315,17 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        ArrayList<UsersData> arrayList=new ArrayList<>();
-        UsersData usersData1=new UsersData("1","Zahir","");
-        UsersData usersData2=new UsersData("2","Ritu","");
-        UsersData usersData3=new UsersData("3","Ahmed","");
-        UsersData usersData4=new UsersData("4","Mala","");
-        UsersData usersData5=new UsersData("5","Uvais","");
-        UsersData usersData6=new UsersData("6","Nambath","");
-        UsersData usersData7=new UsersData("7","Tom","");
-        UsersData usersData8=new UsersData("8","Jerry","");
-        UsersData usersData9=new UsersData("9","Jack","");
-        UsersData usersData10=new UsersData("10","Peter","");
+        ArrayList<UsersData> arrayList = new ArrayList<>();
+        UsersData usersData1 = new UsersData("1", "Zahir", "");
+        UsersData usersData2 = new UsersData("2", "Ritu", "");
+        UsersData usersData3 = new UsersData("3", "Ahmed", "");
+        UsersData usersData4 = new UsersData("4", "Mala", "");
+        UsersData usersData5 = new UsersData("5", "Uvais", "");
+        UsersData usersData6 = new UsersData("6", "Nambath", "");
+        UsersData usersData7 = new UsersData("7", "Tom", "");
+        UsersData usersData8 = new UsersData("8", "Jerry", "");
+        UsersData usersData9 = new UsersData("9", "Jack", "");
+        UsersData usersData10 = new UsersData("10", "Peter", "");
 
         arrayList.add(usersData1);
         arrayList.add(usersData2);
@@ -346,7 +338,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         arrayList.add(usersData9);
         arrayList.add(usersData10);
 
-        rc_untagged.setAdapter(new UsersTagAdapter(arrayList,this));
+        rc_untagged.setAdapter(new UsersTagAdapter(arrayList, this));
 
         add_tag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -391,15 +383,15 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         });
 
 
-        PagesData pagesData=new PagesData("","","The Zahir","","");
-        PagesData pagesData1=new PagesData("","","Ahmed","","");
-        PagesData pagesData2=new PagesData("","","Mala","","");
-        PagesData pagesData3=new PagesData("","","Javed","","");
-        PagesData pagesData4=new PagesData("","","Ahmed Mala","","");
-        PagesData pagesData5=new PagesData("","","Uvais","","");
-        PagesData pagesData6=new PagesData("","","Xxxxxx","","");
+        PagesData pagesData = new PagesData("", "", "The Zahir", "", "");
+        PagesData pagesData1 = new PagesData("", "", "Ahmed", "", "");
+        PagesData pagesData2 = new PagesData("", "", "Mala", "", "");
+        PagesData pagesData3 = new PagesData("", "", "Javed", "", "");
+        PagesData pagesData4 = new PagesData("", "", "Ahmed Mala", "", "");
+        PagesData pagesData5 = new PagesData("", "", "Uvais", "", "");
+        PagesData pagesData6 = new PagesData("", "", "Xxxxxx", "", "");
 
-        List<PagesData> items=new ArrayList<>();
+        List<PagesData> items = new ArrayList<>();
         items.add(pagesData);
         items.add(pagesData1);
         items.add(pagesData2);
@@ -413,7 +405,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         mAdapter = new MentionsRecyclerAdapter(this, contactList, this);
         recyclerView.setAdapter(mAdapter);
 
-        ArrayList<PagesData> arrayList2=new ArrayList<>();
+        ArrayList<PagesData> arrayList2 = new ArrayList<>();
         arrayList2.add(pagesData);
         arrayList2.add(pagesData1);
         arrayList2.add(pagesData2);
@@ -421,7 +413,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         arrayList2.add(pagesData4);
         arrayList2.add(pagesData5);
         arrayList2.add(pagesData6);
-        ArrayAdapter<PagesData> mentionAdapter = new MentionsAdapter(this,arrayList2);
+        ArrayAdapter<PagesData> mentionAdapter = new MentionsAdapter(this, arrayList2);
 
         mentionAdapter.add(pagesData);
         mentionAdapter.add(pagesData1);
@@ -440,98 +432,105 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                Log.d("whereeeeeeeeee","   onTextChanged   "+i+"      "+charSequence.toString().length());
 
-                if (!(charSequence.toString().isEmpty()) && i <= charSequence.toString().length())
-                    {
+                if (!(charSequence.toString().isEmpty()) && i <= charSequence.toString().length()) {
 
-                        Log.d("whereeeeeeeeee","   first if");
+                    Log.d("whereeeeeeeeee", "   first if");
 
-                        if(charSequence.length()>0 && charSequence.length()==1)
-                        {
-                            Log.d("charSequence.charAt(i)",i+"   "+charSequence.charAt(0)+"   "+charSequence.toString().length());
+                    if (charSequence.length() > 0 && charSequence.length() == 1) {
+                        Log.d("charSequence.charAt(i)", i + "   " + charSequence.charAt(0) + "   " + charSequence.toString().length());
 
-                            Log.d("whereeeeeeeeee","   second if");
+                        Log.d("whereeeeeeeeee", "   second if");
 
-                            switch (charSequence.charAt(0))
-                            {
-                                case '@' :
-                                    Log.d("whereeeeeeeeee","   switch case '@'");
+                        switch (charSequence.charAt(0)) {
+                            case '@':
+                                Log.d("whereeeeeeeeee", "   switch case '@'");
 
-                                    if(contactList.size()>0)
-                                    {
-                                        Log.d("whereeeeeeeeee","      switch case '@' in if");
+                                if (contactList.size() > 0) {
+                                    Log.d("whereeeeeeeeee", "      switch case '@' in if");
 
-                                        //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
-                                        card_mentions.setVisibility(View.VISIBLE);
-                                        mAdapter.getFilter().filter(charSequence);
-                                        mAdapter.notifyDataSetChanged();
-                                    }
-                                    else
-                                    {
-                                        Log.d("whereeeeeeeeee","      switch case '@' in else");
-
-                                        card_mentions.setVisibility(View.GONE);
-                                    }
-
-                                    break;
-
-
-                                default:
-                                    Log.d("whereeeeeeeeee","      switch case default ");
-
-                            }
-                        }
-                        else
-                        {
-                            Log.d("whereeeeeeeeee","   else of second if");
-                            String charAtLast=String.valueOf(charSequence.charAt((charSequence.length()-1)));
-                            String charAtSecLast=String.valueOf(charSequence.charAt((charSequence.length()-2)));
-                            Log.d("chaarrrrrat",charAtSecLast+"    "+charAtLast);
-                            if(charAtLast.equalsIgnoreCase("@") && charAtSecLast.equalsIgnoreCase(" "))
-                            {
-                                Log.d("whereeeeeeeeee","   last char is @ and sec last is blank");
-                                if(contactList.size()>0)
-                                {
-                                    Log.d("whereeeeeeeeee","     contactList.size()>0");
-                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   if if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
                                     card_mentions.setVisibility(View.VISIBLE);
-                                    Log.d("nnnnnnnnnnnnn",charSequence+"");
                                     mAdapter.getFilter().filter(charSequence);
                                     mAdapter.notifyDataSetChanged();
-                                }
-                                else
-                                {
-                                    Log.d("whereeeeeeeeee","     not contactList.size()>0");
+                                } else {
+                                    Log.d("whereeeeeeeeee", "      switch case '@' in else");
+
                                     card_mentions.setVisibility(View.GONE);
                                 }
-                            }
-                            else if(charAtLast.equalsIgnoreCase(" "))
-                            {
-                                Log.d("whereeeeeeeeee","    last char is blank");
+
+                                break;
+
+
+                            default:
+                                Log.d("whereeeeeeeeee", "      switch case default ");
+
+                        }
+                    } else {
+                        Log.d("whereeeeeeeeee", "   else of second if");
+                        String charAtLast = String.valueOf(charSequence.charAt((charSequence.length() - 1)));
+                        String charAtSecLast = String.valueOf(charSequence.charAt((charSequence.length() - 2)));
+                        Log.d("chaarrrrrat", charAtSecLast + "    " + charAtLast);
+
+                        String charString = charSequence.toString();
+
+                        String[] filteredchar = charString.split(" ");
+                        ArrayList<String> arrayList = new ArrayList<>();
+                        for (String ss : filteredchar) {
+
+
+                            charString = ss;
+
+
+                            arrayList.add(ss);
+                            if (arrayList != null && !arrayList.isEmpty() && arrayList.size() > 1)
+                                Log.d("arrayList", arrayList + "");
+
+                        }
+
+                        if (arrayList.size() > 1) {
+                            charString = arrayList.get(arrayList.size() - 1);
+                            Log.d("filteredchar", "" + arrayList.get(arrayList.size() - 1));
+                        }
+                        //Log.d("filteredchar",""+charString);
+
+
+                        if (!String.valueOf(arrayList.get(arrayList.size() - 1).charAt(0)).equalsIgnoreCase("@")) {
+                            Log.d("whereeeeeeeeee", "     not @ at 0");
+                            card_mentions.setVisibility(View.GONE);
+                        } else if (charAtLast.equalsIgnoreCase("@") && charAtSecLast.equalsIgnoreCase(" ")) {
+                            Log.d("whereeeeeeeeee", "   last char is @ and sec last is blank");
+                            if (contactList.size() > 0) {
+                                Log.d("whereeeeeeeeee", "     contactList.size()>0");
+                                //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   if if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                card_mentions.setVisibility(View.VISIBLE);
+                                Log.d("nnnnnnnnnnnnn", charSequence + "");
+                                mAdapter.getFilter().filter(charSequence);
+                                mAdapter.notifyDataSetChanged();
+                            } else {
+                                Log.d("whereeeeeeeeee", "     not contactList.size()>0");
                                 card_mentions.setVisibility(View.GONE);
                             }
-                            else
-                            {
-                                Log.d("whereeeeeeeeee","    last else   list size   "+contactList.size());
-                                if(contactList.size()>0)
-                                {
-                                    Log.d("whereeeeeeeeee","    if in last else");
-                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else if switch open suggestion", Toast.LENGTH_SHORT).show();
-                                    card_mentions.setVisibility(View.VISIBLE);
-                                    mAdapter.getFilter().filter(charSequence);
-                                    mAdapter.notifyDataSetChanged();
-                                }
-                                else
-                                {
-                                    Log.d("whereeeeeeeeee","     else in last else");
-                                    //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else else switch open suggestion", Toast.LENGTH_SHORT).show();
-                                    card_mentions.setVisibility(View.VISIBLE);
-                                    mAdapter.getFilter().filter(charSequence);
-                                    mAdapter.notifyDataSetChanged();
-                                }
+                        } else if (charAtLast.equalsIgnoreCase(" ")) {
+                            Log.d("whereeeeeeeeee", "    last char is blank");
+                            card_mentions.setVisibility(View.GONE);
+                        } else {
+                            Log.d("whereeeeeeeeee", "    last else   list size   " + contactList.size());
+                            if (contactList.size() > 0) {
+                                Log.d("whereeeeeeeeee", "    if in last else");
+                                //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else if switch open suggestion", Toast.LENGTH_SHORT).show();
+                                card_mentions.setVisibility(View.VISIBLE);
+                                mAdapter.getFilter().filter(charSequence);
+                                mAdapter.notifyDataSetChanged();
+                            } else {
+                                Log.d("whereeeeeeeeee", "     else in last else");
+                                //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"   else else switch open suggestion", Toast.LENGTH_SHORT).show();
+                                card_mentions.setVisibility(View.VISIBLE);
+                                mAdapter.getFilter().filter(charSequence);
+                                mAdapter.notifyDataSetChanged();
                             }
                         }
+                    }
 
                             /*boolean foundMatch = false;
                     Pattern regex = Pattern.compile("\\b(?:@)\\b");
@@ -544,11 +543,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 */
 
 
-                    }
-                    else
-                    {
-                        card_mentions.setVisibility(View.GONE);
-                    }
+                } else {
+                    card_mentions.setVisibility(View.GONE);
+                }
 
             }
 
@@ -568,8 +565,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     }
 
 
-    public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHolder>
-    {
+    public class PhotosAdapter extends RecyclerView.Adapter<PhotosAdapter.MyViewHolder> {
         ArrayList<PhotosData> photos;
         Context context;
         Activity activity;
@@ -584,8 +580,8 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         @Override
         public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-            View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.feed_photo_layout,viewGroup,false);
-            MyViewHolder myViewHolder=new MyViewHolder(v);
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.feed_photo_layout, viewGroup, false);
+            MyViewHolder myViewHolder = new MyViewHolder(v);
 
             return myViewHolder;
         }
@@ -593,21 +589,17 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
-            if(photos.size()>=5)
-            {
-                if(i<2)
-                {
-                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                }
-                else
-                {
-                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
-                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+            if (photos.size() >= 5) {
+                if (i < 2) {
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                } else {
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
                 }
                 FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
@@ -623,13 +615,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 holder.rel_main.setLayoutParams(params);
 
             }
-            if(photos.size()==1)
-            {
+            if (photos.size() == 1) {
 
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity);
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity);
+                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity);
+                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity);
+                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity);
+                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity);
 
                 FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
@@ -638,13 +629,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 params.setMargins(0, 0, 0, 0);
                 holder.rel_main.setLayoutParams(params);
             }
-            if(photos.size()==2)
-            {
+            if (photos.size() == 2) {
 
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
 
                 FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
@@ -653,28 +643,24 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 Resources r = context.getResources();
                 int px = (int) TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,
-                        12/10,
+                        12 / 10,
                         r.getDisplayMetrics()
                 );
                 params.setMargins(0, 0, px, 0);
                 holder.rel_main.setLayoutParams(params);
             }
-            if(photos.size()==3)
-            {
+            if (photos.size() == 3) {
 
-                if(i<1)
-                {
-                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity);
-                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                }
-                else
-                {
-                    holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/202;
-                    holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/202;
+                if (i < 1) {
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity);
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity);
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                } else {
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
                 }
                 FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
@@ -689,13 +675,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 params.setMargins(px, 0, px, px);
                 holder.rel_main.setLayoutParams(params);
             }
-            if(photos.size()==4)
-            {
+            if (photos.size() == 4) {
 
-                holder.feed_photo.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
-                holder.feed_photo.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
-                holder.rel_main.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/201;
-                holder.rel_main.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/201;
+                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
                 FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
                         FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
@@ -703,20 +688,18 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 Resources r = context.getResources();
                 int px = (int) TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,
-                        12/10,
+                        12 / 10,
                         r.getDisplayMetrics()
                 );
                 params.setMargins(px, 0, px, px);
                 holder.rel_main.setLayoutParams(params);
             }
-            if(photos.size()>5)
-            {
-                if(i==4)
-                {
+            if (photos.size() > 5) {
+                if (i == 4) {
                     holder.pframe.setVisibility(View.VISIBLE);
-                    holder.plus_count.setText("+"+(photos.size()-5));
-                    holder.pframe.getLayoutParams().width=getScreenWidthInPXs(context,activity)*100/304;
-                    holder.pframe.getLayoutParams().height=getScreenWidthInPXs(context,activity)*100/304;
+                    holder.plus_count.setText("+" + (photos.size() - 5));
+                    holder.pframe.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.pframe.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
                 }
             }
             Glide
@@ -727,8 +710,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             holder.feed_photo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(ar_photos.size()>1)
-                    {
+                    if (ar_photos.size() > 1) {
                         view_photos_layout.setVisibility(View.VISIBLE);
                         persistantBottomSheet.setVisibility(View.GONE);
                         YoYo.with(Techniques.SlideInUp)
@@ -743,12 +725,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
         @Override
         public int getItemCount() {
-            if(photos.size()>5)
-            {
+            if (photos.size() > 5) {
                 return 5;
-            }
-            else
-            {
+            } else {
                 return photos.size();
             }
         }
@@ -757,18 +736,19 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             ImageView feed_photo;
             TextViewRobotoBold plus_count;
-            RelativeLayout rel_main,pframe;
+            RelativeLayout rel_main, pframe;
+
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                feed_photo=itemView.findViewById(R.id.feed_photo);
-                rel_main=itemView.findViewById(R.id.rel_main);
-                pframe=itemView.findViewById(R.id.pframe);
-                plus_count=itemView.findViewById(R.id.plus_count);
+                feed_photo = itemView.findViewById(R.id.feed_photo);
+                rel_main = itemView.findViewById(R.id.rel_main);
+                pframe = itemView.findViewById(R.id.pframe);
+                plus_count = itemView.findViewById(R.id.plus_count);
 
             }
         }
 
-        public int getScreenWidthInPXs(Context context, Activity activity){
+        public int getScreenWidthInPXs(Context context, Activity activity) {
 
             DisplayMetrics dm = new DisplayMetrics();
 
@@ -785,7 +765,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     }
 
     void openImageChooser() {
-        Intent galleryIntent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), SELECT_PICTURE);
     }
@@ -793,7 +773,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RESULT_OK) {
+        if (resultCode == RESULT_OK) {
 
             if (requestCode == SELECT_PICTURE) {
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
@@ -818,39 +798,38 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
                 }
                 else {*/
-                    if (data.getClipData() != null) {
-                        ClipData mClipData = data.getClipData();
-                        ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
-                        for (int i = 0; i < mClipData.getItemCount(); i++) {
+                if (data.getClipData() != null) {
+                    ClipData mClipData = data.getClipData();
+                    ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
+                    for (int i = 0; i < mClipData.getItemCount(); i++) {
 
-                            ClipData.Item item = mClipData.getItemAt(i);
-                            Uri uri = item.getUri();
-                            mArrayUri.add(uri);
-                            // Get the cursor
-                            Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
-                            // Move to first row
-                            cursor.moveToFirst();
+                        ClipData.Item item = mClipData.getItemAt(i);
+                        Uri uri = item.getUri();
+                        mArrayUri.add(uri);
+                        // Get the cursor
+                        Cursor cursor = getContentResolver().query(uri, filePathColumn, null, null, null);
+                        // Move to first row
+                        cursor.moveToFirst();
 
-                            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                            mediapath  = cursor.getString(columnIndex);
-                            PhotosData photosData=new PhotosData("",mediapath);
-                            ar_photos.add(photosData);
-                            sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                            add.setVisibility(View.VISIBLE);
-                            rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
-                            rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
-                            cursor.close();
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        mediapath = cursor.getString(columnIndex);
+                        PhotosData photosData = new PhotosData("", mediapath);
+                        ar_photos.add(photosData);
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        add.setVisibility(View.VISIBLE);
+                        rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                        rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+                        cursor.close();
 
-                        }
-                        Log.d("LOG_TAG", "Selected Images" + mArrayUri.size());
                     }
-                    Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+                    Log.d("LOG_TAG", "Selected Images" + mArrayUri.size());
+                }
+                Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
 
-               /* }*/
+                /* }*/
             }
         }
-        if (resultCode==RESULT_CANCELED)
-        {
+        if (resultCode == RESULT_CANCELED) {
 
         }
 
@@ -859,41 +838,33 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     public void onBackPressed() {
 
-        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED){
+        if (sheetBehavior.getState() != BottomSheetBehavior.STATE_COLLAPSED) {
             sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             add.setVisibility(View.VISIBLE);
-        }
-        else if(layoutBottomSheet.getVisibility()==View.VISIBLE)
-        {
+        } else if (layoutBottomSheet.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(layoutBottomSheet);
             layoutBottomSheet.setVisibility(View.GONE);
             persistantBottomSheet.setVisibility(View.VISIBLE);
-        }
-        else if(view_photos_layout.getVisibility()==View.VISIBLE)
-        {
+        } else if (view_photos_layout.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(view_photos_layout);
             view_photos_layout.setVisibility(View.GONE);
             persistantBottomSheet.setVisibility(View.VISIBLE);
-        }
-        else if(locations_layout.getVisibility()==View.VISIBLE)
-        {
+        } else if (locations_layout.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(locations_layout);
             locations_layout.setVisibility(View.GONE);
             persistantBottomSheet.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+        } else {
             super.onBackPressed();
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
     }
@@ -901,9 +872,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     public void onContactSelected(PagesData pagesData) {
 
-        String path=ed_status.getText().toString().substring(ed_status.getText().toString().lastIndexOf("@")+1);
+        String path = ed_status.getText().toString().substring(ed_status.getText().toString().lastIndexOf("@") + 1);
 
-        Log.d("ccccccccccccc","path    "+path+"    "+path.length());
+        Log.d("ccccccccccccc", "path    " + path + "    " + path.length());
 
         /*int charIndex = ed_status.getText().toString().length() - path.length();
         String text = ed_status.getText().toString();
@@ -915,8 +886,8 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         if (length > 1) {
             ed_status.getText().delete(length - path.length(), length);
         }
-        ed_status.append(pagesData.getTitle()+" ");
-        Log.d("ccccccccccccc","after    "+ed_status.getText().toString().substring(0, ed_status.getText().toString().indexOf("@")));
+        ed_status.append(pagesData.getTitle() + " ");
+        Log.d("ccccccccccccc", "after    " + ed_status.getText().toString().substring(0, ed_status.getText().toString().indexOf("@")));
         card_mentions.setVisibility(View.GONE);
 
     }
@@ -942,23 +913,21 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         }
     }
 
-    public class UsersTagAdapter extends RecyclerView.Adapter<UsersTagAdapter.MyViewHolder>
-    {
+    public class UsersTagAdapter extends RecyclerView.Adapter<UsersTagAdapter.MyViewHolder> {
         ArrayList<UsersData> arrayList;
         Context context;
         boolean isSelectedAll;
 
-        public UsersTagAdapter(ArrayList<UsersData> arrayList, Context context)
-        {
+        public UsersTagAdapter(ArrayList<UsersData> arrayList, Context context) {
             this.arrayList = arrayList;
             this.context = context;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v= LayoutInflater.from(context).inflate(R.layout.tag_users_layout,parent,false);
+            View v = LayoutInflater.from(context).inflate(R.layout.tag_users_layout, parent, false);
 
-            MyViewHolder myViewHolder=new MyViewHolder(v);
+            MyViewHolder myViewHolder = new MyViewHolder(v);
 
             return myViewHolder;
         }
@@ -966,7 +935,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-            final UsersData usersData=arrayList.get(position);
+            final UsersData usersData = arrayList.get(position);
 
             holder.select_radioButton.setClickable(false);
 
@@ -975,12 +944,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             holder.main.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(holder.select_radioButton.isChecked())
-                    {
+                    if (holder.select_radioButton.isChecked()) {
                         holder.select_radioButton.setChecked(false);
-                    }
-                    else
-                    {
+                    } else {
                         holder.select_radioButton.setChecked(true);
                     }
                 }
@@ -989,65 +955,46 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             holder.select_radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked)
-                    {
+                    if (isChecked) {
                         addeduserslist.add(usersData);
 
-                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,context));
+                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, context));
 
-                        if(addeduserslist.size()>0)
-                        {
+                        if (addeduserslist.size() > 0) {
                             remove_all.setVisibility(View.VISIBLE);
                             txt_with.setVisibility(View.VISIBLE);
-                            if(addeduserslist.size()==1)
-                            {
-                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> ";
+                            if (addeduserslist.size() == 1) {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            } else if (addeduserslist.size() == 2) {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> " + " and " + "<b>" + addeduserslist.get(1).getName() + "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            } else {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> " + " and " + "<b>" + (addeduserslist.size() - 1) + " others" + "</b>";
                                 with.setText(Html.fromHtml(withWhom));
                             }
-                            else if(addeduserslist.size()==2)
-                            {
-                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> " +" and " + "<b>" +addeduserslist.get(1).getName()+ "</b> " ;
-                                with.setText(Html.fromHtml(withWhom));
-                            }
-                            else
-                            {
-                                String withWhom = "<b>" +addeduserslist.get(0).getName()+ "</b> " + " and " + "<b>" +(addeduserslist.size()-1)+" others"+"</b>" ;
-                                with.setText(Html.fromHtml(withWhom));
-                            }
-                        }
-                        else
-                        {
+                        } else {
                             remove_all.setVisibility(View.GONE);
                             txt_with.setVisibility(View.GONE);
                         }
                         //Toast.makeText(context, "added "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
+                    } else {
                         addeduserslist.remove(usersData);
-                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,context));
-                        if(addeduserslist.size()>0)
-                        {
+                        rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, context));
+                        if (addeduserslist.size() > 0) {
                             remove_all.setVisibility(View.VISIBLE);
                             txt_with.setVisibility(View.VISIBLE);
-                            if(addeduserslist.size()==1)
-                            {
-                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> ";
+                            if (addeduserslist.size() == 1) {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            } else if (addeduserslist.size() == 2) {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> " + " and " + "<b>" + addeduserslist.get(1).getName() + "</b> ";
+                                with.setText(Html.fromHtml(withWhom));
+                            } else {
+                                String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> " + " and " + "<b>" + (addeduserslist.size() - 1) + " others" + "</b>";
                                 with.setText(Html.fromHtml(withWhom));
                             }
-                            else if(addeduserslist.size()==2)
-                            {
-                                String withWhom = "<b>" + addeduserslist.get(0).getName()+ "</b> " +" and " + "<b>" +addeduserslist.get(1).getName()+ "</b> " ;
-                                with.setText(Html.fromHtml(withWhom));
-                            }
-                            else
-                            {
-                                String withWhom = "<b>" +addeduserslist.get(0).getName()+ "</b> " + " and " + "<b>" +(addeduserslist.size()-1)+" others"+"</b>" ;
-                                with.setText(Html.fromHtml(withWhom));
-                            }
-                        }
-                        else
-                        {
+                        } else {
                             remove_all.setVisibility(View.GONE);
                             txt_with.setVisibility(View.GONE);
                         }
@@ -1063,7 +1010,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     addeduserslist.clear();
                     remove_all.setVisibility(View.GONE);
                     with.setVisibility(View.GONE);
-                    rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist,CreatePostActivity.this));
+                    rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, CreatePostActivity.this));
                 }
             });
             if (!isSelectedAll) holder.select_radioButton.setChecked(false);
@@ -1071,9 +1018,9 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
         }
 
-        public void selectAll(boolean status){
-            Log.e("onClickSelectAll","yes");
-            isSelectedAll=status;
+        public void selectAll(boolean status) {
+            Log.e("onClickSelectAll", "yes");
+            isSelectedAll = status;
             notifyDataSetChanged();
         }
 
@@ -1082,7 +1029,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             return arrayList.size();
         }
 
-        public  class MyViewHolder extends RecyclerView.ViewHolder {
+        public class MyViewHolder extends RecyclerView.ViewHolder {
 
             LinearLayout main;
 
@@ -1091,31 +1038,29 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                main=itemView.findViewById(R.id.main);
-                username=itemView.findViewById(R.id.username);
-                select_radioButton=itemView.findViewById(R.id.select_radioButton);
+                main = itemView.findViewById(R.id.main);
+                username = itemView.findViewById(R.id.username);
+                select_radioButton = itemView.findViewById(R.id.select_radioButton);
 
             }
         }
     }
 
-    public class UsersTaggedAdapter extends RecyclerView.Adapter<UsersTaggedAdapter.MyViewHolder>
-    {
+    public class UsersTaggedAdapter extends RecyclerView.Adapter<UsersTaggedAdapter.MyViewHolder> {
         ArrayList<UsersData> arrayList;
         Context context;
         boolean isSelectedAll;
 
-        public UsersTaggedAdapter(ArrayList<UsersData> arrayList, Context context)
-        {
+        public UsersTaggedAdapter(ArrayList<UsersData> arrayList, Context context) {
             this.arrayList = arrayList;
             this.context = context;
         }
 
         @Override
         public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View v= LayoutInflater.from(context).inflate(R.layout.tagged_users_layout,parent,false);
+            View v = LayoutInflater.from(context).inflate(R.layout.tagged_users_layout, parent, false);
 
-            MyViewHolder myViewHolder=new MyViewHolder(v);
+            MyViewHolder myViewHolder = new MyViewHolder(v);
 
             return myViewHolder;
         }
@@ -1123,14 +1068,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         @Override
         public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
-            final UsersData usersData=arrayList.get(position);
+            final UsersData usersData = arrayList.get(position);
             holder.username.setText(usersData.getName());
 
         }
 
-        public void selectAll(boolean status){
-            Log.e("onClickSelectAll","yes");
-            isSelectedAll=status;
+        public void selectAll(boolean status) {
+            Log.e("onClickSelectAll", "yes");
+            isSelectedAll = status;
             notifyDataSetChanged();
         }
 
@@ -1139,15 +1084,14 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             return arrayList.size();
         }
 
-        public  class MyViewHolder extends RecyclerView.ViewHolder {
-
+        public class MyViewHolder extends RecyclerView.ViewHolder {
 
 
             TextView username;
 
             public MyViewHolder(View itemView) {
                 super(itemView);
-                username=itemView.findViewById(R.id.tagged_username);
+                username = itemView.findViewById(R.id.tagged_username);
 
 
             }
@@ -1155,3 +1099,4 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     }
 
 }
+
