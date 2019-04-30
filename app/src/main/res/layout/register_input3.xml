@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     android:id="@+id/register_input3"
     android:layout_width="match_parent"
@@ -51,3 +52,4 @@
 
 
 </RelativeLayout>
+</layout>

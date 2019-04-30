@@ -5,141 +5,133 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
+import com.eleganzit.amigo.databinding.ActivityRegistrationBinding;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class RegistrationActivity extends AppCompatActivity {
-
-    ImageView register_bg;
-    RelativeLayout register_input1,register_input2,register_input3,register_input4,register_input5,register_input6;
-    FloatingActionButton next1,next2,next3,next4,next5,next6;
-    LinearLayout back_text;
+    
+    ActivityRegistrationBinding binding;
+    String email="",fullname="",mobile="",username="",password="",city="",state="",pincode="",contact_person="",contact_person_number="",proof="",lat="",lng="",device_id="",device_token="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+         binding=DataBindingUtil.setContentView(RegistrationActivity.this,R.layout.activity_registration);
 
-        register_bg=findViewById(R.id.register_bg);
-        register_input1=findViewById(R.id.register_input1);
-        register_input2=findViewById(R.id.register_input2);
-        register_input3=findViewById(R.id.register_input3);
-        register_input4=findViewById(R.id.register_input4);
-        register_input5=findViewById(R.id.register_input5);
-        register_input6=findViewById(R.id.register_input6);
-        next1=findViewById(R.id.next1);
-        next2=findViewById(R.id.next2);
-        next3=findViewById(R.id.next3);
-        next4=findViewById(R.id.next4);
-        next5=findViewById(R.id.next5);
-        next6=findViewById(R.id.next6);
-        back_text=findViewById(R.id.back_text);
 
-        next1.setOnClickListener(new View.OnClickListener() {
+        binding.fab1.next1.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                register_bg.setImageResource(R.drawable.register_2);
-                register_input2.setVisibility(View.VISIBLE);
-                register_input1.setVisibility(View.GONE);
-                register_input3.setVisibility(View.GONE);
-                register_input4.setVisibility(View.GONE);
-                register_input5.setVisibility(View.GONE);
-                register_input6.setVisibility(View.GONE);
-                next1.setVisibility(View.GONE);
-                next2.setVisibility(View.VISIBLE);
-                next3.setVisibility(View.GONE);
-                next4.setVisibility(View.GONE);
-                next5.setVisibility(View.GONE);
-                next6.setVisibility(View.GONE);
+                if (isValid1())
+                {
+                    binding.registerBg.setImageResource(R.drawable.register_2);
+                    binding.registerInput2.registerInput2.setVisibility(View.VISIBLE);
+                    binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                    binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                    binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                    binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.GONE);
+                    binding.fab2.next2.setVisibility(View.VISIBLE);
+                    binding.fab3.next3.setVisibility(View.GONE);
+                    binding.fab4.next4.setVisibility(View.GONE);
+                    binding.fab5.next5.setVisibility(View.GONE);
+                    binding.fab6.next6.setVisibility(View.GONE);
+                }
+
             }
         });
 
-        next2.setOnClickListener(new View.OnClickListener() {
+        binding.fab2.next2.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                register_bg.setImageResource(R.drawable.register_3);
-                register_input3.setVisibility(View.VISIBLE);
-                register_input1.setVisibility(View.GONE);
-                register_input2.setVisibility(View.GONE);
-                register_input4.setVisibility(View.GONE);
-                register_input5.setVisibility(View.GONE);
-                register_input6.setVisibility(View.GONE);
-                next1.setVisibility(View.GONE);
-                next2.setVisibility(View.GONE);
-                next3.setVisibility(View.VISIBLE);
-                next4.setVisibility(View.GONE);
-                next5.setVisibility(View.GONE);
-                next6.setVisibility(View.GONE);
+                binding.registerBg.setImageResource(R.drawable.register_3);
+                binding.registerInput3.registerInput3.setVisibility(View.VISIBLE);
+                binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                binding.fab1.next1.setVisibility(View.GONE);
+                binding.fab2.next2.setVisibility(View.GONE);
+                binding.fab3.next3.setVisibility(View.VISIBLE);
+                binding.fab4.next4.setVisibility(View.GONE);
+                binding.fab5.next5.setVisibility(View.GONE);
+                binding.fab6.next6.setVisibility(View.GONE);
             }
         });
 
-        next3.setOnClickListener(new View.OnClickListener() {
+        binding.fab3.next3.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                register_bg.setImageResource(R.drawable.register_4);
-                register_input4.setVisibility(View.VISIBLE);
-                register_input1.setVisibility(View.GONE);
-                register_input2.setVisibility(View.GONE);
-                register_input3.setVisibility(View.GONE);
-                register_input5.setVisibility(View.GONE);
-                register_input6.setVisibility(View.GONE);
-                next1.setVisibility(View.GONE);
-                next2.setVisibility(View.GONE);
-                next3.setVisibility(View.GONE);
-                next4.setVisibility(View.VISIBLE);
-                next5.setVisibility(View.GONE);
-                next6.setVisibility(View.GONE);
+                binding.registerBg.setImageResource(R.drawable.register_4);
+                binding.registerInput4.registerInput4.setVisibility(View.VISIBLE);
+                binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                binding.fab1.next1.setVisibility(View.GONE);
+                binding.fab2.next2.setVisibility(View.GONE);
+                binding.fab3.next3.setVisibility(View.GONE);
+                binding.fab4.next4.setVisibility(View.VISIBLE);
+                binding.fab5.next5.setVisibility(View.GONE);
+                binding.fab6.next6.setVisibility(View.GONE);
             }
         });
 
-        next4.setOnClickListener(new View.OnClickListener() {
+        binding.fab4.next4.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                register_bg.setImageResource(R.drawable.register_5);
-                register_input5.setVisibility(View.VISIBLE);
-                register_input1.setVisibility(View.GONE);
-                register_input2.setVisibility(View.GONE);
-                register_input3.setVisibility(View.GONE);
-                register_input4.setVisibility(View.GONE);
-                register_input6.setVisibility(View.GONE);
-                next1.setVisibility(View.GONE);
-                next2.setVisibility(View.GONE);
-                next3.setVisibility(View.GONE);
-                next4.setVisibility(View.GONE);
-                next5.setVisibility(View.VISIBLE);
-                next6.setVisibility(View.GONE);
+                binding.registerBg.setImageResource(R.drawable.register_5);
+                binding.registerInput5.registerInput5.setVisibility(View.VISIBLE);
+                binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                binding.fab1.next1.setVisibility(View.GONE);
+                binding.fab2.next2.setVisibility(View.GONE);
+                binding.fab3.next3.setVisibility(View.GONE);
+                binding.fab4.next4.setVisibility(View.GONE);
+                binding.fab5.next5.setVisibility(View.VISIBLE);
+                binding.fab6.next6.setVisibility(View.GONE);
             }
         });
 
-        next5.setOnClickListener(new View.OnClickListener() {
+        binding.fab5.next5.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                register_bg.setImageResource(R.drawable.register_6);
-                register_input6.setVisibility(View.VISIBLE);
-                register_input1.setVisibility(View.GONE);
-                register_input2.setVisibility(View.GONE);
-                register_input3.setVisibility(View.GONE);
-                register_input4.setVisibility(View.GONE);
-                register_input5.setVisibility(View.GONE);
-                next1.setVisibility(View.GONE);
-                next2.setVisibility(View.GONE);
-                next3.setVisibility(View.GONE);
-                next4.setVisibility(View.GONE);
-                next5.setVisibility(View.GONE);
-                next6.setVisibility(View.VISIBLE);
+                binding.registerBg.setImageResource(R.drawable.register_6);
+                binding.registerInput6.registerInput6.setVisibility(View.VISIBLE);
+                binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                binding.fab1.next1.setVisibility(View.GONE);
+                binding.fab2.next2.setVisibility(View.GONE);
+                binding.fab3.next3.setVisibility(View.GONE);
+                binding.fab4.next4.setVisibility(View.GONE);
+                binding.fab5.next5.setVisibility(View.GONE);
+                binding.fab6.next6.setVisibility(View.VISIBLE);
             }
         });
 
-        next6.setOnClickListener(new View.OnClickListener() {
+        binding.fab6.next6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -150,93 +142,93 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
 
-        back_text.setOnClickListener(new View.OnClickListener() {
+        binding.backText.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
             @Override
             public void onClick(View v) {
-                if(register_input1.getVisibility()==View.VISIBLE)
+                if(binding.registerInput1.registerInput1.getVisibility()==View.VISIBLE)
                 {
                     onBackPressed();
                 }
-                else if(register_input2.getVisibility()==View.VISIBLE)
+                else if(binding.registerInput2.registerInput2.getVisibility()==View.VISIBLE)
                 {
-                    register_bg.setImageResource(R.drawable.register_1);
-                    register_input1.setVisibility(View.VISIBLE);
-                    register_input2.setVisibility(View.GONE);
-                    register_input3.setVisibility(View.GONE);
-                    register_input4.setVisibility(View.GONE);
-                    register_input5.setVisibility(View.GONE);
-                    register_input6.setVisibility(View.GONE);
-                    next1.setVisibility(View.VISIBLE);
-                    next2.setVisibility(View.GONE);
-                    next3.setVisibility(View.GONE);
-                    next4.setVisibility(View.GONE);
-                    next5.setVisibility(View.GONE);
-                    next6.setVisibility(View.GONE);
+                    binding.registerBg.setImageResource(R.drawable.register_1);
+                    binding.registerInput1.registerInput1.setVisibility(View.VISIBLE);
+                    binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                    binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                    binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                    binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.VISIBLE);
+                    binding.fab2.next2.setVisibility(View.GONE);
+                    binding.fab3.next3.setVisibility(View.GONE);
+                    binding.fab4.next4.setVisibility(View.GONE);
+                    binding.fab5.next5.setVisibility(View.GONE);
+                    binding.fab6.next6.setVisibility(View.GONE);
                 }
-                else if(register_input3.getVisibility()==View.VISIBLE)
+                else if(binding.registerInput3.registerInput3.getVisibility()==View.VISIBLE)
                 {
-                    register_bg.setImageResource(R.drawable.register_2);
-                    register_input1.setVisibility(View.GONE);
-                    register_input2.setVisibility(View.VISIBLE);
-                    register_input3.setVisibility(View.GONE);
-                    register_input4.setVisibility(View.GONE);
-                    register_input5.setVisibility(View.GONE);
-                    register_input6.setVisibility(View.GONE);
-                    next1.setVisibility(View.GONE);
-                    next2.setVisibility(View.VISIBLE);
-                    next3.setVisibility(View.GONE);
-                    next4.setVisibility(View.GONE);
-                    next5.setVisibility(View.GONE);
-                    next6.setVisibility(View.GONE);
+                    binding.registerBg.setImageResource(R.drawable.register_2);
+                    binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                    binding.registerInput2.registerInput2.setVisibility(View.VISIBLE);
+                    binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                    binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                    binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.GONE);
+                    binding.fab2.next2.setVisibility(View.VISIBLE);
+                    binding.fab3.next3.setVisibility(View.GONE);
+                    binding.fab4.next4.setVisibility(View.GONE);
+                    binding.fab5.next5.setVisibility(View.GONE);
+                    binding.fab6.next6.setVisibility(View.GONE);
                 }
-                else if(register_input4.getVisibility()==View.VISIBLE)
+                else if(binding.registerInput4.registerInput4.getVisibility()==View.VISIBLE)
                 {
-                    register_bg.setImageResource(R.drawable.register_3);
-                    register_input1.setVisibility(View.GONE);
-                    register_input2.setVisibility(View.GONE);
-                    register_input3.setVisibility(View.VISIBLE);
-                    register_input4.setVisibility(View.GONE);
-                    register_input5.setVisibility(View.GONE);
-                    register_input6.setVisibility(View.GONE);
-                    next1.setVisibility(View.GONE);
-                    next2.setVisibility(View.GONE);
-                    next3.setVisibility(View.VISIBLE);
-                    next4.setVisibility(View.GONE);
-                    next5.setVisibility(View.GONE);
-                    next6.setVisibility(View.GONE);
+                    binding.registerBg.setImageResource(R.drawable.register_3);
+                    binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                    binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                    binding.registerInput3.registerInput3.setVisibility(View.VISIBLE);
+                    binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                    binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.GONE);
+                    binding.fab2.next2.setVisibility(View.GONE);
+                    binding.fab3.next3.setVisibility(View.VISIBLE);
+                    binding.fab4.next4.setVisibility(View.GONE);
+                    binding.fab5.next5.setVisibility(View.GONE);
+                    binding.fab6.next6.setVisibility(View.GONE);
                 }
-                else if(register_input5.getVisibility()==View.VISIBLE)
+                else if(binding.registerInput5.registerInput5.getVisibility()==View.VISIBLE)
                 {
-                    register_bg.setImageResource(R.drawable.register_4);
-                    register_input1.setVisibility(View.GONE);
-                    register_input2.setVisibility(View.GONE);
-                    register_input3.setVisibility(View.GONE);
-                    register_input4.setVisibility(View.VISIBLE);
-                    register_input5.setVisibility(View.GONE);
-                    register_input6.setVisibility(View.GONE);
-                    next1.setVisibility(View.GONE);
-                    next2.setVisibility(View.GONE);
-                    next3.setVisibility(View.GONE);
-                    next4.setVisibility(View.VISIBLE);
-                    next5.setVisibility(View.GONE);
-                    next6.setVisibility(View.GONE);
+                    binding.registerBg.setImageResource(R.drawable.register_4);
+                    binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                    binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                    binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                    binding.registerInput4.registerInput4.setVisibility(View.VISIBLE);
+                    binding.registerInput5.registerInput5.setVisibility(View.GONE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.GONE);
+                    binding.fab2.next2.setVisibility(View.GONE);
+                    binding.fab3.next3.setVisibility(View.GONE);
+                    binding.fab4.next4.setVisibility(View.VISIBLE);
+                    binding.fab5.next5.setVisibility(View.GONE);
+                    binding.fab6.next6.setVisibility(View.GONE);
                 }
-                else if(register_input6.getVisibility()==View.VISIBLE)
+                else if(binding.registerInput6.registerInput6.getVisibility()==View.VISIBLE)
                 {
-                    register_bg.setImageResource(R.drawable.register_5);
-                    register_input1.setVisibility(View.GONE);
-                    register_input2.setVisibility(View.GONE);
-                    register_input3.setVisibility(View.GONE);
-                    register_input4.setVisibility(View.GONE);
-                    register_input5.setVisibility(View.VISIBLE);
-                    register_input6.setVisibility(View.GONE);
-                    next1.setVisibility(View.GONE);
-                    next2.setVisibility(View.GONE);
-                    next3.setVisibility(View.GONE);
-                    next4.setVisibility(View.GONE);
-                    next5.setVisibility(View.VISIBLE);
-                    next6.setVisibility(View.GONE);
+                    binding.registerBg.setImageResource(R.drawable.register_5);
+                    binding.registerInput1.registerInput1.setVisibility(View.GONE);
+                    binding.registerInput2.registerInput2.setVisibility(View.GONE);
+                    binding.registerInput3.registerInput3.setVisibility(View.GONE);
+                    binding.registerInput4.registerInput4.setVisibility(View.GONE);
+                    binding.registerInput5.registerInput5.setVisibility(View.VISIBLE);
+                    binding.registerInput6.registerInput6.setVisibility(View.GONE);
+                    binding.fab1.next1.setVisibility(View.GONE);
+                    binding.fab2.next2.setVisibility(View.GONE);
+                    binding.fab3.next3.setVisibility(View.GONE);
+                    binding.fab4.next4.setVisibility(View.GONE);
+                    binding.fab5.next5.setVisibility(View.VISIBLE);
+                    binding.fab6.next6.setVisibility(View.GONE);
                 }
             }
         });
@@ -247,91 +239,128 @@ public class RegistrationActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        if(register_input1.getVisibility()==View.VISIBLE)
+        if(binding.registerInput1.registerInput1.getVisibility()==View.VISIBLE)
         {
             super.onBackPressed();
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         }
-        else if(register_input2.getVisibility()==View.VISIBLE)
+        else if(binding.registerInput2.registerInput2.getVisibility()==View.VISIBLE)
         {
-            register_bg.setImageResource(R.drawable.register_1);
-            register_input1.setVisibility(View.VISIBLE);
-            register_input2.setVisibility(View.GONE);
-            register_input3.setVisibility(View.GONE);
-            register_input4.setVisibility(View.GONE);
-            register_input5.setVisibility(View.GONE);
-            register_input6.setVisibility(View.GONE);
-            next1.setVisibility(View.VISIBLE);
-            next2.setVisibility(View.GONE);
-            next3.setVisibility(View.GONE);
-            next4.setVisibility(View.GONE);
-            next5.setVisibility(View.GONE);
-            next6.setVisibility(View.GONE);
+            binding.registerBg.setImageResource(R.drawable.register_1);
+            binding.registerInput1.registerInput1.setVisibility(View.VISIBLE);
+            binding.registerInput2.registerInput2.setVisibility(View.GONE);
+            binding.registerInput3.registerInput3.setVisibility(View.GONE);
+            binding.registerInput4.registerInput4.setVisibility(View.GONE);
+            binding.registerInput5.registerInput5.setVisibility(View.GONE);
+            binding.registerInput6.registerInput6.setVisibility(View.GONE);
+            binding.fab1.next1.setVisibility(View.VISIBLE);
+            binding.fab2.next2.setVisibility(View.GONE);
+            binding.fab3.next3.setVisibility(View.GONE);
+            binding.fab4.next4.setVisibility(View.GONE);
+            binding.fab5.next5.setVisibility(View.GONE);
+            binding.fab6.next6.setVisibility(View.GONE);
         }
-        else if(register_input3.getVisibility()==View.VISIBLE)
+        else if(binding.registerInput3.registerInput3.getVisibility()==View.VISIBLE)
         {
-            register_bg.setImageResource(R.drawable.register_2);
-            register_input1.setVisibility(View.GONE);
-            register_input2.setVisibility(View.VISIBLE);
-            register_input3.setVisibility(View.GONE);
-            register_input4.setVisibility(View.GONE);
-            register_input5.setVisibility(View.GONE);
-            register_input6.setVisibility(View.GONE);
-            next1.setVisibility(View.GONE);
-            next2.setVisibility(View.VISIBLE);
-            next3.setVisibility(View.GONE);
-            next4.setVisibility(View.GONE);
-            next5.setVisibility(View.GONE);
-            next6.setVisibility(View.GONE);
+            binding.registerBg.setImageResource(R.drawable.register_2);
+            binding.registerInput1.registerInput1.setVisibility(View.GONE);
+            binding.registerInput2.registerInput2.setVisibility(View.VISIBLE);
+            binding.registerInput3.registerInput3.setVisibility(View.GONE);
+            binding.registerInput4.registerInput4.setVisibility(View.GONE);
+            binding.registerInput5.registerInput5.setVisibility(View.GONE);
+            binding.registerInput6.registerInput6.setVisibility(View.GONE);
+            binding.fab1.next1.setVisibility(View.GONE);
+            binding.fab2.next2.setVisibility(View.VISIBLE);
+            binding.fab3.next3.setVisibility(View.GONE);
+            binding.fab4.next4.setVisibility(View.GONE);
+            binding.fab5.next5.setVisibility(View.GONE);
+            binding.fab6.next6.setVisibility(View.GONE);
         }
-        else if(register_input4.getVisibility()==View.VISIBLE)
+        else if(binding.registerInput4.registerInput4.getVisibility()==View.VISIBLE)
         {
-            register_bg.setImageResource(R.drawable.register_3);
-            register_input1.setVisibility(View.GONE);
-            register_input2.setVisibility(View.GONE);
-            register_input3.setVisibility(View.VISIBLE);
-            register_input4.setVisibility(View.GONE);
-            register_input5.setVisibility(View.GONE);
-            register_input6.setVisibility(View.GONE);
-            next1.setVisibility(View.GONE);
-            next2.setVisibility(View.GONE);
-            next3.setVisibility(View.VISIBLE);
-            next4.setVisibility(View.GONE);
-            next5.setVisibility(View.GONE);
-            next6.setVisibility(View.GONE);
+            binding.registerBg.setImageResource(R.drawable.register_3);
+            binding.registerInput1.registerInput1.setVisibility(View.GONE);
+            binding.registerInput2.registerInput2.setVisibility(View.GONE);
+            binding.registerInput3.registerInput3.setVisibility(View.VISIBLE);
+            binding.registerInput4.registerInput4.setVisibility(View.GONE);
+            binding.registerInput5.registerInput5.setVisibility(View.GONE);
+            binding.registerInput6.registerInput6.setVisibility(View.GONE);
+            binding.fab1.next1.setVisibility(View.GONE);
+            binding.fab2.next2.setVisibility(View.GONE);
+            binding.fab3.next3.setVisibility(View.VISIBLE);
+            binding.fab4.next4.setVisibility(View.GONE);
+            binding.fab5.next5.setVisibility(View.GONE);
+            binding.fab6.next6.setVisibility(View.GONE);
         }
-        else if(register_input5.getVisibility()==View.VISIBLE)
+        else if(binding.registerInput5.registerInput5.getVisibility()==View.VISIBLE)
         {
-            register_bg.setImageResource(R.drawable.register_4);
-            register_input1.setVisibility(View.GONE);
-            register_input2.setVisibility(View.GONE);
-            register_input3.setVisibility(View.GONE);
-            register_input4.setVisibility(View.VISIBLE);
-            register_input5.setVisibility(View.GONE);
-            register_input6.setVisibility(View.GONE);
-            next1.setVisibility(View.GONE);
-            next2.setVisibility(View.GONE);
-            next3.setVisibility(View.GONE);
-            next4.setVisibility(View.VISIBLE);
-            next5.setVisibility(View.GONE);
-            next6.setVisibility(View.GONE);
+            binding.registerBg.setImageResource(R.drawable.register_4);
+            binding.registerInput1.registerInput1.setVisibility(View.GONE);
+            binding.registerInput2.registerInput2.setVisibility(View.GONE);
+            binding.registerInput3.registerInput3.setVisibility(View.GONE);
+            binding.registerInput4.registerInput4.setVisibility(View.VISIBLE);
+            binding.registerInput5.registerInput5.setVisibility(View.GONE);
+            binding.registerInput6.registerInput6.setVisibility(View.GONE);
+            binding.fab1.next1.setVisibility(View.GONE);
+            binding.fab2.next2.setVisibility(View.GONE);
+            binding.fab3.next3.setVisibility(View.GONE);
+            binding.fab4.next4.setVisibility(View.VISIBLE);
+            binding.fab5.next5.setVisibility(View.GONE);
+            binding.fab6.next6.setVisibility(View.GONE);
         }
-        else if(register_input6.getVisibility()==View.VISIBLE)
+        else if(binding.registerInput6.registerInput6.getVisibility()==View.VISIBLE)
         {
-            register_bg.setImageResource(R.drawable.register_5);
-            register_input1.setVisibility(View.GONE);
-            register_input2.setVisibility(View.GONE);
-            register_input3.setVisibility(View.GONE);
-            register_input4.setVisibility(View.GONE);
-            register_input5.setVisibility(View.VISIBLE);
-            register_input6.setVisibility(View.GONE);
-            next1.setVisibility(View.GONE);
-            next2.setVisibility(View.GONE);
-            next3.setVisibility(View.GONE);
-            next4.setVisibility(View.GONE);
-            next5.setVisibility(View.VISIBLE);
-            next6.setVisibility(View.GONE);
+            binding.registerBg.setImageResource(R.drawable.register_5);
+            binding.registerInput1.registerInput1.setVisibility(View.GONE);
+            binding.registerInput2.registerInput2.setVisibility(View.GONE);
+            binding.registerInput3.registerInput3.setVisibility(View.GONE);
+            binding.registerInput4.registerInput4.setVisibility(View.GONE);
+            binding.registerInput5.registerInput5.setVisibility(View.VISIBLE);
+            binding.registerInput6.registerInput6.setVisibility(View.GONE);
+            binding.fab1.next1.setVisibility(View.GONE);
+            binding.fab2.next2.setVisibility(View.GONE);
+            binding.fab3.next3.setVisibility(View.GONE);
+            binding.fab4.next4.setVisibility(View.GONE);
+            binding.fab5.next5.setVisibility(View.VISIBLE);
+            binding.fab6.next6.setVisibility(View.GONE);
         }
 
+    }
+
+
+    public boolean isValid1() {
+        final String EMAIL_PATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        Pattern pattern;
+        Matcher matcher;
+        pattern = Pattern.compile(EMAIL_PATTERN);
+        matcher = pattern.matcher(binding.registerInput1.edEmail.getText().toString());
+
+        if (binding.registerInput1.edEmail.getText().toString().equals("")) {
+            binding.registerInput1.edEmail.setError(""+getResources().getString(R.string.Please_enter_email));
+/*
+            YoYo.with(Techniques.Shake).duration(700).repeat(0).playOn(binding.registerInput1.edEmail);
+*/
+            binding.registerInput1.edEmail.requestFocus();
+            return false;
+        }
+        else if (!matcher.matches()) {
+            binding.registerInput1.edEmail.setError(""+getResources().getString(R.string.Please_Enter_Valid_Email));
+/*
+            YoYo.with(Techniques.Shake).duration(700).repeat(0).playOn(binding.registerInput1.edEmail);
+*/
+            binding.registerInput1.edEmail.requestFocus();
+            return false;
+        }
+        else  if (binding.registerInput1.edUsername.getText().toString().equals("")) {
+            binding.registerInput1.edUsername.setError(""+getResources().getString(R.string.Please_Enter_Password));
+/*
+            YoYo.with(Techniques.Shake).duration(700).repeat(0).playOn(password);
+*/
+            binding.registerInput1.edUsername.requestFocus();
+            return false;
+        }
+
+
+        return true;
     }
 }
