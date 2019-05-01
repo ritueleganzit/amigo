@@ -12,8 +12,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/un_input"
+        android:id="@+id/un_input_1"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <EditText
+            android:id="@+id/ed_location_country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:text="INDIA"
+            android:focusable="false"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pw_input"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/un_input_1"
+        android:layout_marginTop="30dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ed_nameofstate"
+            android:layout_width="match_parent"
+            android:focusable="false"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_height="wrap_content"
+            android:hint="NAME OF STATE/UNION TERRITORY"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:singleLine="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/un_input"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:layout_below="@+id/pw_input"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp">
 
@@ -30,25 +75,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/pw_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/un_input"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="30dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ed_nameofstate"
-            android:layout_width="match_parent"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-            android:layout_height="wrap_content"
-            android:hint="NAME OF STATE/UNION TERRITORY"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:singleLine="true" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 
 </RelativeLayout>

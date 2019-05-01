@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/un_input"
             android:textColor="#c6c6c6"
-            android:theme="@style/TextLabel"
+           android:theme="@style/TextLabel"
             android:textColorHint="#c6c6c6"
             android:backgroundTint="#c6c6c6"
             android:layout_marginBottom="10dp"

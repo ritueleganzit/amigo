@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:hint="CONTACT NUMBER OF SECONDARY CONTACT"
-            android:inputType="text"
+            android:inputType="number"
             android:imeOptions="actionDone"
             android:singleLine="true" />
 

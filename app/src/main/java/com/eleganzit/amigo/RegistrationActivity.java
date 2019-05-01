@@ -1,20 +1,26 @@
 package com.eleganzit.amigo;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +30,9 @@ import com.eleganzit.amigo.api.ApiUtil;
 import com.eleganzit.amigo.api.RetrofitAPI;
 import com.eleganzit.amigo.api.RetrofitInterface;
 import com.eleganzit.amigo.databinding.ActivityRegistrationBinding;
+import com.eleganzit.amigo.model.GetStateResponse;
 import com.eleganzit.amigo.model.GetUserResponse;
+import com.eleganzit.amigo.model.StateData;
 import com.eleganzit.amigo.model.UserResponse;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.Gson;
@@ -32,9 +40,12 @@ import com.obsez.android.lib.filechooser.ChooserDialog;
 import com.vincent.filepicker.Constant;
 import com.vincent.filepicker.activity.ImagePickActivity;
 import com.vincent.filepicker.activity.NormalFilePickActivity;
+import com.vincent.filepicker.filter.entity.ImageFile;
+import com.vincent.filepicker.filter.entity.NormalFile;
 
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -53,7 +64,7 @@ import static com.vincent.filepicker.activity.VideoPickActivity.IS_NEED_CAMERA;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-
+List<String> stateArrayList=new ArrayList();
     private static final int FILE_REQUEST_CODE =101 ;
     ProgressDialog progressDialog;
     private static final String TAG ="RegistrationActivity" ;
@@ -67,6 +78,8 @@ progressDialog=new ProgressDialog(RegistrationActivity.this);
 progressDialog.setMessage("Please Wait");
 progressDialog.setCancelable(false);
 progressDialog.setCanceledOnTouchOutside(false);
+
+
 
         binding.fab1.next1.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("RestrictedApi")
@@ -92,6 +105,26 @@ progressDialog.setCanceledOnTouchOutside(false);
                     binding.fab6.next6.setVisibility(View.GONE);
                 }
 
+            }
+        });
+
+        binding.registerInput5.edNameofstate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ListAdapter adapter = new ArrayAdapter(RegistrationActivity.this, android.R.layout.simple_list_item_single_choice, android.R.id.text1, stateArrayList);
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(RegistrationActivity.this, R.style.AlertDialogCustom));
+
+                builder.setSingleChoiceItems(adapter, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+
+
+                        binding.registerInput5.edNameofstate.setText(stateArrayList.get(i));
+                    }
+                });
+                builder.show();
             }
         });
 
@@ -195,6 +228,8 @@ progressDialog.setCanceledOnTouchOutside(false);
                     binding.fab4.next4.setVisibility(View.GONE);
                     binding.fab5.next5.setVisibility(View.VISIBLE);
                     binding.fab6.next6.setVisibility(View.GONE);
+                    progressDialog.show();
+                    getStateList();
                 }
             }
         });
@@ -204,6 +239,7 @@ progressDialog.setCanceledOnTouchOutside(false);
             @Override
             public void onClick(View v) {
                 if (isValid5())
+
                 {
                     city=binding.registerInput5.edLocation.getText().toString();
                     state=binding.registerInput5.edNameofstate.getText().toString();
@@ -220,6 +256,7 @@ progressDialog.setCanceledOnTouchOutside(false);
                     binding.fab4.next4.setVisibility(View.GONE);
                     binding.fab5.next5.setVisibility(View.GONE);
                     binding.fab6.next6.setVisibility(View.VISIBLE);
+                    binding.fab6.fabProgressCircle.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -229,9 +266,12 @@ progressDialog.setCanceledOnTouchOutside(false);
             @Override
             public void onClick(View v) {
 if (isValid6())
-{   pincode=binding.registerInput6.edPincode.getText().toString();
 
-    progressDialog.show();
+{
+
+    pincode=binding.registerInput6.edPincode.getText().toString();
+
+
     registerUser();
 
 }
@@ -332,6 +372,34 @@ if (isValid6())
         });
 
     }
+
+    private void getStateList() {
+        RetrofitInterface myInterface= RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
+
+        Call<GetStateResponse> call=myInterface.getAllstate("38");
+        call.enqueue(new Callback<GetStateResponse>() {
+            @Override
+            public void onResponse(Call<GetStateResponse> call, Response<GetStateResponse> response) {
+                if (response.isSuccessful())
+                {
+                    for (int i=0;i<response.body().getData().size();i++)
+                    {
+                        stateArrayList.add(response.body().getData().get(i).getName());
+                    }
+
+                    progressDialog.dismiss();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<GetStateResponse> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
+    }
+
     public void openFileChooser() {
 
         Intent intent4 = new Intent(this, NormalFilePickActivity.class);
@@ -351,6 +419,12 @@ if (isValid6())
     }
     private void registerUser() {
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding.fab6.next6.setImageDrawable(null);
+        } else {
+            binding.fab6.next6.setImageDrawable(null);
+        }
+        binding.fab6.fabProgressCircle.show();
         File file = new File(""+mediapath);
         Log.d("hhhhh",""+mediapath);
 
@@ -383,18 +457,26 @@ if (isValid6())
             @Override
             public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
 
-progressDialog.dismiss();
                 Log.d("responseseeee",""+response.body().getMessage());
                 Log.d("responseseeee",""+response.body().getData());
 
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
+                } else {
+                    binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
+                }
+                binding.fab6.fabProgressCircle.hide();
 
             }
 
             @Override
             public void onFailure(Call<GetUserResponse> call, Throwable t) {
-                progressDialog.dismiss();
-
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
+                } else {
+                    binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
+                }
+                binding.fab6.fabProgressCircle.hide();
                 Toast.makeText(RegistrationActivity.this, ""+t.toString(), Toast.LENGTH_SHORT).show();
 
             }
@@ -690,6 +772,27 @@ progressDialog.dismiss();
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.REQUEST_CODE_PICK_FILE) {
+
+            ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+            mediapath = list.get(0).getPath();
+           File file = new File(mediapath);
+            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+            Log.d("file_sizeeeee", "mediapath" + mediapath);
+            String filename=mediapath.substring(mediapath.lastIndexOf("/")+1);
+            binding.registerInput6.edDocs.setText(filename);
+
+        }
+        if (requestCode == Constant.REQUEST_CODE_PICK_IMAGE) {
+
+            ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
+            mediapath = list.get(0).getPath();
+            File   file = new File(mediapath);
+            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+            Log.d("file_sizeeeee", "mediapath" + mediapath);
+            String filename=mediapath.substring(mediapath.lastIndexOf("/")+1);
+            binding.registerInput6.edDocs.setText(filename);
+        }
 
     }
 }

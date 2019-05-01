@@ -1,5 +1,7 @@
 package com.eleganzit.amigo.api;
 
+import com.eleganzit.amigo.model.GetLoginResponse;
+import com.eleganzit.amigo.model.GetStateResponse;
 import com.eleganzit.amigo.model.GetUserResponse;
 import com.eleganzit.amigo.model.UserResponse;
 
@@ -7,6 +9,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -41,5 +44,32 @@ public interface RetrofitInterface {
             @Part("device_token")  RequestBody device_token
 
                         );
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/loginUser")
+    Call<GetLoginResponse> getLogin(
+            @Field("username") String username,
+            @Field("password") String password
+
+    );
+
+
+  @FormUrlEncoded
+    @POST("/Volunteerify-API/getAllstate")
+    Call<GetStateResponse> getAllstate(
+            @Field("country_id") String country_id
+    );
+
+
+
+  @FormUrlEncoded
+    @POST("/Volunteerify-API/getUser")
+    Call<GetLoginResponse> getUserData(
+          @Field("user_id") String user_id
+
+  );
+
+
 
 }

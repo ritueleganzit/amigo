@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.chauthai.overscroll:overscroll-bouncy:0.1.1'
     implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.10'
     implementation 'com.vincent.filepicker:MultiTypeFilePicker:1.0.8'
-
+    implementation 'com.github.jorgecastilloprz:fabprogresscircle:1.01@aar'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.google.code.gson:gson:2.8.0'
