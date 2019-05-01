@@ -3,6 +3,7 @@ package com.eleganzit.amigo.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -12,13 +13,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitAPI {
 
-    public static Retrofit getRetrofit(String url) {
-        Gson gson = new GsonBuilder().setLenient().create();
+    public static String BASE_URL="http://itechgaints.com/";
 
-        return new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
+    public static Retrofit retrofit=null;
+
+    public static Retrofit getRetrofit()
+    {
+        if(retrofit==null)
+        {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+        }
+        return retrofit;
     }
 
 }

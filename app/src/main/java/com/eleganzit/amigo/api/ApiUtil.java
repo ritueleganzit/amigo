@@ -5,9 +5,7 @@ package com.eleganzit.amigo.api;
  */
 
 public class ApiUtil {
-    private static final String BASE_URL = "http://itechgaints.com/Volunteerify-API/";
+    private static final String BASE_URL = "http://itechgaints.com/";
 
-    public static RetrofitInterface getServiceClass(){
-        return RetrofitAPI.getRetrofit(BASE_URL).create(RetrofitInterface.class);
-    }
+
 }

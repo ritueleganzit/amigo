@@ -46,6 +46,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.4'
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.hendraanggrian.appcompat:socialview:0.1'
     implementation 'com.hendraanggrian.appcompat:socialview-commons:0.1'
@@ -53,6 +55,8 @@ dependencies {
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
     implementation 'com.chauthai.overscroll:overscroll-bouncy:0.1.1'
+    implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.10'
+    implementation 'com.vincent.filepicker:MultiTypeFilePicker:1.0.8'
 
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'

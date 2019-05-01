@@ -12,6 +12,17 @@
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. \n \n Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="Please_enter_email">Please enter email</string>
     <string name="Please_Enter_Valid_Email">Please enter valid email</string>
-    <string name="Please_Enter_Password">Please enter password</string>
+    <string name="Please_Enter_username">Please enter username</string>
+    <string name="Please_enter_name">Please enter name</string>
+    <string name="Please_Enter_mobile_number">Please enter mobile number</string>
+    <string name="Please_Enter_Password">Please Enter Password</string>
+    <string name="Please_Enter_Password_length">Password must contain atleast 6 characters</string>
+    <string name="Password_doesnt_match">Password doesn\\\'t match</string>
+    <string name="Please_enter_secondary">Please enter name of secondary person </string>
+    <string name="Please_enter_contact">Please enter contact number of secondary person</string>
+    <string name="Please_enter_location">Please select location</string>
+    <string name="Please_enter_state">Please select state</string>
+    <string name="Please_enter_pincode">Please enter pincode</string>
+    <string name="Please_select_doc">Please select document</string>
 
 </resources>

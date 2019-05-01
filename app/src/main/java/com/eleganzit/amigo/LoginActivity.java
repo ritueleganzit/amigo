@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.eleganzit.amigo.databinding.ActivityLoginBinding;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -23,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+ActivityLoginBinding binding= DataBindingUtil.setContentView(LoginActivity.this,R.layout.activity_login);
         setContentView(R.layout.activity_login);
 
         ed_username=findViewById(R.id.ed_username);

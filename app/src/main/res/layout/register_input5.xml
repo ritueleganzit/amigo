@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:hint="NAME OF STATE/UNION TERRITORY"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>

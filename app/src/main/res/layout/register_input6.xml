@@ -41,11 +41,12 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ed_docs"
             android:layout_width="match_parent"
+android:focusable="false"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_height="wrap_content"
             android:hint="UPLOAD REGISTRATION DOCUMENT"
             android:imeOptions="actionDone"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:singleLine="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
