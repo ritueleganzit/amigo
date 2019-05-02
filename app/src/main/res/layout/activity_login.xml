@@ -20,7 +20,7 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:src="@drawable/amigo_logo1"
+            android:src="@drawable/amigo"
             android:layout_width="130dp"
             android:layout_marginTop="40dp"
             android:layout_height="130dp"
@@ -113,15 +113,45 @@
             android:layout_below="@+id/forgot_password"
             android:background="@drawable/bt_background"
             android:text="Sign in"
+            android:visibility="gone"
             android:layout_marginTop="30dp"
             android:textColor="#ffffff"
             android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/singin_rel"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/forgot_password">
+
+            <br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton
+                android:id="@+id/btn_id"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@drawable/bt_animate_bg"
+                android:layout_centerHorizontal="true"
+                app:spinning_bar_color="#FFF"
+                app:spinning_bar_padding="2dp"
+                app:spinning_bar_width="3dp" />
+
+            <TextView
+                android:id="@+id/anim_btn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:layout_centerInParent="true"
+                android:text="SIGN IN"/>
+
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/signup"
-            android:layout_below="@+id/signin"
+            android:layout_below="@+id/singin_rel"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:gravity="center"

@@ -1,12 +1,36 @@
 package com.eleganzit.amigo.model;
 
-public class Accounts
-{
-    String photo,username;
+import org.json.JSONObject;
 
-    public Accounts(String photo, String username) {
-        this.photo = photo;
-        this.username = username;
+import java.io.Serializable;
+
+public class Accounts implements Serializable
+{
+    String photo,username,id;
+    String object;
+
+    public Accounts(String id, String object) {
+        this.id = id;
+        this.object = object;
+    }
+
+    public String getObject() {
+        return object;
+    }
+
+    public void setObject(String object) {
+        this.object = object;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Accounts() {
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPhoto() {

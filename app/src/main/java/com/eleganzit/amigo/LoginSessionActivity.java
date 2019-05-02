@@ -4,43 +4,68 @@ import android.content.Intent;
 
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.eleganzit.amigo.adapter.AccountsAdapter;
+import com.eleganzit.amigo.databinding.ActivityLoginSessionBinding;
 import com.eleganzit.amigo.model.Accounts;
+import com.eleganzit.amigo.session.LoggedInPreferences;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LoginSessionActivity extends AppCompatActivity {
 
-    RecyclerView rc_accounts;
     ArrayList<Accounts> arrayList=new ArrayList<>();
-    LinearLayout signup,signin_another;
+
+ActivityLoginSessionBinding binding;
+    LoggedInPreferences loggedInPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_session);
+        binding= DataBindingUtil.setContentView(LoginSessionActivity.this,R.layout.activity_login_session);
 
-        rc_accounts=findViewById(R.id.rc_accounts);
-        signup=findViewById(R.id.signup);
-        signin_another=findViewById(R.id.signin_another);
+        loggedInPreferences=new LoggedInPreferences(LoginSessionActivity.this);
+
 
         RecyclerView.LayoutManager layoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        rc_accounts.setLayoutManager(layoutManager);
+        binding.rcAccounts.setLayoutManager(layoutManager);
 
-        Accounts accounts=new Accounts("","");
-        arrayList.add(accounts);
-        arrayList.add(accounts);
-        arrayList.add(accounts);
 
-        rc_accounts.setAdapter(new AccountsAdapter(arrayList,this));
-        signup.setOnClickListener(new View.OnClickListener() {
+        if (loggedInPreferences.getAll().isEmpty())
+        {
+              startActivity(new Intent(LoginSessionActivity.this,LoginActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                finish();
+
+
+        }else
+        {
+            Map<String, ?> allEntries = loggedInPreferences.getAll();
+            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                Log.d("map values", entry.getKey() + ": " + entry.getValue().toString());
+                Accounts accounts=new Accounts(entry.getKey(),entry.getValue().toString());
+
+
+                arrayList.add(accounts);
+
+            }
+
+        }
+
+
+
+        binding.rcAccounts.setAdapter(new AccountsAdapter(arrayList,this));
+        binding.signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginSessionActivity.this,RegistrationActivity.class));
@@ -48,7 +73,7 @@ public class LoginSessionActivity extends AppCompatActivity {
             }
         });
 
-        signin_another.setOnClickListener(new View.OnClickListener() {
+        binding.signinAnother.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginSessionActivity.this, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));

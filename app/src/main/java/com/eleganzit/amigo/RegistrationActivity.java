@@ -519,6 +519,7 @@ if (isValid6())
             binding.fab4.next4.setVisibility(View.GONE);
             binding.fab5.next5.setVisibility(View.GONE);
             binding.fab6.next6.setVisibility(View.GONE);
+            binding.fab6.fabProgressCircle.setVisibility(View.GONE);
         }
         else if(binding.registerInput3.registerInput3.getVisibility()==View.VISIBLE)
         {
@@ -535,6 +536,8 @@ if (isValid6())
             binding.fab4.next4.setVisibility(View.GONE);
             binding.fab5.next5.setVisibility(View.GONE);
             binding.fab6.next6.setVisibility(View.GONE);
+            binding.fab6.fabProgressCircle.setVisibility(View.GONE);
+
         }
         else if(binding.registerInput4.registerInput4.getVisibility()==View.VISIBLE)
         {
@@ -551,6 +554,8 @@ if (isValid6())
             binding.fab4.next4.setVisibility(View.GONE);
             binding.fab5.next5.setVisibility(View.GONE);
             binding.fab6.next6.setVisibility(View.GONE);
+            binding.fab6.fabProgressCircle.setVisibility(View.GONE);
+
         }
         else if(binding.registerInput5.registerInput5.getVisibility()==View.VISIBLE)
         {
@@ -567,6 +572,8 @@ if (isValid6())
             binding.fab4.next4.setVisibility(View.VISIBLE);
             binding.fab5.next5.setVisibility(View.GONE);
             binding.fab6.next6.setVisibility(View.GONE);
+            binding.fab6.fabProgressCircle.setVisibility(View.GONE);
+
         }
         else if(binding.registerInput6.registerInput6.getVisibility()==View.VISIBLE)
         {
@@ -583,6 +590,8 @@ if (isValid6())
             binding.fab4.next4.setVisibility(View.GONE);
             binding.fab5.next5.setVisibility(View.VISIBLE);
             binding.fab6.next6.setVisibility(View.GONE);
+            binding.fab6.fabProgressCircle.setVisibility(View.GONE);
+
         }
 
     }

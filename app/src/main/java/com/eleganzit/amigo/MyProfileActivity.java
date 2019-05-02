@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.eleganzit.amigo.adapter.OpportunityAdapter;
 import com.eleganzit.amigo.adapter.UserNewsFeedAdapter;
 import com.eleganzit.amigo.api.RetrofitAPI;
@@ -20,8 +21,10 @@ import com.eleganzit.amigo.model.GetLoginResponse;
 import com.eleganzit.amigo.model.GetStateResponse;
 import com.eleganzit.amigo.model.LoginData;
 import com.eleganzit.amigo.model.NewsFeedData;
+import com.eleganzit.amigo.session.UserLoggedInSession;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -37,11 +40,21 @@ public class MyProfileActivity extends AppCompatActivity {
     ArrayList<NewsFeedData> dataArrayList=new ArrayList<>();
     ArrayList<String> imgArrayList=new ArrayList<>();
     ActivityMyProfileBinding binding;
-
+    UserLoggedInSession userLoggedInSession;
+String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          binding= DataBindingUtil.setContentView(MyProfileActivity.this,R.layout.activity_my_profile);
+        userLoggedInSession=new UserLoggedInSession(this);
+
+        HashMap<String,String> hashMap=userLoggedInSession.getUserDetails();
+        username=hashMap.get(UserLoggedInSession.USERNAME);
+        binding.username.setText(username);
+        Glide.with(this).load(hashMap.get(UserLoggedInSession.PHOTO)).into(binding.userphoto);
+
+
+
 
 
         tab_photos=findViewById(R.id.tab_photos);

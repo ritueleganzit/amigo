@@ -31,6 +31,7 @@ import com.eleganzit.amigo.fragments.MyPhotosFragment;
 import com.eleganzit.amigo.fragments.MyProfileFragment;
 import com.eleganzit.amigo.fragments.NotificationsFragment;
 import com.eleganzit.amigo.fragments.ViewPostFragment;
+import com.eleganzit.amigo.session.UserLoggedInSession;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -59,6 +60,7 @@ public class NewsFeedActivity extends AppCompatActivity {
     private static final int MY_STORAGE_PERMISSION_CODE = 200;
     String imageFilePath;
     private static final int REQUEST_CAPTURE_IMAGE = 100;
+    UserLoggedInSession userLoggedInSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class NewsFeedActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+userLoggedInSession=new UserLoggedInSession(NewsFeedActivity.this);
 
         news_feed_toolbar=findViewById(R.id.news_feed_toolbar);
         view_post_toolbar=findViewById(R.id.view_post_toolbar);

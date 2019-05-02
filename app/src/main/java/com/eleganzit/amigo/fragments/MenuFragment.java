@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.bumptech.glide.Glide;
 import com.eleganzit.amigo.CalendarActivity;
 import com.eleganzit.amigo.CampaignsActivity;
 import com.eleganzit.amigo.DonationsActivity;
@@ -26,6 +27,10 @@ import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.ReferEntityActivity;
 import com.eleganzit.amigo.SendFeedbackActivity;
 import com.eleganzit.amigo.SettingsActivity;
+import com.eleganzit.amigo.databinding.FragmentMenuBinding;
+import com.eleganzit.amigo.session.UserLoggedInSession;
+
+import java.util.HashMap;
 
 import androidx.fragment.app.Fragment;
 
@@ -34,18 +39,27 @@ import androidx.fragment.app.Fragment;
  */
 public class MenuFragment extends Fragment {
 
+    FragmentMenuBinding fragmentMenuBinding;
 
     public MenuFragment() {
         // Required empty public constructor
     }
-    RelativeLayout header;
-    LinearLayout lin_events,lin_opportunity,lin_following,lin_donation,lin_calendar,lin_help,lin_settings,lin_logout;
+    UserLoggedInSession userLoggedInSession;
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+        fragmentMenuBinding=FragmentMenuBinding.inflate(inflater, container, false);
         // Inflate the layout for this fragment
-        View v=inflater.inflate(R.layout.fragment_menu, container, false);
+        userLoggedInSession=new UserLoggedInSession(getActivity());
+        HashMap<String,String> hashMap=userLoggedInSession.getUserDetails();
+        username=hashMap.get(UserLoggedInSession.USERNAME);
+        fragmentMenuBinding.eventName.setText(username);
+        Glide.with(this).load(hashMap.get(UserLoggedInSession.PHOTO)).into(fragmentMenuBinding.profilePic);
+
 
         NewsFeedActivity.news_feed_toolbar.setVisibility(View.VISIBLE);
         NewsFeedActivity.view_post_toolbar.setVisibility(View.GONE);
@@ -55,17 +69,8 @@ public class MenuFragment extends Fragment {
         NewsFeedActivity.btm_notification.setImageResource(R.mipmap.notification_gray);
         NewsFeedActivity.btm_menu.setImageResource(R.drawable.menu_green);
 
-        header=v.findViewById(R.id.header);
-        lin_events=v.findViewById(R.id.lin_events);
-        lin_opportunity=v.findViewById(R.id.lin_opportunity);
-        lin_following=v.findViewById(R.id.lin_following);
-        lin_donation=v.findViewById(R.id.lin_donation);
-        lin_calendar=v.findViewById(R.id.lin_calendar);
-        lin_help=v.findViewById(R.id.lin_help);
-        lin_settings=v.findViewById(R.id.lin_settings);
-        lin_logout=v.findViewById(R.id.lin_logout);
 
-        header.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.header.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), MyProfileActivity.class));
@@ -73,14 +78,14 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_events.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        lin_opportunity.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linOpportunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), OpportunityActivity.class));
@@ -88,7 +93,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_following.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), FollowingActivity.class));
@@ -96,7 +101,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_donation.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), DonationsActivity.class));
@@ -104,7 +109,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_calendar.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), CalendarActivity.class));
@@ -112,7 +117,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_help.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), HelpSupportActivity.class));
@@ -120,7 +125,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_settings.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
@@ -128,15 +133,15 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        lin_logout.setOnClickListener(new View.OnClickListener() {
+        fragmentMenuBinding.linLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), LoginSessionActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                userLoggedInSession.logoutUser();
+
             }
         });
 
-        return v;
+        return fragmentMenuBinding.getRoot();
     }
 
 }
