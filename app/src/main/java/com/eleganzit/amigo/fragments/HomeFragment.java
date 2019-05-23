@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
         imgArrayList.add("https://i.ytimg.com/vi/2SAPrPZVTjs/hqdefault.jpg");
         imgArrayList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyu82j_yYelLzJd2tVDqHZmCXRFVyOcDt2wwr5Zfb8JvREdu1");
 
-        NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
+ /*       NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
 
         if(dataArrayList.size()>0)
         {
@@ -79,7 +79,7 @@ public class HomeFragment extends Fragment {
         dataArrayList.add(newsFeedData);
         dataArrayList.add(newsFeedData);
 
-        home_posts.setAdapter(new UserNewsFeedAdapter(dataArrayList,getActivity()));
+        home_posts.setAdapter(new UserNewsFeedAdapter(dataArrayList,getActivity()));*/
 
         return v;
     }

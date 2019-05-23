@@ -61,7 +61,7 @@ public class OpportunityAdapter extends RecyclerView.Adapter<OpportunityAdapter.
 //        {
 //            photos.add(newsFeedData.getArrayList().get(j));
 //        }
-        holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context,"opportunity"));
+        //holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context,"opportunity"));
 
     }
 

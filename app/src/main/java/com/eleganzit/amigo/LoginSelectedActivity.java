@@ -138,7 +138,7 @@ public class LoginSelectedActivity extends AppCompatActivity {
 
                         List<LoginData> loginData=response.body().getData();
 
-                        Log.d(TAG,""+loginData.get(0).getFullname());
+                        Log.d(TAG,""+loginData.get(0).getUserId());
                         for (int i=0;i<loginData.size();i++)
                         {
                             LoginData loginData1=loginData.get(i);

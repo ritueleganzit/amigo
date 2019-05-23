@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewsFeedActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:contentInsetRight="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetEnd="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetStart="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/camera_white"/>
+
+            <EditText
+                android:id="@+id/ed_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search"
+                android:singleLine="true"
+                android:focusable="false"
+                android:cursorVisible="false"
+                android:drawableLeft="@drawable/search_gray"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:padding="4dp"
+                android:layout_toLeftOf="@+id/notification"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/camera"
+                android:background="@drawable/search_bg"/>
+
+            <RelativeLayout
+                android:id="@+id/notification"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_toLeftOf="@+id/chat"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/notification_bell"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/notification_white"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"
+                    android:layout_margin="8dp"
+                    android:textSize="10sp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center"
+                    android:background="@drawable/notification_count"
+                    android:textColor="#fff"/>
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/chat_white"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/news_feed_scroll"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/bottombar"
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:descendantFocusability="blocksDescendants">
+
+            <LinearLayout
+                android:id="@+id/ngo_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="#d7d7d7"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_ngo"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray"
+                    android:text="NGO's"
+                    />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_ngos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <RelativeLayout
+                android:id="@+id/ngo_seeAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="SEE ALL"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/events_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:background="#d7d7d7"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_event"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray"
+                    android:text="Events"
+                    />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_events"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+            <RelativeLayout
+                android:id="@+id/event_seeAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="SEE ALL"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/volunteers_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#d7d7d7"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_volunteer" />
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volunteers"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_volunteer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <RelativeLayout
+                android:id="@+id/volunteer_seeAll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_centerInParent="true"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                    android:text="SEE ALL"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/all_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/colorBackground"
+        android:orientation="vertical">
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/search_account_shimmerLayout"
+            android:layout_width="match_parent"
+            android:background="@color/colorBackground"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/search_account_shimmer_layout"/>
+                <include layout="@layout/search_account_shimmer_layout"/>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/search_event_shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/search_account_shimmerLayout"
+            android:layout_marginTop="35dp"
+            android:background="@color/colorBackground"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/event_small_shimmer_layout"/>
+                <include layout="@layout/event_small_shimmer_layout"/>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/search_account_shimmerLayout2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="35dp"
+            android:background="@color/colorBackground"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/search_account_shimmer_layout"/>
+                <include layout="@layout/search_account_shimmer_layout"/>
+                <include layout="@layout/search_account_shimmer_layout"/>
+                <include layout="@layout/search_account_shimmer_layout"/>
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_results_layout"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:background="#ffffff"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/no_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="No Result"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/search_img"/>
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_search" />
+
+
+    </RelativeLayout>
+
+    <include layout="@layout/errorlayout"/>
+
+</RelativeLayout>

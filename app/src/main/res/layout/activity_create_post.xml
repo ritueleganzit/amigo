@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -65,9 +66,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/layout_create_post" />
+    <include layout="@layout/layout_create_post"
+        android:id="@+id/layout_create_post"/>
 
     <!-- Adding bottom sheet after main content -->
-    <include layout="@layout/create_post_bottom_sheet" />
+    <include layout="@layout/create_post_bottom_sheet"
+        android:id="@+id/create_post_bottom_sheet"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

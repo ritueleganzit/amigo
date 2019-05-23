@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<layout>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -48,7 +48,18 @@
                 android:layout_toRightOf="@+id/back" />
 
             <ImageView
+                android:id="@+id/rc_add_eventss"
+                android:layout_alignParentRight="true"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/megaphone"
+                android:src="@mipmap/add_white"/>
+
+            <ImageView
                 android:id="@+id/megaphone"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -57,6 +68,7 @@
 
             <ImageView
                 android:id="@+id/filter"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -64,6 +76,7 @@
                 android:src="@mipmap/filter_icon"/>
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,9 +94,49 @@
         android:id="@+id/rc_events"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
-        android:background="#CFD0D4"
+        android:background="#ffffff"
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <RelativeLayout
+        android:id="@+id/relrefresh"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:layout_below="@+id/progressbar">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/refresh"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_refresh"/>
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/refresh"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:text="Please try again"/>
+
+    </RelativeLayout>
+    <ProgressBar
+        android:indeterminate="true"
+        android:layout_marginTop="-5dp"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+        android:layout_below="@+id/toolbar"
+        />
+
+
+    <include layout="@layout/errorlayout"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/error"> </include>
+
 </RelativeLayout>
+</layout>

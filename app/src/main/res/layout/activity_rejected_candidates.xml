@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -50,6 +51,7 @@
     </androidx.appcompat.widget.Toolbar>
 
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_candidates"
         android:layout_width="match_parent"
@@ -58,7 +60,22 @@
         android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
-
+    <ProgressBar
+        android:indeterminate="true"
+        android:layout_marginTop="-5dp"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressbar"
+        android:layout_below="@+id/toolbar"
+        />
+    <include layout="@layout/errorlayout"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:id="@+id/error"> </include>
 
 
 </RelativeLayout>
+</layout>

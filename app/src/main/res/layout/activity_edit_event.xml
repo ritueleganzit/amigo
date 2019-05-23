@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:contentInsetRight="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetEnd="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetStart="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/angle_arrow_back"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:id="@+id/ed_search"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Event"
+                    android:padding="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/back" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <ScrollView
+            android:id="@+id/news_feed_scroll"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/bottombar"
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:scrollbars="none"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#CFD0D4"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:gravity="center"
+                    android:background="#ffffff"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/lin_add_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:background="@drawable/dotted_border_rectangle"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:gravity="center"
+
+
+                            android:layout_margin="10dp"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/add_icon_black"
+                                />
+
+                            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:textColor="@color/darkGray"
+                                android:text="ADD IMAGE"
+                                />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:scaleType="centerCrop"
+                            android:id="@+id/image_opportunity"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/un_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="#ffffff">
+
+                        <EditText
+                            android:id="@+id/ed_event_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="EVENT NAME"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="1dp">
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="#ffffff">
+
+                            <EditText
+                                android:id="@+id/ed_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="EVENT DATE"
+                                android:focusable="false"
+                                android:textColor="#000000"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                android:imeOptions="actionNext"
+                                android:inputType="textEmailAddress"
+                                android:singleLine="true" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="3dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/calendar_dark"/>
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="#ffffff">
+
+                        <EditText
+                            android:id="@+id/ed_event_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="EVENT TIME"
+                            android:focusable="false"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_marginTop="1dp"
+                        android:background="#ffffff"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:paddingLeft="11dp"
+                            android:paddingRight="10dp"
+                            android:paddingTop="4dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+
+                            android:layout_weight="1"
+                            android:paddingBottom="4dp"
+                            android:textColor="#9b9b9b"
+                            android:layout_height="wrap_content"
+                            android:text="SELECT LOCATION"/>
+                        <com.eleganzit.amigo.utils.TextViewRobotoBold
+                            android:layout_width="wrap_content"
+                            android:text="SELECT"
+                            android:gravity="end"
+                            android:paddingLeft="10dp"
+                            android:id="@+id/select_location"
+                            android:paddingRight="12dp"
+                            android:paddingTop="4dp"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+
+                            android:layout_weight="1"
+                            android:paddingBottom="4dp"
+                            android:textColor="#3f7c37"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="4dp"
+                        android:layout_marginTop="1dp"
+                        android:paddingBottom="4dp"
+                        android:background="#ffffff">
+
+                        <EditText
+                            android:id="@+id/ed_event_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="ENTER ADDRESS"
+
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="#ffffff">
+
+                        <EditText
+                            android:id="@+id/ed_event_detais"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="EVENT DETAILS"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp"
+                        android:background="#ffffff">
+
+                        <EditText
+                            android:id="@+id/ed_co_host"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="CO-HOST"
+                            android:textColor="#000000"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress"
+                            android:singleLine="true" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:id="@+id/progress"
+                    android:visibility="gone"
+                    android:layout_margin="12dp"
+                    android:padding="2dp"
+                    android:background="@drawable/rounded_green_bg"
+                    android:layout_gravity="center">
+                    <ProgressBar
+                        android:indeterminateTint="@android:color/white"
+
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:id="@+id/create_opportunity"
+                    android:layout_margin="12dp"
+                    android:padding="2dp"
+                    android:background="@drawable/rounded_green_bg"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/save_icon"/>
+
+                    <com.eleganzit.amigo.utils.TextViewRobotoBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:text="Create Event"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+    </RelativeLayout>
+</layout>

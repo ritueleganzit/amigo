@@ -1,17 +1,23 @@
 package com.eleganzit.amigo;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.text.Editable;
 
 import android.text.Html;
@@ -32,6 +38,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -42,45 +49,75 @@ import com.eleganzit.amigo.adapter.MentionsAdapter;
 import com.eleganzit.amigo.adapter.MentionsRecyclerAdapter;
 import com.eleganzit.amigo.adapter.SearchPlacesAdapter;
 import com.eleganzit.amigo.adapter.ViewPhotosAdapter;
+import com.eleganzit.amigo.api.RetrofitAPI;
+import com.eleganzit.amigo.api.RetrofitInterface;
+import com.eleganzit.amigo.databinding.ActivityCreatePostBinding;
+import com.eleganzit.amigo.model.CreatePost;
+import com.eleganzit.amigo.model.CreatePostResponse;
 import com.eleganzit.amigo.model.PagesData;
 import com.eleganzit.amigo.model.PhotosData;
 import com.eleganzit.amigo.model.PlacesData;
 import com.eleganzit.amigo.model.UsersData;
+import com.eleganzit.amigo.session.UserLoggedInSession;
+import com.eleganzit.amigo.uploadMultupleImage.CallAPiActivity;
+import com.eleganzit.amigo.uploadMultupleImage.GetResponse;
 import com.eleganzit.amigo.utils.KeyBoardEvent;
 import com.eleganzit.amigo.utils.TextViewRobotoBold;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocomplete;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
 import com.hendraanggrian.appcompat.widget.SocialAutoCompleteTextView;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import me.nereo.multi_image_selector.MultiImageSelector;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener {
 
-    SocialAutoCompleteTextView ed_status;
-    LinearLayout add_photo, add_tag, add_location;
+    private static final String TAG = "CreatePostActivity";
+    private ArrayList<String> mSelectPath;
+    private static final int PLACE_PICKER_REQUEST2 = 1001;
+
+ProgressDialog progressDialog;
+    LinearLayout  add_tag;
     private static final int SELECT_PICTURE = 100;
     CoordinatorLayout parent;
     String imageFilePath;
-    LinearLayout persistantBottomSheet;
     LinearLayout view_photos_layout, locations_layout;
     RecyclerView rc_view_photos, rc_locations;
     BottomSheetBehavior sheetBehavior;
-    LinearLayout layoutBottomSheet, privacy;
+    LinearLayout layoutBottomSheet;
     ArrayList<UsersData> addeduserslist = new ArrayList<>();
     RecyclerView rc_untagged, rc_tagged;
-    ImageView remove_all, post_photo, send_post;
     RelativeLayout rel_tagged;
     CardView card_mentions;
     private RecyclerView recyclerView;
@@ -92,7 +129,57 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     LinearLayout add;
     RecyclerView rc_photos;
     ArrayList<PhotosData> ar_photos = new ArrayList<>();
-    String mediapath;
+    String mediapath,user_id,profilePic,fullname,post_status="",lat,lng;
+
+
+
+
+    //
+    private static final int REQUEST_IMAGE = 201;
+    protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 202;
+    CallAPiActivity callAPiActivity;
+
+
+    ArrayList<String> str_photo_array=new ArrayList<>();
+
+
+    UserLoggedInSession userLoggedInSession;
+
+    private void pickImage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN // Permission was added in API Level 16
+                && ActivityCompat.checkSelfPermission(CreatePostActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                    getString(R.string.mis_permission_rationale),
+                    REQUEST_STORAGE_READ_ACCESS_PERMISSION);
+        } else {
+
+            MultiImageSelector selector = MultiImageSelector.create(CreatePostActivity.this);
+            selector.multi();
+            selector.count(6);
+            selector.showCamera(false);
+
+            selector.origin(mSelectPath);
+            selector.start(CreatePostActivity.this, REQUEST_IMAGE);
+        }
+    }
+    private void requestPermission(final String permission, String rationale, final int requestCode) {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(CreatePostActivity.this, permission)) {
+            new AlertDialog.Builder(CreatePostActivity.this)
+                    .setTitle(R.string.mis_permission_dialog_title)
+                    .setMessage(rationale)
+                    .setPositiveButton(R.string.mis_permission_dialog_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(CreatePostActivity.this, new String[]{permission}, requestCode);
+                        }
+                    })
+                    .setNegativeButton(R.string.mis_permission_dialog_cancel, null)
+                    .create().show();
+        } else {
+            ActivityCompat.requestPermissions(CreatePostActivity.this, new String[]{permission}, requestCode);
+        }
+    }
 
     @Override
     protected void onResume() {
@@ -102,24 +189,91 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         editor = preferences.edit();
 
         Log.d("preferences", preferences.getString("post_privacy", "Public") + "");
-
+post_status=""+preferences.getString("post_privacy", "Public");
         txt_privacy.setText(preferences.getString("post_privacy", "Public") + "");
 
+
+
+        binding.sendPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!(binding.layoutCreatePost.edStatus.getText().toString().isEmpty()) &&   (str_photo_array.size()>0)){
+
+
+                    addPost();
+
+                }
+
+            }
+        });
     }
+
+    private void addPost() {
+        progressDialog.show();
+        HashMap<String, String> map = new HashMap<>();
+
+        map.put("type", txt_privacy.getText().toString() + "");
+        map.put("user_id", user_id);
+        map.put("content", binding.layoutCreatePost.edStatus.getText().toString());
+        map.put("tag_user_id", "1,2");
+        callAPiActivity.doPostWithFiles(CreatePostActivity.this, map, "http://itechgaints.com/Volunteerify-API/addUserpost", str_photo_array, "photo_url[]", new GetResponse() {
+            @Override
+            public void onSuccesResult(JSONObject result) throws JSONException {
+                progressDialog.dismiss();
+                if (result.getString("status").equalsIgnoreCase("1"))
+                {
+                    finish();
+                   // startActivity(new Intent(CreatePostActivity.this,));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    Toast.makeText(CreatePostActivity.this, "successfully uploaded", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailureResult(JSONObject result) throws JSONException {
+                progressDialog.dismiss();
+                Toast.makeText( CreatePostActivity.this, "Server Error"+result.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onException(String message) throws JSONException {
+
+            }
+        });
+    }
+
+    ActivityCreatePostBinding binding;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_post);
-
-        ImageView back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+        binding= DataBindingUtil.setContentView(CreatePostActivity.this,R.layout.activity_create_post);
+        binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+        userLoggedInSession=new UserLoggedInSession(CreatePostActivity.this);
+        callAPiActivity = new CallAPiActivity(this);
+
+
+        progressDialog=new ProgressDialog(CreatePostActivity.this);
+progressDialog.setCancelable(false);
+progressDialog.setCanceledOnTouchOutside(false);
+progressDialog.setMessage("Please Wait");
+        HashMap<String,String> map=userLoggedInSession.getUserDetails();
+        user_id=map.get(UserLoggedInSession.USER_ID);
+        profilePic=map.get(UserLoggedInSession.PHOTO);
+fullname=map.get(UserLoggedInSession.FNAME);
+
+
+
+binding.layoutCreatePost.userName.setText(fullname);
+                Glide.with(CreatePostActivity.this)
+                        .load(profilePic).apply(RequestOptions.circleCropTransform()).into( binding.layoutCreatePost.profilePic);
 
         imageFilePath = getIntent().getStringExtra("imageFilePath");
 
@@ -131,8 +285,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             ar_photos = (ArrayList<PhotosData>) extra.getSerializable("objects");
         }
 
-        send_post = findViewById(R.id.send_post);
-        post_photo = findViewById(R.id.post_photo);
+
         txt_privacy = findViewById(R.id.txt_privacy);
         txt_with = findViewById(R.id.txt_with);
 
@@ -140,22 +293,17 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         add = findViewById(R.id.add);
         rc_photos = findViewById(R.id.rc_photos);
         parent = findViewById(R.id.parent);
-        ed_status = findViewById(R.id.ed_status);
-        add_photo = findViewById(R.id.add_photo);
         add_tag = findViewById(R.id.add_tag);
-        add_location = findViewById(R.id.add_location);
         rc_untagged = findViewById(R.id.rc_untagged);
         rc_tagged = findViewById(R.id.rc_tagged);
-        remove_all = findViewById(R.id.remove_all);
         rel_tagged = findViewById(R.id.rel_tagged);
-        privacy = findViewById(R.id.privacy);
+
         layoutBottomSheet = findViewById(R.id.bottom_sheet);
         view_photos_layout = findViewById(R.id.view_photos_layout);
         locations_layout = findViewById(R.id.locations_layout);
         rc_view_photos = findViewById(R.id.rc_view_photos);
         rc_locations = findViewById(R.id.rc_locations);
         //sheetBehavior = BottomSheetBehavior.from(layoutBottomSheet);
-        persistantBottomSheet = findViewById(R.id.persistantBottomSheet);
 
         rc_photos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,7 +312,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        sheetBehavior = BottomSheetBehavior.from(persistantBottomSheet);
+        sheetBehavior = BottomSheetBehavior.from(binding.createPostBottomSheet.persistantBottomSheet);
 
         FlexboxLayoutManager layoutManager1 = new FlexboxLayoutManager(this);
         layoutManager1.setFlexDirection(FlexDirection.ROW);
@@ -264,7 +412,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         }
 
-        send_post.setOnClickListener(new View.OnClickListener() {
+        binding.sendPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
@@ -272,7 +420,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        ed_status.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        binding.layoutCreatePost.edStatus.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if (b) {
@@ -283,7 +431,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        ed_status.setOnClickListener(new View.OnClickListener() {
+        binding.layoutCreatePost.edStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -291,7 +439,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        privacy.setOnClickListener(new View.OnClickListener() {
+        binding.layoutCreatePost.privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CreatePostActivity.this, SelectPrivacyActivity.class));
@@ -346,7 +494,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
                 //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                persistantBottomSheet.setVisibility(View.GONE);
+                binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.GONE);
                 add.setVisibility(View.VISIBLE);
 
                 layoutBottomSheet.setVisibility(View.VISIBLE);
@@ -361,20 +509,30 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        add_location.setOnClickListener(new View.OnClickListener() {
+        binding.createPostBottomSheet.addLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 //sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                 sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                persistantBottomSheet.setVisibility(View.GONE);
-                add.setVisibility(View.VISIBLE);
+                //binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.GONE);
+                /*add.setVisibility(View.VISIBLE);
 
                 locations_layout.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInUp)
                         .duration(300)
                         .repeat(0)
-                        .playOn(locations_layout);
+                        .playOn(locations_layout);*/
+                Intent intent = null;
+                try {
+                    intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
+                            .build(CreatePostActivity.this);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+                startActivityForResult(intent, PLACE_PICKER_REQUEST2);
               /*  BottomSheetDialog mBottomSheetDialog = new BottomSheetDialog(CreatePostActivity.this);
                 View sheetView = getLayoutInflater().inflate(R.layout.tags_bottom_sheet, null);
                 mBottomSheetDialog.setContentView(sheetView);
@@ -423,7 +581,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         mentionAdapter.add(pagesData5);
         mentionAdapter.add(pagesData6);
 
-        ed_status.addTextChangedListener(new TextWatcher() {
+        binding.layoutCreatePost.edStatus.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -555,10 +713,10 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
             }
         });
 
-        add_photo.setOnClickListener(new View.OnClickListener() {
+        binding.createPostBottomSheet.addPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openImageChooser();
+                pickImage();
             }
         });
 
@@ -591,29 +749,29 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             if (photos.size() >= 5) {
                 if (i < 2) {
-                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
                 } else {
-                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
-                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
-                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
-                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 3;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 3;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 3;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 3;
                 }
-                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-                );
-                Resources r = context.getResources();
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        1,
-                        r.getDisplayMetrics()
-                );
-                params.setMargins(px, 0, px, px);
-                holder.rel_main.setLayoutParams(params);
-
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            );
+            Resources r = context.getResources();
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    1,
+                    r.getDisplayMetrics()
+            );
+            params.setMargins(px, 0, px, px);
+            holder.rel_main.setLayoutParams(params);
+*/
             }
             if (photos.size() == 1) {
 
@@ -622,84 +780,84 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity);
                 holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity);
 
-                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-                );
-                params.setMargins(0, 0, 0, 0);
-                holder.rel_main.setLayoutParams(params);
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            );
+            params.setMargins(0, 0, 0, 0);
+            holder.rel_main.setLayoutParams(params);*/
             }
             if (photos.size() == 2) {
 
-                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
+                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
+                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
 
-                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-                );
-                Resources r = context.getResources();
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        12 / 10,
-                        r.getDisplayMetrics()
-                );
-                params.setMargins(0, 0, px, 0);
-                holder.rel_main.setLayoutParams(params);
+           /* FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            );
+            Resources r = context.getResources();
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    1,
+                    r.getDisplayMetrics()
+            );
+            params.setMargins(0, 0, px, 0);
+            holder.rel_main.setLayoutParams(params);*/
             }
             if (photos.size() == 3) {
 
                 if (i < 1) {
                     holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity);
-                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
                     holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity);
-                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
                 } else {
-                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 202;
-                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 202;
+                    holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                    holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
+                    holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                    holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
                 }
-                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-                );
-                Resources r = context.getResources();
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        1,
-                        r.getDisplayMetrics()
-                );
-                params.setMargins(px, 0, px, px);
-                holder.rel_main.setLayoutParams(params);
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            );
+            Resources r = context.getResources();
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    1,
+                    r.getDisplayMetrics()
+            );
+            params.setMargins(px, 0, px, px);
+            holder.rel_main.setLayoutParams(params);*/
             }
             if (photos.size() == 4) {
 
-                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 201;
-                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 201;
-                FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
-                        FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
-                );
-                Resources r = context.getResources();
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        12 / 10,
-                        r.getDisplayMetrics()
-                );
-                params.setMargins(px, 0, px, px);
-                holder.rel_main.setLayoutParams(params);
+                holder.feed_photo.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                holder.feed_photo.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
+                holder.rel_main.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 2;
+                holder.rel_main.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 2;
+            /*FlexboxLayoutManager.LayoutParams params = new FlexboxLayoutManager.LayoutParams(
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT,
+                    FlexboxLayoutManager.LayoutParams.WRAP_CONTENT
+            );
+            Resources r = context.getResources();
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    1,
+                    r.getDisplayMetrics()
+            );
+            params.setMargins(px, 0, px, px);
+            holder.rel_main.setLayoutParams(params);*/
             }
             if (photos.size() > 5) {
                 if (i == 4) {
                     holder.pframe.setVisibility(View.VISIBLE);
                     holder.plus_count.setText("+" + (photos.size() - 5));
-                    holder.pframe.getLayoutParams().width = getScreenWidthInPXs(context, activity) * 100 / 304;
-                    holder.pframe.getLayoutParams().height = getScreenWidthInPXs(context, activity) * 100 / 304;
+                    holder.pframe.getLayoutParams().width = getScreenWidthInPXs(context, activity) / 3;
+                    holder.pframe.getLayoutParams().height = getScreenWidthInPXs(context, activity) / 3;
                 }
             }
             Glide
@@ -712,7 +870,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 public void onClick(View view) {
                     if (ar_photos.size() > 1) {
                         view_photos_layout.setVisibility(View.VISIBLE);
-                        persistantBottomSheet.setVisibility(View.GONE);
+                        binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.GONE);
                         YoYo.with(Techniques.SlideInUp)
                                 .duration(300)
                                 .repeat(0)
@@ -777,27 +935,8 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
             if (requestCode == SELECT_PICTURE) {
                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
-/*
-                if(data.getData()!=null) {
-                    Uri selectedImage = data.getData();
+                Log.d("LOG_TAG", "Selected Images  1" + ar_photos.size());
 
-                    Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-                    assert cursor != null;
-                    cursor.moveToFirst();
-                    int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    mediapath = cursor.getString(clumnIndex);
-
-                    PhotosData photosData = new PhotosData("", mediapath);
-                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                    add.setVisibility(View.VISIBLE);
-                    ar_photos.add(photosData);
-                    rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
-                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
-                    Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
-
-                }
-                else {*/
                 if (data.getClipData() != null) {
                     ClipData mClipData = data.getClipData();
                     ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
@@ -813,8 +952,10 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
 
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                         mediapath = cursor.getString(columnIndex);
+                        Log.d("LOG_TAG", "Selected Images 1.5" + mediapath);
                         PhotosData photosData = new PhotosData("", mediapath);
                         ar_photos.add(photosData);
+                        str_photo_array.add(mediapath);
                         sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
                         add.setVisibility(View.VISIBLE);
                         rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
@@ -822,16 +963,92 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         cursor.close();
 
                     }
-                    Log.d("LOG_TAG", "Selected Images" + mArrayUri.size());
+                    Log.d("LOG_TAG", "Selected Images 2" + mArrayUri.size());
+                } else if (data.getData() != null) {
+                    Uri selectedImage = data.getData();
+
+                    Cursor cursor = getApplicationContext().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+                    assert cursor != null;
+                    cursor.moveToFirst();
+                    int clumnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    mediapath = cursor.getString(clumnIndex);
+
+                    PhotosData photosData = new PhotosData("", mediapath);
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    add.setVisibility(View.VISIBLE);
+                    ar_photos.add(photosData);
+                    str_photo_array.add(mediapath);
+                    rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+                    Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+
                 }
-                Log.d("LOG_TAG", "Selected Images" + ar_photos.size());
+                Log.d("LOG_TAG", "Selected Images 3" + ar_photos.size());
 
-                /* }*/
             }
-        }
-        if (resultCode == RESULT_CANCELED) {
 
-        }
+
+                if (requestCode == REQUEST_IMAGE) {
+                    if (resultCode == Activity.RESULT_OK) {
+                        mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
+                        StringBuilder sb = new StringBuilder();
+                        for (String p : mSelectPath) {
+                            sb.append(p);
+                            sb.append("\n");
+                        }
+
+
+                        mediapath = sb.toString().trim();
+                        Log.d("LOG_TAG", "Selected Images 1.5" + mediapath);
+                        for (int i = 0; i < mSelectPath.size(); i++) {
+                            PhotosData photosData = new PhotosData("", mSelectPath.get(i));
+                            ar_photos.add(photosData);
+                            str_photo_array.add(mSelectPath.get(i));
+                        }
+
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        add.setVisibility(View.VISIBLE);
+                        rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                        rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+
+                        Log.d("mediapathhhhhhhh", "" + mediapath);
+                    }
+                }
+            if (requestCode == PLACE_PICKER_REQUEST2) {
+                if (resultCode == RESULT_OK) {
+                    binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
+
+                    Place place = PlacePicker.getPlace(data, this);
+                    String toastMsg = String.format("%s", place.getName());
+                    LatLng latLng=place.getLatLng();
+
+                    lat=""+latLng.latitude;
+                    lng=""+latLng.longitude;
+                    Log.d(TAG,""+latLng.latitude);
+                    Log.d(TAG,""+latLng.longitude);
+                    if (toastMsg.equalsIgnoreCase(""))
+                    {
+
+                    }
+                    else {
+
+                    }
+
+
+
+                }
+                else {
+                    binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
+
+
+                    //    Toast.makeText(this, "Close", Toast.LENGTH_SHORT).show();
+                }
+            }
+            }
+            if (resultCode == RESULT_CANCELED) {
+                binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
+
+            }
 
     }
 
@@ -847,21 +1064,21 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                     .repeat(0)
                     .playOn(layoutBottomSheet);
             layoutBottomSheet.setVisibility(View.GONE);
-            persistantBottomSheet.setVisibility(View.VISIBLE);
+            binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
         } else if (view_photos_layout.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(view_photos_layout);
             view_photos_layout.setVisibility(View.GONE);
-            persistantBottomSheet.setVisibility(View.VISIBLE);
+            binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
         } else if (locations_layout.getVisibility() == View.VISIBLE) {
             YoYo.with(Techniques.SlideOutDown)
                     .duration(400)
                     .repeat(0)
                     .playOn(locations_layout);
             locations_layout.setVisibility(View.GONE);
-            persistantBottomSheet.setVisibility(View.VISIBLE);
+            binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
         } else {
             super.onBackPressed();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -872,7 +1089,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
     @Override
     public void onContactSelected(PagesData pagesData) {
 
-        String path = ed_status.getText().toString().substring(ed_status.getText().toString().lastIndexOf("@") + 1);
+        String path =  binding.layoutCreatePost.edStatus.getText().toString().substring( binding.layoutCreatePost.edStatus.getText().toString().lastIndexOf("@") + 1);
 
         Log.d("ccccccccccccc", "path    " + path + "    " + path.length());
 
@@ -882,12 +1099,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
         //ed_status.setText(text);
 
         //Log.d("ccccccccccccc","dataaa    "+text);
-        int length = ed_status.getText().length();
+        int length =  binding.layoutCreatePost.edStatus.getText().length();
         if (length > 1) {
-            ed_status.getText().delete(length - path.length(), length);
+            binding.layoutCreatePost.edStatus.getText().delete(length - path.length(), length);
         }
-        ed_status.append(pagesData.getTitle() + " ");
-        Log.d("ccccccccccccc", "after    " + ed_status.getText().toString().substring(0, ed_status.getText().toString().indexOf("@")));
+        binding.layoutCreatePost.edStatus.append(pagesData.getTitle() + " ");
+        Log.d("ccccccccccccc", "after    " +  binding.layoutCreatePost.edStatus.getText().toString().substring(0,  binding.layoutCreatePost.edStatus.getText().toString().indexOf("@")));
         card_mentions.setVisibility(View.GONE);
 
     }
@@ -961,7 +1178,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, context));
 
                         if (addeduserslist.size() > 0) {
-                            remove_all.setVisibility(View.VISIBLE);
+                            binding.layoutCreatePost.removeAll.setVisibility(View.VISIBLE);
                             txt_with.setVisibility(View.VISIBLE);
                             if (addeduserslist.size() == 1) {
                                 String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> ";
@@ -974,7 +1191,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                                 with.setText(Html.fromHtml(withWhom));
                             }
                         } else {
-                            remove_all.setVisibility(View.GONE);
+                            binding.layoutCreatePost.removeAll.setVisibility(View.GONE);
                             txt_with.setVisibility(View.GONE);
                         }
                         //Toast.makeText(context, "added "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
@@ -982,7 +1199,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                         addeduserslist.remove(usersData);
                         rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, context));
                         if (addeduserslist.size() > 0) {
-                            remove_all.setVisibility(View.VISIBLE);
+                            binding.layoutCreatePost.removeAll.setVisibility(View.VISIBLE);
                             txt_with.setVisibility(View.VISIBLE);
                             if (addeduserslist.size() == 1) {
                                 String withWhom = "<b>" + addeduserslist.get(0).getName() + "</b> ";
@@ -995,7 +1212,7 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                                 with.setText(Html.fromHtml(withWhom));
                             }
                         } else {
-                            remove_all.setVisibility(View.GONE);
+                            binding.layoutCreatePost.removeAll.setVisibility(View.GONE);
                             txt_with.setVisibility(View.GONE);
                         }
                         //Toast.makeText(context, "removed "+passengerData.getFname()+" "+passengerData.getLname()+" passengers", Toast.LENGTH_SHORT).show();
@@ -1003,12 +1220,12 @@ public class CreatePostActivity extends AppCompatActivity implements MentionsRec
                 }
             });
 
-            remove_all.setOnClickListener(new View.OnClickListener() {
+            binding.layoutCreatePost.removeAll.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     selectAll(false);
                     addeduserslist.clear();
-                    remove_all.setVisibility(View.GONE);
+                    binding.layoutCreatePost.removeAll.setVisibility(View.GONE);
                     with.setVisibility(View.GONE);
                     rc_tagged.setAdapter(new UsersTaggedAdapter(addeduserslist, CreatePostActivity.this));
                 }

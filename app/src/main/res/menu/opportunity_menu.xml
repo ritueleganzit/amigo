@@ -2,16 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/export"
+    <item android:id="@+id/edit"
         android:title="Edit Opportunity"
-        app:showAsAction="never"/>
+        android:showAsAction="never" />
 
-    <item android:id="@+id/mute"
+    <item android:id="@+id/invite"
         android:title="Invite People"
-        app:showAsAction="never"/>
+        android:showAsAction="never" />
 
-    <item android:id="@+id/mute"
+    <item android:id="@+id/delete"
         android:title="Delete"
-        app:showAsAction="never"/>
+        android:showAsAction="never" />
 
 </menu>

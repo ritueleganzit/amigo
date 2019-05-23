@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:layout_gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:id="@+id/add_tag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:background="#ffffff"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:src="@mipmap/work_icon" />
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/darkGray"
+            android:text="Developer at"
+            android:id="@+id/designation"
+
+            />
+
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+
+            android:layout_marginLeft="3dp"
+            android:id="@+id/companyname"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/darkGray"
+            android:text="Company" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/add_tag"
+        android:background="#d7d7d7"/>
+</RelativeLayout>
+</layout>

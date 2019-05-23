@@ -58,7 +58,7 @@ public class OpportunityFragment extends Fragment {
         imgArrayList.add("https://i.ytimg.com/vi/2SAPrPZVTjs/hqdefault.jpg");
 */
 
-        NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
+       /* NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
 
         dataArrayList.add(newsFeedData);
         dataArrayList.add(newsFeedData);
@@ -67,7 +67,7 @@ public class OpportunityFragment extends Fragment {
         dataArrayList.add(newsFeedData);
 
 
-        rc_opprtunity.setAdapter(new OpportunityAdapter(dataArrayList,getActivity()));
+        rc_opprtunity.setAdapter(new OpportunityAdapter(dataArrayList,getActivity()));*/
 
         return v;
     }

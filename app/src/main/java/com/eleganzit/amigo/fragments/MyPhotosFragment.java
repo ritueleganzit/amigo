@@ -12,6 +12,7 @@ import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.UserProfileActivity;
 import com.eleganzit.amigo.adapter.MyPhotosAdapter;
 import com.eleganzit.amigo.adapter.SearchPhotosAdapter;
+import com.eleganzit.amigo.databinding.ActivityMyProfileBinding;
 import com.eleganzit.amigo.model.PhotosData;
 
 import java.util.ArrayList;
@@ -41,10 +42,10 @@ public class MyPhotosFragment extends Fragment {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_my_photos, container, false);
 
-        MyProfileActivity.tab_photos.setTextColor(Color.parseColor("#0f2536"));
-        MyProfileActivity.tab_following.setTextColor(Color.parseColor("#8c8c8c"));
-        MyProfileActivity.tab_events.setTextColor(Color.parseColor("#8c8c8c"));
-        MyProfileActivity.tab_milestone.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileActivity.binding.tabPhotos.setTextColor(Color.parseColor("#0f2536"));
+        MyProfileActivity.binding.tabFollowing.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileActivity.binding.tabEvents.setTextColor(Color.parseColor("#8c8c8c"));
+        MyProfileActivity.binding.tabMilestone.setTextColor(Color.parseColor("#8c8c8c"));
 
         rc_photos=v.findViewById(R.id.rc_photos);
 

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -6,7 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewsFeedActivity">
-
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -25,6 +25,58 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/angle_arrow_back"/>
+
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="Event"
+                android:padding="4dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/back" />
+
+            <ImageView
+
+                android:id="@+id/options"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/menu_icon"/>
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.appcompat.widget.Toolbar
+
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        app:contentInsetRight="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetEnd="0dp"
+        android:contentInsetEnd="0dp"
+        android:contentInsetLeft="0dp"
+        android:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        android:contentInsetStart="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
             android:gravity="center_vertical">
 
             <ImageView
@@ -103,8 +155,8 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:background="#ffffff"
             android:layout_width="match_parent"
-            android:background="#d7d7d7"
             android:layout_height="match_parent"
             android:descendantFocusability="blocksDescendants">
 
@@ -126,12 +178,12 @@
                         android:id="@+id/userphoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/cover"
                         android:scaleType="centerCrop"
                         android:layout_centerVertical="true"
                         />
 
                 </RelativeLayout>
+
 
                 <RelativeLayout
                     android:id="@+id/second"
@@ -170,6 +222,7 @@
                                 android:background="@drawable/top_rounded_green_bg"
                                 android:gravity="center"
                                 android:text="MAY"
+                                android:id="@+id/ev_month"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                                 android:textColor="#ffffff" />
 
@@ -183,6 +236,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_centerInParent="true"
                                     android:text="20"
+                                    android:id="@+id/ev_day"
                                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                                     android:textColor="#ffffff" />
 
@@ -203,9 +257,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:ellipsize="end"
-                                android:maxLines="2"
-                                android:text="Lorem Ipsum is simply dummy text of the printing"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                                android:maxLines="3"
+                                android:id="@+id/txtname"
+                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                                 android:textColor="#000" />
 
                             <com.eleganzit.amigo.utils.TextViewRobotoRegular
@@ -213,6 +267,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:ellipsize="end"
+                                android:visibility="gone"
                                 android:singleLine="true"
                                 android:text="Lorem Ipsum" />
 
@@ -270,11 +325,12 @@
                             android:layout_alignParentLeft="true"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:id="@+id/img_interested"
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                android:id="@+id/attendcount"
+                                android:text="0"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_star_empty" />
+                         />
 
                             <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:id="@+id/txt_interested"
@@ -283,7 +339,7 @@
                                 android:textColor="#919191"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:text="Interested"/>
+                                android:text="Attending"/>
 
                         </LinearLayout>
 
@@ -295,10 +351,11 @@
                             android:layout_centerHorizontal="true"
                             android:orientation="vertical">
 
-                            <ImageView
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/icon_share"/>
+                                android:id="@+id/rejectcount"
+                                android:text="0"/>
 
                             <com.eleganzit.amigo.utils.TextViewRobotoRegular
                                 android:id="@+id/txt_share"
@@ -307,7 +364,7 @@
                                 android:textColor="#919191"
                                 android:singleLine="true"
                                 android:ellipsize="end"
-                                android:text="Share"/>
+                                android:text="Rejected"/>
 
                         </LinearLayout>
 
@@ -353,7 +410,6 @@
                         <com.eleganzit.amigo.utils.TextViewRobotoRegular
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:maxLines="3"
                             android:layout_marginTop="4dp"
                             android:justificationMode="inter_word"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -500,7 +556,6 @@
                         android:textColor="#232323"
                         android:paddingLeft="5dp"
                         android:singleLine="true"
-                        android:text="5 PM GMT +05:30"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
                 </LinearLayout>
@@ -519,18 +574,23 @@
                         />
 
                     <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                        android:id="@+id/timestamp"
+                        android:id="@+id/txtloc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:singleLine="true"
                         android:textColor="#232323"
+                        android:textSize="12sp"
                         android:paddingLeft="5dp"
                         android:ellipsize="end"
-                        android:text="Ahmedabad, 100ft Ring Road, Cricket Ground"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
                 </LinearLayout>
-
+                <com.google.android.gms.maps.MapView
+                    android:id="@+id/about_map"
+                    android:layout_below="@+id/middle"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="1dp"
+                    android:layout_height="150dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -554,9 +614,10 @@
                 <com.eleganzit.amigo.utils.TextViewRobotoRegular
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/details"
                     android:gravity="left|center"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"/>
+                  />
 
             </LinearLayout>
 
@@ -566,3 +627,4 @@
     </ScrollView>
 
 </RelativeLayout>
+</layout>

@@ -1,1 +1,1 @@
-include ':chatkit', ':app'
+include ':multi-image-selector',':chatkit', ':app'

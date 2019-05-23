@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 
+import com.crashlytics.android.Crashlytics;
 import com.eleganzit.amigo.session.LoggedInPreferences;
 import com.eleganzit.amigo.session.UserLoggedInSession;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);

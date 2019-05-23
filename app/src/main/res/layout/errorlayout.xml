@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/error"
+    android:visibility="gone"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/lin_nodata"
+    android:layout_gravity="center"
+    android:gravity="center" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_server_error"
+        />
+    <com.eleganzit.amigo.utils.TextViewRobotoRegular
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:text="No results found"/>
+
+</LinearLayout>
+</RelativeLayout>

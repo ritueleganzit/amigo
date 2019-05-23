@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -46,6 +47,7 @@
         <com.eleganzit.amigo.utils.TextViewRobotoBold
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/university"
             android:layout_marginLeft="3dp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/darkGray"
@@ -70,3 +72,4 @@
         android:background="#d7d7d7"/>
 
 </RelativeLayout>
+</layout>

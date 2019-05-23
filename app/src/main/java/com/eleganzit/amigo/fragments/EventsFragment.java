@@ -75,7 +75,7 @@ public class EventsFragment extends Fragment {
         pastList.add(eventsData);
         pastList.add(eventsData);
 
-        rc_upcoming_events.setAdapter(new UpcomingEventsAdapter(upcomingList,getActivity()));
+       // rc_upcoming_events.setAdapter(new UpcomingEventsAdapter(upcomingList,getActivity()));
         rc_past_events.setAdapter(new PastEventsAdapter(pastList,getActivity()));
 
         return v;

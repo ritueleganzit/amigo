@@ -121,6 +121,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:id="@+id/adduserwork"
                         android:textColor="#4266B2"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:text="Add New Work"/>
@@ -171,6 +172,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:background="#ffffff"
+                    android:id="@+id/add_education"
                     android:foreground="?android:selectableItemBackground"
                     android:paddingTop="7dp"
                     android:paddingBottom="7dp"
@@ -186,6 +188,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#4266B2"
+
                         android:layout_gravity="center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:text="Add New Education"/>
@@ -221,6 +224,8 @@
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:paddingTop="7dp"
+                android:id="@+id/rel_ed_city"
+                android:visibility="gone"
                 android:paddingBottom="7dp"
                 android:layout_gravity="center">
 
@@ -239,6 +244,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:checked="true"
+                        android:visibility="gone"
+
                         android:button="@drawable/green_checkbox_selector"
                         />
                 </LinearLayout>
@@ -264,6 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
+                        android:id="@+id/city"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/darkGray"
                         android:text="City" />
@@ -279,6 +287,44 @@
                     android:src="@mipmap/edit_icon"
                     android:layout_alignParentRight="true"
                     />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:id="@+id/rel_add_city"
+                android:foreground="?android:selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff"
+                    android:id="@+id/add_city"
+                    android:foreground="?android:selectableItemBackground"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/add_icon_blue"/>
+
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#4266B2"
+
+                        android:layout_gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:text="Add Hometown"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -306,10 +352,12 @@
             </LinearLayout>
 
             <RelativeLayout
+                android:id="@+id/rel_edit_hometown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#ffffff"
                 android:paddingTop="7dp"
+                android:visibility="gone"
                 android:paddingBottom="7dp"
                 android:layout_gravity="center">
 
@@ -328,6 +376,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="fill_parent"
                         android:checked="true"
+                        android:visibility="gone"
                         android:button="@drawable/green_checkbox_selector"
                         />
                 </LinearLayout>
@@ -353,6 +402,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="3dp"
+                        android:id="@+id/hometown"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                         android:textColor="@color/darkGray"
                         android:text="Hometown" />
@@ -368,6 +418,44 @@
                     android:src="@mipmap/edit_icon"
                     android:layout_alignParentRight="true"
                     />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:id="@+id/rel_add_hometown"
+                android:foreground="?android:selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff"
+                    android:id="@+id/add_hometown"
+                    android:foreground="?android:selectableItemBackground"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/add_icon_blue"/>
+
+                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#4266B2"
+
+                        android:layout_gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:text="Add Hometown"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
 

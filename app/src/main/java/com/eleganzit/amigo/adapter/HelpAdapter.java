@@ -83,7 +83,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.MyViewHolder>
 //        {
 //            photos.add(newsFeedData.getArrayList().get(j));
 //        }
-        holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context,"help"));
+        /*holder.flexboxLayout.setAdapter(new PostPhotosAdapter(newsFeedData.getArrayList(),context,"help"));
 
         holder.post_main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +91,7 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.MyViewHolder>
 
             }
         });
-
+*/
     }
 
     @Override

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout >
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NewsFeedActivity">
-
+       <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="match_parent"
+                android:id="@+id/pullToRefresh"
+                android:layout_height="wrap_content"
+                >
     <androidx.core.widget.NestedScrollView
         android:id="@+id/news_feed_scroll"
         android:layout_width="match_parent"
@@ -37,6 +42,7 @@
                     android:layout_height="wrap_content">
 
                     <ImageView
+                        android:id="@+id/photo"
                         android:layout_width="38dp"
                         android:layout_centerVertical="true"
                         android:layout_height="38dp"
@@ -93,16 +99,176 @@
 
             </RelativeLayout>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_posts"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/header">
 
             </androidx.recyclerview.widget.RecyclerView>
 
+
+            <ProgressBar
+                android:layout_below="@+id/rc_posts"
+                android:indeterminate="true"
+                android:visibility="gone"
+                android:layout_marginTop="-5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressbar"
+
+
+android:layout_centerHorizontal="true"
+                />
+
+
+
+
+
+            <RelativeLayout
+                android:id="@+id/no_posts_layout"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/toolbar"
+                android:layout_height="500dp"
+                android:visibility="gone"
+                android:background="#fff">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_newsfeed"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/img"
+                    android:text="No posts found"/>
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/home_shimmer"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:background="#ffffff"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/header_shimmer"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="#ffffff"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/user_photo_shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="38dp"
+                            android:layout_centerVertical="true"
+                            android:layout_height="38dp"
+                            android:src="@drawable/circle_shimmer"/>
+
+
+                    </RelativeLayout>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textSize="14sp"
+                        android:cursorVisible="false"
+                        android:inputType="textMultiLine"
+                        android:maxLines="2"
+                        android:focusable="false"
+                        android:layout_marginLeft="8dp"
+                        android:lines="2"
+                        android:hint="Write something here..."
+                        android:gravity="top|left"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="2dp"
+                        android:layout_toRightOf="@+id/user_photo_shimmer"
+                        android:layout_toLeftOf="@+id/upload_photo_shimmer"
+                        android:background="@drawable/status_bg"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/upload_photo_shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="5dp"
+                        android:layout_alignParentRight="true"
+                        android:orientation="vertical"
+                        android:layout_centerVertical="true">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:src="@drawable/rectangle_shimmer"/>
+
+                        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="10sp"
+                            android:text="Photo"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/posts_shimmerLayout"
+                    android:layout_width="match_parent"
+                    shimmer:duration="800"
+                    shimmer:angle="cw_90"
+                    android:layout_below="@+id/header_shimmer"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <include layout="@layout/post_shimmer_layout"/>
+                        <include layout="@layout/post_shimmer_layout"/>
+
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+
+            </RelativeLayout>
+
+
         </RelativeLayout>
 
-    </androidx.core.widget.NestedScrollView>
+
+</androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+
+
+    <include layout="@layout/errorlayout"/>
+
+
 
 </RelativeLayout>
+</layout>

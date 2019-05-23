@@ -6,7 +6,6 @@
 
     <uses-feature android:name="android.hardware.camera" />
 
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -41,6 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service android:name=".utils.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -51,6 +51,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
@@ -173,14 +174,53 @@
         <activity
             android:name=".BlockedConnectionsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".WhoYouAreActivity" />
-        <activity android:name=".CreateEventActivity" />
-        <activity android:name=".InterestedVolunteersActivity" />
-        <activity android:name=".AttendingVolunteersActivity" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".CreateOpportunityActivity" />
-        <activity android:name=".AppliedCandidatesActivity" />
-        <activity android:name=".RejectedCandidatesActivity"></activity>
+        <activity
+            android:name=".WhoYouAreActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreateEventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InterestedVolunteersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AttendingVolunteersActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CreateOpportunityActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AppliedCandidatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RejectedCandidatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddWorkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddEduActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".OpportunitiesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EditOpportunity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".EditEventActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="fca196d6356b0be62d0f468b051791d48bce772f" />
+
+        <activity
+            android:name=".CommentsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PostLikesActivity" />
+        <activity android:name=".SearchResultsActivity"></activity>
     </application>
 
 </manifest>

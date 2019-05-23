@@ -65,6 +65,9 @@ import static com.vincent.filepicker.activity.VideoPickActivity.IS_NEED_CAMERA;
 public class RegistrationActivity extends AppCompatActivity {
 
 List<String> stateArrayList=new ArrayList();
+List<String> stateArrayListnum=new ArrayList();
+
+String stateid;
     private static final int FILE_REQUEST_CODE =101 ;
     ProgressDialog progressDialog;
     private static final String TAG ="RegistrationActivity" ;
@@ -122,6 +125,7 @@ progressDialog.setCanceledOnTouchOutside(false);
 
 
                         binding.registerInput5.edNameofstate.setText(stateArrayList.get(i));
+                        stateid=stateArrayListnum.get(i);
                     }
                 });
                 builder.show();
@@ -268,11 +272,11 @@ progressDialog.setCanceledOnTouchOutside(false);
 if (isValid6())
 
 {
-
+binding.fab6.next6.setEnabled(false);
     pincode=binding.registerInput6.edPincode.getText().toString();
 
 
-    registerUser();
+registerUser();
 
 }
 
@@ -385,6 +389,8 @@ if (isValid6())
                     for (int i=0;i<response.body().getData().size();i++)
                     {
                         stateArrayList.add(response.body().getData().get(i).getName());
+                        stateArrayListnum.add(response.body().getData().get(i).getStateId());
+
                     }
 
                     progressDialog.dismiss();
@@ -404,7 +410,7 @@ if (isValid6())
 
         Intent intent4 = new Intent(this, NormalFilePickActivity.class);
         intent4.putExtra(Constant.MAX_NUMBER, 1);
-        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[] {"png", "jpg", "jpeg", "pdf"});
+        intent4.putExtra(NormalFilePickActivity.SUFFIX, new String[] {"pdf"});
         startActivityForResult(intent4, Constant.REQUEST_CODE_PICK_FILE);
 
     }
@@ -426,7 +432,7 @@ if (isValid6())
         }
         binding.fab6.fabProgressCircle.show();
         File file = new File(""+mediapath);
-        Log.d("hhhhh",""+mediapath);
+        Log.d("hhhhh",stateid+""+mediapath);
 
         RetrofitInterface myInterface= RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
         Log.d("dataaaaaaaaa",email+"   "+username+"   "+fullname+"   "+mobile+"   "+password+"   "+city+"   "+state+"   "+pincode+"   "+mediapath);
@@ -438,7 +444,7 @@ if (isValid6())
         RequestBody mobilee = RequestBody.create(MediaType.parse("text/plain"), mobile);
         RequestBody passwordd = RequestBody.create(MediaType.parse("text/plain"), password);
         RequestBody cityy = RequestBody.create(MediaType.parse("text/plain"), city);
-        RequestBody statee = RequestBody.create(MediaType.parse("text/plain"), state);
+        RequestBody statee = RequestBody.create(MediaType.parse("text/plain"), stateid);
         RequestBody pin_codee = RequestBody.create(MediaType.parse("text/plain"), pincode);
         RequestBody con = RequestBody.create(MediaType.parse("text/plain"), contact_person);
         RequestBody con_p_num = RequestBody.create(MediaType.parse("text/plain"), contact_person_number);
@@ -446,19 +452,21 @@ if (isValid6())
         RequestBody device_tokenn = RequestBody.create(MediaType.parse("text/plain"), ""+device_token);
         RequestBody latt = RequestBody.create(MediaType.parse("text/plain"), "23.2323");
         RequestBody lngg = RequestBody.create(MediaType.parse("text/plain"), "72.323");
+        RequestBody country = RequestBody.create(MediaType.parse("text/plain"), "38");
 
         RequestBody requestFile = RequestBody.create(MediaType.parse("*/*"), file);
 
         MultipartBody.Part multipartBody = MultipartBody.Part.createFormData("proof",file.getName(),requestFile);
         Call<GetUserResponse> call=myInterface.addUser(
                 user_type,
-                email_id,name,mobilee,usernamee,passwordd,cityy,statee,pin_codee,con,con_p_num,multipartBody,latt,lngg,device_idd,device_tokenn);
+                email_id,name,mobilee,usernamee,passwordd,cityy,statee,country,pin_codee,con,con_p_num,multipartBody,latt,lngg,device_idd,device_tokenn);
         call.enqueue(new Callback<GetUserResponse>() {
             @Override
             public void onResponse(Call<GetUserResponse> call, Response<GetUserResponse> response) {
+                binding.fab6.next6.setEnabled(true);
 
-                Log.d("responseseeee",""+response.body().getMessage());
-                Log.d("responseseeee",""+response.body().getData());
+             /*   Log.d("responseseeee",""+response.body().getMessage());
+                Log.d("responseseeee",""+response.body().getData());*/
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
@@ -466,18 +474,24 @@ if (isValid6())
                     binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
                 }
                 binding.fab6.fabProgressCircle.hide();
+
+                startActivity(new Intent(RegistrationActivity.this,RegisterConfirmationActivity.class));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+                finish();
 
             }
 
             @Override
             public void onFailure(Call<GetUserResponse> call, Throwable t) {
+                binding.fab6.next6.setEnabled(true);
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
                 } else {
                     binding.fab6.next6.setImageDrawable(getResources().getDrawable(R.drawable.white_check_small));
                 }
                 binding.fab6.fabProgressCircle.hide();
-                Toast.makeText(RegistrationActivity.this, ""+t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegistrationActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -782,25 +796,38 @@ if (isValid6())
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constant.REQUEST_CODE_PICK_FILE) {
+            if (data!=null) {
 
-            ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
-            mediapath = list.get(0).getPath();
-           File file = new File(mediapath);
-            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
-            Log.d("file_sizeeeee", "mediapath" + mediapath);
-            String filename=mediapath.substring(mediapath.lastIndexOf("/")+1);
-            binding.registerInput6.edDocs.setText(filename);
+                ArrayList<NormalFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_FILE);
+                if (list.size() > 0) {
+                    mediapath = list.get(0).getPath();
+                    File file = new File(mediapath);
+                    int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                    Log.d("file_sizeeeee", "mediapath" + mediapath);
+                    String filename = mediapath.substring(mediapath.lastIndexOf("/") + 1);
+                    binding.registerInput6.edDocs.setText(filename);
+                }
+            }
 
         }
         if (requestCode == Constant.REQUEST_CODE_PICK_IMAGE) {
 
-            ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
-            mediapath = list.get(0).getPath();
-            File   file = new File(mediapath);
-            int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
-            Log.d("file_sizeeeee", "mediapath" + mediapath);
-            String filename=mediapath.substring(mediapath.lastIndexOf("/")+1);
-            binding.registerInput6.edDocs.setText(filename);
+            if (data!=null) {
+                ArrayList<ImageFile> list = data.getParcelableArrayListExtra(Constant.RESULT_PICK_IMAGE);
+                if (list.size() > 0) {
+                    mediapath = list.get(0).getPath();
+                    File file = new File(mediapath);
+                    int file_size = Integer.parseInt(String.valueOf(file.length() / 1024));
+                    Log.d("file_sizeeeee", "mediapath" + mediapath);
+                    String filename = mediapath.substring(mediapath.lastIndexOf("/") + 1);
+                    binding.registerInput6.edDocs.setText(filename);
+                }
+            }
+
+        }
+        if(requestCode==RESULT_CANCELED)
+        {
+
         }
 
     }

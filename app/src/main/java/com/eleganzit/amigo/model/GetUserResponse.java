@@ -21,6 +21,28 @@ public class GetUserResponse {
     @Expose
     private List<UserResponse> data = null;
 
+    private List<GetWorkList> getWorkLists = null;
+
+
+
+    public List<GetWorkList> getWorkLists() {
+        return getWorkLists;
+    }
+
+    public void setWorkList(List<GetWorkList> data) {
+        this.getWorkLists = getWorkLists;
+    }
+
+    private List<AddWorkResponse> getworkdata = null;
+
+    public List<AddWorkResponse> getWorkResponse() {
+        return getworkdata;
+    }
+
+    public void setWorkData(List<AddWorkResponse> getworkdata) {
+        this.getworkdata = getworkdata;
+    }
+
     public Integer getStatus() {
         return status;
     }

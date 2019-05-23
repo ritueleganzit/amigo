@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -19,10 +21,12 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.fragments.ViewPostFragment;
 import com.eleganzit.amigo.model.NewsFeedData;
+import com.eleganzit.amigo.model.PhotosData;
 import com.eleganzit.amigo.utils.TextViewRobotoBold;
 import com.google.android.flexbox.FlexDirection;
 
@@ -36,15 +40,16 @@ import static android.content.Context.WINDOW_SERVICE;
 public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.MyViewHolder>
 {
 
-    ArrayList<String> photos;
+    ArrayList<PhotosData> photos;
     Context context;
     Activity activity;
-    String from;
+    String from,postid;
 
-    public PostPhotosAdapter(ArrayList<String> photos, Context context,String from) {
+    public PostPhotosAdapter(ArrayList<PhotosData> photos, Context context,String from,String postid) {
         this.photos = photos;
         this.context = context;
         this.from = from;
+        this.postid = postid;
         activity = (Activity) context;
     }
 
@@ -187,22 +192,40 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                 holder.pframe.getLayoutParams().height=getScreenWidthInPXs(context,activity)/3;
             }
         }
+        Log.d("adaaaapter", "" + photos.get(i).getPhoto());
+
+
         Glide
                 .with(context)
-                .load(photos.get(i))
-                .apply(new RequestOptions().centerCrop()).into(holder.feed_photo);
+                .asBitmap()
+                .load(photos.get(i).getPhoto())
+                .thumbnail(0.1f)
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
+                .apply(new RequestOptions().override(150, 150).centerCrop())
+                .into(holder.feed_photo);
 
         holder.feed_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(from.equalsIgnoreCase("newsfeed"))
                 {
-                    ViewPostFragment viewPostFragment= new ViewPostFragment();
+
+
+
+
+
+
+                   /* ViewPostFragment viewPostFragment= new ViewPostFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("newsFeedData", postid);
+
+                    viewPostFragment.setArguments(bundle);
+
 
                     FragmentTransaction fragmentTransaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.addToBackStack("NewsFeedActivity");
                     fragmentTransaction.replace(R.id.frame, viewPostFragment, "TAG");
-                    fragmentTransaction.commit();
+                    fragmentTransaction.commit();*/
                 }
 
             }
@@ -212,14 +235,13 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
 
     @Override
     public int getItemCount() {
-        if(photos.size()>5)
-        {
-            return 5;
-        }
-        else
-        {
-            return photos.size();
-        }
+
+            if (photos.size() > 5) {
+                return 5;
+            } else {
+                return photos.size();
+            }
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

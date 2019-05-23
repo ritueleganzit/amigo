@@ -3,6 +3,7 @@ package com.eleganzit.amigo.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,23 +11,29 @@ import android.widget.ImageView;
 
 import com.eleganzit.amigo.EditWorkActivity;
 import com.eleganzit.amigo.R;
+import com.eleganzit.amigo.databinding.AccountsLayoutBinding;
+import com.eleganzit.amigo.databinding.WorksRowLayoutBinding;
+import com.eleganzit.amigo.model.GetWorkList;
 import com.eleganzit.amigo.model.PagesData;
+import com.eleganzit.amigo.model.WorkData;
 import com.eleganzit.amigo.model.WorksData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder>
 {
 
-    ArrayList<WorksData> works;
+    List<WorkData> works;
     Context context;
     Activity activity;
     boolean liked=false;
 
-    public WorksAdapter(ArrayList<WorksData> works, Context context) {
+    public WorksAdapter(List<WorkData> works, Context context) {
             this.works = works;
         this.context = context;
         activity = (Activity) context;
@@ -36,19 +43,28 @@ public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
 
-        View v= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.works_row_layout,viewGroup,false);
-        MyViewHolder myViewHolder=new MyViewHolder(v);
+        WorksRowLayoutBinding worksRowLayoutBinding= DataBindingUtil.inflate(LayoutInflater.from(viewGroup.getContext()), R.layout.works_row_layout,viewGroup,false);
 
-        return myViewHolder;
+
+
+        return new MyViewHolder(worksRowLayoutBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
-        holder.edit_work.setOnClickListener(new View.OnClickListener() {
+        final WorkData getWorkList=works.get(i);
+        Log.d("mjjj",""+getWorkList.getDateTo());
+        Log.d("mjjj",""+getWorkList.getWorkHere());
+        holder.worksRowLayoutBinding.designation.setText(getWorkList.getPosition()+" at ");
+        holder.worksRowLayoutBinding.companyname.setText(getWorkList.getPlaceName());
+
+
+
+        holder.worksRowLayoutBinding.editWork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, EditWorkActivity.class));
+                context.startActivity(new Intent(context, EditWorkActivity.class).putExtra("work",getWorkList));
                 activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
@@ -62,11 +78,12 @@ public class WorksAdapter extends RecyclerView.Adapter<WorksAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView edit_work;
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            edit_work=itemView.findViewById(R.id.edit_work);
+        WorksRowLayoutBinding worksRowLayoutBinding;
 
+
+        public MyViewHolder(@NonNull WorksRowLayoutBinding worksRowLayoutBinding) {
+            super(worksRowLayoutBinding.getRoot());
+            this.worksRowLayoutBinding=worksRowLayoutBinding  ;
         }
     }
 }

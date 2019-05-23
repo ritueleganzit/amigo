@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:contentInsetRight="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetEnd="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetStart="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/angle_arrow_back"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:id="@+id/ed_search"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Edit Profile"
+                    android:padding="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/back" />
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/news_feed_scroll"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/bottombar"
+            android:layout_width="match_parent"
+            android:fillViewport="true"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:background="#CFD0D4"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+               >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:background="#CFD0D4"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@mipmap/education_icon_dark"/>
+
+                    <com.eleganzit.amigo.utils.TextViewRobotoBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:textColor="@color/darkGray"
+                        android:text="Education"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/ed_education"
+                        android:background="#ffffff"
+                        android:hint="Enter your School/College"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="17dp"/>
+
+                    <EditText
+                        android:id="@+id/ed_physical"
+                        android:background="#ffffff"
+                        android:layout_marginTop="1dp"
+                        android:hint="It's not physical place"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="17dp"/>
+
+                    <EditText
+                        android:id="@+id/ed_description"
+                        android:background="#ffffff"
+                        android:layout_marginTop="1dp"
+                        android:hint="Description"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="17dp"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:layout_marginTop="1dp"
+                        android:padding="17dp"
+                        android:gravity="center_vertical">
+
+                        <com.eleganzit.amigo.utils.TextViewRobotoBold
+                            android:id="@+id/txt_from"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:layout_centerVertical="true"
+                            android:text="From"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/txt_from"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:weightSum="3">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawablePadding="15dp"
+                                    android:layout_weight="1"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:text="0000"
+                                    android:layout_gravity="center_vertical"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_month"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:layout_weight="1"
+                                    android:drawablePadding="15dp"
+                                    android:text="00"
+                                    android:layout_gravity="center_vertical"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawablePadding="15dp"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:text="00"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:background="#ffffff"
+                        android:gravity="center_vertical"
+                        android:padding="17dp">
+
+                        <com.eleganzit.amigo.utils.TextViewRobotoBold
+                            android:id="@+id/txt_to"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:gravity="center_vertical"
+                            android:text="To"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@+id/txt_to"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_to_year"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawablePadding="15dp"
+                                    android:layout_weight="1"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:text="0000"
+                                    android:layout_gravity="center_vertical"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_to_month"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:layout_weight="1"
+                                    android:drawablePadding="15dp"
+                                    android:text="00"
+                                    android:layout_gravity="center_vertical"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical">
+
+                                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                    android:id="@+id/txt_to_date"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:drawablePadding="15dp"
+                                    android:drawableRight="@drawable/drop_down_small"
+                                    android:text="00"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="1"
+                                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_margin="12dp"
+                    android:padding="2dp"
+                    android:background="@drawable/rounded_green_bg"
+                    android:layout_gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:id="@+id/progress"
+                        android:visibility="gone"
+
+                        android:padding="2dp"
+                        android:background="@drawable/rounded_green_bg"
+                        android:layout_gravity="center">
+                        <ProgressBar
+                            android:indeterminateTint="@android:color/white"
+
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/saveedu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+
+                        android:padding="2dp"
+                        android:background="@drawable/rounded_green_bg"
+                        android:layout_gravity="center">
+                        <ImageView
+
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@mipmap/save_icon"/>
+
+                        <com.eleganzit.amigo.utils.TextViewRobotoBold
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#ffffff"
+                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                            android:text="Save"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+</layout>
+

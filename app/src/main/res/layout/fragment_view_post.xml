@@ -9,6 +9,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
@@ -59,7 +60,7 @@
                             android:layout_height="wrap_content"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:text="Username"
+                            android:text=""
                             android:textColor="#000"
                             android:textSize="15dp" />
 
@@ -74,7 +75,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="Apr 30 at 10:10 PM"
+                                android:text=""
                                 android:textSize="12dp" />
 
                             <ImageView
@@ -86,9 +87,10 @@
 
                             <ImageView
                                 android:layout_width="15dp"
+                                android:id="@+id/posttype"
                                 android:layout_height="15dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/earth_gray"/>
+                             />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -112,7 +114,6 @@
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                     android:textColor="#000"
                     android:gravity="left"
-                    android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="7dp"/>
@@ -134,6 +135,7 @@
 
                         <ImageView
                             android:layout_width="15dp"
+                            android:id="@+id/heart"
                             android:layout_height="15dp"
                             android:layout_marginLeft="5dp"
                             android:layout_gravity="center"
@@ -146,7 +148,8 @@
                             android:layout_gravity="center"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:text="You and 250 others"
+                            android:id="@+id/likes"
+                            android:text="Likes"
                             android:textSize="12dp" />
 
                     </LinearLayout>
@@ -171,11 +174,12 @@
 
                         <com.eleganzit.amigo.utils.TextViewRobotoRegular
                             android:layout_width="80dp"
+                            android:id="@+id/comments"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:text="45 Comments"
+                            android:text="Comments"
                             android:textSize="12dp" />
 
                     </LinearLayout>
@@ -192,11 +196,38 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
 
+
+
             </LinearLayout>
+
+
 
         </RelativeLayout>
 
 
     </androidx.core.widget.NestedScrollView>
+    <RelativeLayout
+
+        android:id="@+id/relrefresh"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:layout_below="@+id/nested">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/refresh"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_refresh"/>
+        <com.eleganzit.amigo.utils.TextViewRobotoRegular
+            android:layout_width="wrap_content"
+            android:layout_below="@+id/refresh"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:text="Please try again"/>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

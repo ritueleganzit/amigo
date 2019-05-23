@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 <RelativeLayout
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -96,7 +97,6 @@
                         android:id="@+id/userphoto"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/cover"
                         android:scaleType="centerCrop"
                         android:layout_centerVertical="true" />
 
@@ -159,7 +159,7 @@
                                 android:layout_width="70dp"
                                 android:layout_height="70dp"
                                 android:layout_margin="2dp"
-                                android:src="@drawable/user" />
+                                />
 
                             <ImageView
                                 android:layout_width="22dp"
@@ -297,53 +297,50 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:background="#ffffff"
-                        android:layout_marginBottom="1dp"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:foreground="?android:attr/selectableItemBackground">
-                        <ImageView
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:layout_marginLeft="5dp"
-                            android:src="@mipmap/work_icon" />
-                        <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_gravity="center"
-                            android:text="Works at"/>
+                        <com.facebook.shimmer.ShimmerFrameLayout
+                            android:layout_width="match_parent"
+                            android:id="@+id/shimmerlayout"
+                            shimmer:duration="800"
+                            shimmer:angle="cw_90"
+                            android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+                                <include layout="@layout/edu_placeholder"/>
+                                <include layout="@layout/edu_placeholder"/>
+                                <include layout="@layout/edu_placeholder"/>
+                            </LinearLayout>
+                        </com.facebook.shimmer.ShimmerFrameLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rc_works"
+                            android:layout_width="match_parent"
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content">
+
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rc_edu"
+                            android:layout_width="match_parent"
+                            android:background="#ffffff"
+                            android:layout_height="wrap_content">
+
+
+                        </androidx.recyclerview.widget.RecyclerView>
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:id="@+id/add_tag"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:background="#ffffff"
-                        android:layout_marginBottom="1dp"
-                        android:focusable="true"
-                        android:orientation="horizontal"
-                        android:foreground="?android:attr/selectableItemBackground"
-                        >
-                        <ImageView
-                            android:layout_width="42dp"
-                            android:layout_height="42dp"
-                            android:src="@mipmap/studied_icon"
-                            android:layout_marginLeft="5dp"
-                            />
-                        <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#000000"
-                            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                            android:layout_gravity="center"
-                            android:text="Studied at"/>
-                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
+                        android:id="@+id/livesinlin"
                         android:focusable="true"
                         android:background="#ffffff"
                         android:layout_marginBottom="1dp"
@@ -360,15 +357,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000000"
+                            android:id="@+id/livesin"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_gravity="center"
-                            android:text="Lives in"/>
+                            android:text=""/>
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
+                        android:id="@+id/fromlocationlin"
                         android:focusable="true"
                         android:background="#ffffff"
                         android:layout_marginBottom="1dp"
@@ -385,9 +384,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#000000"
+                            android:id="@+id/fromlocation"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:layout_gravity="center"
-                            android:text="From"/>
+                            android:text=""/>
                     </LinearLayout>
 
 

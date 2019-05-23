@@ -127,25 +127,48 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/forgot_password">
 
-            <br.com.simplepass.loadingbutton.customViews.CircularProgressImageButton
-                android:id="@+id/btn_id"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/bt_animate_bg"
-                android:layout_centerHorizontal="true"
-                app:spinning_bar_color="#FFF"
-                app:spinning_bar_padding="2dp"
-                app:spinning_bar_width="3dp" />
-
-            <TextView
-                android:id="@+id/anim_btn_text"
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:layout_centerInParent="true"
-                android:text="SIGN IN"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/progress"
+                android:visibility="gone"
+
+               android:padding="8dp"
+                android:background="@drawable/btn_bg"
+                android:layout_gravity="center">
+                <ProgressBar
+                    android:indeterminateTint="@android:color/white"
+
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/savework"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+
+                android:padding="8dp"
+                android:background="@drawable/btn_bg"
+                android:layout_gravity="center">
+
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:layout_gravity="center"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:text="SIGN IN"/>
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 

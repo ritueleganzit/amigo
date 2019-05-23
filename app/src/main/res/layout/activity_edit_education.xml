@@ -44,6 +44,14 @@
                 android:padding="4dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/back" />
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_del"/>
+
 
         </RelativeLayout>
 
@@ -62,7 +70,7 @@
             android:background="#CFD0D4"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:descendantFocusability="blocksDescendants">
+          >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -161,7 +169,7 @@
                                 android:drawableRight="@drawable/drop_down_small"
                                 android:text="Year"
                                 android:layout_gravity="center_vertical"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+                                android:textSize="@dimen/texthint"/>
 
                         </RelativeLayout>
 
@@ -181,7 +189,7 @@
                                 android:drawablePadding="15dp"
                                 android:text="Month"
                                 android:layout_gravity="center_vertical"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+                                android:textSize="@dimen/texthint"/>
 
                         </RelativeLayout>
 
@@ -201,7 +209,7 @@
                                 android:text="Date"
                                 android:layout_gravity="center_vertical"
                                 android:layout_weight="1"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+                                android:textSize="@dimen/texthint"/>
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -233,17 +241,61 @@
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
 
                             <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                android:id="@+id/txt_to_year"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:drawablePadding="15dp"
+                                android:layout_weight="1"
+                                android:drawableRight="@drawable/drop_down_small"
+                                android:text="0000"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="@dimen/texthint"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                android:id="@+id/txt_to_month"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:drawableRight="@drawable/drop_down_small"
+                                android:layout_weight="1"
+                                android:drawablePadding="15dp"
+                                android:text="00"
+                                android:layout_gravity="center_vertical"
+                                android:textSize="@dimen/texthint"/>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical">
+
+                            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                                android:id="@+id/txt_to_date"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:drawablePadding="15dp"
                                 android:drawableRight="@drawable/drop_down_small"
-                                android:text="Year"
+                                android:text="00"
                                 android:layout_gravity="center_vertical"
-                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+                                android:layout_weight="1"
+                                android:textSize="@dimen/texthint"/>
 
                         </RelativeLayout>
                     </LinearLayout>
@@ -262,17 +314,51 @@
                 android:background="@drawable/rounded_green_bg"
                 android:layout_gravity="center">
 
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:src="@mipmap/save_icon"/>
-
-                <com.eleganzit.amigo.utils.TextViewRobotoBold
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                    android:text="Save"/>
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:id="@+id/progress"
+                    android:visibility="gone"
+
+                    android:padding="2dp"
+                    android:background="@drawable/rounded_green_bg"
+                    android:layout_gravity="center">
+                    <ProgressBar
+                        android:indeterminateTint="@android:color/white"
+
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:id="@+id/saveedu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+
+                    android:padding="2dp"
+                    android:background="@drawable/rounded_green_bg"
+                    android:layout_gravity="center">
+                    <ImageView
+
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/save_icon"/>
+
+                    <com.eleganzit.amigo.utils.TextViewRobotoBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                        android:text="Save"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 

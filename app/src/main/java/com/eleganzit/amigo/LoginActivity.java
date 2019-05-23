@@ -1,5 +1,6 @@
 package com.eleganzit.amigo;
 
+import android.Manifest;
 import android.content.Intent;
 
 import android.graphics.Bitmap;
@@ -25,11 +26,17 @@ import com.eleganzit.amigo.model.GetLoginResponse;
 import com.eleganzit.amigo.model.LoginData;
 import com.eleganzit.amigo.session.LoggedInPreferences;
 import com.eleganzit.amigo.session.UserLoggedInSession;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,16 +56,49 @@ UserLoggedInSession userLoggedInSession;
         super.onCreate(savedInstanceState);
 
  binding= DataBindingUtil.setContentView(LoginActivity.this,R.layout.activity_login);
+
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA,
+                        Manifest.permission.CAMERA
+
+
+                )
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            // do you work now
+                        }
+
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // permission is denied permenantly, navigate user to app settings
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                })
+                .onSameThread()
+                .check();
 userLoggedInSession=new UserLoggedInSession(LoginActivity.this);
 loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
 
 
-        binding.btnId.setOnClickListener(new View.OnClickListener() {
+        binding.savework.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if (isValid1())
                 {
+                    binding.savework.setVisibility(View.GONE);
+                    binding.progress.setVisibility(View.VISIBLE);
                     userLogin();
                 }
 
@@ -84,14 +124,14 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
 
     public void userLogin()
     {
-        binding.animBtnText.setVisibility(View.GONE);
-        binding.btnId.startMorphAnimation();
+
         RetrofitInterface myInterface= RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
         Call<GetLoginResponse> getLoginResponseCall=myInterface.getLogin(binding.edUsername.getText().toString(),binding.edPassword.getText().toString());
         getLoginResponseCall.enqueue(new Callback<GetLoginResponse>() {
             @Override
             public void onResponse(Call<GetLoginResponse> call, Response<GetLoginResponse> response) {
-
+                binding.savework.setVisibility(View.VISIBLE);
+                binding.progress.setVisibility(View.GONE);
                 if (response.isSuccessful())
                 {
 
@@ -99,7 +139,6 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
                     {
                         Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
                                 R.drawable.white_check_small);
-                        binding.btnId.doneLoadingAnimation(Color.parseColor("#1b75cf"), bitmap);
                         List<LoginData> loginData=response.body().getData();
 
                         Log.d(TAG,""+loginData.get(0).getFullname());
@@ -118,7 +157,22 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
                                 // TODO Auto-generated catch block
                                 e.printStackTrace();
                             }
-                            loggedInPreferences.createSession(loginData1.getUserId(),obj);
+
+                            Map<String,?> getAll = loggedInPreferences.getAll();
+
+                            if(getAll.size()==0 || getAll.size()==2)
+                            {
+                                Log.d("loginsesSize","added to first");
+                                loggedInPreferences.createSession("first",obj);
+                            }
+                            else if(getAll.size()==1)
+                            {
+                                Log.d("loginsesSize","added to second");
+                                loggedInPreferences.createSession("second",obj);
+                               // loginsSessionManager.addLoginSession("second",userData);
+                            }
+
+
                             userLoggedInSession.createLoginSession(loginData1.getEmailId(),loginData1.getUsername(),loginData1.getUserId(),loginData1.getFullname(),binding.edPassword.getText().toString(),loginData1.getPhoto());
 
 
@@ -127,8 +181,7 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
                     }
                     else
                     {
-                        binding.btnId.recoverInitialState();
-                        binding.animBtnText.setVisibility(View.VISIBLE);
+                        Toast.makeText(LoginActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
@@ -140,8 +193,8 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
 
             @Override
             public void onFailure(Call<GetLoginResponse> call, Throwable t) {
-                binding.btnId.recoverInitialState();
-                binding.animBtnText.setVisibility(View.VISIBLE);
+                binding.savework.setVisibility(View.VISIBLE);
+                binding.progress.setVisibility(View.GONE);
             }
         });
 
@@ -171,5 +224,11 @@ loggedInPreferences=new LoggedInPreferences(LoginActivity.this);
 
 
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
     }
 }

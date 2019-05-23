@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.amigo.CalendarActivity;
 import com.eleganzit.amigo.CampaignsActivity;
 import com.eleganzit.amigo.DonationsActivity;
@@ -22,6 +23,7 @@ import com.eleganzit.amigo.LoginActivity;
 import com.eleganzit.amigo.LoginSessionActivity;
 import com.eleganzit.amigo.MyProfileActivity;
 import com.eleganzit.amigo.NewsFeedActivity;
+import com.eleganzit.amigo.OpportunitiesActivity;
 import com.eleganzit.amigo.OpportunityActivity;
 import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.ReferEntityActivity;
@@ -32,6 +34,7 @@ import com.eleganzit.amigo.session.UserLoggedInSession;
 
 import java.util.HashMap;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -45,20 +48,23 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
     UserLoggedInSession userLoggedInSession;
-    String username;
+    String username,photo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
 
-        fragmentMenuBinding=FragmentMenuBinding.inflate(inflater, container, false);
+        fragmentMenuBinding= DataBindingUtil.inflate(inflater,R.layout.fragment_menu, container, false);
+        View view = fragmentMenuBinding.getRoot();
+
+
         // Inflate the layout for this fragment
         userLoggedInSession=new UserLoggedInSession(getActivity());
         HashMap<String,String> hashMap=userLoggedInSession.getUserDetails();
         username=hashMap.get(UserLoggedInSession.USERNAME);
+        photo=hashMap.get(UserLoggedInSession.PHOTO);
         fragmentMenuBinding.eventName.setText(username);
-        Glide.with(this).load(hashMap.get(UserLoggedInSession.PHOTO)).into(fragmentMenuBinding.profilePic);
 
 
         NewsFeedActivity.news_feed_toolbar.setVisibility(View.VISIBLE);
@@ -81,14 +87,15 @@ public class MenuFragment extends Fragment {
         fragmentMenuBinding.linEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getActivity(), EventsActivity.class));
+                getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
 
         fragmentMenuBinding.linOpportunity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), OpportunityActivity.class));
+                startActivity(new Intent(getActivity(), OpportunitiesActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
@@ -141,7 +148,13 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        return fragmentMenuBinding.getRoot();
+        return view;
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Glide.with(this).load(photo).apply(new RequestOptions().circleCrop()).into(fragmentMenuBinding.profilePic);
+
+    }
 }

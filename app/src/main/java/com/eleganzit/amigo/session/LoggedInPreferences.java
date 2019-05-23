@@ -32,12 +32,12 @@ public class LoggedInPreferences {
         this._context = _context;
     }
 
-    public void createSession(String user_id, JSONObject jsonObject)
+    public void createSession(String user_key, JSONObject jsonObject)
     {
 
         // Storing name in pref
 
-            editor.putString(user_id, ""+jsonObject.toString());
+            editor.putString(user_key, ""+jsonObject.toString());
 
 
 

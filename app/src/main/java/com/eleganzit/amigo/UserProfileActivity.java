@@ -2,6 +2,7 @@ package com.eleganzit.amigo;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.graphics.PorterDuff;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -19,21 +21,36 @@ import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.eleganzit.amigo.api.RetrofitAPI;
+import com.eleganzit.amigo.api.RetrofitInterface;
+import com.eleganzit.amigo.databinding.ActivityUserProfileBinding;
 import com.eleganzit.amigo.fragments.AboutFragment;
 import com.eleganzit.amigo.fragments.EventsFragment;
 import com.eleganzit.amigo.fragments.HomeFragment;
 import com.eleganzit.amigo.fragments.OpportunityFragment;
 import com.eleganzit.amigo.fragments.PhotosFragment;
+import com.eleganzit.amigo.model.GetOtherUserResponse;
+import com.eleganzit.amigo.model.OtherUserData;
+import com.eleganzit.amigo.model.newsfeed.NewsFeedDataResponse;
+import com.eleganzit.amigo.session.UserLoggedInSession;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserProfileActivity extends AppCompatActivity {
 
+    private static final String TAG ="UserProfileActivityTAG" ;
     EditText ed_search;
     ImageView chat;
     TabLayout profile_tabs;
@@ -41,11 +58,23 @@ public class UserProfileActivity extends AppCompatActivity {
     public static TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity;
 
     public static RelativeLayout donate_layout;
+    UserLoggedInSession userLoggedInSession;
+    ProgressDialog progressDialog;
 
+    String requestuserid,user_id;
+    ActivityUserProfileBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+        progressDialog=new ProgressDialog(UserProfileActivity.this);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Please Wait");
+        userLoggedInSession = new UserLoggedInSession(UserProfileActivity.this);
+binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activity_user_profile);
+        HashMap<String, String> map = userLoggedInSession.getUserDetails();
+        user_id = map.get(UserLoggedInSession.USER_ID);
 
         ed_search=findViewById(R.id.ed_search);
         chat=findViewById(R.id.chat);
@@ -56,6 +85,8 @@ public class UserProfileActivity extends AppCompatActivity {
         tab_opportunity=findViewById(R.id.tab_opportunity);
 
         ed_search.setLongClickable(false);
+        requestuserid=getIntent().getStringExtra("userid");
+        Log.d(TAG,""+user_id+" "+requestuserid);
 
         ed_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,5 +190,55 @@ public class UserProfileActivity extends AppCompatActivity {
         activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int width = displayMetrics.widthPixels;
         return width;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getOtherUser();
+    }
+
+    public void getOtherUser()
+    {
+        progressDialog.show();
+        RetrofitInterface myInterface= RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
+        Call<GetOtherUserResponse> call=myInterface.getOtherUser(requestuserid,user_id);
+
+        call.enqueue(new Callback<GetOtherUserResponse>() {
+            @Override
+            public void onResponse(Call<GetOtherUserResponse> call, Response<GetOtherUserResponse> response) {
+                progressDialog.dismiss();
+               if (response.isSuccessful())
+               {
+                   if (response.body().getData()!=null)
+                   {
+                       for (int i=0;i<response.body().getData().size();i++)
+                       {
+                           OtherUserData otherUserData=response.body().getData().get(i);
+
+                           Glide.with(UserProfileActivity.this).load(otherUserData.getBackgroundImage()).into(binding.userphoto);
+                           Glide.with(UserProfileActivity.this).load(otherUserData.getPhoto()).apply(RequestOptions.circleCropTransform()).into(binding.userimage);
+
+                           binding.userName.setText(otherUserData.getFullname());
+                           binding.followersdata.setText(""+otherUserData.getCountFollow());
+                           binding.followingdata.setText(""+otherUserData.getCountFollowing());
+                           binding.postdata.setText(""+otherUserData.getCountPost());
+
+
+                       }
+                   }
+               }
+               else
+               {
+
+               }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetOtherUserResponse> call, Throwable t) {
+                progressDialog.dismiss();
+            }
+        });
     }
 }

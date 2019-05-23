@@ -21,12 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ViewPostImagesAdapter extends RecyclerView.Adapter<ViewPostImagesAdapter.MyViewHolder>
 {
 
-    ArrayList<PostImages> images;
+    ArrayList<PhotosData> images;
     Context context;
     Activity activity;
     private int height;
 
-    public ViewPostImagesAdapter(ArrayList<PostImages> images, Context context) {
+    public ViewPostImagesAdapter(ArrayList<PhotosData> images, Context context) {
         this.images = images;
         this.context = context;
         activity = (Activity) context;
@@ -45,10 +45,10 @@ public class ViewPostImagesAdapter extends RecyclerView.Adapter<ViewPostImagesAd
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
 
-        PostImages postImages=images.get(i);
+        PhotosData postImages=images.get(i);
         Glide
                 .with(context)
-                .load(postImages.getImage())
+                .load(postImages.getPhoto())
                 .apply(new RequestOptions().centerCrop()).into(holder.post_image);
 
     }

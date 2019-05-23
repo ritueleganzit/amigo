@@ -70,7 +70,7 @@ public class OfferRequestHelpFragment extends Fragment {
         imgArrayList.add("https://i.ytimg.com/vi/2SAPrPZVTjs/hqdefault.jpg");
         ImgarrayList.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyu82j_yYelLzJd2tVDqHZmCXRFVyOcDt2wwr5Zfb8JvREdu1");
          */
-        NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
+       /* NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
 
         if(dataArrayList.size()>0)
         {
@@ -80,7 +80,7 @@ public class OfferRequestHelpFragment extends Fragment {
         dataArrayList.add(newsFeedData);
         dataArrayList.add(newsFeedData);
 
-        rc_help_posts.setAdapter(new HelpAdapter(dataArrayList,getActivity()));
+        rc_help_posts.setAdapter(new HelpAdapter(dataArrayList,getActivity()));*/
 
 
     }

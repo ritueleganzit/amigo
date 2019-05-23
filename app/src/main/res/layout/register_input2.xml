@@ -21,9 +21,10 @@
             android:id="@+id/ed_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:hint="NAME OF ENTITY AS REGISTERED WITH GOV."
             android:imeOptions="actionNext"
+            android:textSize="@dimen/texthint"
+
             android:inputType="text"
             android:singleLine="true" />
 
@@ -44,7 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="MOBILE NUMBER"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textSize="@dimen/texthint"
+
             android:imeOptions="actionDone"
             android:inputType="phone"
             android:singleLine="true" />

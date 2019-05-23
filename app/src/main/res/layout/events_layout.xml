@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     android:id="@+id/event_main"
     android:layout_width="fill_parent"
@@ -24,6 +25,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="#ffffff"
             android:text="MAY"
+            android:id="@+id/month"
             android:gravity="center"
             android:background="@drawable/top_rounded_green_bg"
             />
@@ -39,6 +41,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="#ffffff"
                 android:text="20"
+                android:id="@+id/day"
                 android:layout_centerInParent="true"
                 />
 
@@ -83,7 +86,7 @@
                 />
 
             <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                android:id="@+id/events"
+                android:id="@+id/eventstime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -109,7 +112,7 @@
 
 
         <com.eleganzit.amigo.utils.TextViewRobotoRegular
-            android:id="@+id/timestamp"
+            android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
@@ -124,3 +127,4 @@
 
 
 </RelativeLayout>
+</layout>

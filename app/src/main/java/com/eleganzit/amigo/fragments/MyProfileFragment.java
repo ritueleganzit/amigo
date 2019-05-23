@@ -102,7 +102,7 @@ public class MyProfileFragment extends Fragment {
         imgArrayList.add("https://i.ytimg.com/vi/2SAPrPZVTjs/hqdefault.jpg");
 */
 
-        NewsFeedData newsFeedData=new NewsFeedData("zahir",imgArrayList);
+      /*  NewsFeedData newsFeedData=new NewsFeedData("","","",created_date,content,imgArrayList,cmntsArrayList,likesArrayList,countComment,countLikes,type);
 
         dataArrayList.add(newsFeedData);
         dataArrayList.add(newsFeedData);
@@ -111,7 +111,7 @@ public class MyProfileFragment extends Fragment {
         dataArrayList.add(newsFeedData);
 
         rc_my_posts.setAdapter(new UserNewsFeedAdapter(dataArrayList,getActivity()));
-
+*/
         tab_photos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

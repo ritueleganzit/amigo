@@ -20,8 +20,9 @@
         <EditText
             android:id="@+id/ed_password"
             android:layout_width="match_parent"
+
             android:layout_height="wrap_content"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textSize="@dimen/texthint"
             android:hint="PASSWORD"
             android:inputType="textPassword"
             android:singleLine="true"
@@ -43,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="CONFIRM PASSWORD"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textSize="@dimen/texthint"
             android:imeOptions="actionDone"
             android:inputType="textPassword"
             android:singleLine="true" />

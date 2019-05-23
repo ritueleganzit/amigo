@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+       />
 
     <RelativeLayout
         android:id="@+id/content"
@@ -41,6 +42,7 @@
                 android:background="@drawable/top_rounded_green_bg"
                 android:gravity="center"
                 android:text="MAY"
+                android:id="@+id/ev_month"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#ffffff" />
 
@@ -54,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:text="20"
+                    android:id="@+id/ev_day"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                     android:textColor="#ffffff" />
 
@@ -78,7 +81,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                 android:textColor="#000" />
@@ -97,7 +100,7 @@
                     android:src="@mipmap/clock_small" />
 
                 <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                    android:id="@+id/events"
+                    android:id="@+id/events_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -122,7 +125,7 @@
 
 
                 <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                    android:id="@+id/timestamp"
+                    android:id="@+id/ev_loc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -138,12 +141,14 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_above="@+id/footer"
         android:background="#d7d7d7" />
 
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/footer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -213,3 +218,4 @@
     </LinearLayout>
 
 </RelativeLayout>
+</layout>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -129,6 +130,7 @@
                             android:background="@drawable/profile_ring">
 
                             <ImageView
+                                android:id="@+id/userimage"
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_margin="2dp"
@@ -149,6 +151,7 @@
                                 android:layout_height="wrap_content"
                                 android:singleLine="true"
                                 android:ellipsize="end"
+                                android:id="@+id/user_name"
                                 android:textColor="#000"
                                 android:text="Username"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
@@ -172,7 +175,6 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal"
                                     android:gravity="center"
-                                    android:layout_toLeftOf="@+id/follow_options"
                                     android:padding="4dp"
                                     android:layout_centerVertical="true"
                                     android:background="@drawable/rounded_green_bg">
@@ -218,7 +220,8 @@
                             <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="37"
+                                android:text="0"
+                                android:id="@+id/postdata"
                                 android:textColor="#000000"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
@@ -241,8 +244,9 @@
                             <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="142"
+                                android:text="0"
                                 android:textColor="#000000"
+                                android:id="@+id/followersdata"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
                             <com.eleganzit.amigo.utils.TextViewRobotoRegular
@@ -264,7 +268,9 @@
                             <com.eleganzit.amigo.utils.TextViewRobotoBold
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="208"
+                                android:text="0"
+                                android:id="@+id/followingdata"
+
                                 android:textColor="#000000"
                                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
 
@@ -362,3 +368,4 @@
     </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
+</layout>
