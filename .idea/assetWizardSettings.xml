@@ -126,8 +126,8 @@
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
                                       <entry key="iconShape" value="NONE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/icon_volunteer.png" />
-                                      <entry key="outputName" value="icon_volunteer" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/icon_follow.png" />
+                                      <entry key="outputName" value="icon_follow" />
                                     </map>
                                   </option>
                                 </PersistentState>

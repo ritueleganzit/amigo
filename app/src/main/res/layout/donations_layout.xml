@@ -25,6 +25,7 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="#ffffff"
             android:text="MAY"
+            android:id="@+id/month"
             android:gravity="center"
             android:background="@drawable/top_rounded_green_bg"
             />
@@ -40,6 +41,7 @@
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textColor="#ffffff"
                 android:text="20"
+                android:id="@+id/day"
                 android:layout_centerInParent="true"
                 />
 
@@ -84,7 +86,7 @@
                 />
 
             <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                android:id="@+id/events"
+                android:id="@+id/end_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -116,7 +118,7 @@
                 android:singleLine="true"
                 android:paddingLeft="5dp"
                 android:ellipsize="end"
-                android:text="Donation ::"
+                android:text="Donation :"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
             <com.eleganzit.amigo.utils.TextViewRobotoBold

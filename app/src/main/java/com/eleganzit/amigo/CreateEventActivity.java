@@ -248,7 +248,7 @@ public class CreateEventActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(CreateEventActivity.this, "Blank", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateEventActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 
                 }
             }

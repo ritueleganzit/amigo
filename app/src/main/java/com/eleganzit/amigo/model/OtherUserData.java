@@ -90,7 +90,7 @@ public class OtherUserData {
     private Integer countFollowing;
     @SerializedName("is_follow")
     @Expose
-    private Integer isFollow;
+    private String isFollow;
     @SerializedName("followdata")
     @Expose
     private Followdata followdata;
@@ -319,11 +319,11 @@ public class OtherUserData {
         this.countFollowing = countFollowing;
     }
 
-    public Integer getIsFollow() {
+    public String getIsFollow() {
         return isFollow;
     }
 
-    public void setIsFollow(Integer isFollow) {
+    public void setIsFollow(String isFollow) {
         this.isFollow = isFollow;
     }
 

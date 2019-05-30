@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.amigo.CalendarActivity;
 import com.eleganzit.amigo.CampaignsActivity;
+import com.eleganzit.amigo.DonationListActivity;
 import com.eleganzit.amigo.DonationsActivity;
 import com.eleganzit.amigo.EventsActivity;
 import com.eleganzit.amigo.FollowingActivity;
@@ -111,7 +112,7 @@ public class MenuFragment extends Fragment {
         fragmentMenuBinding.linDonation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), DonationsActivity.class));
+                startActivity(new Intent(getActivity(), DonationListActivity.class));
                 getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });

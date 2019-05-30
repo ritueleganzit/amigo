@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/post_main"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="1dp"
+    android:layout_marginBottom="6dp"
+    android:id="@+id/post_main"
     android:background="#ffffff"
     android:orientation="vertical">
 
@@ -33,6 +32,7 @@
                 android:scaleType="fitCenter" />
 
             <LinearLayout
+                android:id="@+id/profile_click"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/profilePic"
@@ -42,7 +42,7 @@
                 android:paddingLeft="10dp" >
 
                 <com.eleganzit.amigo.utils.TextViewRobotoBold
-                    android:id="@+id/name"
+                    android:id="@+id/txt_fullname"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -58,7 +58,7 @@
                     android:layout_gravity="center"
                     android:paddingRight="5dp" >
                     <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                        android:id="@+id/timestamp"
+                        android:id="@+id/txt_date_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -73,6 +73,7 @@
                         android:src="@drawable/dot"/>
 
                     <ImageView
+                        android:id="@+id/privacy_img"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:layout_marginLeft="10dp"
@@ -86,7 +87,6 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:padding="4dp"
-                android:visibility="gone"
                 android:layout_gravity="center"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/menu" />
@@ -94,7 +94,7 @@
         </RelativeLayout>
 
         <com.eleganzit.amigo.utils.TextViewRobotoRegular
-            android:id="@+id/txtStatusMsg"
+            android:id="@+id/txt_content"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
@@ -102,16 +102,8 @@
             android:gravity="left"
             android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
             android:paddingBottom="5dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="7dp"/>
-
-        <ImageView
-            android:id="@+id/feedImage1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#fff"
-            android:scaleType="fitXY"
-            android:visibility="visible" />
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/flexbox_layout"
@@ -121,70 +113,83 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <RelativeLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/like_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_toLeftOf="@+id/comment_layout"
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/rel_footer"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/like_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:paddingRight="5dp" >
+
+            <ImageView
+                android:id="@+id/like_post"
+                android:layout_width="20dp"
+                android:scaleType="centerInside"
+                android:layout_height="20dp"
+                android:layout_marginLeft="5dp"
                 android:layout_gravity="center"
-                android:paddingRight="5dp" >
+                android:layout_marginRight="5dp"
+                android:src="@drawable/heart"/>
 
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/heart"/>
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:id="@+id/txt_likes"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="You and 250 others"
+                android:textSize="@dimen/comments"  />
 
-                <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:text="You and 250 others"
-                    android:textSize="12dp" />
+        </LinearLayout>
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/comment_layout"
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/comment_layout"
+            android:layout_width="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            >
+
+            <ImageView
+                android:id="@+id/comment_post"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/comment" />
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:id="@+id/txt_comments"
                 android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_gravity="center"
-                android:paddingRight="5dp" >
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="0 Comments"
+                android:textSize="@dimen/comments" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/comment"/>
-
-                <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:singleLine="true"
-                    android:ellipsize="end"
-                    android:text="45 Comments"
-                    android:textSize="12dp" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

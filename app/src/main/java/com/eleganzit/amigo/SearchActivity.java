@@ -279,9 +279,8 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
                                                             public void onSearchSelected(SearchData searchData) {
                                                                 ed_search.setText("");
                                                                 ed_search.append(searchData.getFullname()+"");
-                                                               /* startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
+                                                                startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
                                                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-*/
 
                                                             }
                                                         });
@@ -305,9 +304,8 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
                                                             public void onSearchSelected(SearchData searchData) {
                                                                 ed_search.setText("");
                                                                 ed_search.append(searchData.getFullname()+"");
-                                                               /* startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
+                                                                startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
                                                                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-*/
 
                                                             }
                                                         });
@@ -389,8 +387,8 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
     private void performSearch() {
         if(!ed_search.getText().toString().isEmpty())
         {
-           /* startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);*/
+            startActivity(new Intent(SearchActivity.this,SearchResultsActivity.class).putExtra("search",ed_search.getText().toString()));
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         }
     }
 

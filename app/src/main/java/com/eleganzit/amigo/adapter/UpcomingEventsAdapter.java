@@ -110,7 +110,8 @@ public class UpcomingEventsAdapter extends RecyclerView.Adapter<UpcomingEventsAd
         holder.eventsMainLayoutBinding.eventMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.startActivity(new Intent(context, EventProfileActivity.class).putExtra("event",getEvents));
+                context.startActivity(new Intent(context, EventProfileActivity.class).putExtra("event",getEvents)
+                .putExtra("eventid",getEvents.getEventId()));
                 activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                 activity.finish();
             }

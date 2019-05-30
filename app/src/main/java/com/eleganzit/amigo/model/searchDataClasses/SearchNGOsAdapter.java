@@ -2,11 +2,25 @@ package com.eleganzit.amigo.model.searchDataClasses;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.amigo.R;
+import com.eleganzit.amigo.UserProfileActivity;
+import com.eleganzit.amigo.api.RetrofitAPI;
+import com.eleganzit.amigo.api.RetrofitInterface;
+import com.eleganzit.amigo.model.SendRequestDataResponse;
 import com.eleganzit.amigo.session.UserLoggedInSession;
 
 import java.util.ArrayList;
@@ -14,10 +28,14 @@ import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-//public class SearchNGOsAdapter extends RecyclerView.Adapter<SearchNGOsAdapter.MyViewHolder>
-//{
-/*
+import static android.content.Context.MODE_PRIVATE;
+
+public class SearchNGOsAdapter extends RecyclerView.Adapter<SearchNGOsAdapter.MyViewHolder>
+{
     ArrayList<NGOData> ngos;
     Context context;
     Activity activity;
@@ -113,7 +131,8 @@ import androidx.recyclerview.widget.RecyclerView;
                 viewUserEditor.putString("viewUserId",ngoData.getAmigo_id());
                 viewUserEditor.commit();
 
-                context.startActivity(new Intent(context,UserProfileActivity.class));
+                context.startActivity(new Intent(context,UserProfileActivity.class)
+                        .putExtra("userid",ngoData.getAmigo_id()));
                 activity.overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
             }
@@ -150,8 +169,8 @@ import androidx.recyclerview.widget.RecyclerView;
         ngoData.setIsFollowed("pending");
         follow.setEnabled(false);
 
-        MyInterface myInterface = RetrofitApiClient.getRetrofit().create(MyInterface.class);
-        Call<SendRequestDataResponse> call = myInterface.sendFollowRequest(ngoData.getAmigo_id(),userInfo.get(UserSessionManager.KEY_USER_ID));
+        RetrofitInterface myInterface = RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
+        Call<SendRequestDataResponse> call = myInterface.sendFollowRequest(ngoData.getAmigo_id(),userInfo.get(UserLoggedInSession.USER_ID));
         call.enqueue(new Callback<SendRequestDataResponse>() {
             @Override
             public void onResponse(Call<SendRequestDataResponse> call, final Response<SendRequestDataResponse> response) {
@@ -201,7 +220,7 @@ import androidx.recyclerview.widget.RecyclerView;
         follow.setImageResource(R.mipmap.icon_follow);
         ngoData.setIsFollowed("0");
         follow.setEnabled(false);
-        MyInterface myInterface = RetrofitApiClient.getRetrofit().create(MyInterface.class);
+        RetrofitInterface myInterface = RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
         Call<SendRequestDataResponse> call = myInterface.cancelFollowRequest(ngoData.getRequest_id(),"0");
         call.enqueue(new Callback<SendRequestDataResponse>() {
             @Override
@@ -245,6 +264,6 @@ import androidx.recyclerview.widget.RecyclerView;
                 follow.setEnabled(true);
             }
         });
-    }*/
+    }
 
-//}
+}

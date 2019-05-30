@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:background="#ffffff"
+    android:id="@+id/rel_request_row"
     android:orientation="horizontal"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -53,7 +54,7 @@
             android:ellipsize="end"
             android:text="Username"
             android:textColor="#000"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium" />
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small" />
 
         <com.eleganzit.amigo.utils.TextViewRobotoRegular
             android:layout_width="wrap_content"
@@ -62,7 +63,7 @@
             android:ellipsize="end"
             android:layout_marginLeft="5dp"
             android:text="has requested to follow you."
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"/>
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
 
     </LinearLayout>
 

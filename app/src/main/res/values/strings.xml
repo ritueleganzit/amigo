@@ -35,5 +35,9 @@
     <string name="Please_enter_event_name">Please enter event name</string>
     <string name="Please_enter_co_host">Please enter co-host</string>
     <string name="Please_Enter_work">Please work details</string>
+    <string name="Please_enter_title">Please enter title</string>
+    <string name="Please_select_end_date">Please select end date</string>
+    <string name="Please_enter_donation_details">Please enter detalis</string>
+    <string name="Please_enter_amount">Please enter amount</string>
 
 </resources>

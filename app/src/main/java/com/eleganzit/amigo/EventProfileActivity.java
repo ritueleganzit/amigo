@@ -68,7 +68,7 @@ public class EventProfileActivity extends AppCompatActivity implements OnMapRead
     ImageView chat, camera;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final int MY_STORAGE_PERMISSION_CODE = 200;
-    String imageFilePath, event_id;
+    String imageFilePath, event_id,eventid="";
     private static final int REQUEST_CAPTURE_IMAGE = 100;
     private static final int CAMERA_REQUEST = 1888;
 
@@ -122,10 +122,15 @@ public class EventProfileActivity extends AppCompatActivity implements OnMapRead
         super.onResume();
         Log.d(TAG,"resume");
         getEvents = (GetEvents) getIntent().getSerializableExtra("event");
-        event_id = getEvents.getEventId();
-
+        if (getEvents!=null) {
+            event_id = getEvents.getEventId();
+        }
+        eventid=getIntent().getStringExtra("eventid");
         if (event_id!=null && !(event_id.isEmpty())) {
             getsingleEvent(event_id);
+        }
+        if (eventid!=null && !(eventid.isEmpty())) {
+            getsingleEvent(eventid);
         }
 
 
@@ -298,7 +303,7 @@ progressDialog.dismiss();
                             }
 
                             if (singleEvent.getEventDate() != null && (!singleEvent.getEventDate().isEmpty())) {
-                                if (!getEvents.getEventDate().equalsIgnoreCase("0000-00-00")) {
+                                if (!singleEvent.getEventDate().equalsIgnoreCase("0000-00-00")) {
                                     String input_date = "" + singleEvent.getEventDate();
                                     SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                                     Date dt1 = null;

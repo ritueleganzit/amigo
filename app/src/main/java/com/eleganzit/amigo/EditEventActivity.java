@@ -326,7 +326,7 @@ progressDialog.show();
         RequestBody  addres= RequestBody.create(MediaType.parse("text/plain"), ""+binding.edEventAddress.getText().toString());
         RequestBody details = RequestBody.create(MediaType.parse("text/plain"), ""+binding.edEventDetais.getText().toString());
         RequestBody host = RequestBody.create(MediaType.parse("text/plain"), ""+binding.edCoHost.getText().toString());
-        RequestBody status = RequestBody.create(MediaType.parse("text/plain"), "");
+        RequestBody status = RequestBody.create(MediaType.parse("text/plain"), "active");
         RequestBody rlat = RequestBody.create(MediaType.parse("text/plain"), ""+lat);
         RequestBody rlng = RequestBody.create(MediaType.parse("text/plain"), ""+lng);
 
@@ -348,8 +348,11 @@ progressDialog.show();
                     }
                     else
                     {
-                        Toast.makeText(EditEventActivity.this, ""+response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditEventActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                     }
+                } else
+                {
+                    Toast.makeText(EditEventActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
                 }
             }
 

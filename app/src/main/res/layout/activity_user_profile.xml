@@ -168,7 +168,70 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp">
+                                <RelativeLayout
+                                    android:id="@+id/accept_reject"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:visibility="gone"
+                                    android:layout_centerInParent="true"
+                                    >
 
+                                    <LinearLayout
+                                        android:id="@+id/follow_buttons"
+                                        android:layout_width="match_parent"
+                                        android:layout_centerInParent="true"
+                                        android:gravity="center_vertical"
+                                        android:weightSum="2"
+                                        android:orientation="horizontal"
+                                        android:layout_height="wrap_content">
+
+                                        <RelativeLayout
+                                            android:id="@+id/rel_accept_bg"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:layout_height="wrap_content"
+                                            android:background="@drawable/rounded_green_bg"
+                                            android:gravity="center"
+                                            android:padding="2dp"
+                                            android:layout_gravity="left">
+
+                                            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                                                android:id="@+id/txt_accept"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                                android:textColor="#ffffff"
+                                                android:text="Accept"
+                                                android:layout_centerInParent="true" />
+
+                                        </RelativeLayout>
+
+                                        <RelativeLayout
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:padding="2dp"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/rel_reject_bg"
+                                            android:layout_marginLeft="5dp"
+                                            android:background="@drawable/rounded_blue_bg">
+
+                                            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                                                android:textColor="#ffffff"
+                                                android:paddingTop="2dp"
+                                                android:paddingBottom="2dp"
+                                                android:text="Reject"
+                                                android:layout_centerInParent="true" />
+
+                                        </RelativeLayout>
+                                    </LinearLayout>
+
+
+                                </RelativeLayout>
                                 <LinearLayout
                                     android:id="@+id/follow"
                                     android:layout_width="match_parent"
@@ -181,6 +244,7 @@
 
                                     <ImageView
                                         android:layout_width="18dp"
+                                        android:id="@+id/img_follow"
                                         android:layout_height="18dp"
                                         android:src="@mipmap/square_add_white"
                                         />
@@ -190,6 +254,7 @@
                                         android:layout_height="wrap_content"
                                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                                         android:textColor="#ffffff"
+                                        android:id="@+id/txt_follow"
                                         android:layout_marginLeft="10dp"
                                         android:text="Follow"/>
                                 </LinearLayout>

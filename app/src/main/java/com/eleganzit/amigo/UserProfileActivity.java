@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -35,6 +36,8 @@ import com.eleganzit.amigo.model.GetOtherUserResponse;
 import com.eleganzit.amigo.model.OtherUserData;
 import com.eleganzit.amigo.model.newsfeed.NewsFeedDataResponse;
 import com.eleganzit.amigo.session.UserLoggedInSession;
+import com.eleganzit.amigo.utils.TextViewRobotoBold;
+import com.eleganzit.amigo.utils.TextViewRobotoRegular;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.tabs.TabLayout;
 
@@ -52,15 +55,17 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private static final String TAG ="UserProfileActivityTAG" ;
     EditText ed_search;
+    RelativeLayout accept_reject;
     ImageView chat;
     TabLayout profile_tabs;
     ViewPager profile_view_pager;
     public static TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity;
-
+LinearLayout follow;
     public static RelativeLayout donate_layout;
     UserLoggedInSession userLoggedInSession;
     ProgressDialog progressDialog;
-
+ImageView img_follow;
+TextViewRobotoBold txt_follow;
     String requestuserid,user_id;
     ActivityUserProfileBinding binding;
     @Override
@@ -77,6 +82,10 @@ binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activi
         user_id = map.get(UserLoggedInSession.USER_ID);
 
         ed_search=findViewById(R.id.ed_search);
+        accept_reject=findViewById(R.id.accept_reject);
+        txt_follow=findViewById(R.id.txt_follow);
+        follow=findViewById(R.id.follow);
+        img_follow=findViewById(R.id.img_follow);
         chat=findViewById(R.id.chat);
         tab_home=findViewById(R.id.tab_home);
         tab_about=findViewById(R.id.tab_about);
@@ -225,6 +234,44 @@ binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activi
                            binding.postdata.setText(""+otherUserData.getCountPost());
 
 
+                           if (otherUserData.getFollowdata().getFail_status().equalsIgnoreCase("0"))
+                           {
+                              String request_user_id=response.body().getData().get(i).getFollowdata().getRequestUserId();
+                               String  request_id=response.body().getData().get(i).getFollowdata().getRequest_id();
+                               String request_status=response.body().getData().get(i).getFollowdata().getStatus();
+                               if(request_user_id.equalsIgnoreCase(user_id))
+                               {
+
+                                   follow.setVisibility(View.VISIBLE);
+                                   accept_reject.setVisibility(View.GONE);
+                                   if(request_status.equalsIgnoreCase("0"))
+                                   {
+                                       follow.setBackgroundResource(R.drawable.rounded_green_bg);
+                                       img_follow.setVisibility(View.VISIBLE);
+                                       txt_follow.setText("Follow");
+                                       Toast.makeText(UserProfileActivity.this, "", Toast.LENGTH_SHORT).show();
+                                   }
+                                   else if(request_status.equalsIgnoreCase("pending"))
+                                   {
+                                       follow.setBackgroundResource(R.drawable.rounded_light_blue_bg);
+                                       img_follow.setVisibility(View.GONE);
+                                       txt_follow.setText("Requested");
+                                   }
+                                   else if(request_status.equalsIgnoreCase("accept"))
+                                   {
+                                       follow.setBackgroundResource(R.drawable.rounded_light_blue_bg);
+                                       img_follow.setVisibility(View.GONE);
+                                       txt_follow.setText("Friends");
+                                   }
+
+                               }
+                               else
+                               {
+                                   follow.setVisibility(View.GONE);
+                                   accept_reject.setVisibility(View.VISIBLE);
+                               }
+                           }
+
                        }
                    }
                }
@@ -238,6 +285,9 @@ binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activi
             @Override
             public void onFailure(Call<GetOtherUserResponse> call, Throwable t) {
                 progressDialog.dismiss();
+
+
+                Log.d(TAG,""+t.getMessage());
             }
         });
     }

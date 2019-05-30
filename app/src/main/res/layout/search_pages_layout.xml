@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/main"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -17,7 +18,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/pagePhoto"
+            android:id="@+id/profilePhoto"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
@@ -38,12 +39,12 @@
         android:paddingLeft="10dp" >
 
         <com.eleganzit.amigo.utils.TextViewRobotoBold
-            android:id="@+id/name"
+            android:id="@+id/txt_fullname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="Page Title"
+            android:text="Username"
             android:textColor="#000"
             android:textSize="15dp" />
 
@@ -55,40 +56,42 @@
             android:layout_gravity="center"
             android:paddingRight="5dp" >
             <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                android:id="@+id/page_likes"
+                android:id="@+id/txt_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="1.4 likes"
+                android:text="50 followers"
                 android:textSize="12dp" />
 
             <ImageView
                 android:layout_width="6dp"
                 android:layout_height="6dp"
+                android:visibility="gone"
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:src="@drawable/dot"/>
 
             <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                android:id="@+id/page_place"
+                android:id="@+id/txt_city"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:text="High School"
+                android:text="City"
                 android:textSize="12dp" />
 
         </LinearLayout>
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/like"
+        android:id="@+id/follow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="4dp"
         android:layout_centerInParent="true"
         android:layout_alignParentRight="true"
-        android:src="@mipmap/like_gray" />
+        android:src="@mipmap/icon_follow" />
 
     <View
         android:layout_width="match_parent"

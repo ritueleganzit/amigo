@@ -352,7 +352,7 @@
                     android:textColor="#8c8c8c"
                     android:layout_weight="1"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="Photos"/>
+                    android:text="Home"/>
 
                 <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/tab_following"

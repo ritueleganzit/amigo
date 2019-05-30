@@ -1,5 +1,6 @@
 package com.eleganzit.amigo;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.eleganzit.amigo.adapter.SearchEventsAdapter;
+import com.eleganzit.amigo.adapter.SearchVolunteersAdapter;
 import com.eleganzit.amigo.api.RetrofitAPI;
 import com.eleganzit.amigo.api.RetrofitInterface;
 import com.eleganzit.amigo.model.searchDataClasses.EventsData;
 import com.eleganzit.amigo.model.searchDataClasses.NGOData;
 import com.eleganzit.amigo.model.searchDataClasses.SearchAllDataResponse;
+import com.eleganzit.amigo.model.searchDataClasses.SearchNGOsAdapter;
 import com.eleganzit.amigo.model.searchDataClasses.VolunteersData;
 import com.eleganzit.amigo.session.UserLoggedInSession;
 
@@ -22,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +35,7 @@ import retrofit2.Response;
 public class SearchResultsActivity extends AppCompatActivity {
 
 
-   /* RecyclerView rc_ngos,rc_events,rc_volunteer;
+    RecyclerView rc_ngos,rc_events,rc_volunteer;
 
     ImageView chat,notification_bell;
     LinearLayout all_shimmer;
@@ -63,7 +68,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         rc_volunteer=findViewById(R.id.rc_volunteer);
         all_shimmer=findViewById(R.id.all_shimmer);
         ed_search=findViewById(R.id.ed_search);
-        error_layout=findViewById(R.id.error_layout);
+        error_layout=findViewById(R.id.error);
         no_results_layout=findViewById(R.id.no_results_layout);
         chat=findViewById(R.id.chat);
         notification_bell=findViewById(R.id.notification_bell);
@@ -287,5 +292,5 @@ public class SearchResultsActivity extends AppCompatActivity {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
-    }*/
+    }
 }

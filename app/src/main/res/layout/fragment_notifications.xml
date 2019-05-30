@@ -55,8 +55,17 @@
                     android:background="#d7d7d7">
 
                 </androidx.recyclerview.widget.RecyclerView>
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressbar"
+                    android:visibility="gone"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"/>
 
             </RelativeLayout>
+
+
 
         </LinearLayout>
 

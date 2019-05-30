@@ -1,5 +1,6 @@
 package com.eleganzit.amigo.api;
 
+import com.eleganzit.amigo.model.donation.AddDonationResponse;
 import com.eleganzit.amigo.model.SearchDataResponse;
 import com.eleganzit.amigo.model.AddCommentResponse;
 import com.eleganzit.amigo.model.AddEventResponse;
@@ -19,8 +20,14 @@ import com.eleganzit.amigo.model.ListPostCommentResponse;
 import com.eleganzit.amigo.model.PostLikesResponse;
 import com.eleganzit.amigo.model.RejectedListResponse;
 import com.eleganzit.amigo.model.SaveLikeResponse;
+import com.eleganzit.amigo.model.SendRequestDataResponse;
 import com.eleganzit.amigo.model.UpdateUserResponse;
 import com.eleganzit.amigo.model.addedu.AddEduResponse;
+import com.eleganzit.amigo.model.donation.DeleteDonationResponse;
+import com.eleganzit.amigo.model.donation.DonarListResponse;
+import com.eleganzit.amigo.model.donation.GetDonationResponse;
+import com.eleganzit.amigo.model.donation.SingleDonationResponse;
+import com.eleganzit.amigo.model.getfriendrequest.GetRequestDataResponse;
 import com.eleganzit.amigo.model.newsfeed.NewsFeedDataResponse;
 import com.eleganzit.amigo.model.opportunity.OpportuntyResponse;
 import com.eleganzit.amigo.model.searchDataClasses.SearchAllDataResponse;
@@ -40,6 +47,19 @@ import retrofit2.http.Part;
  */
 
 public interface RetrofitInterface {
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/requestStatus")
+    Call<SendRequestDataResponse> cancelFollowRequest(@Field("request_id") String request_id, @Field("status") String status);
+ @FormUrlEncoded
+    @POST("/Volunteerify-API/getRequests")
+    Call<GetRequestDataResponse> getRequests(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/sendRequest")
+    Call<SendRequestDataResponse> sendFollowRequest(@Field("user_id") String user_id, @Field("request_user_id") String request_user_id);
+
 
     @Multipart
     @POST("/Volunteerify-API/addUser")
@@ -482,4 +502,97 @@ Call<DeleteEventResponse> deleteEvent(
             @Field("post_id") String post_id
 
     );
+
+
+    //Add Donation
+    @Multipart
+    @POST("/Volunteerify-API/addDonations")
+    Call<AddDonationResponse> addDonations(
+
+            @Part("user_id") RequestBody user_id,
+            @Part("title") RequestBody title,
+            @Part("need_amount") RequestBody need_amount,
+            @Part("description") RequestBody description,
+            @Part("donation_start_date") RequestBody donation_start_date,
+            @Part("donation_end_date") RequestBody donation_end_date,
+            @Part("status") RequestBody status,
+
+            @Part MultipartBody.Part donation_image
+
+
+
+
+    );
+    @Multipart
+    @POST("/Volunteerify-API/updateDonation")
+    Call<AddDonationResponse> updateDonation(
+
+            @Part("donation_id") RequestBody donation_id,
+            @Part("title") RequestBody title,
+            @Part("need_amount") RequestBody need_amount,
+            @Part("description") RequestBody description,
+            @Part("donation_start_date") RequestBody donation_start_date,
+            @Part("donation_end_date") RequestBody donation_end_date,
+            @Part("status") RequestBody status,
+
+            @Part MultipartBody.Part donation_image
+
+
+
+
+    );
+
+
+@FormUrlEncoded
+@POST("/Volunteerify-API/getSingleDonation")
+Call<SingleDonationResponse> getSingleDonation(
+        @Field("donation_id") String donation_id
+);
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/getAllDonations")
+    Call<GetDonationResponse> getAllDonations(
+
+
+            @Field("user_id") String user_id,
+            @Field("from_limit") String from_limit,
+            @Field("donation_user") String donation_user
+
+    );
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/delateDonation")
+    Call<DeleteDonationResponse> delateDonation(
+            @Field("donation_id") String donation_id
+    );
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/getDonorlist")
+    Call<DonarListResponse> getDonorlist(
+            @Field("donation_id") String donation_id
+    );
+
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/updateDonation")
+    Call<AddDonationResponse> updateDonationWithoutImage(
+
+            @Field("donation_id") String donation_id,
+            @Field("title") String title,
+            @Field("need_amount") String need_amount,
+            @Field("description") String description,
+            @Field("donation_start_date") String donation_start_date,
+            @Field("donation_end_date") String donation_end_date,
+            @Field("status") String status
+
+
+
+
+
+    );
+
+
 }

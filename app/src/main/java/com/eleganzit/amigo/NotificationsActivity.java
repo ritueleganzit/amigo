@@ -12,8 +12,10 @@ import android.widget.RelativeLayout;
 
 import com.eleganzit.amigo.adapter.AllNotificationsAdapter;
 import com.eleganzit.amigo.model.NotificationData;
+import com.eleganzit.amigo.model.getfriendrequest.RequestData;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,7 +25,7 @@ public class NotificationsActivity extends AppCompatActivity {
 
     RelativeLayout rel_all,rel_alert,rel_offers;
     RecyclerView rc_all;
-    ArrayList<NotificationData> ar_notifications=new ArrayList<>();
+List<RequestData> ar_notifications=new ArrayList<>();
     ImageView chat;
     EditText ed_search;
     @Override
@@ -90,10 +92,10 @@ public class NotificationsActivity extends AppCompatActivity {
             }
         });
 
-        NotificationData notificationData=new NotificationData("","","","");
+        /*NotificationData notificationData=new NotificationData("","","","");
         ar_notifications.add(notificationData);
         ar_notifications.add(notificationData);
-        ar_notifications.add(notificationData);
+        ar_notifications.add(notificationData);*/
 
         rc_all.setAdapter(new AllNotificationsAdapter(ar_notifications,NotificationsActivity.this));
 

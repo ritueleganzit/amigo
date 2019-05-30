@@ -110,7 +110,7 @@
 
                         <ImageView
                             android:scaleType="centerCrop"
-                            android:id="@+id/image_opportunity"
+                            android:id="@+id/donation_image"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent" />
 
@@ -134,10 +134,11 @@
                         android:background="#ffffff">
 
                         <EditText
-                            android:id="@+id/ed_event_name"
+                            android:id="@+id/donation_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="TITLE"
+
                             android:textColor="#000000"
                             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
                             android:imeOptions="actionNext"
@@ -163,7 +164,7 @@
                             android:background="#ffffff">
 
                             <EditText
-                                android:id="@+id/ed_date"
+                                android:id="@+id/donation_start_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="START DATE"
@@ -201,7 +202,7 @@
                             android:background="#ffffff">
 
                             <EditText
-                                android:id="@+id/ed_enddate"
+                                android:id="@+id/donation_end_date"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="END DATE"
@@ -238,7 +239,7 @@
                         android:background="#ffffff">
 
                         <EditText
-                            android:id="@+id/ed_event_detais"
+                            android:id="@+id/donation_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="DETAILS"
@@ -262,7 +263,7 @@
                         android:background="#ffffff">
 
                         <EditText
-                            android:id="@+id/ed_co_host"
+                            android:id="@+id/need_amount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="AMOUNT"
@@ -300,7 +301,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:id="@+id/create_opportunity"
+                    android:id="@+id/create_donation"
                     android:layout_margin="12dp"
                     android:padding="2dp"
                     android:background="@drawable/rounded_green_bg"

@@ -412,7 +412,7 @@
                     android:textColor="#8c8c8c"
                     android:layout_weight="1"
                     android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
-                    android:text="Photos"/>
+                    android:text="Home"/>
 
                 <com.eleganzit.amigo.utils.TextViewRobotoBold
                     android:id="@+id/tab_following"
@@ -450,6 +450,7 @@
                 android:id="@+id/profile_activity_frame"
                 android:layout_below="@+id/profile_tabs"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content" />
 
             <androidx.recyclerview.widget.RecyclerView

@@ -220,7 +220,11 @@
             android:name=".CommentsActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".PostLikesActivity" />
-        <activity android:name=".SearchResultsActivity"></activity>
+        <activity android:name=".SearchResultsActivity" />
+        <activity android:name=".DonationListActivity" />
+        <activity android:name=".DonationDetailActivity" />
+        <activity android:name=".EditDonationActivity" />
+        <activity android:name=".ViewDonarsListActivity"></activity>
     </application>
 
 </manifest>

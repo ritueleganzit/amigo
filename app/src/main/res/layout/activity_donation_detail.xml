@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+    android:background="#ffffff"
+        tools:context=".NewsFeedActivity">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:contentInsetRight="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetEnd="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            android:contentInsetStart="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimaryDark">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:id="@+id/back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/angle_arrow_back"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ffffff"
+                    android:text="Donation"
+                    android:padding="4dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/back" />
+
+                <ImageView
+
+                    android:id="@+id/options"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/menu_icon"/>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+<ScrollView
+    android:layout_below="@+id/toolbar"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:id="@+id/donate_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:layout_marginTop="1dp"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:id="@+id/cheader"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/donationphoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/cheader"
+            android:id="@+id/lfirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/start_date"/>
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_marginTop="4dp"
+
+                android:id="@+id/end_date"/>
+
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textColor="#000"
+                android:text="Description"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:layout_marginTop="4dp"
+                android:justificationMode="inter_word"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text=" "/>
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/rsecond"
+            android:layout_below="@+id/lfirst"
+            android:layout_width="match_parent"
+            android:paddingTop="12dp"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:orientation="vertical">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:id="@+id/totaldonars"
+                    android:textColor="#000000"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textSize="12sp"
+                    android:text="TOTAL DONORS"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$ 0"
+                    android:id="@+id/raisedAmount"
+                    android:textColor="#000000"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    android:textSize="12sp"
+                    android:text="RAISED"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:orientation="vertical">
+
+                <com.eleganzit.amigo.utils.TextViewRobotoBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$ 0"
+                    android:id="@+id/need_amount"
+                    android:textColor="#000000"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+
+                    android:textSize="12sp"
+                    android:text="GOAL"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <SeekBar
+            android:id="@+id/donation_seekbar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="false"
+            android:paddingLeft="16dp"
+
+
+            android:progressDrawable="@drawable/donate_seekbar_drawable"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/rsecond"
+            android:paddingRight="16dp"
+            android:progress="0"/>
+
+        <RelativeLayout
+
+            android:id="@+id/relamount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/donation_seekbar">
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:ellipsize="end"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="$0.00"/>
+
+            <com.eleganzit.amigo.utils.TextViewRobotoBold
+                android:id="@+id/txtamount"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="$0"
+                android:textColor="#DD2434"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+            <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:id="@+id/txt_need"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:ellipsize="end"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+                android:text="$ 0"/>
+
+
+
+        </RelativeLayout>
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relamount"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="20dp"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            android:id="@+id/viewdonate"
+            android:paddingRight="20dp"
+            android:textSize="10sp"
+            android:text="VIEW DONATION DETAILS"
+            android:background="@drawable/donate_button_bg"
+            android:textColor="#ffffff"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/like_gray" />
+    </RelativeLayout>
+</ScrollView>
+    </RelativeLayout>
+
