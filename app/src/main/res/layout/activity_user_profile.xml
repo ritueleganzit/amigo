@@ -256,7 +256,7 @@
                                         android:textColor="#ffffff"
                                         android:id="@+id/txt_follow"
                                         android:layout_marginLeft="10dp"
-                                        android:text="Follow"/>
+                                        android:text="Add Friend"/>
                                 </LinearLayout>
 
                             </RelativeLayout>

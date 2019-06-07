@@ -16,7 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name="com.eleganzit.SeeAllActivity"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -224,7 +227,7 @@
         <activity android:name=".DonationListActivity" />
         <activity android:name=".DonationDetailActivity" />
         <activity android:name=".EditDonationActivity" />
-        <activity android:name=".ViewDonarsListActivity"></activity>
+        <activity android:name=".ViewDonarsListActivity" />
     </application>
 
 </manifest>

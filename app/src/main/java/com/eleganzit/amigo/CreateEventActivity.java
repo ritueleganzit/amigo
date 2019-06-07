@@ -82,50 +82,53 @@ public class CreateEventActivity extends AppCompatActivity {
         binding.edEventTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
-
-                // Launch Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(CreateEventActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
-                                String compareStringOne = binding.edDate.getText().toString() + " " + hourOfDay + ":" + minute;
-                                String pick_mytime = "";
+                if (binding.edDate.getText().toString()!=null && !(binding.edDate.getText().toString().isEmpty())) {
 
 
+                    final Calendar c = Calendar.getInstance();
+                    mHour = c.get(Calendar.HOUR_OF_DAY);
+                    mMinute = c.get(Calendar.MINUTE);
 
-                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                                Date strDate = null;
-                                try {
-                                    strDate = formatter.parse(compareStringOne);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                Log.d("timeessss",""+new Date().getTime() +"     "+ strDate.getTime());
-                                if (new Date().getTime() > strDate.getTime()) {
-                                    binding.edEventTime.setText("");
-                                    Toast.makeText(CreateEventActivity.this, "Please select the future hours", Toast.LENGTH_SHORT).show();
-                                }else {
+                    // Launch Time Picker Dialog
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(CreateEventActivity.this,
+                            new TimePickerDialog.OnTimeSetListener() {
 
-                                    if(minute<10)
-                                    {
-                                        pick_mytime=hourOfDay+":0"+minute+":00";
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay,
+                                                      int minute) {
+                                    String compareStringOne = binding.edDate.getText().toString() + " " + hourOfDay + ":" + minute;
+                                    String pick_mytime = "";
+
+
+                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    Date strDate = null;
+                                    try {
+                                        strDate = formatter.parse(compareStringOne);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
                                     }
-                                    else
-                                    {
-                                        pick_mytime=hourOfDay+":"+minute+":00";
+                                    Log.d("timeessss", "" + new Date().getTime() + "     " + strDate.getTime());
+                                    if (new Date().getTime() > strDate.getTime()) {
+                                        binding.edEventTime.setText("");
+                                        Toast.makeText(CreateEventActivity.this, "Please select the future hours", Toast.LENGTH_SHORT).show();
+                                    } else {
+
+                                        if (minute < 10) {
+                                            pick_mytime = hourOfDay + ":0" + minute + ":00";
+                                        } else {
+                                            pick_mytime = hourOfDay + ":" + minute + ":00";
+                                        }
+                                        binding.edEventTime.setText(pick_mytime);
+
                                     }
-                                    binding.edEventTime.setText(pick_mytime);
 
                                 }
-
-                            }
-                        }, mHour, mMinute, true);
-                timePickerDialog.show();
+                            }, mHour, mMinute, true);
+                    timePickerDialog.show();
+                }
+                else {
+                    Toast.makeText(CreateEventActivity.this, "Please Select Date", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         binding.selectLocation.setOnClickListener(new View.OnClickListener() {

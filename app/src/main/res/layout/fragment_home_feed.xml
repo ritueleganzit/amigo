@@ -12,11 +12,7 @@
                 android:id="@+id/pullToRefresh"
                 android:layout_height="wrap_content"
                 >
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/news_feed_scroll"
-        android:layout_width="match_parent"
-        android:fillViewport="true"
-        android:layout_height="match_parent">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,80 +20,7 @@
             android:layout_height="match_parent"
             android:descendantFocusability="blocksDescendants">
 
-            <RelativeLayout
-                android:id="@+id/header"
-                android:layout_width="match_parent"
-                android:paddingLeft="7dp"
-                android:paddingRight="7dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginBottom="6dp"
-                android:background="#ffffff"
-                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:id="@+id/header_user_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/photo"
-                        android:layout_width="38dp"
-                        android:layout_centerVertical="true"
-                        android:layout_height="38dp"
-                        android:src="@drawable/user"/>
-
-
-                </RelativeLayout>
-
-                <EditText
-                    android:id="@+id/ed_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="14sp"
-                    android:cursorVisible="false"
-                    android:inputType="textMultiLine"
-                    android:maxLines="2"
-                    android:focusable="false"
-                    android:layout_marginLeft="8dp"
-                    android:lines="2"
-                    android:hint="Write something here..."
-                    android:gravity="top|left"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="2dp"
-                    android:layout_toRightOf="@+id/header_user_photo"
-                    android:layout_toLeftOf="@+id/header_upload_photo"
-                    android:background="@drawable/status_bg"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/header_upload_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="12dp"
-                    android:paddingRight="5dp"
-                    android:layout_alignParentRight="true"
-                    android:orientation="vertical"
-                    android:layout_centerVertical="true">
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:src="@drawable/photos"/>
-
-                    <com.eleganzit.amigo.utils.TextViewRobotoRegular
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-                        android:text="Photo"
-                        />
-
-                </LinearLayout>
-
-            </RelativeLayout>
 
 
             <androidx.recyclerview.widget.RecyclerView
@@ -109,18 +32,7 @@
             </androidx.recyclerview.widget.RecyclerView>
 
 
-            <ProgressBar
-                android:layout_below="@+id/rc_posts"
-                android:indeterminate="true"
-                android:visibility="gone"
-                android:layout_marginTop="-5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressbar"
 
-
-android:layout_centerHorizontal="true"
-                />
 
 
 
@@ -259,7 +171,6 @@ android:layout_centerHorizontal="true"
         </RelativeLayout>
 
 
-</androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

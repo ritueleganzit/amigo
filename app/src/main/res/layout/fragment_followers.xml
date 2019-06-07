@@ -56,6 +56,21 @@
 
                 </androidx.recyclerview.widget.RecyclerView>
 
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progress"
+                    android:layout_centerInParent="true"/>
+                <com.eleganzit.amigo.utils.TextViewRobotoRegular
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No Followers"
+                    android:id="@+id/followerstxt"
+                    android:visibility="gone"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/darkGray"
+                    android:layout_centerInParent="true"/>
+
             </RelativeLayout>
 
         </LinearLayout>

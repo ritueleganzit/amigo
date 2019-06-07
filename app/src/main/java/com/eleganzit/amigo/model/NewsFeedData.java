@@ -13,6 +13,11 @@ public class NewsFeedData implements Parcelable,Cloneable {
     String post_id,user_photo,fullname,date_time,content,privacy,user_id,is_like;
     int total_comments,total_likes;
     String is_liked="false";
+public static final int HEADER_TYPE=1;
+public static final int MAIN_TYPE=10;
+public static final int FOOTER_TYPE=11;
+
+int view_type;
     ArrayList<PhotosData> imagesList;
    protected NewsFeedData(Parcel in) {
         post_id = in.readString();
@@ -62,6 +67,14 @@ public class NewsFeedData implements Parcelable,Cloneable {
         }
     };
 
+    public int getView_type() {
+        return view_type;
+    }
+
+    public void setView_type(int view_type) {
+        this.view_type = view_type;
+    }
+
     @Override
     public Object clone() {
         Parcel parcel = Parcel.obtain();
@@ -74,7 +87,8 @@ public class NewsFeedData implements Parcelable,Cloneable {
         return NewsFeedData.CREATOR.createFromParcel(parcel2);
     }
 
-    public NewsFeedData(String post_id, String user_photo, String fullname, String date_time, String content, ArrayList<PhotosData> imagesList, int total_comments, int total_likes,String privacy,String is_liked) {
+    public NewsFeedData(int view_type,String post_id, String user_photo, String fullname, String date_time, String content, ArrayList<PhotosData> imagesList, int total_comments, int total_likes,String privacy,String is_liked) {
+        this.view_type = view_type;
         this.post_id = post_id;
         this.user_photo = user_photo;
         this.fullname = fullname;

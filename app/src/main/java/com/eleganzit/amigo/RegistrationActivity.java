@@ -386,6 +386,8 @@ registerUser();
             public void onResponse(Call<GetStateResponse> call, Response<GetStateResponse> response) {
                 if (response.isSuccessful())
                 {
+                    Log.d("stattelist","--"+response.body().getMessage()    );
+
                     for (int i=0;i<response.body().getData().size();i++)
                     {
                         stateArrayList.add(response.body().getData().get(i).getName());
@@ -402,6 +404,7 @@ registerUser();
             @Override
             public void onFailure(Call<GetStateResponse> call, Throwable t) {
                 progressDialog.dismiss();
+                Log.d("stattelist","--"+t.getMessage());
             }
         });
     }

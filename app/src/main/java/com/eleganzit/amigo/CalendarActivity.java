@@ -16,6 +16,7 @@ import com.eleganzit.amigo.databinding.ActivityCalendarBinding;
 import com.eleganzit.amigo.model.EventsData;
 import com.eleganzit.amigo.model.GetEvents;
 import com.eleganzit.amigo.model.GetEventsResponse;
+import com.eleganzit.amigo.model.GetOpportunitiesEventsResponse;
 import com.eleganzit.amigo.session.UserLoggedInSession;
 
 import java.util.ArrayList;
@@ -107,11 +108,13 @@ Log.d("Createeee",""+strdate);
     private void amigoEventByDate() {
         progressDialog.show();
         arrayList= new ArrayList<>();
+        Log.d("TAGGGG",""+strdate);
+
         RetrofitInterface myInterface = RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
-        Call<GetEventsResponse> call = myInterface.amigoEventByDate(user_id, strdate);
-        call.enqueue(new Callback<GetEventsResponse>() {
+        Call<GetOpportunitiesEventsResponse> call = myInterface.amigoEventByDate(user_id, strdate);
+        call.enqueue(new Callback<GetOpportunitiesEventsResponse>() {
             @Override
-            public void onResponse(Call<GetEventsResponse> call, Response<GetEventsResponse> response) {
+            public void onResponse(Call<GetOpportunitiesEventsResponse> call, Response<GetOpportunitiesEventsResponse> response) {
                 progressDialog.dismiss();
                 if (response.isSuccessful()) {
 
@@ -154,7 +157,7 @@ Log.d("Createeee",""+strdate);
             }
 
             @Override
-            public void onFailure(Call<GetEventsResponse> call, Throwable t) {
+            public void onFailure(Call<GetOpportunitiesEventsResponse> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(CalendarActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
 

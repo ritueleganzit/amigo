@@ -229,7 +229,7 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
                                     search_progress.setVisibility(View.VISIBLE);
                                     no_results.setVisibility(View.GONE);
                                     RetrofitInterface myInterface= RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
-                                    Call<SearchDataResponse> call=myInterface.searchAll(userData.get(UserLoggedInSession.USER_ID),ed_search.getText().toString(),"0");
+                                    Call<SearchDataResponse> call=myInterface.searchAll(userData.get(UserLoggedInSession.USER_ID),ed_search.getText().toString(),"1");
                                     call.enqueue(new Callback<SearchDataResponse>() {
                                         @Override
                                         public void onResponse(Call<SearchDataResponse> call, final Response<SearchDataResponse> response) {
@@ -258,12 +258,15 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
                                                         {
                                                             for(int i=0; i<response.body().getData().size();i++)
                                                             {
-                                                                Log.d("responseseeee "+i,""+response.body().getData().get(i).getFullname());
-                                                                SearchData searchData=new SearchData(response.body().getData().get(i).getUserId(),response.body().getData().get(i).getPhoto(),response.body().getData().get(i).getFullname(),response.body().getData().get(i).getUsername(),response.body().getData().get(i).getEmailId(),response.body().getData().get(i).getCity(),response.body().getData().get(i).getHometown(),response.body().getData().get(i).getState());
-                                                                searchList.add(searchData);
-                                                                Log.d("whereeeeeeeeee", "      "+searchList.size());
+                                                                if(response.body().getData().get(i).getUserType().equalsIgnoreCase("2")) {
+                                                                    Log.d("responseseeee " + i, "" + response.body().getData().get(i).getFullname());
+                                                                    SearchData searchData = new SearchData(response.body().getData().get(i).getUserId(), response.body().getData().get(i).getPhoto(), response.body().getData().get(i).getFullname(), response.body().getData().get(i).getUsername(), response.body().getData().get(i).getEmailId(), response.body().getData().get(i).getCity(), response.body().getData().get(i).getHometown(), response.body().getData().get(i).getState());
+                                                                    searchList.add(searchData);
+                                                                    Log.d("whereeeeeeeeee", "      " + searchList.size());
+                                                                }
 
                                                             }
+                                                            rc_search.getAdapter().notifyDataSetChanged();
                                                         }
                                                         else
                                                         {
@@ -296,7 +299,7 @@ public class SearchActivity extends AppCompatActivity implements SearchAdapter.S
                                                         }
                                                     }
                                                     if (searchList.size() > 0) {
-                                                        Log.d("whereeeeeeeeee", "      "+searchList.size());
+                                                        Log.d("whereeeeeeeeee", " dsf     "+searchList.size());
 
                                                         //android.widget.Toast.makeText(CreatePostActivity.this, contactList.size()+"    if switch open suggestion", Toast.LENGTH_SHORT).show();
                                                         searchAdapter = new SearchAdapter(searchList,SearchActivity.this, new SearchAdapter.SearchAdapterListener() {

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 
@@ -34,6 +35,7 @@ import com.eleganzit.amigo.fragments.OpportunityFragment;
 import com.eleganzit.amigo.fragments.PhotosFragment;
 import com.eleganzit.amigo.model.GetOtherUserResponse;
 import com.eleganzit.amigo.model.OtherUserData;
+import com.eleganzit.amigo.model.SendRequestDataResponse;
 import com.eleganzit.amigo.model.newsfeed.NewsFeedDataResponse;
 import com.eleganzit.amigo.session.UserLoggedInSession;
 import com.eleganzit.amigo.utils.TextViewRobotoBold;
@@ -61,11 +63,14 @@ public class UserProfileActivity extends AppCompatActivity {
     ViewPager profile_view_pager;
     public static TextView tab_home,tab_about,tab_photos,tab_events,tab_opportunity;
 LinearLayout follow;
+    SharedPreferences viewUserPref;
+    SharedPreferences.Editor viewUserEditor;
+    String viewUserId;
     public static RelativeLayout donate_layout;
     UserLoggedInSession userLoggedInSession;
     ProgressDialog progressDialog;
 ImageView img_follow;
-TextViewRobotoBold txt_follow;
+TextViewRobotoBold txt_follow,txt_accept;
     String requestuserid,user_id;
     ActivityUserProfileBinding binding;
     @Override
@@ -80,9 +85,13 @@ TextViewRobotoBold txt_follow;
 binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activity_user_profile);
         HashMap<String, String> map = userLoggedInSession.getUserDetails();
         user_id = map.get(UserLoggedInSession.USER_ID);
+        viewUserPref=getSharedPreferences("viewUserPref",MODE_PRIVATE);
+        viewUserEditor=viewUserPref.edit();
+        viewUserId=viewUserPref.getString("viewUserId","");
 
         ed_search=findViewById(R.id.ed_search);
         accept_reject=findViewById(R.id.accept_reject);
+        txt_accept=findViewById(R.id.txt_accept);
         txt_follow=findViewById(R.id.txt_follow);
         follow=findViewById(R.id.follow);
         img_follow=findViewById(R.id.img_follow);
@@ -96,7 +105,26 @@ binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activi
         ed_search.setLongClickable(false);
         requestuserid=getIntent().getStringExtra("userid");
         Log.d(TAG,""+user_id+" "+requestuserid);
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(txt_follow.getText().toString().equalsIgnoreCase("Add Friend"))
+                {
+                    sendFollowRequest();
+                }
+                else if(txt_follow.getText().toString().equalsIgnoreCase("Requested"))
+                {
+                    // cancelFollowRequest();
+                }
+            }
+        });
 
+        txt_accept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         ed_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +207,57 @@ binding= DataBindingUtil.setContentView(UserProfileActivity.this,R.layout.activi
             }
         });
 
+    }
+    public void sendFollowRequest()
+    {
+        follow.setBackgroundResource(R.drawable.rounded_light_blue_bg);
+        img_follow.setVisibility(View.GONE);
+        txt_follow.setText("Requested");
+
+        RetrofitInterface myInterface = RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
+        Call<SendRequestDataResponse> call = myInterface.sendFriendRequest(viewUserId,user_id);
+        call.enqueue(new Callback<SendRequestDataResponse>() {
+            @Override
+            public void onResponse(Call<SendRequestDataResponse> call, final Response<SendRequestDataResponse> response) {
+
+                Log.d("responseseeee", "" + response.toString());
+
+                if (response.isSuccessful()) {
+                    if (response.body().getStatus().toString().equalsIgnoreCase("1")) {
+
+                        follow.setBackgroundResource(R.drawable.rounded_light_blue_bg);
+                        img_follow.setVisibility(View.GONE);
+                        txt_follow.setText("Requested");
+                        Toast.makeText(UserProfileActivity.this, "Request sent successfully", Toast.LENGTH_SHORT).show();
+
+                    } else {
+
+                        follow.setBackgroundResource(R.drawable.rounded_light_blue_bg);
+                        img_follow.setVisibility(View.GONE);
+                        txt_follow.setText("Requested");
+                        Toast.makeText(UserProfileActivity.this, "Request already sent", Toast.LENGTH_SHORT).show();
+
+                    }
+                } else {
+                    follow.setBackgroundResource(R.drawable.rounded_green_bg);
+                    img_follow.setVisibility(View.VISIBLE);
+                    txt_follow.setText("Follow");
+
+                    Toast.makeText(UserProfileActivity.this, "Server or Internet Error", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<SendRequestDataResponse> call, Throwable t) {
+
+                Toast.makeText(UserProfileActivity.this, "Server or Internet Error", Toast.LENGTH_SHORT).show();
+                follow.setBackgroundResource(R.drawable.rounded_green_bg);
+                img_follow.setVisibility(View.VISIBLE);
+                txt_follow.setText("Follow");
+
+            }
+        });
     }
 
     @Override

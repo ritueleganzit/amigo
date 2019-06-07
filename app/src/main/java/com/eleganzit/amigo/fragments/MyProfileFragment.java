@@ -243,7 +243,7 @@ public class MyProfileFragment extends Fragment {
                                 }
                             }
 */
-                            NewsFeedData newsFeedData=new NewsFeedData(post_id,user_photo,fullname,created_date,content,imgArrayList,countComment,countLikes,type,"false");
+                            NewsFeedData newsFeedData=new NewsFeedData(NewsFeedData.MAIN_TYPE,post_id,user_photo,fullname,created_date,content,imgArrayList,countComment,countLikes,type,"false");
                             newsFeedData.setUser_id(userid);
                             newsFeedData.setIs_like(is_like);
                             dataArrayList.add(newsFeedData);

@@ -1,5 +1,6 @@
 package com.eleganzit.amigo.api;
 
+import com.eleganzit.amigo.model.GetOpportunitiesEventsResponse;
 import com.eleganzit.amigo.model.donation.AddDonationResponse;
 import com.eleganzit.amigo.model.SearchDataResponse;
 import com.eleganzit.amigo.model.AddCommentResponse;
@@ -27,6 +28,7 @@ import com.eleganzit.amigo.model.donation.DeleteDonationResponse;
 import com.eleganzit.amigo.model.donation.DonarListResponse;
 import com.eleganzit.amigo.model.donation.GetDonationResponse;
 import com.eleganzit.amigo.model.donation.SingleDonationResponse;
+import com.eleganzit.amigo.model.friendlist.FriendListResponse;
 import com.eleganzit.amigo.model.getfriendrequest.GetRequestDataResponse;
 import com.eleganzit.amigo.model.newsfeed.NewsFeedDataResponse;
 import com.eleganzit.amigo.model.opportunity.OpportuntyResponse;
@@ -117,6 +119,9 @@ public interface RetrofitInterface {
 
 */
 
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/sendRequest")
+    Call<SendRequestDataResponse> sendFriendRequest(@Field("user_id") String user_id, @Field("request_user_id") String request_user_id);
 
 
     @FormUrlEncoded
@@ -127,9 +132,14 @@ public interface RetrofitInterface {
 
     @FormUrlEncoded
     @POST("/Volunteerify-API/searchData")
-    Call<SearchAllDataResponse> searchData(@Field("user_id") String user_id,
+    Call<SearchAllDataResponse> searchData(
+            @Field("type") String type,
+            @Field("user_id") String user_id,
                                            @Field("search") String search,
-                                           @Field("from_limit") String from_limit);
+                                           @Field("from_limit") String from_limit,
+                                           @Field("to_limit") String to_limit
+
+    );
 
 
 
@@ -158,7 +168,7 @@ public interface RetrofitInterface {
 
 @FormUrlEncoded
     @POST("/Volunteerify-API/amigoEventByDate")
-    Call<GetEventsResponse> amigoEventByDate(
+    Call<GetOpportunitiesEventsResponse> amigoEventByDate(
             @Field("user_id") String user_id,
             @Field("date") String date
 
@@ -595,4 +605,11 @@ Call<SingleDonationResponse> getSingleDonation(
     );
 
 
+
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/myFriends")
+    Call<FriendListResponse> getmyFriendsList(
+            @Field("user_id") String user_id
+
+    );
 }

@@ -55,6 +55,6 @@ public class FollowingActivity extends AppCompatActivity {
         ar_following.add(followersData);
         ar_following.add(followersData);
 
-        rc_following.setAdapter(new FollowersAdapter(ar_following,this));
+       // rc_following.setAdapter(new FollowersAdapter(ar_following,this));
     }
 }

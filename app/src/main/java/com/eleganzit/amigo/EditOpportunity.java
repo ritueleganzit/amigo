@@ -95,41 +95,49 @@ public class EditOpportunity extends AppCompatActivity {
         binding.edEventTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Calendar c = Calendar.getInstance();
-                mHour = c.get(Calendar.HOUR_OF_DAY);
-                mMinute = c.get(Calendar.MINUTE);
+                if (binding.edDate.getText().toString()!=null && !(binding.edDate.getText().toString().isEmpty())) {
+                    final Calendar c = Calendar.getInstance();
+                    mHour = c.get(Calendar.HOUR_OF_DAY);
+                    mMinute = c.get(Calendar.MINUTE);
 
-                // Launch Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(EditOpportunity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
+                    // Launch Time Picker Dialog
+                    TimePickerDialog timePickerDialog = new TimePickerDialog(EditOpportunity.this,
+                            new TimePickerDialog.OnTimeSetListener() {
 
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
+                                @Override
+                                public void onTimeSet(TimePicker view, int hourOfDay,
+                                                      int minute) {
 
-                                String compareStringOne = binding.edDate.getText().toString() + " " + hourOfDay + ":" + minute;
+                                    String compareStringOne = binding.edDate.getText().toString() + " " + hourOfDay + ":" + minute;
 
 
-                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-                                Date strDate = null;
-                                try {
-                                    strDate = formatter.parse(compareStringOne);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
+                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                                    Date strDate = null;
+                                    try {
+                                        strDate = formatter.parse(compareStringOne);
+                                    } catch (ParseException e) {
+                                        e.printStackTrace();
+                                    }
+                                    Log.d("timeessss",""+new Date().getTime() +"     "+ strDate.getTime());
+                                    if (new Date().getTime() > strDate.getTime()) {
+                                        binding.edEventTime.setText("");
+                                        Toast.makeText(EditOpportunity.this, "Please select the future hours", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        binding.edEventTime.setText(hourOfDay + ":" + minute);
+
+                                    }
+                                    //binding.edEventTime.setText(hourOfDay + ":" + minute);
+
                                 }
-                                Log.d("timeessss",""+new Date().getTime() +"     "+ strDate.getTime());
-                                if (new Date().getTime() > strDate.getTime()) {
-                                    binding.edEventTime.setText("");
-                                    Toast.makeText(EditOpportunity.this, "Please select the future hours", Toast.LENGTH_SHORT).show();
-                                }else {
-                                    binding.edEventTime.setText(hourOfDay + ":" + minute);
+                            }, mHour, mMinute, false);
+                    timePickerDialog.show();
+                }
+                else
+                {
+                    Toast.makeText(EditOpportunity.this, "Please Select Date", Toast.LENGTH_SHORT).show();
 
-                                }
-                                //binding.edEventTime.setText(hourOfDay + ":" + minute);
+                }
 
-                            }
-                        }, mHour, mMinute, false);
-                timePickerDialog.show();
             }
         });
 

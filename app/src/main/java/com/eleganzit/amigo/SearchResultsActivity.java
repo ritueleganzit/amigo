@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.eleganzit.SeeAllActivity;
 import com.eleganzit.amigo.adapter.SearchEventsAdapter;
 import com.eleganzit.amigo.adapter.SearchVolunteersAdapter;
 import com.eleganzit.amigo.api.RetrofitAPI;
@@ -73,19 +74,19 @@ public class SearchResultsActivity extends AppCompatActivity {
         chat=findViewById(R.id.chat);
         notification_bell=findViewById(R.id.notification_bell);
         ngo_header=findViewById(R.id.ngo_header);
-        events_header=findViewById(R.id.events_header);
-        volunteers_header=findViewById(R.id.volunteers_header);
+      //  events_header=findViewById(R.id.events_header);
+      ///  volunteers_header=findViewById(R.id.volunteers_header);
         ngo_seeAll=findViewById(R.id.ngo_seeAll);
-        event_seeAll=findViewById(R.id.event_seeAll);
-        volunteer_seeAll=findViewById(R.id.volunteer_seeAll);
+      //  event_seeAll=findViewById(R.id.event_seeAll);
+      //  volunteer_seeAll=findViewById(R.id.volunteer_seeAll);
 
         RecyclerView.LayoutManager layoutManager1=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        RecyclerView.LayoutManager layoutManager2=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        RecyclerView.LayoutManager layoutManager3=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+     //   RecyclerView.LayoutManager layoutManager2=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+      //  RecyclerView.LayoutManager layoutManager3=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
         rc_ngos.setLayoutManager(layoutManager1);
-        rc_events.setLayoutManager(layoutManager2);
-        rc_volunteer.setLayoutManager(layoutManager3);
+       // rc_events.setLayoutManager(layoutManager2);
+        //rc_volunteer.setLayoutManager(layoutManager3);
 
         notification_bell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +114,17 @@ public class SearchResultsActivity extends AppCompatActivity {
 
             }
         });
+        ngo_seeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                startActivity(new Intent(SearchResultsActivity.this, SeeAllActivity.class)
+                        .putExtra("type","ngo")
+                        .putExtra("search",search));
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+
+            }
+        });
 
     }
 
@@ -128,7 +139,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     {
         all_shimmer.setVisibility(View.VISIBLE);
         RetrofitInterface myInterface = RetrofitAPI.getRetrofit().create(RetrofitInterface.class);
-        Call<SearchAllDataResponse> call=myInterface.searchData(userData.get(UserLoggedInSession.USER_ID),search,"1");
+        Call<SearchAllDataResponse> call=myInterface.searchData("ngo",userData.get(UserLoggedInSession.USER_ID),search,"1","3");
         call.enqueue(new Callback<SearchAllDataResponse>() {
             @Override
             public void onResponse(Call<SearchAllDataResponse> call, final Response<SearchAllDataResponse> response) {
@@ -141,53 +152,41 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                     //Toast.makeText(SearchActivity.this, ""+response.body().getStatus().toString(), Toast.LENGTH_SHORT).show();
 
-                    if(response.body()!=null)
-                    {
+                    if(response.body()!=null) {
                         Log.d("whereeeeeeeeee", "   response is not null   ");
 
-                        if(response.body().getDataNGO()!=null)
-                        {
-                            Log.d("whereeeeeeeeee", "   response body data list is not null   ");
-                            if(response.body().getDataNGO().getData()!=null) {
-                                if(response.body().getDataNGO().getStatus().toString().equalsIgnoreCase("1"))
-                                {
+                        if (response.body().getDataNGO() != null) {
+                            Log.d("whereeeeeeeeee", "   response body data list is not null   "+response.body().getDataNGO().getData().get(0) );
+                            if (response.body().getDataNGO().getData() != null) {
+                                if (response.body().getDataNGO().getStatus().toString().equalsIgnoreCase("1")) {
                                     for (int i = 0; i < response.body().getDataNGO().getData().size(); i++) {
 
                                         NGOData ngoData;
-                                        if(response.body().getDataNGO().getData().get(i).getFollowdata().getFail_status().equalsIgnoreCase("0"))
-                                        {
-                                            ngoData = new NGOData(response.body().getDataNGO().getData().get(i).getUserId(),response.body().getDataNGO().getData().get(i).getFollowdata().getRequestUserId(),response.body().getDataNGO().getData().get(i).getFollowdata().getRequest_id(), response.body().getDataNGO().getData().get(i).getFullname(), response.body().getDataNGO().getData().get(i).getPhoto(), response.body().getDataNGO().getData().get(i).getCountFollow(), response.body().getDataNGO().getData().get(i).getIs_follow(),response.body().getDataNGO().getData().get(i).getFollowdata().getStatus(),"0");
-                                        }
-                                        else
-                                        {
-                                            ngoData = new NGOData(response.body().getDataNGO().getData().get(i).getUserId(),"","", response.body().getDataNGO().getData().get(i).getFullname(), response.body().getDataNGO().getData().get(i).getPhoto(), response.body().getDataNGO().getData().get(i).getCountFollow(), response.body().getDataNGO().getData().get(i).getIs_follow(),"","1");
+                                        if (response.body().getDataNGO().getData().get(i).getFollowdata().getFail_status().equalsIgnoreCase("0")) {
+                                            ngoData = new NGOData(response.body().getDataNGO().getData().get(i).getUserId(), response.body().getDataNGO().getData().get(i).getFollowdata().getRequestUserId(), response.body().getDataNGO().getData().get(i).getFollowdata().getRequest_id(), response.body().getDataNGO().getData().get(i).getFullname(), response.body().getDataNGO().getData().get(i).getPhoto(), response.body().getDataNGO().getData().get(i).getCountFollow(), response.body().getDataNGO().getData().get(i).getIs_follow(), response.body().getDataNGO().getData().get(i).getFollowdata().getStatus(), "0");
+                                        } else {
+                                            ngoData = new NGOData(response.body().getDataNGO().getData().get(i).getUserId(), "", "", response.body().getDataNGO().getData().get(i).getFullname(), response.body().getDataNGO().getData().get(i).getPhoto(), response.body().getDataNGO().getData().get(i).getCountFollow(), response.body().getDataNGO().getData().get(i).getIs_follow(), "", "1");
                                         }
 
                                         ar_ngoData.add(ngoData);
 
                                     }
-                                    rc_ngos.setAdapter(new SearchNGOsAdapter(ar_ngoData,SearchResultsActivity.this));
-                                }
-                                else
-                                {
+                                    rc_ngos.setAdapter(new SearchNGOsAdapter(ar_ngoData, SearchResultsActivity.this));
+                                } else {
                                     ngo_header.setVisibility(View.GONE);
                                     ngo_seeAll.setVisibility(View.GONE);
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 ngo_header.setVisibility(View.GONE);
                                 ngo_seeAll.setVisibility(View.GONE);
                             }
 
 
-                        }
-                        else
-                        {
+                        } else {
                             ngo_header.setVisibility(View.GONE);
                             ngo_seeAll.setVisibility(View.GONE);
                         }
-                        if(response.body().getDataevent()!=null)
+                       /* if(response.body().getDataevent()!=null)
                         {
                             Log.d("whereeeeeeeeee", "   response body data list is not null   ");
                             if(response.body().getDataevent().getData()!=null) {
@@ -220,8 +219,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                         {
                             events_header.setVisibility(View.GONE);
                             event_seeAll.setVisibility(View.GONE);
-                        }
-                        if(response.body().getDataVolunteer()!=null)
+                        }*/
+                       /* if(response.body().getDataVolunteer()!=null)
                         {
                             Log.d("whereeeeeeeeee", "   response body data list is not null   ");
                             if(response.body().getDataVolunteer().getData()!=null) {
@@ -267,12 +266,13 @@ public class SearchResultsActivity extends AppCompatActivity {
                             volunteer_seeAll.setVisibility(View.GONE);
                         }
 
+                    }*/
                     }
 
                 }
                 else
                 {
-                    Log.d("whereeeeeeeeee", "   "+response.errorBody());
+                    Log.d("whereeeeeeeeee", " err  "+response.errorBody());
 
                 }
             }

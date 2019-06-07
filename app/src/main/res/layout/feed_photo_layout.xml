@@ -13,6 +13,12 @@
         android:scaleType="centerCrop"
         />
 
+    <ProgressBar
+        android:id="@+id/photo_progress"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_centerInParent="true"/>
+
     <RelativeLayout
         android:id="@+id/pframe"
         android:layout_width="match_parent"

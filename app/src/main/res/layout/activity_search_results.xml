@@ -154,6 +154,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/events_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -178,6 +179,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_events"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -186,6 +188,7 @@
 
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/event_seeAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -201,6 +204,7 @@
             </RelativeLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/volunteers_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -224,6 +228,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_volunteer"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -232,6 +237,7 @@
 
 
             <RelativeLayout
+                android:visibility="gone"
                 android:id="@+id/volunteer_seeAll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

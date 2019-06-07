@@ -1,9 +1,10 @@
 package com.eleganzit.amigo.model.donation;
 
+import com.eleganzit.amigo.api.RetrofitInterface;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AddDonation {
+public class AddDonation{
     @SerializedName("user_id")
     @Expose
     private String userId;

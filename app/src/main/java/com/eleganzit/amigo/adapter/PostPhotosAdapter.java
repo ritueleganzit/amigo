@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -17,12 +19,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.eleganzit.amigo.R;
 import com.eleganzit.amigo.fragments.ViewPostFragment;
 import com.eleganzit.amigo.model.NewsFeedData;
@@ -200,6 +207,20 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
                 .asBitmap()
                 .load(photos.get(i).getPhoto())
                 .thumbnail(0.1f)
+                .listener(new RequestListener<Bitmap>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Bitmap> target, boolean isFirstResource) {
+holder.photo_progress.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource, Object model, Target<Bitmap> target, DataSource dataSource, boolean isFirstResource) {
+                        holder.photo_progress.setVisibility(View.GONE);
+
+                        return false;
+                    }
+                })
                 .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
                 .apply(new RequestOptions().override(150, 150).centerCrop())
                 .into(holder.feed_photo);
@@ -247,6 +268,7 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView feed_photo;
+        ProgressBar photo_progress;
         TextViewRobotoBold plus_count;
         RelativeLayout rel_main,pframe;
         public MyViewHolder(@NonNull View itemView) {
@@ -255,6 +277,7 @@ public class PostPhotosAdapter extends RecyclerView.Adapter<PostPhotosAdapter.My
             rel_main=itemView.findViewById(R.id.rel_main);
             pframe=itemView.findViewById(R.id.pframe);
             plus_count=itemView.findViewById(R.id.plus_count);
+            photo_progress=itemView.findViewById(R.id.photo_progress);
 
         }
     }

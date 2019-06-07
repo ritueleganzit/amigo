@@ -54,6 +54,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int i) {
         final SearchData searchData = searchList.get(i);
         holder.name.setText(searchData.getFullname());
+
+        Log.d("responseseeee",i+"adapter"+searchData.getFullname());
         Glide
                 .with(context)
                 .asBitmap()
@@ -83,9 +85,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                         Log.d("wwwwwwwwwwwwww",charString.toLowerCase()+"");
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getFullname().toLowerCase().contains(charString.toLowerCase()) || row.getUsername().contains(charSequence) || row.getCity().contains(charSequence) || row.getEmail().contains(charSequence) || row.getHometown().contains(charSequence) || row.getState().contains(charSequence) ) {
+                        //if (row.getFullname().toLowerCase().contains(charString.toLowerCase()) || row.getUsername().contains(charSequence) || row.getCity().contains(charSequence) || row.getEmail().contains(charSequence) || row.getHometown().contains(charSequence) || row.getState().contains(charSequence) ) {
                             filteredList.add(row);
-                        }
+                      //  }
                     }
 
                     searchListFiltered = filteredList;

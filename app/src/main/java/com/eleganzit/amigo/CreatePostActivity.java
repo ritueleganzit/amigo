@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -36,12 +37,17 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.eleganzit.amigo.adapter.LocationsAdapter;
@@ -85,6 +91,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -104,7 +111,6 @@ import retrofit2.Response;
 public class CreatePostActivity extends AppCompatActivity implements MentionsRecyclerAdapter.ContactsAdapterListener {
 
     private static final String TAG = "CreatePostActivity";
-    private ArrayList<String> mSelectPath;
     private static final int PLACE_PICKER_REQUEST2 = 1001;
 
 ProgressDialog progressDialog;
@@ -132,12 +138,13 @@ ProgressDialog progressDialog;
     String mediapath,user_id,profilePic,fullname,post_status="",lat,lng;
 
 
-
+TextView at,txt_at;
 
     //
     private static final int REQUEST_IMAGE = 201;
     protected static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 202;
     CallAPiActivity callAPiActivity;
+    private ArrayList<String> mSelectPath;
 
 
     ArrayList<String> str_photo_array=new ArrayList<>();
@@ -258,7 +265,6 @@ post_status=""+preferences.getString("post_privacy", "Public");
         });
         userLoggedInSession=new UserLoggedInSession(CreatePostActivity.this);
         callAPiActivity = new CallAPiActivity(this);
-
 
         progressDialog=new ProgressDialog(CreatePostActivity.this);
 progressDialog.setCancelable(false);
@@ -863,6 +869,19 @@ binding.layoutCreatePost.userName.setText(fullname);
             Glide
                     .with(context)
                     .load(photos.get(i).getPhoto())
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            holder.photo_progress.setVisibility(View.GONE);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            holder.photo_progress.setVisibility(View.GONE);
+                            return false;
+                        }
+                    })
                     .apply(new RequestOptions().centerCrop()).into(holder.feed_photo);
 
             holder.feed_photo.setOnClickListener(new View.OnClickListener() {
@@ -895,6 +914,7 @@ binding.layoutCreatePost.userName.setText(fullname);
             ImageView feed_photo;
             TextViewRobotoBold plus_count;
             RelativeLayout rel_main, pframe;
+            ProgressBar photo_progress;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
@@ -902,6 +922,7 @@ binding.layoutCreatePost.userName.setText(fullname);
                 rel_main = itemView.findViewById(R.id.rel_main);
                 pframe = itemView.findViewById(R.id.pframe);
                 plus_count = itemView.findViewById(R.id.plus_count);
+                photo_progress = itemView.findViewById(R.id.photo_progress);
 
             }
         }
@@ -988,32 +1009,32 @@ binding.layoutCreatePost.userName.setText(fullname);
             }
 
 
-                if (requestCode == REQUEST_IMAGE) {
-                    if (resultCode == Activity.RESULT_OK) {
-                        mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
-                        StringBuilder sb = new StringBuilder();
-                        for (String p : mSelectPath) {
-                            sb.append(p);
-                            sb.append("\n");
-                        }
-
-
-                        mediapath = sb.toString().trim();
-                        Log.d("LOG_TAG", "Selected Images 1.5" + mediapath);
-                        for (int i = 0; i < mSelectPath.size(); i++) {
-                            PhotosData photosData = new PhotosData("", mSelectPath.get(i));
-                            ar_photos.add(photosData);
-                            str_photo_array.add(mSelectPath.get(i));
-                        }
-
-                        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-                        add.setVisibility(View.VISIBLE);
-                        rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
-                        rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
-
-                        Log.d("mediapathhhhhhhh", "" + mediapath);
+            if (requestCode == REQUEST_IMAGE) {
+                if (resultCode == Activity.RESULT_OK) {
+                    mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
+                    StringBuilder sb = new StringBuilder();
+                    for (String p : mSelectPath) {
+                        sb.append(p);
+                        sb.append("\n");
                     }
+
+
+                    mediapath = sb.toString().trim();
+                    Log.d("LOG_TAG", "Selected Images 1.5" + mediapath);
+                    for (int i = 0; i < mSelectPath.size(); i++) {
+                        PhotosData photosData = new PhotosData("", mSelectPath.get(i));
+                        ar_photos.add(photosData);
+                        str_photo_array.add(mSelectPath.get(i));
+                    }
+
+                    sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                    add.setVisibility(View.VISIBLE);
+                    rc_photos.setAdapter(new PhotosAdapter(ar_photos, CreatePostActivity.this));
+                    rc_view_photos.setAdapter(new ViewPhotosAdapter(ar_photos, CreatePostActivity.this));
+
+                    Log.d("mediapathhhhhhhh", "" + mediapath);
                 }
+            }
             if (requestCode == PLACE_PICKER_REQUEST2) {
                 if (resultCode == RESULT_OK) {
                     binding.createPostBottomSheet.persistantBottomSheet.setVisibility(View.VISIBLE);
@@ -1028,9 +1049,14 @@ binding.layoutCreatePost.userName.setText(fullname);
                     Log.d(TAG,""+latLng.longitude);
                     if (toastMsg.equalsIgnoreCase(""))
                     {
-
+                        binding.layoutCreatePost.txtAt.setVisibility(View.GONE);
+                        binding.layoutCreatePost.at.setText("");
                     }
                     else {
+
+                        Toast.makeText(CreatePostActivity.this, ""+toastMsg, Toast.LENGTH_SHORT).show();
+                        binding.layoutCreatePost.txtAt.setVisibility(View.VISIBLE);
+                        binding.layoutCreatePost.at.setText(""+toastMsg);
 
                     }
 
