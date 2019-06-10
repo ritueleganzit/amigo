@@ -1,5 +1,6 @@
 package com.eleganzit.amigo.model;
 
+import com.eleganzit.amigo.model.searchDataClasses.GetFollowdata;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -93,7 +94,11 @@ public class OtherUserData {
     private String isFollow;
     @SerializedName("followdata")
     @Expose
-    private Followdata followdata;
+    private GetFollowdata followdata;
+
+    @SerializedName("is_block")
+    @Expose
+    private String is_block;
 
     public String getUserId() {
         return userId;
@@ -327,12 +332,21 @@ public class OtherUserData {
         this.isFollow = isFollow;
     }
 
-    public Followdata getFollowdata() {
+    public GetFollowdata getFollowdata() {
         return followdata;
     }
 
-    public void setFollowdata(Followdata followdata) {
+    public void setFollowdata(GetFollowdata followdata) {
         this.followdata = followdata;
+    }
+
+
+    public String getIs_block() {
+        return is_block;
+    }
+
+    public void setIs_block(String is_block) {
+        this.is_block = is_block;
     }
 
 }

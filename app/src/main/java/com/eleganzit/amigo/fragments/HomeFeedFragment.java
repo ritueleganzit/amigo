@@ -32,6 +32,7 @@ import com.bumptech.glide.request.FutureTarget;
 import com.bumptech.glide.request.RequestOptions;
 import com.eleganzit.amigo.CommentsActivity;
 import com.eleganzit.amigo.CreatePostActivity;
+import com.eleganzit.amigo.MyProfileActivity;
 import com.eleganzit.amigo.NewsFeedActivity;
 import com.eleganzit.amigo.PostLikesActivity;
 import com.eleganzit.amigo.R;
@@ -881,18 +882,34 @@ getUserFeeds(totalitems+1);
                         @Override
                         public void onClick(View view) {
                             //Toast.makeText(context, "**"+newsFeedData.getUser_id(), Toast.LENGTH_SHORT).show();
-                            context.startActivity(new Intent(context, UserProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
-                            activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            if (user_id.equalsIgnoreCase(""+newsFeedData.getUser_id()))
+                            {
+                                context.startActivity(new Intent(context, MyProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
+                                activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            }
+                            else
+                            {
+                                context.startActivity(new Intent(context, UserProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
+                                activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            }
+
                         }
                     });
 
                     ((DataViewHolder) holder).profilePic.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(context, "---" + newsFeedData.getUser_id(), Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(context, "---" + newsFeedData.getUser_id(), Toast.LENGTH_SHORT).show();
+                            if (user_id.equalsIgnoreCase(""+newsFeedData.getUser_id())) {
+                                context.startActivity(new Intent(context, MyProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
+                                activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            }
+                            else
+                            {
+                                context.startActivity(new Intent(context, UserProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
+                                activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                            }
 
-                            context.startActivity(new Intent(context, UserProfileActivity.class).putExtra("userid", newsFeedData.getUser_id()));
-                            activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         }
                     });
 

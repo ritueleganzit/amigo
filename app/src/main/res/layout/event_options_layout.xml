@@ -9,7 +9,7 @@
     app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
     >
     <LinearLayout
-        android:id="@+id/fragment_history_bottom_sheet_edit"
+        android:id="@+id/lin_report"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -32,7 +32,7 @@
         android:background="#e2e2e2"
         android:layout_height="1dp"/>
     <LinearLayout
-        android:id="@+id/fragment_history_bottom_sheet_delete"
+        android:id="@+id/lin_claim_owner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -48,6 +48,29 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:layout_gravity="center"
             android:text="Claim Ownership"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#e2e2e2"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:id="@+id/lin_block"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:padding="14dp"
+        android:focusable="true"
+        android:orientation="horizontal"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <com.eleganzit.amigo.utils.TextViewRobotoBold
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:layout_gravity="center"
+            android:text="Block User"/>
     </LinearLayout>
 
 </LinearLayout>

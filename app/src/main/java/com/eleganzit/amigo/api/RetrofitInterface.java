@@ -49,7 +49,16 @@ import retrofit2.http.Part;
  */
 
 public interface RetrofitInterface {
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/userAddBlock")
+    Call<SendRequestDataResponse> blockUser(@Field("user_id") String user_id, @Field("block_user_id") String block_user_id);
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/requestStatus")
+    Call<SendRequestDataResponse> cancelFriendRequest(@Field("request_id") String request_id,@Field("status") String status);
 
+    @FormUrlEncoded
+    @POST("/Volunteerify-API/requestStatus")
+    Call<SendRequestDataResponse> acceptFriendRequest(@Field("request_id") String request_id,@Field("status") String status);
 
     @FormUrlEncoded
     @POST("/Volunteerify-API/requestStatus")
